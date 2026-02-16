@@ -1,0 +1,28 @@
+[package]
+name = "ai-governance-tool"
+version = "0.1.0"
+description = "AI Governance & ROI Assessment Tool"
+authors = ["baltaguilar-tech"]
+license = "MIT"
+repository = "https://github.com/baltaguilar-tech/ai-governance-tool"
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "2", features = [] }
+tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+tauri-plugin-store = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-http = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-process = "2"

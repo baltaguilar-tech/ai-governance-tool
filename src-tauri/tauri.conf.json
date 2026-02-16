@@ -1,0 +1,45 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "AI Governance Tool",
+  "version": "0.1.0",
+  "identifier": "com.baltaguilar-tech.ai-governance-tool",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "AI Governance & ROI Assessment Tool",
+        "width": 1280,
+        "height": 860,
+        "minWidth": 960,
+        "minHeight": 640,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: https://asset.localhost; connect-src 'self' https://api.github.com"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Business",
+    "shortDescription": "AI Governance Assessment & ROI Measurement Tool",
+    "longDescription": "A comprehensive tool that guides organizations through AI governance assessment, calculates risk scores across 6 dimensions, and provides personalized recommendations with ROI tracking.",
+    "copyright": "Copyright 2026 baltaguilar-tech"
+  },
+  "plugins": {}
+}
