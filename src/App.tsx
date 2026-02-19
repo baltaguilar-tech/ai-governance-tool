@@ -3,6 +3,7 @@ import { WelcomePage } from '@/components/wizard/WelcomePage';
 import { ProfileStep } from '@/components/wizard/ProfileStep';
 import { DimensionStep } from '@/components/wizard/DimensionStep';
 import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import type { DimensionKey } from '@/types/assessment';
 
@@ -12,13 +13,29 @@ function App() {
   const renderStep = () => {
     switch (currentStep) {
       case 'welcome':
-        return <WelcomePage />;
+        return (
+          <ErrorBoundary scope="the welcome screen">
+            <WelcomePage />
+          </ErrorBoundary>
+        );
       case 'profile':
-        return <ProfileStep />;
+        return (
+          <ErrorBoundary scope="the profile step">
+            <ProfileStep />
+          </ErrorBoundary>
+        );
       case 'results':
-        return <ResultsDashboard />;
+        return (
+          <ErrorBoundary scope="the results dashboard">
+            <ResultsDashboard />
+          </ErrorBoundary>
+        );
       default:
-        return <DimensionStep dimensionKey={currentStep as DimensionKey} />;
+        return (
+          <ErrorBoundary scope={`the ${currentStep} assessment step`}>
+            <DimensionStep dimensionKey={currentStep as DimensionKey} />
+          </ErrorBoundary>
+        );
     }
   };
 

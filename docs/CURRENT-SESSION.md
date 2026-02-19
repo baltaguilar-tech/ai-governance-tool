@@ -4,46 +4,46 @@
 # ============================================================
 
 ## Last Updated
-2026-02-19 — Session 5
+2026-02-19 — Session 7
 
 ## What I Am Doing RIGHT NOW
-Phase 0 COMPLETE. Waiting for user direction on Phase 1.
+Phase 1 quick wins complete. Waiting for direction on next fix.
 
-## Session Goal
-1. Set up auto-logging hook (DONE)
-2. Verify all 4 question banks (DONE)
-3. Wire multi-bank system to UI (DONE)
-4. Full audit (DONE — docs/audit-report.md)
-5. Phase 0 blocking bugs (COMPLETE ✓)
-   a. sec-b-* → security-b-* in builder-questions.ts ✓
-   b. License tier dev/prod split in assessmentStore.ts ✓
-   c. Clear responses on maturity/region profile change ✓
-   d. Fix getImmediateAction() — dimension prefix matching ✓
-   e. TypeScript: 0 errors confirmed ✓
+## Session 7 Accomplishments
+1. Source documents read and committed to memory (docs/source-documents-summary.md) ✓
+2. React error boundaries — Option C (global + per-step) ✓
+   - New: src/components/ErrorBoundary.tsx (class component)
+   - Updated: src/main.tsx (global boundary)
+   - Updated: src/App.tsx (per-step boundaries on all 4 step types)
+3. Removed html2canvas from package.json (unused dependency) ✓
+4. tsc: 0 errors confirmed ✓
 
 ## Current State of Key Files
 | File | Status | Notes |
 |------|--------|-------|
+| `src/components/ErrorBoundary.tsx` | NEW | Global + per-step error boundary, class component |
+| `src/main.tsx` | UPDATED | Global ErrorBoundary wraps App |
+| `src/App.tsx` | UPDATED | Per-step ErrorBoundary on all 4 step types |
+| `package.json` | UPDATED | html2canvas removed |
 | `src/data/questions/experimenter-questions.ts` | COMPLETE | 801L, 60Q ✓ |
-| `src/data/questions/builder-questions.ts` | COMPLETE | 805L, 60Q ✓ (sec-b-* + aiRisks fixed) |
+| `src/data/questions/builder-questions.ts` | COMPLETE | 805L, 60Q ✓ |
 | `src/data/questions/innovator-questions.ts` | COMPLETE | 950L, 60Q ✓ |
 | `src/data/questions/achiever-questions.ts` | COMPLETE | 957L, 60Q ✓ |
 | `src/data/questions/index.ts` | COMPLETE | 68L, getQuestionsForProfile() ready |
-| `src/data/questions.ts` | DELETED | Removed after wiring done ✓ |
-| `src/components/wizard/DimensionStep.tsx` | UPDATED | Uses getQuestionsForProfile ✓ |
-| `src/utils/pdfExport.ts` | UPDATED | Takes questions param, no static import ✓ |
-| `src/store/assessmentStore.ts` | UPDATED | getQuestionsForProfile + licenseTier split + response clear ✓ |
-| `src/utils/scoring.ts` | UPDATED | getImmediateAction() uses dimension prefix matching ✓ |
-| `~/.claude/settings.json` | DONE | PostToolUse hook registered |
+| `src/store/assessmentStore.ts` | COMPLETE | All Phase 0 fixes applied |
+| `src/utils/scoring.ts` | COMPLETE | Inversion documented, prefix matching fixed |
 
-## What's Next — Phase 1 (App Completeness)
-From audit-report.md priority list:
+## Phase 1 Remaining Items
+- [ ] Fix Achiever option order reversal (options presented worst→best in other banks, best→worst in Achiever)
+- [ ] Standardize option scaling (0/25/50/75/100) across all banks
+- [ ] Replace "No idea" phrasing → "Not assessed" across question banks
+- [ ] 14 critical question rewrites (details in audit-report.md)
 - [ ] SQLite persistence (save/load assessment history)
-- [ ] Complete PDF export (pro tier — full dimension breakdown, playbooks, roadmap)
-- [ ] Fix Achiever option order reversal (audit finding)
-- [ ] Standardize option scaling across all question banks
-- [ ] React error boundaries (prevents blank screen on component crash)
-- [ ] 7 critical question rewrites (details in audit-report.md)
+- [ ] Complete PDF export (pro tier)
+
+## What's Next — Phase 1 (continued)
+Next up: Fix Achiever option order reversal (achiever-questions.ts)
+Uses subagent for any question bank file edits.
 
 ## Resume Prompt (paste this into a new session)
 ```
