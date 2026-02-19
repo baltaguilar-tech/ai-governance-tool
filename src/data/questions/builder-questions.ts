@@ -29,7 +29,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No process exists', value: 100 },
-      { label: 'Informal expectation, not documented', value: 70 },
+      { label: 'Informal expectation, not documented', value: 65 },
       { label: 'Process exists but inconsistently followed', value: 35 },
       { label: 'Documented process consistently followed across the org', value: 0 },
     ],
@@ -56,7 +56,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No review cadence established', value: 100 },
       { label: 'Reviewed ad hoc when issues arise', value: 65 },
-      { label: 'Reviewed annually', value: 40 },
+      { label: 'Reviewed annually', value: 35 },
       { label: 'Reviewed quarterly or more frequently', value: 0 },
     ],
   },
@@ -82,7 +82,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No controls — employees can purchase freely', value: 100 },
       { label: 'Informal expectations but no formal controls', value: 65 },
-      { label: 'Controls exist for large purchases, not small SaaS subscriptions', value: 40 },
+      { label: 'Controls exist for large purchases, not small SaaS subscriptions', value: 35 },
       { label: 'All AI tool purchases require approval regardless of cost', value: 0 },
     ],
   },
@@ -94,7 +94,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No review — employees accept terms directly', value: 100 },
-      { label: 'Review happens for large contracts, not standard SaaS', value: 60 },
+      { label: 'Review happens for large contracts, not standard SaaS', value: 65 },
       { label: 'Procurement reviews, but legal rarely involved', value: 35 },
       { label: 'Both procurement and legal review all AI vendor agreements', value: 0 },
     ],
@@ -161,8 +161,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No DPAs in place with AI vendors', value: 100 },
-      { label: 'DPAs exist for some vendors, not all', value: 60 },
-      { label: 'DPAs in place for regulated data vendors only', value: 30 },
+      { label: 'DPAs exist for some vendors, not all', value: 65 },
+      { label: 'DPAs in place for regulated data vendors only', value: 35 },
       { label: 'DPAs required and in place for all AI vendors', value: 0 },
     ],
   },
@@ -174,8 +174,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not reviewed — unknown for most vendors', value: 100 },
-      { label: 'Checked for a few key vendors, not all', value: 60 },
-      { label: 'Reviewed for all vendors but opt-outs not consistently applied', value: 30 },
+      { label: 'Checked for a few key vendors, not all', value: 65 },
+      { label: 'Reviewed for all vendors but opt-outs not consistently applied', value: 35 },
       { label: 'Reviewed and opted out of model training for all relevant vendors', value: 0 },
     ],
   },
@@ -188,7 +188,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not reviewed for any vendors', value: 100 },
       { label: 'Reviewed informally for a few vendors', value: 65 },
-      { label: 'Formally reviewed for high-risk vendors', value: 30 },
+      { label: 'Formally reviewed for high-risk vendors', value: 35 },
       { label: 'Reviewed and documented for all AI vendors', value: 0 },
     ],
   },
@@ -200,8 +200,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not reviewed as part of procurement', value: 100 },
-      { label: 'Requested but not consistently required', value: 60 },
-      { label: 'Required for some vendor tiers, not all', value: 30 },
+      { label: 'Requested but not consistently required', value: 65 },
+      { label: 'Required for some vendor tiers, not all', value: 35 },
       { label: 'Required for all AI vendors handling sensitive data', value: 0 },
     ],
   },
@@ -227,7 +227,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not considered', value: 100 },
       { label: 'Discussed but no formal assessment', value: 65 },
-      { label: 'Assessed for highest-dependency vendors', value: 30 },
+      { label: 'Assessed for highest-dependency vendors', value: 35 },
       { label: 'Continuity risk assessed and mitigations in place for all critical vendors', value: 0 },
     ],
   },
@@ -253,7 +253,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not reviewed for any vendors', value: 100 },
       { label: 'Aware of the concept but not formally reviewed', value: 65 },
-      { label: 'Reviewed for vendors handling regulated data', value: 30 },
+      { label: 'Reviewed for vendors handling regulated data', value: 35 },
       { label: 'Subprocessor lists reviewed and documented for all AI vendors', value: 0 },
     ],
   },
@@ -281,8 +281,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No classification or prohibition defined', value: 100 },
-      { label: 'General data classification exists but AI not addressed', value: 60 },
-      { label: 'AI-specific guidance exists but informally communicated', value: 30 },
+      { label: 'General data classification exists but AI not addressed', value: 65 },
+      { label: 'AI-specific guidance exists but informally communicated', value: 35 },
       { label: 'Formal AI data classification policy documented and communicated', value: 0 },
     ],
   },
@@ -333,8 +333,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No retention policies for AI-generated content', value: 100 },
-      { label: 'General content retention applies but AI not specifically addressed', value: 60 },
-      { label: 'AI content retention policy in draft or informally applied', value: 30 },
+      { label: 'General content retention applies but AI not specifically addressed', value: 65 },
+      { label: 'AI content retention policy in draft or informally applied', value: 35 },
       { label: 'Formal AI-generated content retention policy in place', value: 0 },
     ],
   },
@@ -373,7 +373,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No restriction in place', value: 100 },
-      { label: 'Verbally discouraged but not formally restricted', value: 70 },
+      { label: 'Verbally discouraged but not formally restricted', value: 65 },
       { label: 'Restriction defined but inconsistently enforced', value: 35 },
       { label: 'Formal restriction with approval workflow and enforcement', value: 0 },
     ],
@@ -386,8 +386,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Unknown — not reviewed', value: 100 },
-      { label: 'Checked for some tools, not systematically', value: 60 },
-      { label: 'Reviewed for regulated-data tools only', value: 30 },
+      { label: 'Checked for some tools, not systematically', value: 65 },
+      { label: 'Reviewed for regulated-data tools only', value: 35 },
       { label: 'Third-party data sharing understood and documented for all AI tools', value: 0 },
     ],
   },
@@ -400,7 +400,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No data minimization applied to AI tool configuration', value: 100 },
       { label: 'Considered informally but not enforced', value: 65 },
-      { label: 'Applied for highest-risk tools', value: 30 },
+      { label: 'Applied for highest-risk tools', value: 35 },
       { label: 'Data minimization enforced as standard for all AI tool deployments', value: 0 },
     ],
   },
@@ -415,7 +415,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Most AI tools use personal credentials outside SSO', value: 100 },
       { label: 'SSO applied to some tools, not systematically', value: 65 },
-      { label: 'SSO enforced, MFA inconsistently applied', value: 30 },
+      { label: 'SSO enforced, MFA inconsistently applied', value: 35 },
       { label: 'SSO and MFA required for all AI tool access', value: 0 },
     ],
   },
@@ -467,7 +467,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'AI tools not included in offboarding process', value: 100 },
       { label: 'Some AI tools included, most missed', value: 65 },
-      { label: 'Process covers IT-provisioned AI tools, not shadow adoption', value: 40 },
+      { label: 'Process covers IT-provisioned AI tools, not shadow adoption', value: 35 },
       { label: 'All AI tools included in a comprehensive offboarding checklist', value: 0 },
     ],
   },
@@ -613,8 +613,8 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No logging of AI usage in decision workflows', value: 100 },
-      { label: 'Some logging exists but not specifically for decision contexts', value: 60 },
-      { label: 'Logging in place for some high-stakes workflows', value: 30 },
+      { label: 'Some logging exists but not specifically for decision contexts', value: 65 },
+      { label: 'Logging in place for some high-stakes workflows', value: 35 },
       { label: 'Comprehensive audit logging for all AI-informed significant decisions', value: 0 },
     ],
   },
@@ -707,7 +707,7 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No centralized view — AI spend is dispersed and untracked', value: 100 },
       { label: 'Some visibility through finance, but incomplete', value: 65 },
-      { label: 'Most AI spend tracked centrally, some gaps', value: 30 },
+      { label: 'Most AI spend tracked centrally, some gaps', value: 35 },
       { label: 'Complete, centralized view of all AI tool spending', value: 0 },
     ],
   },

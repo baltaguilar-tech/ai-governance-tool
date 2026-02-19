@@ -29,7 +29,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No guidance has been given', value: 100 },
-      { label: 'Some employees know informally, most don't', value: 70 },
+      { label: 'Some employees know informally, most don't', value: 65 },
       { label: 'Most employees are aware there's an expectation', value: 35 },
       { label: 'All employees know the expectation and where to go', value: 0 },
     ],
@@ -43,7 +43,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No approved list exists', value: 100 },
       { label: 'Informally known but not written down', value: 65 },
-      { label: 'Written list, shared with some teams', value: 30 },
+      { label: 'Written list, shared with some teams', value: 35 },
       { label: 'Written approved list, accessible to all employees', value: 0 },
     ],
   },
@@ -55,8 +55,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Yes, and we have no visibility into it', value: 100 },
-      { label: 'Probably yes, but we haven't formally addressed it', value: 70 },
-      { label: 'We've asked employees not to, but don't enforce it', value: 40 },
+      { label: 'Probably yes, but we haven't formally addressed it', value: 65 },
+      { label: 'We've asked employees not to, but don't enforce it', value: 35 },
       { label: 'Employees use company accounts for approved tools', value: 0 },
     ],
   },
@@ -69,7 +69,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No, IT finds out after the fact (or never)', value: 100 },
       { label: 'Occasionally, through informal channels', value: 65 },
-      { label: 'Sometimes — depends on how it's purchased', value: 40 },
+      { label: 'Sometimes — depends on how it's purchased', value: 35 },
       { label: 'Yes, there's a process and IT is looped in', value: 0 },
     ],
   },
@@ -82,7 +82,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not yet', value: 100 },
       { label: 'Briefly mentioned but not a focus', value: 65 },
-      { label: 'It's been discussed and there's general awareness', value: 30 },
+      { label: 'It's been discussed and there's general awareness', value: 35 },
       { label: 'Leadership is engaged and driving the conversation', value: 0 },
     ],
   },
@@ -94,8 +94,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No idea — we haven't asked or checked', value: 100 },
-      { label: 'We suspect it's happening but haven't confirmed', value: 70 },
-      { label: 'We've raised awareness but don't have visibility', value: 40 },
+      { label: 'We suspect it's happening but haven't confirmed', value: 65 },
+      { label: 'We've raised awareness but don't have visibility', value: 35 },
       { label: 'We have guidelines and employees know what not to share', value: 0 },
     ],
   },
@@ -107,7 +107,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No one has this responsibility', value: 100 },
-      { label: 'It's unclear who owns it', value: 70 },
+      { label: 'It's unclear who owns it', value: 65 },
       { label: 'Someone is loosely responsible alongside other duties', value: 35 },
       { label: 'There's a clear owner with defined responsibilities', value: 0 },
     ],
@@ -120,8 +120,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not aware of this', value: 100 },
-      { label: 'Aware of some but haven't reviewed them', value: 60 },
-      { label: 'Reviewed some AI features in existing tools', value: 25 },
+      { label: 'Aware of some but haven't reviewed them', value: 65 },
+      { label: 'Reviewed some AI features in existing tools', value: 35 },
       { label: 'Actively reviewing all vendor AI features as they're released', value: 0 },
     ],
   },
@@ -134,7 +134,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No guidance has been communicated', value: 100 },
       { label: 'Mentioned verbally in a meeting or two', value: 65 },
-      { label: 'Written guidance shared with some teams', value: 30 },
+      { label: 'Written guidance shared with some teams', value: 35 },
       { label: 'Clear written guidance distributed to all employees', value: 0 },
     ],
   },
@@ -149,7 +149,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No, we haven't looked at this', value: 100 },
       { label: 'We're aware of a few, but haven't done a full review', value: 65 },
-      { label: 'We've reviewed our major vendors', value: 30 },
+      { label: 'We've reviewed our major vendors', value: 35 },
       { label: 'Yes, we track AI features across all key vendors', value: 0 },
     ],
   },
@@ -161,8 +161,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No, we haven't reviewed these sections', value: 100 },
-      { label: 'We've skimmed them for a couple of key vendors', value: 60 },
-      { label: 'We've reviewed most major vendor contracts', value: 25 },
+      { label: 'We've skimmed them for a couple of key vendors', value: 65 },
+      { label: 'We've reviewed most major vendor contracts', value: 35 },
       { label: 'Yes, we review AI/data sections for all key vendors', value: 0 },
     ],
   },
@@ -174,8 +174,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: "Don't know and haven't asked", value: 100 },
-      { label: 'We assume they are, haven't checked', value: 75 },
-      { label: 'We've asked a couple of key vendors', value: 40 },
+      { label: 'We assume they are, haven't checked', value: 65 },
+      { label: 'We've asked a couple of key vendors', value: 35 },
       { label: 'We know for our main vendors and have opted out where needed', value: 0 },
     ],
   },
@@ -187,8 +187,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No, we haven't done this', value: 100 },
-      { label: 'Checked for one or two tools', value: 60 },
-      { label: 'Reviewed settings for most major tools', value: 25 },
+      { label: 'Checked for one or two tools', value: 65 },
+      { label: 'Reviewed settings for most major tools', value: 35 },
       { label: 'Yes, privacy settings reviewed for all key tools', value: 0 },
     ],
   },
@@ -200,8 +200,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No idea where our data is processed', value: 100 },
-      { label: 'Know for our most critical vendor(s) only', value: 60 },
-      { label: 'Know for most vendors', value: 25 },
+      { label: 'Know for our most critical vendor(s) only', value: 65 },
+      { label: 'Know for most vendors', value: 35 },
       { label: 'Fully documented for all key vendors', value: 0 },
     ],
   },
@@ -214,7 +214,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No formal identification done', value: 100 },
       { label: 'Informally known by some people, not documented', value: 65 },
-      { label: 'Partially documented', value: 30 },
+      { label: 'Partially documented', value: 35 },
       { label: 'Clearly documented with data sensitivity levels', value: 0 },
     ],
   },
@@ -226,8 +226,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No idea about vendor certifications', value: 100 },
-      { label: 'Know for one or two vendors', value: 60 },
-      { label: 'Know for most key vendors', value: 25 },
+      { label: 'Know for one or two vendors', value: 65 },
+      { label: 'Know for most key vendors', value: 35 },
       { label: 'Tracked for all key vendors', value: 0 },
     ],
   },
@@ -240,7 +240,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No, it hasn't come up', value: 100 },
       { label: 'Occasionally, informally', value: 65 },
-      { label: 'Yes, for some purchases', value: 30 },
+      { label: 'Yes, for some purchases', value: 35 },
       { label: 'AI risk is a standard part of our purchasing process', value: 0 },
     ],
   },
@@ -252,7 +252,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No plan in place', value: 100 },
-      { label: 'We'd figure it out in the moment', value: 70 },
+      { label: 'We'd figure it out in the moment', value: 65 },
       { label: 'We have vendor contacts but no documented process', value: 35 },
       { label: 'Yes, documented contacts and basic response steps', value: 0 },
     ],
@@ -266,7 +266,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Never considered this', value: 100 },
       { label: 'Thought about it but haven't checked', value: 65 },
-      { label: 'Checked for our most critical vendor(s)', value: 30 },
+      { label: 'Checked for our most critical vendor(s)', value: 35 },
       { label: 'Reviewed and documented exit/deletion terms for key vendors', value: 0 },
     ],
   },
@@ -281,7 +281,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No guidance has been given', value: 100 },
       { label: 'Verbally mentioned but not written down', value: 65 },
-      { label: 'Written guidance exists but not widely shared', value: 30 },
+      { label: 'Written guidance exists but not widely shared', value: 35 },
       { label: 'Clear written guidance shared with all employees', value: 0 },
     ],
   },
@@ -294,7 +294,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No awareness — not been discussed', value: 100 },
       { label: 'Some employees are aware, most aren't', value: 65 },
-      { label: 'Widely understood but not formally addressed', value: 30 },
+      { label: 'Widely understood but not formally addressed', value: 35 },
       { label: 'Formally communicated and documented', value: 0 },
     ],
   },
@@ -307,7 +307,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No classification system exists', value: 100 },
       { label: 'Informal understanding but nothing documented', value: 65 },
-      { label: 'Basic classification documented, not consistently applied', value: 30 },
+      { label: 'Basic classification documented, not consistently applied', value: 35 },
       { label: 'Clear classification used by employees day-to-day', value: 0 },
     ],
   },
@@ -319,8 +319,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No idea', value: 100 },
-      { label: 'Suspected but not confirmed', value: 70 },
-      { label: 'Confirmed it's happening; haven't addressed it', value: 50 },
+      { label: 'Suspected but not confirmed', value: 65 },
+      { label: 'Confirmed it's happening; haven't addressed it', value: 35 },
       { label: 'Confirmed, and we have controls or clear guidelines in place', value: 0 },
     ],
   },
@@ -333,7 +333,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No retention policies exist', value: 100 },
       { label: 'Informal practices, not documented', value: 65 },
-      { label: 'Basic retention policy exists for most data', value: 30 },
+      { label: 'Basic retention policy exists for most data', value: 35 },
       { label: 'Documented retention policy, consistently applied', value: 0 },
     ],
   },
@@ -345,8 +345,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No, never reviewed', value: 100 },
-      { label: 'Checked for one tool', value: 60 },
-      { label: 'Reviewed for most main tools', value: 25 },
+      { label: 'Checked for one tool', value: 65 },
+      { label: 'Reviewed for most main tools', value: 35 },
       { label: 'Reviewed for all tools in active use', value: 0 },
     ],
   },
@@ -358,8 +358,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not addressed', value: 100 },
-      { label: 'Discussed informally in HR or IT', value: 60 },
-      { label: 'Part of general AI guidance', value: 25 },
+      { label: 'Discussed informally in HR or IT', value: 65 },
+      { label: 'Part of general AI guidance', value: 35 },
       { label: 'Specific guidance exists for HR data + AI', value: 0 },
     ],
   },
@@ -371,8 +371,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No process or channel exists', value: 100 },
-      { label: 'Employees can raise it informally with their manager', value: 60 },
-      { label: 'There's a general IT helpdesk or ethics channel', value: 25 },
+      { label: 'Employees can raise it informally with their manager', value: 65 },
+      { label: 'There's a general IT helpdesk or ethics channel', value: 35 },
       { label: 'Specific AI-related reporting channel or process exists', value: 0 },
     ],
   },
@@ -384,8 +384,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not considered', value: 100 },
-      { label: 'Informally understood but not communicated', value: 60 },
-      { label: 'Discussed and communicated informally', value: 25 },
+      { label: 'Informally understood but not communicated', value: 65 },
+      { label: 'Discussed and communicated informally', value: 35 },
       { label: 'Clear guidance: AI output must be reviewed before external use', value: 0 },
     ],
   },
@@ -398,7 +398,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No idea', value: 100 },
       { label: 'We think so, but haven't confirmed the legal implications', value: 65 },
-      { label: 'Yes, we're aware and have basic privacy practices', value: 25 },
+      { label: 'Yes, we're aware and have basic privacy practices', value: 35 },
       { label: 'Yes, we have documented compliance practices for applicable laws', value: 0 },
     ],
   },
@@ -413,7 +413,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No, IT hasn't been involved', value: 100 },
       { label: 'IT knows about some tools but hasn't reviewed them', value: 65 },
-      { label: 'IT has informally reviewed the main tools', value: 30 },
+      { label: 'IT has informally reviewed the main tools', value: 35 },
       { label: 'IT has conducted a formal review of active AI tools', value: 0 },
     ],
   },
@@ -426,7 +426,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not considered', value: 100 },
       { label: 'Briefly thought about it, nothing done', value: 65 },
-      { label: 'Discussed with leadership or IT', value: 30 },
+      { label: 'Discussed with leadership or IT', value: 35 },
       { label: 'Formally assessed and documented', value: 0 },
     ],
   },
@@ -438,8 +438,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not sure which regulations apply to us', value: 100 },
-      { label: 'Aware of some but unclear how they apply to AI', value: 60 },
-      { label: 'Know our compliance obligations, haven't assessed AI impact', value: 25 },
+      { label: 'Aware of some but unclear how they apply to AI', value: 65 },
+      { label: 'Know our compliance obligations, haven't assessed AI impact', value: 35 },
       { label: 'Know our obligations and have assessed how AI use affects compliance', value: 0 },
     ],
   },
@@ -452,7 +452,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No requirement — employees use whatever they prefer', value: 100 },
       { label: 'Informally encouraged, not enforced', value: 65 },
-      { label: 'Required for some tools, not consistently enforced', value: 30 },
+      { label: 'Required for some tools, not consistently enforced', value: 35 },
       { label: 'Consistently required and enforced for all AI tools', value: 0 },
     ],
   },
@@ -464,8 +464,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Leadership is not aware', value: 100 },
-      { label: 'Aware at a very high level', value: 60 },
-      { label: 'Aware and have discussed implications', value: 25 },
+      { label: 'Aware at a very high level', value: 65 },
+      { label: 'Aware and have discussed implications', value: 35 },
       { label: 'Actively engaged and driving security decisions', value: 0 },
     ],
   },
@@ -478,7 +478,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No cybersecurity policy exists', value: 100 },
       { label: 'Informal practices, not documented as a policy', value: 65 },
-      { label: 'Policy exists, employees are generally aware', value: 25 },
+      { label: 'Policy exists, employees are generally aware', value: 35 },
       { label: 'Formal policy, regularly reviewed, employees acknowledge it', value: 0 },
     ],
   },
@@ -490,7 +490,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'We've had incidents and haven't tracked or learned from them', value: 100 },
-      { label: 'None that we know of', value: 50 },
+      { label: 'None that we know of', value: 35 },
       { label: 'Minor incidents noted but not formally reviewed', value: 65 },
       { label: 'Incidents reviewed and used to improve practices', value: 0 },
     ],
@@ -503,8 +503,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not addressed with employees', value: 100 },
-      { label: 'Mentioned in general security training', value: 50 },
-      { label: 'Addressed specifically in AI or security guidance', value: 20 },
+      { label: 'Mentioned in general security training', value: 35 },
+      { label: 'Addressed specifically in AI or security guidance', value: 35 },
       { label: 'Regular, specific training on AI-enabled threats', value: 0 },
     ],
   },
@@ -517,7 +517,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Haven't considered this', value: 100 },
       { label: 'Vaguely aware but haven't looked into it', value: 65 },
-      { label: 'Discussed with legal or insurance contacts', value: 25 },
+      { label: 'Discussed with legal or insurance contacts', value: 35 },
       { label: 'Reviewed and documented our AI-related coverage and liability exposure', value: 0 },
     ],
   },
@@ -529,8 +529,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No process — employees wouldn't know what to do', value: 100 },
-      { label: 'General IT helpdesk exists but not AI-specific', value: 50 },
-      { label: 'Employees know to escalate AI security concerns to IT', value: 20 },
+      { label: 'General IT helpdesk exists but not AI-specific', value: 35 },
+      { label: 'Employees know to escalate AI security concerns to IT', value: 35 },
       { label: 'Documented AI incident reporting process, employees trained', value: 0 },
     ],
   },
@@ -545,7 +545,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Most employees are not aware of this', value: 100 },
       { label: 'Some know, most don't', value: 65 },
-      { label: 'Generally understood, not formally addressed', value: 30 },
+      { label: 'Generally understood, not formally addressed', value: 35 },
       { label: 'Formally communicated as part of AI guidance', value: 0 },
     ],
   },
@@ -558,7 +558,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No guidance — employees use AI outputs as-is', value: 100 },
       { label: 'Informal expectation to review, not communicated', value: 65 },
-      { label: 'Basic guidance communicated to some teams', value: 30 },
+      { label: 'Basic guidance communicated to some teams', value: 35 },
       { label: 'Clear review requirement communicated to all employees', value: 0 },
     ],
   },
@@ -570,8 +570,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Yes, and we didn't track or learn from it', value: 100 },
-      { label: 'Not that we're aware of', value: 40 },
-      { label: 'Yes, but it was minor and handled informally', value: 60 },
+      { label: 'Not that we're aware of', value: 35 },
+      { label: 'Yes, but it was minor and handled informally', value: 65 },
       { label: 'Yes — we documented it and updated our practices', value: 0 },
     ],
   },
@@ -583,8 +583,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Yes, and we don't have oversight', value: 100 },
-      { label: 'Probably happening but we haven't checked', value: 70 },
-      { label: 'Aware of some cases, informally managed', value: 40 },
+      { label: 'Probably happening but we haven't checked', value: 65 },
+      { label: 'Aware of some cases, informally managed', value: 35 },
       { label: 'Customer-facing AI content requires human review — enforced', value: 0 },
     ],
   },
@@ -596,8 +596,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not addressed — most employees are unaware', value: 100 },
-      { label: 'Some awareness in technical teams', value: 60 },
-      { label: 'Discussed across the organization', value: 25 },
+      { label: 'Some awareness in technical teams', value: 65 },
+      { label: 'Discussed across the organization', value: 35 },
       { label: 'Formally addressed with guidance on high-risk AI uses', value: 0 },
     ],
   },
@@ -610,7 +610,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No guidelines — employees use AI however they choose', value: 100 },
       { label: 'Informal expectation, not communicated', value: 65 },
-      { label: 'Basic guidance communicated to some teams', value: 30 },
+      { label: 'Basic guidance communicated to some teams', value: 35 },
       { label: 'Clear guidelines: AI assists, humans decide on important matters', value: 0 },
     ],
   },
@@ -623,7 +623,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not considered', value: 100 },
       { label: 'Aware of the risk, haven't assessed it', value: 65 },
-      { label: 'Discussed with legal or technical team', value: 25 },
+      { label: 'Discussed with legal or technical team', value: 35 },
       { label: 'Assessed and have guidance in place for high-risk use cases', value: 0 },
     ],
   },
@@ -635,8 +635,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No guidance — employees are on their own', value: 100 },
-      { label: 'Informal expectation that they'd just ask a colleague', value: 60 },
-      { label: 'Employees know to flag concerns to IT or their manager', value: 25 },
+      { label: 'Informal expectation that they'd just ask a colleague', value: 65 },
+      { label: 'Employees know to flag concerns to IT or their manager', value: 35 },
       { label: 'Clear escalation path communicated to all employees', value: 0 },
     ],
   },
@@ -649,7 +649,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not on anyone's radar', value: 100 },
       { label: 'Casually discussed but not formally considered', value: 65 },
-      { label: 'Included in risk discussions at leadership level', value: 25 },
+      { label: 'Included in risk discussions at leadership level', value: 35 },
       { label: 'Formally assessed and included in business risk management', value: 0 },
     ],
   },
@@ -662,7 +662,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No monitoring of any kind', value: 100 },
       { label: 'Relying entirely on employees to self-report', value: 65 },
-      { label: 'Manager check-ins or periodic team discussions', value: 30 },
+      { label: 'Manager check-ins or periodic team discussions', value: 35 },
       { label: 'Structured monitoring process, even if lightweight', value: 0 },
     ],
   },
@@ -676,8 +676,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No tracking of any kind', value: 100 },
-      { label: 'Employees report time savings informally', value: 60 },
-      { label: 'We've asked in surveys or conversations', value: 25 },
+      { label: 'Employees report time savings informally', value: 65 },
+      { label: 'We've asked in surveys or conversations', value: 35 },
       { label: 'We actively track time savings from AI use', value: 0 },
     ],
   },
@@ -689,8 +689,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No idea — it's scattered across teams', value: 100 },
-      { label: 'Rough ballpark, not fully aggregated', value: 60 },
-      { label: 'Know the main subscriptions, some gaps', value: 25 },
+      { label: 'Rough ballpark, not fully aggregated', value: 65 },
+      { label: 'Know the main subscriptions, some gaps', value: 35 },
       { label: 'Full visibility into AI spend across the organization', value: 0 },
     ],
   },
@@ -703,7 +703,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No visibility into utilization', value: 100 },
       { label: 'Anecdotal sense but no data', value: 65 },
-      { label: 'Some visibility for major subscriptions', value: 30 },
+      { label: 'Some visibility for major subscriptions', value: 35 },
       { label: 'Track utilization across AI subscriptions', value: 0 },
     ],
   },
@@ -716,7 +716,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No conversation has happened', value: 100 },
       { label: 'Vague expectations, nothing quantified', value: 65 },
-      { label: 'Had a conversation, general alignment on goals', value: 30 },
+      { label: 'Had a conversation, general alignment on goals', value: 35 },
       { label: 'Specific value expectations articulated and documented', value: 0 },
     ],
   },
@@ -728,8 +728,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No one has asked or is tracking this', value: 100 },
-      { label: 'Some employees share anecdotes informally', value: 60 },
-      { label: 'We've asked and collected some feedback', value: 25 },
+      { label: 'Some employees share anecdotes informally', value: 65 },
+      { label: 'We've asked and collected some feedback', value: 35 },
       { label: 'We systematically collect and track employee-reported gains', value: 0 },
     ],
   },
@@ -742,7 +742,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not tracking this', value: 100 },
       { label: 'Anecdotally believed but not measured', value: 65 },
-      { label: 'Measured informally for one or two use cases', value: 30 },
+      { label: 'Measured informally for one or two use cases', value: 35 },
       { label: 'Actively tracking error rates in AI-assisted processes', value: 0 },
     ],
   },
@@ -754,8 +754,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No one has this responsibility', value: 100 },
-      { label: 'Various department heads manage their own AI spend', value: 60 },
-      { label: 'One function loosely coordinates AI spending', value: 25 },
+      { label: 'Various department heads manage their own AI spend', value: 65 },
+      { label: 'One function loosely coordinates AI spending', value: 35 },
       { label: 'Clear budget owner with visibility into all AI spend', value: 0 },
     ],
   },
@@ -768,7 +768,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'Not considered', value: 100 },
       { label: 'Generally aware but no structured thinking', value: 65 },
-      { label: 'Discussed at leadership level', value: 30 },
+      { label: 'Discussed at leadership level', value: 35 },
       { label: 'Part of our strategic planning process', value: 0 },
     ],
   },
@@ -781,7 +781,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No estimate of any kind', value: 100 },
       { label: 'Vague sense that it's worth it but no numbers', value: 65 },
-      { label: 'Rough informal calculation done', value: 25 },
+      { label: 'Rough informal calculation done', value: 35 },
       { label: 'Formal or semi-formal ROI estimate created', value: 0 },
     ],
   },
@@ -793,8 +793,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not tracking', value: 100 },
-      { label: 'General CSAT tracking, not AI-specific', value: 55 },
-      { label: 'Aware of AI impact informally from customer feedback', value: 25 },
+      { label: 'General CSAT tracking, not AI-specific', value: 65 },
+      { label: 'Aware of AI impact informally from customer feedback', value: 35 },
       { label: 'Tracking customer metrics specifically for AI-assisted interactions', value: 0 },
     ],
   },
