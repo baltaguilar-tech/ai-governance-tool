@@ -31,22 +31,26 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 export function RecommendationsList({ recommendations }: RecommendationsListProps) {
   const { licenseTier } = useAssessmentStore();
+  const isPro = licenseTier === 'professional';
 
-  const freeRecs = recommendations.filter((r) => !r.isPaid);
+  // Pro: show ALL recommendations. Free: show only free ones.
+  const visibleRecs = isPro ? recommendations : recommendations.filter((r) => !r.isPaid);
   const paidRecs = recommendations.filter((r) => r.isPaid);
 
   return (
     <div className="bg-white rounded-xl border border-navy-200 p-6 mb-8">
       <h3 className="text-lg font-semibold text-navy-900 mb-1">
-        Personalized Recommendations
+        {isPro ? 'Complete Action Plan' : 'Personalized Recommendations'}
       </h3>
       <p className="text-sm text-navy-500 mb-6">
-        Prioritized action items based on your assessment results
+        {isPro
+          ? 'Full prioritized action plan including industry-specific and regulatory recommendations'
+          : 'Prioritized action items based on your assessment results'}
       </p>
 
       {/* Group by timeline */}
       {TIMELINE_ORDER.map((timeline) => {
-        const timelineRecs = freeRecs.filter((r) => r.timeline === timeline);
+        const timelineRecs = visibleRecs.filter((r) => r.timeline === timeline);
         if (timelineRecs.length === 0) return null;
 
         return (
@@ -69,17 +73,26 @@ export function RecommendationsList({ recommendations }: RecommendationsListProp
               {timelineRecs.map((rec, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 p-3 rounded-lg bg-navy-50 border border-navy-100"
+                  className={`flex items-start gap-3 p-3 rounded-lg border ${
+                    rec.isPaid
+                      ? 'bg-blue-50 border-blue-200'
+                      : 'bg-navy-50 border-navy-100'
+                  }`}
                 >
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 mt-0.5 ${PRIORITY_COLORS[rec.priority]}`}>
                     {rec.priority.toUpperCase()}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
                       <span className="text-sm font-medium text-navy-900">{rec.title}</span>
                       <span className="text-[10px] text-navy-400 bg-navy-100 px-1.5 py-0.5 rounded">
                         {CATEGORY_LABELS[rec.category]}
                       </span>
+                      {rec.isPaid && isPro && (
+                        <span className="text-[10px] text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded font-semibold">
+                          PRO
+                        </span>
+                      )}
                     </div>
                     <p className="text-xs text-navy-600">{rec.description}</p>
                   </div>
@@ -90,8 +103,8 @@ export function RecommendationsList({ recommendations }: RecommendationsListProp
         );
       })}
 
-      {/* Paid recommendations teaser */}
-      {paidRecs.length > 0 && licenseTier === 'free' && (
+      {/* Paid recommendations teaser (free tier only) */}
+      {!isPro && paidRecs.length > 0 && (
         <div className="mt-6 p-5 bg-gradient-to-r from-navy-900 to-navy-800 rounded-xl text-white">
           <h4 className="font-semibold mb-2">
             Unlock {paidRecs.length} Additional Recommendations

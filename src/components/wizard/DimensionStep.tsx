@@ -1,18 +1,20 @@
-import { useState } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
-import { DimensionKey } from '@/types/assessment';
+import { DimensionKey, MaturityLevel, OrganizationProfile } from '@/types/assessment';
 import { DIMENSION_MAP } from '@/data/dimensions';
-import { getQuestionsByDimension } from '@/data/questions';
+import { getQuestionsForProfile } from '@/data/questions/index';
 
 interface DimensionStepProps {
   dimensionKey: DimensionKey;
 }
 
 export function DimensionStep({ dimensionKey }: DimensionStepProps) {
-  const { responses, setResponse, nextStep, prevStep } = useAssessmentStore();
+  const { responses, setResponse, nextStep, prevStep, profile } = useAssessmentStore();
   const dimension = DIMENSION_MAP[dimensionKey];
-  const questions = getQuestionsByDimension(dimensionKey);
-  const [expandedHelp, setExpandedHelp] = useState<string | null>(null);
+  const allQuestions = getQuestionsForProfile(
+    (profile as OrganizationProfile).aiMaturityLevel ?? MaturityLevel.Experimenter,
+    (profile as OrganizationProfile).operatingRegions ?? []
+  );
+  const questions = allQuestions.filter((q) => q.dimension === dimensionKey);
 
   const answeredCount = questions.filter((q) =>
     responses.some((r) => r.questionId === q.id)
@@ -48,7 +50,6 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
       <div className="space-y-4">
         {questions.map((question, idx) => {
           const currentResponse = responses.find((r) => r.questionId === question.id);
-          const isHelpOpen = expandedHelp === question.id;
 
           return (
             <div
@@ -60,32 +61,19 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
               }`}
             >
               {/* Question header */}
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-start gap-3">
-                  <span className="text-xs font-semibold text-navy-400 bg-navy-100 rounded-full w-6 h-6 flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
+              <div className="flex items-start gap-3 mb-2">
+                <span className="text-xs font-semibold text-navy-400 bg-navy-100 rounded-full w-6 h-6 flex items-center justify-center shrink-0 mt-0.5">
+                  {idx + 1}
+                </span>
+                <div>
                   <p className="text-sm font-medium text-navy-900">{question.text}</p>
+                  {question.helpText && (
+                    <p className="text-xs text-navy-500 mt-1.5 leading-relaxed">
+                      {question.helpText}
+                    </p>
+                  )}
                 </div>
-                <button
-                  onClick={() => setExpandedHelp(isHelpOpen ? null : question.id)}
-                  className="text-navy-400 hover:text-blue-600 ml-2 shrink-0"
-                  title="More info"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
-                  </svg>
-                </button>
               </div>
-
-              {/* Help text */}
-              {isHelpOpen && (
-                <div className="mb-3 ml-9 text-xs text-navy-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                  {question.helpText}
-                </div>
-              )}
 
               {/* Options */}
               <div className="ml-9 space-y-2">

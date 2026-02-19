@@ -6,16 +6,16 @@ interface AchieverProgressProps {
   targetMaturity: MaturityLevel;
 }
 
-const MATURITY_ORDER: MaturityLevel[] = [
-  MaturityLevel.Experimenter,
-  MaturityLevel.Builder,
-  MaturityLevel.Innovator,
-  MaturityLevel.Achiever,
+const MATURITY_STAGES: { level: MaturityLevel; short: string }[] = [
+  { level: MaturityLevel.Experimenter, short: 'Explore' },
+  { level: MaturityLevel.Builder, short: 'Build' },
+  { level: MaturityLevel.Innovator, short: 'Innovate' },
+  { level: MaturityLevel.Achiever, short: 'Achieve' },
 ];
 
 export function AchieverProgress({ score, currentMaturity, targetMaturity }: AchieverProgressProps) {
-  const currentIdx = MATURITY_ORDER.indexOf(currentMaturity);
-  const targetIdx = MATURITY_ORDER.indexOf(targetMaturity);
+  const currentIdx = MATURITY_STAGES.findIndex((s) => s.level === currentMaturity);
+  const targetIdx = MATURITY_STAGES.findIndex((s) => s.level === targetMaturity);
 
   return (
     <div className="bg-white rounded-xl border border-navy-200 p-6 text-center">
@@ -27,50 +27,52 @@ export function AchieverProgress({ score, currentMaturity, targetMaturity }: Ach
       <div className="text-3xl font-bold text-navy-900 mb-1">{score}/100</div>
       <p className="text-xs text-navy-500 mb-4">Achiever readiness score</p>
 
-      {/* Progress bar */}
-      <div className="h-3 bg-navy-100 rounded-full overflow-hidden mb-4">
-        <div
-          className="h-full rounded-full transition-all duration-1000 bg-gradient-to-r from-blue-400 to-emerald-500"
-          style={{ width: `${score}%` }}
-        />
-      </div>
+      {/* Progress bar with stage markers */}
+      <div className="relative mb-8">
+        <div className="h-3 bg-navy-100 rounded-full overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-1000 bg-gradient-to-r from-blue-400 to-emerald-500"
+            style={{ width: `${score}%` }}
+          />
+        </div>
 
-      {/* Maturity stages */}
-      <div className="flex justify-between text-xs">
-        {MATURITY_ORDER.map((level, i) => {
-          const isCurrent = i === currentIdx;
-          const isTarget = i === targetIdx;
-          return (
-            <div key={level} className="text-center">
-              <div
-                className={`w-3 h-3 rounded-full mx-auto mb-1 ${
-                  i <= currentIdx
-                    ? 'bg-blue-500'
-                    : i <= targetIdx
-                    ? 'bg-blue-200'
-                    : 'bg-navy-200'
-                }`}
-              />
-              <span
-                className={`${
-                  isCurrent
-                    ? 'text-blue-700 font-semibold'
-                    : isTarget
-                    ? 'text-emerald-600 font-medium'
-                    : 'text-navy-400'
-                }`}
-              >
-                {level}
-              </span>
-              {isCurrent && (
-                <div className="text-[10px] text-blue-500">Current</div>
-              )}
-              {isTarget && !isCurrent && (
-                <div className="text-[10px] text-emerald-500">Target</div>
-              )}
-            </div>
-          );
-        })}
+        {/* Stage dots and labels positioned along the bar */}
+        <div className="absolute -bottom-6 left-0 right-0 flex justify-between px-1">
+          {MATURITY_STAGES.map((stage, i) => {
+            const isCurrent = i === currentIdx;
+            const isTarget = i === targetIdx && i !== currentIdx;
+            return (
+              <div key={stage.level} className="flex flex-col items-center" style={{ width: '25%' }}>
+                <div
+                  className={`w-3 h-3 rounded-full -mt-[21px] mb-1 border-2 border-white ${
+                    i <= currentIdx
+                      ? 'bg-blue-500'
+                      : i <= targetIdx
+                      ? 'bg-blue-200'
+                      : 'bg-navy-200'
+                  }`}
+                />
+                <span
+                  className={`text-[10px] leading-tight ${
+                    isCurrent
+                      ? 'text-blue-700 font-bold'
+                      : isTarget
+                      ? 'text-emerald-600 font-semibold'
+                      : 'text-navy-400 font-medium'
+                  }`}
+                >
+                  {stage.short}
+                </span>
+                {isCurrent && (
+                  <span className="text-[9px] text-blue-500 font-medium">Current</span>
+                )}
+                {isTarget && (
+                  <span className="text-[9px] text-emerald-500 font-medium">Target</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <p className="text-xs text-navy-500 mt-4">

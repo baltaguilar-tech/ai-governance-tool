@@ -23,7 +23,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: https://asset.localhost; connect-src 'self' https://api.github.com"
+      "csp": "default-src 'self' blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: https://asset.localhost; connect-src 'self' https://api.github.com"
     }
   },
   "bundle": {
@@ -41,5 +41,12 @@
     "longDescription": "A comprehensive tool that guides organizations through AI governance assessment, calculates risk scores across 6 dimensions, and provides personalized recommendations with ROI tracking.",
     "copyright": "Copyright 2026 baltaguilar-tech"
   },
-  "plugins": {}
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/baltaguilar-tech/ai-governance-tool/releases/latest/download/latest.json"
+      ],
+      "pubkey": ""
+    }
+  }
 }

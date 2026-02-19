@@ -8,10 +8,12 @@ import {
   BlindSpot,
   Recommendation,
   LicenseTier,
+  MaturityLevel,
 } from '@/types/assessment';
 import { WIZARD_STEPS } from '@/data/dimensions';
 import { calculateAllScores } from '@/utils/scoring';
 import { generateRecommendations } from '@/utils/recommendations';
+import { getQuestionsForProfile } from '@/data/questions/index';
 
 interface AssessmentStore {
   // Wizard state
@@ -50,7 +52,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   riskScore: null,
   blindSpots: [],
   recommendations: [],
-  licenseTier: 'free',
+  licenseTier: (import.meta.env.DEV ? 'professional' : 'free') as LicenseTier,
 
   setStep: (step) => set({ currentStep: step }),
 
@@ -64,6 +66,11 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
         get().calculateResults();
       }
       set({ currentStep: nextStep });
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 0);
     }
   },
 
@@ -72,13 +79,24 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
     const currentIndex = STEP_ORDER.indexOf(currentStep);
     if (currentIndex > 0) {
       set({ currentStep: STEP_ORDER[currentIndex - 1] });
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 0);
     }
   },
 
   updateProfile: (updates) =>
-    set((state) => ({
-      profile: { ...state.profile, ...updates },
-    })),
+    set((state) => {
+      const questionsWillChange =
+        ('aiMaturityLevel' in updates && updates.aiMaturityLevel !== state.profile.aiMaturityLevel) ||
+        ('operatingRegions' in updates && updates.operatingRegions !== state.profile.operatingRegions);
+      return {
+        profile: { ...state.profile, ...updates },
+        ...(questionsWillChange ? { responses: [] } : {}),
+      };
+    }),
 
   setResponse: (questionId, value) =>
     set((state) => {
@@ -94,12 +112,16 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
 
   calculateResults: () => {
     const { responses, profile } = get();
-    const { dimensionScores, riskScore, blindSpots } = calculateAllScores(responses, profile);
+    const questions = getQuestionsForProfile(
+      (profile as OrganizationProfile).aiMaturityLevel ?? MaturityLevel.Experimenter,
+      (profile as OrganizationProfile).operatingRegions ?? []
+    );
+    const { dimensionScores, riskScore, blindSpots } = calculateAllScores(responses, profile, questions);
     const recommendations = generateRecommendations(
       dimensionScores,
       riskScore,
       profile as OrganizationProfile,
-      'free'
+      get().licenseTier
     );
     set({ dimensionScores, riskScore, blindSpots, recommendations });
   },

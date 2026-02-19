@@ -30,7 +30,19 @@
       "allow": [
         { "path": "$APPDATA/**" },
         { "path": "$DOWNLOAD/**" },
-        { "path": "$DESKTOP/**" }
+        { "path": "$DESKTOP/**" },
+        { "path": "$DOCUMENT/**" },
+        { "path": "$HOME/**" }
+      ]
+    },
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [
+        { "path": "$APPDATA/**" },
+        { "path": "$DOWNLOAD/**" },
+        { "path": "$DESKTOP/**" },
+        { "path": "$DOCUMENT/**" },
+        { "path": "$HOME/**" }
       ]
     },
     {

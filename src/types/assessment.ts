@@ -93,6 +93,9 @@ export interface OrganizationProfile {
   expectedAISpend: string;
 }
 
+// Jurisdiction codes for question filtering (maps from Region enum)
+export type JurisdictionCode = 'all' | 'us' | 'eu' | 'uk' | 'ap' | 'latam' | 'mea';
+
 export interface AssessmentQuestion {
   id: string;
   dimension: DimensionKey;
@@ -101,12 +104,16 @@ export interface AssessmentQuestion {
   type: 'radio' | 'checkbox' | 'slider' | 'select';
   options?: QuestionOption[];
   weight?: number;
+  // If absent or empty, shown for all jurisdictions. Otherwise, only shown
+  // when org operates in at least one of the listed jurisdictions.
+  jurisdictions?: JurisdictionCode[];
 }
 
 export interface QuestionOption {
   label: string;
   value: number;
   description?: string;
+  riskLevel?: 'low' | 'medium' | 'high' | 'critical';
 }
 
 export interface QuestionResponse {

@@ -18,21 +18,23 @@ export function generateRecommendations(
   const dimMap = Object.fromEntries(dimensionScores.map((d) => [d.key, d]));
 
   // --- CRITICAL: Always included (free tier) ---
+  // Note: scores are now 0-100 where higher = better governance
+  // So low scores indicate problems
 
   // Shadow AI recommendations
-  if (dimMap.shadowAI?.score > 60) {
+  if (dimMap.shadowAI?.score < 40) {
     recommendations.push({
       category: 'audit',
       title: 'Deploy Shadow AI Detection Immediately',
       description:
-        'Your organization has critical blind spots in AI visibility. Deploy automated shadow AI detection tools to identify unauthorized AI applications. The average enterprise has 1,200+ unauthorized AI apps.',
+        'Your organization has critical blind spots in AI visibility. Deploy automated shadow AI detection tools to identify unauthorized AI applications. Research shows employees average 3-5 AI tools each, and the majority are adopted without IT approval.',
       priority: 'critical',
       timeline: 'this-week',
       isPaid: false,
     });
   }
 
-  if (dimMap.shadowAI?.score > 40) {
+  if (dimMap.shadowAI?.score < 60) {
     recommendations.push({
       category: 'audit',
       title: 'Conduct Comprehensive AI Inventory',
@@ -45,7 +47,7 @@ export function generateRecommendations(
   }
 
   // Vendor risk recommendations
-  if (dimMap.vendorRisk?.score > 60) {
+  if (dimMap.vendorRisk?.score < 40) {
     recommendations.push({
       category: 'vendor',
       title: 'Urgent: Assess Top 10 Critical AI Vendors',
@@ -57,7 +59,7 @@ export function generateRecommendations(
     });
   }
 
-  if (dimMap.vendorRisk?.score > 40) {
+  if (dimMap.vendorRisk?.score < 60) {
     recommendations.push({
       category: 'vendor',
       title: 'Establish Quarterly Vendor Review Process',
@@ -70,7 +72,7 @@ export function generateRecommendations(
   }
 
   // Governance committee
-  if (dimMap.securityCompliance?.score > 50) {
+  if (dimMap.securityCompliance?.score < 50) {
     recommendations.push({
       category: 'roadmap',
       title: 'Form AI Governance Committee',
@@ -83,7 +85,7 @@ export function generateRecommendations(
   }
 
   // AI Acceptable Use Policy
-  if (dimMap.shadowAI?.score > 30) {
+  if (dimMap.shadowAI?.score < 70) {
     recommendations.push({
       category: 'compliance',
       title: 'Develop AI Acceptable Use Policy',
@@ -96,7 +98,7 @@ export function generateRecommendations(
   }
 
   // Incident response
-  if (dimMap.securityCompliance?.score > 50) {
+  if (dimMap.securityCompliance?.score < 50) {
     recommendations.push({
       category: 'monitoring',
       title: 'Create AI Incident Response Plan',
@@ -125,7 +127,7 @@ export function generateRecommendations(
   recommendations.push(...regulatoryRecs);
 
   // ROI framework
-  if (dimMap.roiTracking?.score > 30) {
+  if (dimMap.roiTracking?.score < 70) {
     recommendations.push({
       category: 'roi',
       title: 'Multi-Dimensional ROI Framework',
@@ -149,7 +151,7 @@ export function generateRecommendations(
   });
 
   // ISO 42001
-  if (dimMap.securityCompliance?.score > 30) {
+  if (dimMap.securityCompliance?.score < 70) {
     recommendations.push({
       category: 'compliance',
       title: 'ISO 42001 Gap Assessment & Certification Roadmap',
@@ -173,7 +175,7 @@ export function generateRecommendations(
   });
 
   // Data governance
-  if (dimMap.dataGovernance?.score > 50) {
+  if (dimMap.dataGovernance?.score < 50) {
     recommendations.push({
       category: 'audit',
       title: 'AI Data Governance Framework',
@@ -186,7 +188,7 @@ export function generateRecommendations(
   }
 
   // AI-specific risk mitigations
-  if (dimMap.aiSpecificRisks?.score > 50) {
+  if (dimMap.aiSpecificRisks?.score < 50) {
     recommendations.push({
       category: 'monitoring',
       title: 'AI Risk Mitigation Playbook',

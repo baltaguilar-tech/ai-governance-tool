@@ -4,24 +4,46 @@ import { DimensionRadar } from './DimensionRadar';
 import { BlindSpotsList } from './BlindSpotsList';
 import { RecommendationsList } from './RecommendationsList';
 import { AchieverProgress } from './AchieverProgress';
-import { generateFreePDF } from '@/utils/pdfExport';
+import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 
 export function ResultsDashboard() {
-  const { riskScore, dimensionScores, blindSpots, recommendations, profile, resetAssessment } =
+  const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier } =
     useAssessmentStore();
 
   if (!riskScore) return null;
+
+  const handleToggleTier = () => {
+    const store = useAssessmentStore.getState();
+    const newTier = store.licenseTier === 'free' ? 'professional' : 'free';
+    useAssessmentStore.setState({ licenseTier: newTier });
+    // Recalculate so recommendations reflect the new tier
+    store.calculateResults();
+  };
 
   return (
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-navy-900 mb-2">
-          Assessment Results: {profile.organizationName}
-        </h2>
-        <p className="text-navy-600">
-          Completed on {new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-navy-900 mb-2">
+              Assessment Results: {profile.organizationName}
+            </h2>
+            <p className="text-navy-600">
+              Completed on {new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
+            </p>
+          </div>
+          <button
+            onClick={handleToggleTier}
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              licenseTier === 'professional'
+                ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                : 'bg-navy-100 text-navy-600 border border-navy-300'
+            }`}
+          >
+            {licenseTier === 'professional' ? 'PRO Active' : 'FREE Tier'} (click to toggle)
+          </button>
+        </div>
       </div>
 
       {/* Top-level scores */}
@@ -52,11 +74,11 @@ export function ResultsDashboard() {
               <div className="flex-1 h-4 bg-navy-100 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-1000 ${
-                    ds.score <= 30
+                    ds.score >= 70
                       ? 'bg-emerald-500'
-                      : ds.score <= 60
+                      : ds.score >= 40
                       ? 'bg-amber-500'
-                      : ds.score <= 80
+                      : ds.score >= 20
                       ? 'bg-orange-500'
                       : 'bg-red-500'
                   }`}
@@ -66,11 +88,11 @@ export function ResultsDashboard() {
               <div className="w-20 text-right">
                 <span
                   className={`text-sm font-semibold ${
-                    ds.score <= 30
+                    ds.score >= 70
                       ? 'text-emerald-600'
-                      : ds.score <= 60
+                      : ds.score >= 40
                       ? 'text-amber-600'
-                      : ds.score <= 80
+                      : ds.score >= 20
                       ? 'text-orange-600'
                       : 'text-red-600'
                   }`}
@@ -80,11 +102,11 @@ export function ResultsDashboard() {
               </div>
               <span
                 className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                  ds.score <= 30
+                  ds.score >= 70
                     ? 'bg-emerald-100 text-emerald-700'
-                    : ds.score <= 60
+                    : ds.score >= 40
                     ? 'bg-amber-100 text-amber-700'
-                    : ds.score <= 80
+                    : ds.score >= 20
                     ? 'bg-orange-100 text-orange-700'
                     : 'bg-red-100 text-red-700'
                 }`}
@@ -95,7 +117,7 @@ export function ResultsDashboard() {
           ))}
         </div>
         <p className="text-xs text-navy-500 mt-4">
-          Lower scores = better governance. Scores above 60 require immediate attention.
+          Higher scores = stronger governance. Scores below 40 require immediate attention.
         </p>
       </div>
 
@@ -131,24 +153,41 @@ export function ResultsDashboard() {
         <div className="flex gap-3">
           <button
             onClick={() => {
-              if (riskScore) {
-                generateFreePDF(
-                  dimensionScores,
-                  riskScore.overallRisk,
-                  riskScore.riskLevel,
-                  riskScore.achieverScore,
-                  profile.organizationName || 'Organization',
-                  blindSpots
-                );
-              }
+              if (!riskScore) return;
+              const orgName = profile.organizationName || 'Organization';
+              const exportFn =
+                licenseTier === 'professional'
+                  ? generateProPDF(
+                      dimensionScores,
+                      riskScore.overallRisk,
+                      riskScore.riskLevel,
+                      riskScore.achieverScore,
+                      orgName,
+                      blindSpots,
+                      recommendations,
+                      responses
+                    )
+                  : generateFreePDF(
+                      dimensionScores,
+                      riskScore.overallRisk,
+                      riskScore.riskLevel,
+                      riskScore.achieverScore,
+                      orgName,
+                      blindSpots
+                    );
+              exportFn.catch((err) => {
+                console.error('PDF export failed:', err);
+              });
             }}
             className="px-6 py-2.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
           >
-            Export PDF Summary (Free)
+            {licenseTier === 'professional' ? 'Export Full PDF Report' : 'Export PDF Summary'}
           </button>
-          <button className="px-6 py-2.5 rounded-lg bg-navy-900 text-white font-medium hover:bg-navy-800 transition-colors">
-            Unlock Full Report (Pro)
-          </button>
+          {licenseTier === 'free' && (
+            <button className="px-6 py-2.5 rounded-lg bg-navy-900 text-white font-medium hover:bg-navy-800 transition-colors">
+              Upgrade to Pro
+            </button>
+          )}
         </div>
       </div>
     </div>

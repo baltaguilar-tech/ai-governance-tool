@@ -26,8 +26,8 @@ export function WelcomePage() {
           <div className="text-xs text-navy-500 mt-1">Lost to AI hallucinations (2024)</div>
         </div>
         <div className="bg-white rounded-xl p-4 shadow-sm border border-navy-200">
-          <div className="text-2xl font-bold text-amber-600">1,200+</div>
-          <div className="text-xs text-navy-500 mt-1">Unauthorized AI apps per enterprise</div>
+          <div className="text-2xl font-bold text-amber-600">3-5</div>
+          <div className="text-xs text-navy-500 mt-1">AI tools per employee, most unapproved</div>
         </div>
         <div className="bg-white rounded-xl p-4 shadow-sm border border-navy-200">
           <div className="text-2xl font-bold text-emerald-600">12%</div>

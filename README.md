@@ -1,73 +1,172 @@
-# React + TypeScript + Vite
+# AI Governance & ROI Assessment Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Know your AI risk. Prove your AI value. Before regulators ask.**
 
-Currently, two official plugins are available:
+A guided desktop assessment that helps mid-market organizations measure AI governance maturity, identify blind spots across 6 risk dimensions, and calculate the ROI of their AI investments — without needing an AI governance team to get started.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Coming soon.** Built for the August 2, 2026 EU AI Act enforcement deadline.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## The Problem
 
-## Expanding the ESLint configuration
+Most organizations using AI have no clear picture of their risk exposure:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Employees are using AI tools IT doesn't know about (Shadow AI)
+- Vendors are making decisions with your data using AI you didn't audit
+- Boards want ROI numbers that nobody can produce
+- EU AI Act enforcement starts August 2026 — with fines up to 3% of global revenue
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Enterprise governance platforms cost $50,000–$150,000 and assume you already have a governance team. Free frameworks (NIST AI RMF, ISO 42001) are useful guides but provide no assessment, no scoring, no recommendations, and no output you can hand to a board.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**There's nothing in between — until now.**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## What It Does
+
+The AI Governance & ROI Assessment Tool guides your organization through a structured 9-step wizard that:
+
+1. **Profiles your organization** — maturity level (Experimenter → Builder → Innovator → Achiever) and operating regions
+2. **Assesses 6 risk dimensions** — 10 calibrated questions each, tailored to your profile
+3. **Scores your governance posture** — weighted risk scoring with dimension breakdowns
+4. **Surfaces your blind spots** — specific gaps ranked by severity
+5. **Delivers personalized recommendations** — immediate actions, 90-day playbooks, vendor questionnaires
+6. **Calculates your ROI** — across cost savings, risk avoidance, productivity gains, and revenue impact
+
+### The 6 Dimensions
+
+| Dimension | Weight | What It Measures |
+|-----------|--------|-----------------|
+| Shadow AI | 25% | Unauthorized AI tool usage, employee oversight, policy coverage |
+| Vendor Risk | 25% | AI vendor contracts, SLAs, data handling, audit rights |
+| Data Governance | 20% | Data quality, lineage, access controls, training data practices |
+| Security & Compliance | 15% | Vulnerability management, regulatory alignment, incident response |
+| AI-Specific Risks | 10% | Hallucination, bias, explainability, model drift controls |
+| ROI Tracking | 5% | Measurement frameworks, baseline metrics, value attribution |
+
+---
+
+## Who It's For
+
+- **Mid-market organizations** (50–5,000 employees) adopting AI without a dedicated governance team
+- **CTOs and CIOs** who need board-ready AI risk and ROI reporting
+- **Legal and compliance teams** preparing for EU AI Act, GDPR, CCPA, or ISO 42001 audits
+- **Consultants and advisors** who want a structured tool to run client AI governance reviews
+
+---
+
+## Free vs Pro
+
+| Feature | Free | Pro |
+|---------|------|-----|
+| Full 60-question assessment | ✓ | ✓ |
+| Overall governance score | ✓ | ✓ |
+| Top 3 blind spots | ✓ | ✓ |
+| Generic recommendations | ✓ | ✓ |
+| Basic ROI (cost savings only) | ✓ | ✓ |
+| 1-page PDF summary | ✓ | ✓ |
+| Full dimension-by-dimension breakdown | — | ✓ |
+| All blind spots ranked by severity | — | ✓ |
+| Customized 90-day implementation playbooks | — | ✓ |
+| Full 30-question vendor questionnaire | — | ✓ |
+| 5-dimension ROI dashboard | — | ✓ |
+| Full PDF + DOCX export | — | ✓ |
+| Implementation roadmap | — | ✓ |
+| Assessment history & trend tracking | — | ✓ |
+
+Pro pricing: **$500–$3,000** (one-time, per organization). Details on launch.
+
+---
+
+## Compliance Coverage
+
+The tool is jurisdiction-aware. Questions and recommendations adapt based on your operating regions:
+
+- **EU AI Act** (enforcement: August 2, 2026) — risk classification, prohibited practices, transparency requirements
+- **ISO 42001** — AI management system standard (becoming enterprise-expected in 2026)
+- **GDPR** — data processing, consent, automated decision-making (Article 22)
+- **CCPA / CPRA** — California consumer rights, opt-out obligations
+- **NIST AI RMF** — US voluntary framework for AI risk management
+
+---
+
+## Screenshots
+
+> Screenshots coming soon. The app runs as a native desktop application on macOS (Windows and Linux in progress).
+
+---
+
+## Tech Stack
+
+Built as a native desktop app — no cloud dependency, no data leaves your machine.
+
+| Layer | Technology |
+|-------|-----------|
+| Desktop shell | [Tauri v2](https://tauri.app/) (Rust) |
+| Frontend | React 19 + TypeScript + Vite |
+| Styling | Tailwind CSS v4 |
+| Charts | Recharts |
+| State | Zustand |
+| Local database | SQLite (tauri-plugin-sql) |
+| PDF export | jsPDF + jsPDF-AutoTable |
+| Auto-updater | tauri-plugin-updater |
+
+---
+
+## Development Setup
+
+### Prerequisites
+
+- [Rust](https://rustup.rs/) (stable)
+- [Node.js](https://nodejs.org/) v18+
+- Tauri system dependencies — see [Tauri prerequisites](https://tauri.app/start/prerequisites/) for your OS
+
+### Local development
+
+```bash
+git clone https://github.com/baltaguilar-tech/ai-governance-tool.git
+cd ai-governance-tool
+npm install
+npm run tauri dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Build for production
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run tauri build
 ```
+
+Output is in `src-tauri/target/release/bundle/`.
+
+---
+
+## Project Status
+
+This project is in active development. Current progress:
+
+- [x] Full 9-step wizard UI
+- [x] 240 assessment questions across 4 maturity profiles
+- [x] Weighted scoring engine
+- [x] Recommendation engine (free/pro gated)
+- [x] Jurisdiction-aware question selection
+- [ ] SQLite persistence (assessment history)
+- [ ] Complete PDF/DOCX export
+- [ ] Licensing (Keygen.sh integration)
+- [ ] macOS code signing + notarization
+- [ ] GitHub Releases / auto-updater
+- [ ] Windows + Linux build validation
+
+---
+
+## License
+
+Copyright 2026 baltaguilar-tech. All rights reserved.
+
+Proprietary software. Unauthorized copying, redistribution, or commercial use of this software is prohibited.
+
+---
+
+## Contact
+
+Questions, partnership inquiries, or early access requests: open an issue or reach out via GitHub.

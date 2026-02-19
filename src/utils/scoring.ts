@@ -1,4 +1,5 @@
 import {
+  AssessmentQuestion,
   DimensionKey,
   DimensionScore,
   QuestionResponse,
@@ -9,7 +10,6 @@ import {
   OrganizationProfile,
 } from '@/types/assessment';
 import { DIMENSION_MAP } from '@/data/dimensions';
-import { ASSESSMENT_QUESTIONS } from '@/data/questions';
 
 // Dimension weights from the spec
 const DIMENSION_WEIGHTS: Record<DimensionKey, number> = {
@@ -21,10 +21,11 @@ const DIMENSION_WEIGHTS: Record<DimensionKey, number> = {
   roiTracking: 0.05,
 };
 
+// Score is now 0-100 where higher = better governance
 export function getRiskLevel(score: number): RiskLevel {
-  if (score <= 30) return RiskLevel.Low;
-  if (score <= 60) return RiskLevel.Medium;
-  if (score <= 80) return RiskLevel.High;
+  if (score >= 70) return RiskLevel.Low;
+  if (score >= 40) return RiskLevel.Medium;
+  if (score >= 20) return RiskLevel.High;
   return RiskLevel.Critical;
 }
 
@@ -56,9 +57,10 @@ export function getRiskBgColor(level: RiskLevel): string {
 
 export function calculateDimensionScore(
   dimension: DimensionKey,
-  responses: QuestionResponse[]
+  responses: QuestionResponse[],
+  questions: AssessmentQuestion[]
 ): DimensionScore {
-  const dimensionQuestions = ASSESSMENT_QUESTIONS.filter((q) => q.dimension === dimension);
+  const dimensionQuestions = questions.filter((q) => q.dimension === dimension);
   const questionScores: { questionId: string; score: number }[] = [];
 
   let totalScore = 0;
@@ -73,12 +75,14 @@ export function calculateDimensionScore(
     }
   }
 
-  const averageScore = answeredCount > 0 ? totalScore / answeredCount : 100;
+  const averageRaw = answeredCount > 0 ? totalScore / answeredCount : 100;
+  // Invert: 0 (worst raw) → 100 (best display), 100 (worst raw) → 0 (worst display)
+  const governanceScore = 100 - averageRaw;
 
   return {
     key: dimension,
-    score: Math.round(averageScore),
-    riskLevel: getRiskLevel(averageScore),
+    score: Math.round(governanceScore),
+    riskLevel: getRiskLevel(governanceScore),
     questionScores,
   };
 }
@@ -88,19 +92,19 @@ export function calculateOverallRisk(
   profile: Partial<OrganizationProfile>
 ): RiskScore {
   const dimensions = {} as Record<DimensionKey, number>;
-  let overallRisk = 0;
+  let overallScore = 0;
 
   for (const ds of dimensionScores) {
     dimensions[ds.key] = ds.score;
-    overallRisk += ds.score * DIMENSION_WEIGHTS[ds.key];
+    overallScore += ds.score * DIMENSION_WEIGHTS[ds.key];
   }
 
-  overallRisk = Math.round(overallRisk);
-  const riskLevel = getRiskLevel(overallRisk);
+  overallScore = Math.round(overallScore);
+  const riskLevel = getRiskLevel(overallScore);
 
-  // Calculate AI Achiever score (inverse of risk)
+  // Achiever score builds on governance score with maturity bonus
   const maturityBonus = getMaturityBonus(profile.aiMaturityLevel);
-  const achieverScore = Math.min(100, Math.max(0, 100 - overallRisk + maturityBonus));
+  const achieverScore = Math.min(100, Math.max(0, overallScore + maturityBonus));
 
   const currentMaturity = profile.aiMaturityLevel || MaturityLevel.Experimenter;
   const targetMaturity = determineTargetMaturity(achieverScore);
@@ -108,7 +112,7 @@ export function calculateOverallRisk(
 
   return {
     dimensions,
-    overallRisk,
+    overallRisk: overallScore,
     riskLevel,
     achieverScore: Math.round(achieverScore),
     currentMaturity,
@@ -144,9 +148,9 @@ function identifyMaturityGaps(
   const gaps: string[] = [];
 
   for (const ds of dimensionScores) {
-    if (ds.score > 60) {
+    if (ds.score < 40) {
       const config = DIMENSION_MAP[ds.key];
-      gaps.push(`${config.label} risk is ${ds.riskLevel.toLowerCase()} (score: ${ds.score})`);
+      gaps.push(`${config.label} governance is ${ds.riskLevel.toLowerCase()} (score: ${ds.score}/100)`);
     }
   }
 
@@ -159,22 +163,24 @@ function identifyMaturityGaps(
 
 export function identifyBlindSpots(
   _dimensionScores: DimensionScore[],
-  responses: QuestionResponse[]
+  responses: QuestionResponse[],
+  questions: AssessmentQuestion[]
 ): BlindSpot[] {
   const blindSpots: BlindSpot[] = [];
 
-  // Find the highest-risk individual questions
+  // Find the lowest-scoring (worst governance) individual questions
   const scoredQuestions = responses
     .map((r) => {
-      const question = ASSESSMENT_QUESTIONS.find((q) => q.id === r.questionId);
-      return question ? { question, score: r.value } : null;
+      const question = questions.find((q) => q.id === r.questionId);
+      // Invert: raw value 100 (worst) → display 0, raw 0 (best) → display 100
+      return question ? { question, score: 100 - r.value } : null;
     })
     .filter((sq): sq is NonNullable<typeof sq> => sq !== null)
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => a.score - b.score);
 
-  // Top blind spots from highest-scoring (worst) questions
+  // Top blind spots from lowest-scoring (worst governance) questions
   for (const sq of scoredQuestions.slice(0, 10)) {
-    if (sq.score >= 60) {
+    if (sq.score <= 40) {
       blindSpots.push({
         title: sq.question.text,
         dimension: sq.question.dimension,
@@ -189,31 +195,72 @@ export function identifyBlindSpots(
   return blindSpots;
 }
 
-function getImmediateAction(questionId: string, score: number): string {
-  const actions: Record<string, string> = {
-    'shadow-1': 'Deploy automated shadow AI detection tools (e.g., Reco.ai, Vanta SSPM) within 2 weeks.',
-    'shadow-2': 'Conduct a comprehensive AI inventory audit. Survey all departments and scan networks for AI tool usage.',
-    'shadow-3': 'Launch an immediate shadow AI audit. Survey employees about unauthorized AI tool usage.',
-    'shadow-4': 'Map all SaaS-to-SaaS AI integrations. Document data flow paths between connected applications.',
-    'shadow-5': 'Draft and publish an AI Acceptable Use Policy. Require employee acknowledgment within 30 days.',
-    'shadow-9': 'Establish an AI kill switch procedure. Define who can shut down AI systems and under what circumstances.',
-    'vendor-1': 'Begin vendor AI risk assessments for your top 10 critical vendors immediately.',
-    'vendor-2': 'Schedule meetings with top vendors to clarify data ownership. Update contracts with AI-specific clauses.',
-    'vendor-5': 'Contact all AI vendors and ask: "Do you train models on our data?" Document the answers.',
-    'data-1': 'Implement data classification policy that addresses AI data handling requirements.',
-    'data-3': 'Deploy data loss prevention (DLP) for AI tools. Block sensitive data from being pasted into public AI services.',
-    'security-3': 'Create an AI-specific incident response plan. Include scenarios for hallucinations, data breaches, and model failures.',
-    'security-9': 'Form an AI Governance Committee with cross-functional representation. Secure CEO sponsorship.',
-    'airisk-1': 'Implement a validation layer for AI outputs before they reach customers or inform business decisions.',
-    'airisk-3': 'Deploy prompt injection defenses including input sanitization and output filtering.',
-  };
+export function getImmediateAction(questionId: string, score: number): string {
+  // Phase 0: dimension-prefix matching covers all 240 question IDs immediately.
+  // Phase 4 (Option B): replace with full per-question map (shadow-e-1 through roi-a-10).
 
-  return actions[questionId] || `Address this ${getRiskLevel(score).toLowerCase()}-risk area within 30 days. Develop a remediation plan with clear ownership and timeline.`;
+  if (questionId.startsWith('shadow-')) {
+    return (
+      'Conduct an AI inventory audit: survey department heads and cross-reference SSO logs, expense reports, and browser extensions. ' +
+      'Build a centralized AI registry (tool name, owner, data accessed, risk tier, approval status). ' +
+      'Draft an AI Acceptable Use Policy covering approved tools, prohibited uses (no customer PII in public AI), and a formal request process. Require employee acknowledgment within 30 days. ' +
+      'WHY: Over 50% of workers use GenAI without IT approval — the majority of your AI risk is invisible until you actively look. ' +
+      'RISK AVOIDED: Closes the visibility gap that enables undetected data leakage, compliance violations, and the "we didn\'t know" defense in a breach investigation.'
+    );
+  }
+
+  if (questionId.startsWith('vendor-')) {
+    return (
+      'Conduct AI risk assessments for your top 10 critical vendors. Key questions: Do you train models on our data? Who owns outputs? What is your breach notification timeline? ' +
+      'Update contracts with AI-specific clauses: data ownership, model training opt-out, audit rights, and exit/portability provisions. ' +
+      'WHY: Most vendor contracts predate the AI era and contain no AI-specific protections — your data may be used for model training by default. ' +
+      'RISK AVOIDED: Prevents data from being permanently incorporated into vendor AI models, establishes liability clarity, and creates audit evidence for regulatory compliance.'
+    );
+  }
+
+  if (questionId.startsWith('data-')) {
+    return (
+      'Update your data classification policy to explicitly address AI data handling: which data categories can enter which AI systems, and under what conditions. ' +
+      'Deploy data loss prevention (DLP) controls to block sensitive data (PII, financial, legal) from being pasted into public AI services. ' +
+      'WHY: 77% of employees paste company data into GenAI tools — most without understanding the data exposure implications. ' +
+      'RISK AVOIDED: Prevents customer and employee PII from flowing to AI services outside your contractual control. Reduces GDPR, CCPA, and HIPAA exposure from unauthorized AI data processing.'
+    );
+  }
+
+  if (questionId.startsWith('security-')) {
+    return (
+      'Create an AI-specific incident response plan covering three scenarios: (1) data leakage via AI tool, (2) harmful AI output reaching a customer, (3) AI vendor security incident. ' +
+      'Assign clear ownership for each scenario and test the plan quarterly. Implement access controls and audit logging for all AI system interactions. ' +
+      'WHY: Standard incident response plans don\'t address AI-specific failure modes — hallucinations, model poisoning, and AI supply chain attacks require different containment steps. ' +
+      'RISK AVOIDED: Reduces mean time to contain an AI-related incident. Provides documented evidence of security controls under regulatory scrutiny.'
+    );
+  }
+
+  if (questionId.startsWith('airisks-')) {
+    return (
+      'Implement human review checkpoints for high-stakes AI outputs (customer-facing content, financial decisions, medical or legal guidance). ' +
+      'Establish a bias testing process: define fairness metrics for each AI use case and test quarterly. Deploy prompt injection defenses and output filtering for externally-facing AI systems. ' +
+      'WHY: AI systems fail in non-obvious ways — bias, hallucination, and adversarial manipulation are invisible without active monitoring. ' +
+      'RISK AVOIDED: Prevents AI-caused harm from reaching customers. Reduces liability exposure from discriminatory AI outputs. Protects brand reputation from high-profile AI failures.'
+    );
+  }
+
+  if (questionId.startsWith('roi-')) {
+    return (
+      'Establish baseline measurements for your top 3 AI use cases: time saved per user per week, error rate reduction, and cost per active user (license cost ÷ monthly active users). ' +
+      'Create a monthly reporting template to communicate AI ROI to leadership, even if data is incomplete at first — starting measurement is the critical step. ' +
+      'WHY: Without baseline metrics, you cannot demonstrate AI value to leadership or justify continued investment. You also cannot identify underperforming tools worth cutting. ' +
+      'RISK AVOIDED: Prevents AI budget waste on tools with low adoption. Builds the evidence base needed to defend or expand AI investment when leadership questions spending.'
+    );
+  }
+
+  return `Address this ${getRiskLevel(score).toLowerCase()}-risk area within 30 days. Develop a remediation plan with clear ownership and timeline.`;
 }
 
 export function calculateAllScores(
   responses: QuestionResponse[],
-  profile: Partial<OrganizationProfile>
+  profile: Partial<OrganizationProfile>,
+  questions: AssessmentQuestion[]
 ): {
   dimensionScores: DimensionScore[];
   riskScore: RiskScore;
@@ -228,9 +275,9 @@ export function calculateAllScores(
     'roiTracking',
   ];
 
-  const dimensionScores = dimensionKeys.map((key) => calculateDimensionScore(key, responses));
+  const dimensionScores = dimensionKeys.map((key) => calculateDimensionScore(key, responses, questions));
   const riskScore = calculateOverallRisk(dimensionScores, profile);
-  const blindSpots = identifyBlindSpots(dimensionScores, responses);
+  const blindSpots = identifyBlindSpots(dimensionScores, responses, questions);
 
   return { dimensionScores, riskScore, blindSpots };
 }

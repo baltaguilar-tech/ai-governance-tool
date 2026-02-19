@@ -13,10 +13,10 @@ export function RiskGauge({ score, level }: RiskGaugeProps) {
   return (
     <div className="bg-white rounded-xl border border-navy-200 p-6 text-center">
       <h3 className="text-sm font-semibold text-navy-500 uppercase tracking-wider mb-4">
-        Overall Risk Score
+        Governance Score
       </h3>
 
-      {/* Gauge */}
+      {/* Gauge - zones reversed: left=red (poor), right=green (strong) */}
       <div className="relative w-40 h-20 mx-auto mb-4">
         <svg viewBox="0 0 200 100" className="w-full h-full">
           {/* Background arc */}
@@ -27,36 +27,36 @@ export function RiskGauge({ score, level }: RiskGaugeProps) {
             strokeWidth="16"
             strokeLinecap="round"
           />
-          {/* Green zone */}
+          {/* Red zone (0-20) - left */}
           <path
             d="M 10 100 A 90 90 0 0 1 46 28"
             fill="none"
-            stroke="#10b981"
+            stroke="#ef4444"
             strokeWidth="16"
             strokeLinecap="round"
             opacity="0.3"
           />
-          {/* Amber zone */}
+          {/* Orange zone (20-40) */}
           <path
             d="M 46 28 A 90 90 0 0 1 100 10"
-            fill="none"
-            stroke="#f59e0b"
-            strokeWidth="16"
-            opacity="0.3"
-          />
-          {/* Orange zone */}
-          <path
-            d="M 100 10 A 90 90 0 0 1 154 28"
             fill="none"
             stroke="#f97316"
             strokeWidth="16"
             opacity="0.3"
           />
-          {/* Red zone */}
+          {/* Amber zone (40-70) */}
+          <path
+            d="M 100 10 A 90 90 0 0 1 154 28"
+            fill="none"
+            stroke="#f59e0b"
+            strokeWidth="16"
+            opacity="0.3"
+          />
+          {/* Green zone (70-100) - right */}
           <path
             d="M 154 28 A 90 90 0 0 1 190 100"
             fill="none"
-            stroke="#ef4444"
+            stroke="#10b981"
             strokeWidth="16"
             strokeLinecap="round"
             opacity="0.3"
@@ -92,7 +92,7 @@ export function RiskGauge({ score, level }: RiskGaugeProps) {
       >
         {level} RISK
       </div>
-      <p className="text-xs text-navy-500 mt-2">Lower is better (0-100 scale)</p>
+      <p className="text-xs text-navy-500 mt-2">Higher is better (0-100 scale)</p>
     </div>
   );
 }
