@@ -39,3 +39,11 @@ pnpm-debug.log*
 *.p12
 *.pfx
 credentials.json
+
+# IDE / AI assistant artifacts
+.claude/
+docs/## *
+*diagnostics*.md
+*.copilot
+.copilot/
+.github/copilot*
