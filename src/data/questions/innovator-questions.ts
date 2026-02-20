@@ -244,8 +244,8 @@ export const INNOVATOR_QUESTIONS: AssessmentQuestion[] = [
   {
     id: 'vendor-i-6',
     dimension: 'vendorRisk',
-    text: 'What requirements do your AI vendor contracts impose for incident notification timelines and content?',
-    helpText: 'Vendor incident notification requirements must align with your own regulatory reporting obligations. Vague or absent notification clauses create compliance gaps when AI-related incidents occur.',
+    text: 'How precisely do your AI vendor contracts specify incident notification obligations — including timelines, required content, and escalation paths?',
+    helpText: 'Precise contractual notification requirements ensure vendor SLAs align with your own regulatory reporting deadlines. Vague or absent notification clauses leave you dependent on vendor discretion when AI-related incidents occur and regulators ask what you knew and when.',
     type: 'radio',
     options: [
       { label: 'Contracts specify maximum notification windows (e.g., 24–72 hours), required content, communication channels, and post-incident reporting obligations', value: 0, riskLevel: 'low' },
