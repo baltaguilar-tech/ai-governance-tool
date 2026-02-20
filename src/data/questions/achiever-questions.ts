@@ -171,7 +171,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
     id: 'vendor-a-1',
     dimension: 'vendorRisk',
     text: 'How is AI vendor concentration risk identified, quantified, and reported to the board?',
-    helpText: 'Board-level visibility into AI vendor concentration risk is expected under EBA outsourcing guidelines, DORA Article 28, and analogous financial sector AI governance frameworks that treat AI providers as critical third parties.',
+    helpText: 'Board-level visibility into AI vendor concentration risk is a governance maturity expectation for organizations operating at Achiever level. Regulatory frameworks such as DORA (financial sector, EU/UK) require formal concentration risk quantification; for non-financial organizations, the same discipline is increasingly expected by institutional investors and enterprise customers conducting AI governance due diligence.',
     type: 'radio',
     options: [
       { label: 'No formal AI vendor concentration risk assessment', value: 100, riskLevel: 'critical' },
