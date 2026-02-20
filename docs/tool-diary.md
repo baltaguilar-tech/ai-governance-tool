@@ -129,3 +129,171 @@
 | 2026-02-19 13:22:28 | Edit                 | README.md |
 | 2026-02-19 13:23:03 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status |
 | 2026-02-19 13:23:41 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -5 |
+| 2026-02-19 13:25:01 | Bash                 | git add README.md package.json src-tauri/capabilities/default.json src-tauri/tauri.conf.js... |
+| 2026-02-19 13:25:03 | Bash                 | git status |
+| 2026-02-19 13:25:14 | Bash                 | cat "/Users/baltmac/Projects/ai-governance-tool/docs/## Chat Customization Diagnostics.md"... |
+| 2026-02-19 13:26:55 | Bash                 | git restore --staged "docs/## Chat Customization Diagnostics.md" |
+| 2026-02-19 13:27:58 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' Add 240-ques... |
+| 2026-02-19 13:28:06 | Bash                 | git remote -v |
+| 2026-02-19 13:28:11 | Bash                 | ~/bin/gh auth status |
+| 2026-02-19 13:28:16 | Bash                 | ~/bin/gh auth git-credential get <<< "protocol=https host=github.com" 2>/dev/null; ~/bin/g... |
+| 2026-02-19 13:28:22 | Bash                 | git push origin main |
+| 2026-02-19 13:55:16 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 13:55:17 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 13:55:48 | Write                | docs/CURRENT-SESSION.md |
+| 2026-02-19 13:56:06 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 13:56:10 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 13:57:03 | Read                 | docs/## Chat Customization Diagnostics.md |
+| 2026-02-19 13:58:04 | Bash                 | rm "/Users/baltmac/Projects/ai-governance-tool/docs/## Chat Customization Diagnostics.md" |
+| 2026-02-19 13:58:05 | Glob                 | .gitignore |
+| 2026-02-19 13:58:07 | Read                 | .gitignore |
+| 2026-02-19 13:58:12 | Edit                 | .gitignore |
+| 2026-02-19 13:58:42 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add .gitignore && git commit -m "$(ca... |
+| 2026-02-19 14:00:27 | Bash                 | ls -lh "/Users/baltmac/Desktop/AI Gov & ROI/" |
+| 2026-02-19 14:05:36 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:41 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:43 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:45 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:47 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:49 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:05:51 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:38 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:41 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:43 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:45 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:53 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:56 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:06:58 | Bash                 | python3 -c " import zipfile, re, sys path = sys.argv[1] with zipfile.ZipFile(path) as z:  ... |
+| 2026-02-19 14:07:42 | Bash                 | python3 -c " import zipfile, re path = '/Users/baltmac/Desktop/AI Gov & ROI/AI-Governance-... |
+| 2026-02-19 14:09:55 | Task                 | Read and summarize AI Gov docs |
+| 2026-02-19 14:11:35 | Write                | docs/source-documents-summary.md |
+| 2026-02-19 14:11:53 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 14:11:57 | Read                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 14:12:04 | Edit                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 15:42:15 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/docs/audit-report.md |
+| 2026-02-19 15:42:17 | Read                 | docs/audit-report.md |
+| 2026-02-19 15:44:05 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.tsx" | grep -v node_modules |... |
+| 2026-02-19 15:44:08 | Read                 | src/App.tsx |
+| 2026-02-19 15:44:08 | Read                 | src/utils/scoring.ts |
+| 2026-02-19 15:44:12 | Read                 | src/utils/scoring.ts |
+| 2026-02-19 15:44:12 | Read                 | src/main.tsx |
+| 2026-02-19 15:45:54 | TodoWrite            | in_progress: Create ErrorBoundary component |
+| 2026-02-19 15:46:10 | Write                | src/components/ErrorBoundary.tsx |
+| 2026-02-19 15:46:16 | TodoWrite            | in_progress: Wrap App in global boundary in main.tsx |
+| 2026-02-19 15:46:22 | Edit                 | src/main.tsx |
+| 2026-02-19 15:46:26 | TodoWrite            | in_progress: Wrap each step in per-step boundary in App.tsx |
+| 2026-02-19 15:46:36 | Edit                 | src/App.tsx |
+| 2026-02-19 15:46:40 | TodoWrite            | in_progress: Remove html2canvas from package.json |
+| 2026-02-19 15:46:45 | Read                 | package.json |
+| 2026-02-19 15:46:50 | Edit                 | package.json |
+| 2026-02-19 15:46:55 | TodoWrite            | in_progress: Run tsc to verify no errors |
+| 2026-02-19 15:47:04 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-02-19 15:47:07 | TodoWrite            | in_progress: (none) |
+| 2026-02-19 15:48:05 | Write                | docs/CURRENT-SESSION.md |
+| 2026-02-19 15:48:24 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 15:48:29 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 15:48:33 | Read                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 15:48:40 | Edit                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 15:48:48 | Edit                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 15:48:56 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add src/components/ErrorBoundary.tsx ... |
+| 2026-02-19 15:49:07 | Bash                 | git commit -m "$(cat <<'EOF' Phase 1: Add error boundaries, remove unused dependency, add ... |
+| 2026-02-19 15:50:14 | Bash                 | grep -n "value:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-qu... |
+| 2026-02-19 15:50:14 | Bash                 | grep -n "value:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimente... |
+| 2026-02-19 15:51:01 | Bash                 | python3 << 'PYEOF' import re  path = '/Users/baltmac/Projects/ai-governance-tool/src/data/... |
+| 2026-02-19 15:51:03 | Bash                 | grep -A 6 "options: \[" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achi... |
+| 2026-02-19 15:51:06 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-questions.ts |
+| 2026-02-19 15:51:15 | Task                 | Reverse Achiever option order |
+| 2026-02-19 15:51:19 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-02-19 15:52:18 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add src/data/questions/achiever-quest... |
+| 2026-02-19 15:52:24 | Bash                 | grep -h "value:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimente... |
+| 2026-02-19 15:52:31 | Bash                 | for f in experimenter builder innovator achiever; do   echo "=== $f ==="   grep -h "value:... |
+| 2026-02-19 15:52:45 | Bash                 | python3 -c " import re for bank in ['experimenter', 'builder', 'innovator', 'achiever']:  ... |
+| 2026-02-19 15:57:11 | Bash                 | python3 << 'PYEOF' import re  VALUE_MAP = {     20: 35, 25: 35, 30: 35, 40: 35, 50: 35,   ... |
+| 2026-02-19 15:57:14 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimenter-questions... |
+| 2026-02-19 15:57:20 | Bash                 | python3 << 'PYEOF' import re  def check_distinct_values(path):     with open(path, 'r') as... |
+| 2026-02-19 15:57:25 | Task                 | Standardize option values in Experimenter and Builder banks |
+| 2026-02-19 15:59:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-02-19 15:59:18 | Bash                 | git status && git diff --stat |
+| 2026-02-19 16:02:47 | Bash                 | git add src/data/questions/builder-questions.ts src/data/questions/experimenter-questions.... |
+| 2026-02-19 16:02:55 | Bash                 | ~/bin/gh auth setup-git && git push origin main 2>&1 |
+| 2026-02-19 16:03:05 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 16:03:12 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 16:03:21 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 16:03:26 | Grep                 | pattern='No idea' in src/data/questions |
+| 2026-02-19 16:03:28 | Grep                 | pattern='No idea' in src/data/questions |
+| 2026-02-19 16:03:31 | Grep                 | pattern="No idea|not sure|Don't know|dont know|no clue" in src/data/questions |
+| 2026-02-19 16:03:34 | Grep                 | pattern="No idea|not sure|Don't know|dont know|no clue" in src/data/questions |
+| 2026-02-19 16:03:53 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:03:57 | Edit                 | src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:04:23 | Bash                 | git checkout src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:06:35 | Grep                 | pattern="No idea|Don't know|Not sure which" in src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:07:14 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:07:41 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:07:55 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:08:28 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:09:11 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc --noEmit 2>&1 ... |
+| 2026-02-19 16:09:30 | Read                 | tsconfig.json |
+| 2026-02-19 16:09:32 | Read                 | tsconfig.app.json |
+| 2026-02-19 16:14:38 | Bash                 | rm -f node_modules/.tmp/tsconfig.app.tsbuildinfo && /Users/baltmac/.nvm/versions/node/v24.... |
+| 2026-02-19 16:16:36 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:16:56 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:17:10 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:17:13 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:17:33 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:18:38 | Bash                 | grep -n "haven't\|we've\|it's\|don't\|what's\|I've\|can't\|isn't" src/data/questions/build... |
+| 2026-02-19 16:18:40 | Bash                 | grep -n "haven\|we've\|it's\|don't\|what's" src/data/questions/builder-questions.ts | head... |
+| 2026-02-19 16:18:48 | Bash                 | python3 - <<'PYEOF' import sys  # Check which files have ASCII apostrophes inside single-q... |
+| 2026-02-19 16:19:02 | Bash                 | python3 - <<'PYEOF' # Look for label lines in each file with more than 2 single quotes (po... |
+| 2026-02-19 16:19:16 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:19:19 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.ap... |
+| 2026-02-19 16:23:14 | Bash                 | python3 - <<'PYEOF' # Check for double quotes inside label/helpText strings in experimente... |
+| 2026-02-19 16:25:51 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts'  def fix_apostro... |
+| 2026-02-19 16:26:01 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:27:08 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:27:24 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-02-19 16:28:16 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:30:00 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:30:12 | Bash                 | python3 - <<'PYEOF' path = 'src/data/questions/experimenter-questions.ts' with open(path, ... |
+| 2026-02-19 16:31:11 | Bash                 | git checkout src/data/questions/experimenter-questions.ts 2>&1 && echo "Restored" |
+| 2026-02-19 18:19:10 | Read                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 18:19:22 | Edit                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 18:19:34 | Bash                 | sed -i '' 's|Use full path for tsc: `/Users/baltmac/.nvm/versions/node/v24.13.1/bin/node .... |
+| 2026-02-19 18:19:53 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && python3 - <<'PYEOF' import re  path = 'sr... |
+| 2026-02-19 18:20:08 | Bash                 | grep -n "JurisdictionCode" /Users/baltmac/Projects/ai-governance-tool/src/types/assessment... |
+| 2026-02-19 18:20:18 | Bash                 | grep -n '"EU"\|"UK"\|"US"\|"CA"\|"APAC"' /Users/baltmac/Projects/ai-governance-tool/src/da... |
+| 2026-02-19 18:20:21 | Bash                 | sed -n '85,92p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-que... |
+| 2026-02-19 18:20:31 | Bash                 | python3 - <<'PYEOF' import re path = '/Users/baltmac/Projects/ai-governance-tool/src/data/... |
+| 2026-02-19 18:20:52 | Bash                 | python3 - <<'PYEOF' import re path = '/Users/baltmac/Projects/ai-governance-tool/src/data/... |
+| 2026-02-19 18:20:55 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:20:57 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:20:59 | Bash                 | grep -n "export.*generateProPDF\|function generateProPDF" /Users/baltmac/Projects/ai-gover... |
+| 2026-02-19 18:21:01 | Read                 | src/utils/pdfExport.ts |
+| 2026-02-19 18:21:07 | Bash                 | grep -n "useAssessmentStore\|getQuestionsForProfile\|questions\|profile" /Users/baltmac/Pr... |
+| 2026-02-19 18:21:10 | Bash                 | grep -n "getQuestionsForProfile" /Users/baltmac/Projects/ai-governance-tool/src/store/asse... |
+| 2026-02-19 18:21:13 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:17 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:30 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:41 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:45 | Bash                 | grep -n "MaturityLevel" /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts... |
+| 2026-02-19 18:21:47 | Read                 | src/types/assessment.ts |
+| 2026-02-19 18:21:50 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:55 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:21:59 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-02-19 18:27:06 | Read                 | ~/Desktop/CLAUDE-RECOVERY-GUIDE.md |
+| 2026-02-19 18:27:06 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 18:27:10 | Bash                 | tail -30 /Users/baltmac/Projects/ai-governance-tool/docs/tool-diary.md |
+| 2026-02-19 18:27:15 | Bash                 | grep -n "getQuestionsForProfile\|MaturityLevel\|questions" /Users/baltmac/Projects/ai-gove... |
+| 2026-02-19 18:27:18 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-02-19 18:29:23 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status && git diff --stat HEAD |
+| 2026-02-19 18:29:31 | Bash                 | git log --oneline -8 |
+| 2026-02-19 18:29:37 | Bash                 | git diff src/data/questions/experimenter-questions.ts | head -40 && echo "---" && git diff... |
+| 2026-02-19 18:30:20 | Bash                 | grep -n "jurisdictions.*eu.*uk.*us" /Users/baltmac/Projects/ai-governance-tool/src/data/qu... |
+| 2026-02-19 18:30:23 | Bash                 | git diff src/data/questions/achiever-questions.ts | grep "^[-+].*jurisdictions"  |
+| 2026-02-19 18:30:31 | Bash                 | grep -n "JurisdictionCode\|jurisdiction\|'ca'\|'eu'\|'uk'\|'us'\|'ap'" /Users/baltmac/Proj... |
+| 2026-02-19 18:30:32 | Bash                 | grep -n "REGION_TO_JURISDICTION\|jurisdictions\|'ca'\|'eu'" /Users/baltmac/Projects/ai-gov... |
+| 2026-02-19 18:30:42 | Bash                 | grep -n "Region\|Canada\|NorthAmerica" /Users/baltmac/Projects/ai-governance-tool/src/type... |
+| 2026-02-19 18:31:16 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 18:31:39 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 18:31:46 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-19 18:31:57 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-02-19 18:32:06 | Edit                 | docs/CURRENT-SESSION.md |

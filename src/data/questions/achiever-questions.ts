@@ -84,7 +84,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Third-party attestation completed within the last 12 months with formal findings and management response', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'shadow-a-6',
@@ -100,7 +100,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Centralized AI governance platform with subsidiary-level reporting; subsidiaries required to attest to inventory completeness; consolidated view presented to group board', value: 0, riskLevel: 'low' },
       ],
     weight: 1.1,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'shadow-a-7',
@@ -146,7 +146,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Pre-built regulatory reporting templates with current data feeds; dry-run exercises conducted; response capability tested against defined SLAs', value: 0, riskLevel: 'low' },
       ],
     weight: 1.3,
-    jurisdictions: ['EU', 'UK', 'US', 'CA'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'shadow-a-10',
@@ -181,7 +181,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Concentration risk formally quantified (revenue dependency, functional criticality, substitutability index) and reported to board quarterly with scenario analysis for top-concentration scenarios', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'vendor-a-2',
@@ -197,7 +197,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Contractual requirement for vendors to disclose their AI subprocessors and sub-vendors; assessments of material fourth parties conducted; findings tracked in vendor risk register', value: 0, riskLevel: 'low' },
       ],
     weight: 1.1,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'vendor-a-3',
@@ -243,7 +243,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Regulatory notification obligations mapped and documented by vendor and jurisdiction; contractual change notification clauses in place; automated alerting triggers compliance review when vendor change notice received', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'vendor-a-6',
@@ -259,7 +259,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Documented exit strategy for all critical AI vendors including data portability validation, transition timeline, and alternative sourcing; exit plans tested through tabletop or live exercises', value: 0, riskLevel: 'low' },
       ],
     weight: 1.1,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'vendor-a-7',
@@ -290,7 +290,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'AI-specific liability, indemnification, and financial remedy clauses in all material vendor contracts; reviewed and updated annually by legal and risk; tested in at least one claim or dispute scenario', value: 0, riskLevel: 'low' },
       ],
     weight: 1.1,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'vendor-a-9',
@@ -340,7 +340,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Automated lineage tracking across all production AI models with full upstream-downstream visibility; accuracy validated by data governance team or third party; lineage accessible for regulatory inquiry', value: 0, riskLevel: 'low' },
       ],
     weight: 1.3,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'data-a-2',
@@ -356,7 +356,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'DPIA/AI impact assessment is a mandatory gate in the AI development lifecycle; completion required for sign-off; DPO or privacy function reviews all assessments; results tracked in a register', value: 0, riskLevel: 'low' },
       ],
     weight: 1.3,
-    jurisdictions: ['EU', 'UK', 'CA'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'data-a-3',
@@ -372,7 +372,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Comprehensive cross-border AI data transfer register maintained; legal basis documented per transfer; transfer impact assessments completed; register reviewed quarterly and updated when vendor or model changes occur', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'CA'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'data-a-4',
@@ -388,7 +388,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Consent management platform (CMP) integrated with AI inference systems via API; consent withdrawal propagates automatically to AI inference within defined SLA; integration tested and validated', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US', 'CA'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'data-a-5',
@@ -449,7 +449,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Formal AI training data ethics review board with documented terms of reference; reviews all new training datasets against bias, provenance, rights, and ethical sourcing criteria; decisions logged with rationale', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'data-a-9',
@@ -465,7 +465,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Documented process for handling data subject rights requests covering training data and AI-derived outputs; technical feasibility assessed per model type; unresolvable cases escalated to DPO with documented rationale; response SLAs met consistently', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'CA', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'data-a-10',
@@ -515,7 +515,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Comprehensive classification register with system inventory, risk tier, regulatory obligations, and mapped controls; updated when new AI systems deployed; reviewed by legal and compliance quarterly', value: 0, riskLevel: 'low' },
       ],
     weight: 1.4,
-    jurisdictions: ['EU'],
+    jurisdictions: ['eu'],
   },
   {
     id: 'security-a-3',
@@ -546,7 +546,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Pre-built evidence packages for all regulatory obligations; updated on defined cycle; examination readiness drills conducted; designated examination response team with defined roles', value: 0, riskLevel: 'low' },
       ],
     weight: 1.3,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'security-a-5',
@@ -592,7 +592,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Proactive and documented engagement with relevant regulators; participation in regulatory AI working groups or sandboxes; outreach not limited to mandated filings; engagement tracked and reported to board', value: 0, riskLevel: 'low' },
       ],
     weight: 1.0,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'security-a-8',
@@ -638,7 +638,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Documented cross-jurisdictional AI compliance strategy with designated owner (e.g., Global AI Compliance Lead); jurisdiction-specific obligations mapped to common control set; conflicts resolved and documented; strategy reviewed annually', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US', 'CA', 'APAC'],
+    jurisdictions: ['eu', 'uk', 'us', 'ap'],
   },
 
   // ---------------------------------------------------------------------------
@@ -658,7 +658,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Independent third-party bias audits conducted for all high-risk AI systems on annual cycle; audit methodology and summary results published externally; audit reports available to regulators on request', value: 0, riskLevel: 'low' },
       ],
     weight: 1.4,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'airisk-a-2',
@@ -689,7 +689,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Model cards and/or system cards published for all production AI systems; externally available for high-risk systems; include intended use, performance metrics by demographic group, known limitations, and bias testing results', value: 0, riskLevel: 'low' },
       ],
     weight: 1.1,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'airisk-a-4',
@@ -735,7 +735,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Human oversight effectiveness measured through defined metrics (override rates, response times, escalation outcomes, fatigue indicators); results reported to governance committee; annual effectiveness review with independent validation', value: 0, riskLevel: 'low' },
       ],
     weight: 1.3,
-    jurisdictions: ['EU', 'UK'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'airisk-a-7',
@@ -751,7 +751,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Explainability requirements defined per use case risk tier with technical methods specified; compliance documented in model registry; accountable owner named; adherence verified by governance function; regulator-ready explanations tested', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'airisk-a-8',
@@ -782,7 +782,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Structured regulatory engagement program on AI risk; participation in supervisory AI working groups or innovation hubs; engagement outcomes documented and fed back into governance program with tracked actions', value: 0, riskLevel: 'low' },
       ],
     weight: 1.0,
-    jurisdictions: ['EU', 'UK', 'US'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
   {
     id: 'airisk-a-10',
@@ -798,7 +798,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Documented AI redress mechanisms accessible to affected individuals; process includes human review option; response SLAs defined and met; effectiveness measured (volume, resolution rate, escalation outcomes) and reported to governance committee', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['EU', 'UK', 'US', 'CA'],
+    jurisdictions: ['eu', 'uk', 'us'],
   },
 
   // ---------------------------------------------------------------------------

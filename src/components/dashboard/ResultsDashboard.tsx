@@ -5,6 +5,8 @@ import { BlindSpotsList } from './BlindSpotsList';
 import { RecommendationsList } from './RecommendationsList';
 import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
+import { getQuestionsForProfile } from '@/data/questions/index';
+import { MaturityLevel } from '@/types/assessment';
 
 export function ResultsDashboard() {
   const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier } =
@@ -165,7 +167,8 @@ export function ResultsDashboard() {
                       orgName,
                       blindSpots,
                       recommendations,
-                      responses
+                      responses,
+                      getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? [])
                     )
                   : generateFreePDF(
                       dimensionScores,

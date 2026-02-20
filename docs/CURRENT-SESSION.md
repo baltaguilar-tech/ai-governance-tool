@@ -4,10 +4,17 @@
 # ============================================================
 
 ## Last Updated
-2026-02-19 — Session 7
+2026-02-19 — Session 8
 
 ## What I Am Doing RIGHT NOW
-Phase 1 quick wins complete. Waiting for direction on next fix.
+Reviewing Phase 1 remaining items. About to plan the "No idea" → "Not assessed" replacement across all 4 question banks.
+
+## Session 8 Accomplishments
+1. tsc: 0 errors confirmed after option scaling ✓
+2. Option scaling committed + pushed (b62b8e7) ✓
+3. Achiever jurisdiction casing fixed: uppercase → lowercase, 'CA' removed (not a valid JurisdictionCode) ✓
+4. ResultsDashboard.tsx fixed: getQuestionsForProfile uses MaturityLevel.Experimenter fallback ✓
+5. Memory (MEMORY.md) and session docs updated to reflect session 8 state ✓
 
 ## Session 7 Accomplishments
 1. Source documents read and committed to memory (docs/source-documents-summary.md) ✓
@@ -34,16 +41,16 @@ Phase 1 quick wins complete. Waiting for direction on next fix.
 | `src/utils/scoring.ts` | COMPLETE | Inversion documented, prefix matching fixed |
 
 ## Phase 1 Remaining Items
-- [ ] Fix Achiever option order reversal (options presented worst→best in other banks, best→worst in Achiever)
-- [ ] Standardize option scaling (0/25/50/75/100) across all banks
+- [x] Fix Achiever option order reversal ✓ (7309487)
+- [x] Standardize option scaling [0,35,65,100] ✓ (b62b8e7)
 - [ ] Replace "No idea" phrasing → "Not assessed" across question banks
 - [ ] 14 critical question rewrites (details in audit-report.md)
 - [ ] SQLite persistence (save/load assessment history)
 - [ ] Complete PDF export (pro tier)
 
 ## What's Next — Phase 1 (continued)
-Next up: Fix Achiever option order reversal (achiever-questions.ts)
-Uses subagent for any question bank file edits.
+Next up: Replace "No idea" phrasing → "Not assessed" across all 4 question banks.
+Approach TBD (reviewing options with user before starting).
 
 ## Resume Prompt (paste this into a new session)
 ```
