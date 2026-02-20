@@ -284,7 +284,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No review of AI-specific contractual liability conducted', value: 100, riskLevel: 'critical' },
-      { label: 'Standard IT vendor contracts used without AI-specific liability provisions', value: 75, riskLevel: 'high' },
+      { label: 'Standard IT vendor contracts used; monitoring regulatory developments to define AI-specific liability terms as legal frameworks mature', value: 75, riskLevel: 'high' },
       { label: 'General liability provisions in vendor contracts; AI-specific additions negotiated on a case-by-case basis without a standard clause library', value: 50, riskLevel: 'high' },
       { label: 'AI-specific contractual protections in place for critical vendors; legal review completed; not yet extended to all material vendors', value: 25, riskLevel: 'medium' },
       { label: 'AI-specific liability, indemnification, and financial remedy clauses in all material vendor contracts; reviewed and updated annually by legal and risk; tested in at least one claim or dispute scenario', value: 0, riskLevel: 'low' },
