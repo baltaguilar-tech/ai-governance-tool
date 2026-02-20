@@ -233,7 +233,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
     id: 'vendor-a-5',
     dimension: 'vendorRisk',
     text: 'What regulatory notification obligations arise when an AI vendor makes material changes to their system, and how are these obligations operationalized?',
-    helpText: 'EU AI Act Article 14 and sector-specific AI guidance create notification obligations when AI system changes materially affect risk profiles; failure to track vendor changes can create unmanaged compliance gaps.',
+    helpText: 'EU AI Act Article 14 creates explicit notification obligations when AI system changes materially affect risk profiles of high-risk AI deployments. Failure to track vendor changes can create unmanaged compliance gaps when regulators investigate AI incidents.',
     type: 'radio',
     options: [
       { label: 'Regulatory notification requirements for vendor AI changes not assessed', value: 100, riskLevel: 'critical' },
@@ -243,7 +243,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Regulatory notification obligations mapped and documented by vendor and jurisdiction; contractual change notification clauses in place; automated alerting triggers compliance review when vendor change notice received', value: 0, riskLevel: 'low' },
       ],
     weight: 1.2,
-    jurisdictions: ['eu', 'uk', 'us'],
+    jurisdictions: ['eu', 'uk'],
   },
   {
     id: 'vendor-a-6',
