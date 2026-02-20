@@ -77,11 +77,14 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
 
               {/* Options */}
               <div className="ml-9 space-y-2">
-                {question.options?.map((option) => {
-                  const isSelected = currentResponse?.value === option.value;
+                {question.options?.map((option, optionIndex) => {
+                  const selectedIndex = currentResponse !== undefined
+                    ? (question.options?.findIndex((o) => o.value === currentResponse.value) ?? -1)
+                    : -1;
+                  const isSelected = optionIndex === selectedIndex;
                   return (
                     <button
-                      key={`${question.id}-${option.value}-${option.label}`}
+                      key={`${question.id}-${optionIndex}`}
                       onClick={() => setResponse(question.id, option.value)}
                       className={`w-full text-left px-4 py-2.5 rounded-lg border text-sm transition-all ${
                         isSelected

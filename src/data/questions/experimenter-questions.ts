@@ -503,7 +503,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Not addressed with employees', value: 100 },
-      { label: 'Mentioned in general security training', value: 35 },
+      { label: 'Mentioned in general security training', value: 65 },
       { label: 'Addressed specifically in AI or security guidance', value: 35 },
       { label: 'Regular, specific training on AI-enabled threats', value: 0 },
     ],
@@ -529,7 +529,7 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'No process — employees wouldn’t know what to do', value: 100 },
-      { label: 'General IT helpdesk exists but not AI-specific', value: 35 },
+      { label: 'General IT helpdesk exists but not AI-specific', value: 65 },
       { label: 'Employees know to escalate AI security concerns to IT', value: 35 },
       { label: 'Documented AI incident reporting process, employees trained', value: 0 },
     ],
