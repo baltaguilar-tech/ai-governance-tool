@@ -14,6 +14,8 @@ import { WIZARD_STEPS } from '@/data/dimensions';
 import { calculateAllScores } from '@/utils/scoring';
 import { generateRecommendations } from '@/utils/recommendations';
 import { getQuestionsForProfile } from '@/data/questions/index';
+import { saveDraft, loadDraft, clearDraft } from '@/services/db';
+import type { DraftData } from '@/services/db';
 
 interface AssessmentStore {
   // Wizard state
@@ -40,6 +42,7 @@ interface AssessmentStore {
   resetAssessment: () => void;
   getStepIndex: () => number;
   canProceed: () => boolean;
+  hydrateDraft: () => Promise<void>;
 }
 
 const STEP_ORDER: WizardStep[] = WIZARD_STEPS.map((s) => s.key as WizardStep);
@@ -54,7 +57,11 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   recommendations: [],
   licenseTier: (import.meta.env.DEV ? 'professional' : 'free') as LicenseTier,
 
-  setStep: (step) => set({ currentStep: step }),
+  setStep: (step) => {
+    set({ currentStep: step });
+    const { profile, responses } = get();
+    saveDraft(profile, responses, step).catch(() => {});
+  },
 
   nextStep: () => {
     const { currentStep } = get();
@@ -66,6 +73,8 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
         get().calculateResults();
       }
       set({ currentStep: nextStep });
+      const { profile, responses } = get();
+      saveDraft(profile, responses, nextStep).catch(() => {});
       setTimeout(() => {
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
@@ -78,7 +87,10 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
     const { currentStep } = get();
     const currentIndex = STEP_ORDER.indexOf(currentStep);
     if (currentIndex > 0) {
-      set({ currentStep: STEP_ORDER[currentIndex - 1] });
+      const prevStep = STEP_ORDER[currentIndex - 1];
+      set({ currentStep: prevStep });
+      const { profile, responses } = get();
+      saveDraft(profile, responses, prevStep).catch(() => {});
       setTimeout(() => {
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
@@ -87,7 +99,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
     }
   },
 
-  updateProfile: (updates) =>
+  updateProfile: (updates) => {
     set((state) => {
       const questionsWillChange =
         ('aiMaturityLevel' in updates && updates.aiMaturityLevel !== state.profile.aiMaturityLevel) ||
@@ -96,9 +108,12 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
         profile: { ...state.profile, ...updates },
         ...(questionsWillChange ? { responses: [] } : {}),
       };
-    }),
+    });
+    const { profile, responses, currentStep } = get();
+    saveDraft(profile, responses, currentStep).catch(() => {});
+  },
 
-  setResponse: (questionId, value) =>
+  setResponse: (questionId, value) => {
     set((state) => {
       const existing = state.responses.findIndex((r) => r.questionId === questionId);
       const responses = [...state.responses];
@@ -108,7 +123,10 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
         responses.push({ questionId, value });
       }
       return { responses };
-    }),
+    });
+    const { profile, responses, currentStep } = get();
+    saveDraft(profile, responses, currentStep).catch(() => {});
+  },
 
   calculateResults: () => {
     const { responses, profile } = get();
@@ -126,7 +144,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
     set({ dimensionScores, riskScore, blindSpots, recommendations });
   },
 
-  resetAssessment: () =>
+  resetAssessment: () => {
     set({
       currentStep: 'welcome',
       profile: {},
@@ -135,11 +153,23 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
       riskScore: null,
       blindSpots: [],
       recommendations: [],
-    }),
+    });
+    clearDraft().catch(() => {});
+  },
 
   getStepIndex: () => {
     const { currentStep } = get();
     return STEP_ORDER.indexOf(currentStep);
+  },
+
+  hydrateDraft: async () => {
+    const draft: DraftData | null = await loadDraft();
+    if (!draft) return;
+    set({
+      profile: draft.profile,
+      responses: draft.responses,
+      currentStep: draft.step,
+    });
   },
 
   canProceed: () => {

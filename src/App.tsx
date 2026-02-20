@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { WelcomePage } from '@/components/wizard/WelcomePage';
 import { ProfileStep } from '@/components/wizard/ProfileStep';
@@ -5,10 +6,17 @@ import { DimensionStep } from '@/components/wizard/DimensionStep';
 import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { initDatabase } from '@/services/db';
 import type { DimensionKey } from '@/types/assessment';
 
 function App() {
-  const { currentStep } = useAssessmentStore();
+  const { currentStep, hydrateDraft } = useAssessmentStore();
+
+  useEffect(() => {
+    initDatabase()
+      .then(() => hydrateDraft())
+      .catch(() => {});
+  }, []);
 
   const renderStep = () => {
     switch (currentStep) {
