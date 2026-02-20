@@ -107,7 +107,7 @@ export const INNOVATOR_QUESTIONS: AssessmentQuestion[] = [
     helpText: 'Accessible, non-punitive reporting channels increase voluntary disclosure and reduce the gap between actual and inventoried AI usage.',
     type: 'radio',
     options: [
-      { label: 'Multiple channels (portal, Slack bot, manager path) with confirmed non-punitive policy, actively promoted at least quarterly', value: 0, riskLevel: 'low' },
+      { label: 'Multiple reporting channels available (portal, Slack bot, manager path); non-punitive reporting policy documented and communicated to employees', value: 0, riskLevel: 'low' },
       { label: 'A designated reporting channel exists and is included in AI policy communications', value: 25, riskLevel: 'medium' },
       { label: 'Employees can report through general IT channels but no AI-specific path is promoted', value: 50, riskLevel: 'high' },
       { label: 'Reporting is theoretically possible but no channel is clearly designated or communicated', value: 75, riskLevel: 'high' },
