@@ -76,14 +76,14 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
   {
     id: 'shadow-b-6',
     dimension: 'shadowAI',
-    text: 'Do you have budget approval requirements or spending controls for AI tool purchases?',
-    helpText: 'AI tools are often purchased on personal or team credit cards. Spend controls through finance or procurement create a natural checkpoint for visibility and approval.',
+    text: 'Do employees need to request approval before using a new AI tool — including free tools?',
+    helpText: 'Many shadow AI gaps start with free tools. An employee can sign up for ChatGPT, Perplexity, or Notion AI without any spending — yet those tools still process company data. An approval process that covers all AI tools, paid or free, gives you real visibility into your AI footprint.',
     type: 'radio',
     options: [
-      { label: 'No controls — employees can purchase freely', value: 100 },
-      { label: 'Informal expectations but no formal controls', value: 65 },
-      { label: 'Controls exist for large purchases, not small SaaS subscriptions', value: 35 },
-      { label: 'All AI tool purchases require approval regardless of cost', value: 0 },
+      { label: 'No approval process — employees adopt AI tools freely', value: 100 },
+      { label: 'Approval only required for paid tools; free tools are unrestricted', value: 65 },
+      { label: 'Approval is expected but not consistently enforced', value: 35 },
+      { label: 'All AI tools require approval before use, regardless of cost', value: 0 },
     ],
   },
   {
