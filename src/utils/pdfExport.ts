@@ -80,7 +80,7 @@ export async function generateFreePDF(
   doc.circle(50, 150, 20, 'F');
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
-  doc.text(String(overallScore), 50, 155, { align: 'center' });
+  doc.text(String(overallScore), 50, 150, { align: 'center', baseline: 'middle' });
 
   doc.setTextColor(16, 42, 67);
   doc.setFontSize(12);
@@ -259,7 +259,7 @@ export async function generateProPDF(
   doc.circle(pageWidth / 2, 202, 11, 'F');
   doc.setFontSize(14);
   doc.setTextColor(255, 255, 255);
-  doc.text(String(overallScore), pageWidth / 2, 207, { align: 'center' });
+  doc.text(String(overallScore), pageWidth / 2, 202, { align: 'center', baseline: 'middle' });
 
   doc.setFontSize(9);
   doc.setTextColor(155, 179, 200);

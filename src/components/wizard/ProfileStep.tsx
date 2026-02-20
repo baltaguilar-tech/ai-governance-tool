@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import {
   Industry,
@@ -8,8 +9,24 @@ import {
   DeploymentTimeline,
 } from '@/types/assessment';
 
+const PRIMARY_LOCATION_COUNTRIES = [
+  'United States', 'United Kingdom', 'Canada', 'Australia',
+  'Germany', 'France', 'Netherlands', 'Ireland', 'Sweden',
+  'Denmark', 'Finland', 'Norway', 'Belgium', 'Spain', 'Italy',
+  'Switzerland', 'Austria', 'Poland',
+  'Singapore', 'Japan', 'South Korea', 'India', 'Hong Kong', 'New Zealand',
+  'UAE', 'Saudi Arabia', 'Israel', 'South Africa',
+  'Brazil', 'Mexico',
+];
+
 export function ProfileStep() {
   const { profile, updateProfile, nextStep, prevStep, canProceed } = useAssessmentStore();
+
+  const [locationSelect, setLocationSelect] = useState(() => {
+    if (!profile.primaryLocation) return '';
+    if (PRIMARY_LOCATION_COUNTRIES.includes(profile.primaryLocation)) return profile.primaryLocation;
+    return '__other__';
+  });
 
   return (
     <div>
@@ -99,13 +116,35 @@ export function ProfileStep() {
           <label className="block text-sm font-medium text-navy-700 mb-1">
             Primary Location
           </label>
-          <input
-            type="text"
-            value={profile.primaryLocation || ''}
-            onChange={(e) => updateProfile({ primaryLocation: e.target.value })}
-            placeholder="e.g., United States, Germany, Singapore"
-            className="w-full px-4 py-2.5 rounded-lg border border-navy-300 bg-white text-navy-900 placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <select
+            value={locationSelect}
+            onChange={(e) => {
+              const val = e.target.value;
+              setLocationSelect(val);
+              if (val !== '__other__') {
+                updateProfile({ primaryLocation: val });
+              } else {
+                updateProfile({ primaryLocation: '' });
+              }
+            }}
+            className="w-full px-4 py-2.5 rounded-lg border border-navy-300 bg-white text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Select your primary location</option>
+            {PRIMARY_LOCATION_COUNTRIES.map((country) => (
+              <option key={country} value={country}>{country}</option>
+            ))}
+            <option value="__other__">Other</option>
+          </select>
+          {locationSelect === '__other__' && (
+            <input
+              type="text"
+              value={profile.primaryLocation || ''}
+              onChange={(e) => updateProfile({ primaryLocation: e.target.value })}
+              placeholder="Enter your country or region"
+              className="mt-2 w-full px-4 py-2.5 rounded-lg border border-navy-300 bg-white text-navy-900 placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              autoFocus
+            />
+          )}
         </div>
 
         {/* Operating Regions */}
