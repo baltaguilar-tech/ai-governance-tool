@@ -73,8 +73,8 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
   {
     id: 'shadow-a-5',
     dimension: 'shadowAI',
-    text: 'Has a third party independently attested to the completeness and accuracy of your AI tool inventory?',
-    helpText: 'Third-party attestation of inventory completeness strengthens audit defensibility and is increasingly expected by regulators and institutional investors conducting AI governance due diligence.',
+    text: 'How has your organization independently verified the completeness and accuracy of your AI tool inventory?',
+    helpText: 'Independent verification — whether through internal audit or external third-party attestation — strengthens audit defensibility. Third-party attestation is the gold standard for organizations with significant regulatory exposure and is increasingly expected by regulators and institutional investors conducting AI governance due diligence.',
     type: 'radio',
     options: [
       { label: 'No independent review of AI inventory completeness has been conducted', value: 100, riskLevel: 'critical' },
