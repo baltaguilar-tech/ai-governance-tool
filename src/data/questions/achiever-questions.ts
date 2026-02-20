@@ -653,7 +653,7 @@ export const ACHIEVER_QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: 'No independent third-party bias audits', value: 100, riskLevel: 'critical' },
       { label: 'Bias testing conducted internally; independent third-party audits not yet commissioned', value: 75, riskLevel: 'high' },
-      { label: 'Third-party bias assessments conducted but not on a formal annual cycle; results not published', value: 50, riskLevel: 'high' },
+      { label: 'Third-party bias assessments conducted but AI system risk tiers not yet formalized; assessments are ad hoc rather than on a defined annual cycle; results not published', value: 50, riskLevel: 'high' },
       { label: 'Independent bias audits conducted for highest-risk AI systems; results published internally; external publication in progress', value: 25, riskLevel: 'medium' },
       { label: 'Independent third-party bias audits conducted for all high-risk AI systems on annual cycle; audit methodology and summary results published externally; audit reports available to regulators on request', value: 0, riskLevel: 'low' },
       ],
