@@ -35,16 +35,18 @@ export function ResultsDashboard() {
               Completed on {new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
             </p>
           </div>
-          <button
-            onClick={handleToggleTier}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-              licenseTier === 'professional'
-                ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                : 'bg-navy-100 text-navy-600 border border-navy-300'
-            }`}
-          >
-            {licenseTier === 'professional' ? 'PRO Active' : 'FREE Tier'} (click to toggle)
-          </button>
+          {import.meta.env.DEV && (
+            <button
+              onClick={handleToggleTier}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                licenseTier === 'professional'
+                  ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                  : 'bg-navy-100 text-navy-600 border border-navy-300'
+              }`}
+            >
+              {licenseTier === 'professional' ? 'PRO Active' : 'FREE Tier'} (click to toggle)
+            </button>
+          )}
         </div>
       </div>
 
@@ -207,45 +209,67 @@ export function ResultsDashboard() {
           Start New Assessment
         </button>
         <div className="flex gap-3">
+          {/* Free PDF summary — always available */}
           <button
             onClick={() => {
               if (!riskScore) return;
               const orgName = profile.organizationName || 'Organization';
-              const exportFn =
-                licenseTier === 'professional'
-                  ? generateProPDF(
-                      dimensionScores,
-                      riskScore.overallRisk,
-                      riskScore.riskLevel,
-                      riskScore.achieverScore,
-                      orgName,
-                      blindSpots,
-                      recommendations,
-                      responses,
-                      getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
-                      profile as import('@/types/assessment').OrganizationProfile
-                    )
-                  : generateFreePDF(
-                      dimensionScores,
-                      riskScore.overallRisk,
-                      riskScore.riskLevel,
-                      riskScore.achieverScore,
-                      orgName,
-                      blindSpots,
-                      profile as import('@/types/assessment').OrganizationProfile
-                    );
-              exportFn.catch((err) => {
+              generateFreePDF(
+                dimensionScores,
+                riskScore.overallRisk,
+                riskScore.riskLevel,
+                riskScore.achieverScore,
+                orgName,
+                blindSpots,
+                profile as import('@/types/assessment').OrganizationProfile
+              ).catch((err) => {
                 console.error('PDF export failed:', err);
               });
             }}
             className="px-6 py-2.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
           >
-            {licenseTier === 'professional' ? 'Export Full PDF Report' : 'Export PDF Summary'}
+            Export PDF Summary
           </button>
-          {licenseTier === 'free' && (
-            <button className="px-6 py-2.5 rounded-lg bg-navy-900 text-white font-medium hover:bg-navy-800 transition-colors">
-              Upgrade to Pro
+
+          {/* Pro full report — active for pro, locked for free */}
+          {licenseTier === 'professional' ? (
+            <button
+              onClick={() => {
+                if (!riskScore) return;
+                const orgName = profile.organizationName || 'Organization';
+                generateProPDF(
+                  dimensionScores,
+                  riskScore.overallRisk,
+                  riskScore.riskLevel,
+                  riskScore.achieverScore,
+                  orgName,
+                  blindSpots,
+                  recommendations,
+                  responses,
+                  getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
+                  profile as import('@/types/assessment').OrganizationProfile
+                ).catch((err) => {
+                  console.error('PDF export failed:', err);
+                });
+              }}
+              className="px-6 py-2.5 rounded-lg bg-navy-900 text-white font-medium hover:bg-navy-800 transition-colors"
+            >
+              Export Full PDF Report
             </button>
+          ) : (
+            <div className="relative group">
+              <button
+                disabled
+                className="px-6 py-2.5 rounded-lg bg-navy-200 text-navy-400 font-medium cursor-not-allowed flex items-center gap-2"
+              >
+                <span>&#128274;</span>
+                Export Full PDF Report
+              </button>
+              <div className="absolute bottom-full right-0 mb-2 w-56 bg-navy-900 text-white text-xs rounded-lg p-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                Full PDF report with all blind spots, recommendations, and implementation roadmap is available on Pro.
+                <div className="absolute top-full right-4 border-4 border-transparent border-t-navy-900" />
+              </div>
+            </div>
           )}
         </div>
       </div>
