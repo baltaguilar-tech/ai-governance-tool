@@ -273,6 +273,14 @@ export function ResultsDashboard() {
           )}
         </div>
       </div>
+
+      {/* Score disclaimer */}
+      <p className="text-xs text-navy-400 mt-6 text-center leading-relaxed">
+        Scores are based on self-reported responses and reflect your organization&apos;s current AI governance
+        maturity as you understand it. This assessment is indicative only — it is not a legal compliance
+        audit and does not constitute professional or legal advice. Regulatory exposure estimates are
+        illustrative and should not be relied upon for legal or financial decisions.
+      </p>
     </div>
   );
 }
