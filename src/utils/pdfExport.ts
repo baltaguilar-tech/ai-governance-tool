@@ -1,8 +1,9 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion } from '@/types/assessment';
+import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, Region } from '@/types/assessment';
 import { DIMENSION_MAP, DIMENSIONS } from '@/data/dimensions';
 import { getRiskColor, getImmediateAction } from './scoring';
+import { generateExecutiveSummary } from './executiveSummary';
 
 // ── Save helper ──────────────────────────────────────────────────────────────
 // Tries the Tauri native save dialog first; falls back to browser blob download
@@ -37,13 +38,140 @@ async function savePdf(doc: jsPDF, defaultName: string): Promise<void> {
   URL.revokeObjectURL(url);
 }
 
+// ── Graph / narrative helpers ─────────────────────────────────────────────────
+
+const DIM_SHORT: Record<string, string> = {
+  shadowAI: 'Shadow AI',
+  vendorRisk: 'Vendor Risk',
+  dataGovernance: 'Data Gov.',
+  securityCompliance: 'Security',
+  aiSpecificRisks: 'AI Risks',
+  roiTracking: 'ROI',
+};
+
+function deriveJurisdiction(regions: Region[]) {
+  if (regions.includes(Region.Europe)) return 'eu' as const;
+  if (regions.includes(Region.NorthAmerica)) return 'us' as const;
+  if (regions.includes(Region.AsiaPacific)) return 'ap' as const;
+  if (regions.includes(Region.LatinAmerica)) return 'latam' as const;
+  if (regions.includes(Region.MiddleEast)) return 'mea' as const;
+  return 'all' as const;
+}
+
+function drawRiskBars(
+  doc: jsPDF,
+  dimensionScores: DimensionScore[],
+  x: number,
+  startY: number,
+  availWidth: number,
+  darkMode = false
+): number {
+  const labelW = 52;
+  const scoreW = 16;
+  const barW = availWidth - labelW - scoreW - 4;
+  const barH = 6;
+  const rowH = 9;
+
+  doc.setFontSize(7.5);
+  doc.setTextColor(darkMode ? 155 : 16, darkMode ? 179 : 42, darkMode ? 200 : 67);
+  doc.text('Dimension Risk Overview', x, startY);
+
+  let y = startY + 6;
+  for (const ds of dimensionScores) {
+    const label = DIM_SHORT[ds.key] ?? ds.key;
+    const fillW = Math.max(1, (ds.score / 100) * barW);
+
+    doc.setFontSize(6.5);
+    doc.setTextColor(darkMode ? 155 : 98, darkMode ? 179 : 125, darkMode ? 200 : 152);
+    doc.text(label, x, y + barH * 0.75);
+
+    doc.setFillColor(darkMode ? 30 : 208, darkMode ? 55 : 220, darkMode ? 90 : 240);
+    doc.roundedRect(x + labelW, y, barW, barH, 1, 1, 'F');
+
+    doc.setFillColor(getRiskColor(ds.riskLevel));
+    doc.roundedRect(x + labelW, y, fillW, barH, 1, 1, 'F');
+
+    doc.setFontSize(6.5);
+    doc.setTextColor(darkMode ? 155 : 98, darkMode ? 179 : 125, darkMode ? 200 : 152);
+    doc.text(`${ds.score}`, x + labelW + barW + 2, y + barH * 0.75);
+
+    y += rowH;
+  }
+  return y; // returns final Y after last bar
+}
+
+function drawMaturityScale(
+  doc: jsPDF,
+  maturityLevel: MaturityLevel,
+  x: number,
+  startY: number,
+  availWidth: number,
+  darkMode = false
+): void {
+  const levels = [MaturityLevel.Experimenter, MaturityLevel.Builder, MaturityLevel.Innovator, MaturityLevel.Achiever];
+  const labels = ['Experimenter', 'Builder', 'Innovator', 'Achiever'];
+  const activeIdx = levels.indexOf(maturityLevel);
+  const stepW = availWidth / 4;
+  const lineY = startY + 8;
+
+  doc.setFontSize(7.5);
+  doc.setTextColor(darkMode ? 155 : 16, darkMode ? 179 : 42, darkMode ? 200 : 67);
+  doc.text('AI Maturity Position', x, startY);
+
+  doc.setDrawColor(darkMode ? 60 : 180, darkMode ? 90 : 200, darkMode ? 130 : 220);
+  doc.setLineWidth(0.5);
+  doc.line(x, lineY, x + availWidth, lineY);
+
+  labels.forEach((label, i) => {
+    const cx = x + stepW * i + stepW / 2;
+    const isActive = i === activeIdx;
+    if (isActive) {
+      doc.setFillColor(37, 99, 235);
+      doc.circle(cx, lineY, 4, 'F');
+    } else {
+      doc.setFillColor(darkMode ? 30 : 200, darkMode ? 55 : 215, darkMode ? 90 : 235);
+      doc.circle(cx, lineY, 3, 'F');
+    }
+    doc.setFontSize(6.5);
+    doc.setTextColor(darkMode ? 155 : 98, darkMode ? 179 : 125, darkMode ? 200 : 152);
+    doc.text(label, cx, lineY + 8, { align: 'center' });
+  });
+}
+
+function drawExecSummaryText(
+  doc: jsPDF,
+  para1: string,
+  para2: string,
+  para3: string,
+  startY: number,
+  pageWidth: number,
+  margin: number,
+  darkMode = false
+): number {
+  const textW = pageWidth - margin * 2;
+  let y = startY;
+  const lineH = 5;
+  const paraGap = 6;
+  const bodyColor: [number, number, number] = darkMode ? [155, 179, 200] : [51, 78, 104];
+
+  for (const para of [para1, para2, para3]) {
+    doc.setFontSize(8.5);
+    doc.setTextColor(...bodyColor);
+    const lines = doc.splitTextToSize(para, textW);
+    doc.text(lines, margin, y);
+    y += lines.length * lineH + paraGap;
+  }
+  return y;
+}
+
 export async function generateFreePDF(
   dimensionScores: DimensionScore[],
   overallScore: number,
   riskLevel: RiskLevel,
   achieverScore: number,
   orgName: string,
-  blindSpots: { title: string; severity: RiskLevel; score: number }[]
+  blindSpots: { title: string; severity: RiskLevel; score: number }[],
+  profile: OrganizationProfile
 ): Promise<void> {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -90,10 +218,34 @@ export async function generateFreePDF(
   doc.setTextColor(98, 125, 152);
   doc.text('Higher score = stronger governance (0-100 scale)', 80, 165);
 
-  // ===== DIMENSION SCORES TABLE =====
-  doc.setTextColor(16, 42, 67);
+  // ===== PAGE 1 GRAPHS =====
+  drawRiskBars(doc, dimensionScores, 20, 178, pageWidth - 40);
+  drawMaturityScale(doc, profile.aiMaturityLevel ?? MaturityLevel.Experimenter, 20, 250, pageWidth - 40);
+
+  // ===== PAGE 2: EXEC SUMMARY + DIMENSION TABLE + BLIND SPOTS =====
+  doc.addPage();
+
+  doc.setFillColor(16, 42, 67);
+  doc.rect(0, 0, pageWidth, 30, 'F');
   doc.setFontSize(16);
-  doc.text('Dimension Scores', 20, 190);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Executive Summary', 20, 20);
+
+  const jurisdiction = deriveJurisdiction(profile.operatingRegions ?? []);
+  const { para1, para2, para3 } = generateExecutiveSummary({
+    profile,
+    overallScore,
+    riskLevel,
+    dimensionScores,
+    jurisdiction,
+  });
+  let execY = drawExecSummaryText(doc, para1, para2, para3, 38, pageWidth, 20);
+
+  // Dimension scores table on page 2
+  execY += 4;
+  doc.setFontSize(11);
+  doc.setTextColor(16, 42, 67);
+  doc.text('Dimension Scores', 20, execY);
 
   const tableData = dimensionScores.map((ds) => [
     DIMENSION_MAP[ds.key]?.label || ds.key,
@@ -103,26 +255,16 @@ export async function generateFreePDF(
   ]);
 
   autoTable(doc, {
-    startY: 195,
+    startY: execY + 4,
     head: [['Dimension', 'Score', 'Risk Level', 'Weight']],
     body: tableData,
-    headStyles: {
-      fillColor: [16, 42, 67],
-      textColor: [255, 255, 255],
-      fontSize: 10,
-    },
-    bodyStyles: {
-      fontSize: 9,
-      textColor: [51, 78, 104],
-    },
-    alternateRowStyles: {
-      fillColor: [240, 244, 248],
-    },
+    headStyles: { fillColor: [16, 42, 67], textColor: [255, 255, 255], fontSize: 9 },
+    bodyStyles: { fontSize: 9, textColor: [51, 78, 104] },
+    alternateRowStyles: { fillColor: [240, 244, 248] },
     margin: { left: 20, right: 20 },
   });
 
   // ===== BLIND SPOTS (top 3) =====
-  doc.addPage();
 
   doc.setFillColor(16, 42, 67);
   doc.rect(0, 0, pageWidth, 30, 'F');
@@ -187,7 +329,8 @@ export async function generateProPDF(
   blindSpots: BlindSpot[],
   recommendations: Recommendation[],
   responses: QuestionResponse[],
-  questions: AssessmentQuestion[]
+  questions: AssessmentQuestion[],
+  profile: OrganizationProfile
 ): Promise<void> {
   const doc = new jsPDF({ format: 'a4' });
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -270,10 +413,13 @@ export async function generateProPDF(
     { align: 'center' }
   );
 
+  // ===== COVER PAGE GRAPHS (dark mode) =====
+  drawRiskBars(doc, dimensionScores, margin, 232, pageWidth - margin * 2, true);
+
   addFooter();
 
   // ============================================================
-  // PAGE 2: EXECUTIVE SUMMARY — Scores + Blind Spots
+  // PAGE 2: EXECUTIVE SUMMARY — Narrative + Scores + Blind Spots
   // ============================================================
   doc.addPage();
 
@@ -283,6 +429,19 @@ export async function generateProPDF(
   doc.setTextColor(255, 255, 255);
   doc.text('Executive Summary', margin, 17);
 
+  // Narrative paragraphs
+  const proJurisdiction = deriveJurisdiction(profile.operatingRegions ?? []);
+  const proSummary = generateExecutiveSummary({
+    profile,
+    overallScore,
+    riskLevel,
+    dimensionScores,
+    jurisdiction: proJurisdiction,
+  });
+  let proExecY = drawExecSummaryText(doc, proSummary.para1, proSummary.para2, proSummary.para3, 32, pageWidth, margin);
+
+  proExecY += 4;
+
   const scoreTableData = dimensionScores.map((ds) => [
     DIMENSION_MAP[ds.key]?.label || ds.key,
     `${Math.round((DIMENSION_MAP[ds.key]?.weight || 0) * 100)}%`,
@@ -291,7 +450,7 @@ export async function generateProPDF(
   ]);
 
   autoTable(doc, {
-    startY: 32,
+    startY: proExecY,
     head: [['Dimension', 'Weight', 'Score', 'Risk Level']],
     body: scoreTableData,
     headStyles: { fillColor: [16, 42, 67], textColor: [255, 255, 255], fontSize: 9 },

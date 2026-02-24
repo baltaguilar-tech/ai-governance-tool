@@ -168,7 +168,8 @@ export function ResultsDashboard() {
                       blindSpots,
                       recommendations,
                       responses,
-                      getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? [])
+                      getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
+                      profile as import('@/types/assessment').OrganizationProfile
                     )
                   : generateFreePDF(
                       dimensionScores,
@@ -176,7 +177,8 @@ export function ResultsDashboard() {
                       riskScore.riskLevel,
                       riskScore.achieverScore,
                       orgName,
-                      blindSpots
+                      blindSpots,
+                      profile as import('@/types/assessment').OrganizationProfile
                     );
               exportFn.catch((err) => {
                 console.error('PDF export failed:', err);
