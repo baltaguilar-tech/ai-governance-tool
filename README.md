@@ -1,3 +1,8 @@
+> [!WARNING]
+> **Work in Progress** — This project is under active development. Features, APIs, and documentation are incomplete and subject to change without notice. Not ready for production use.
+
+---
+
 # AI Governance & ROI Assessment Tool
 
 > **Know your AI risk. Prove your AI value. Before regulators ask.**
