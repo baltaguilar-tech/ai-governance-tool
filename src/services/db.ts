@@ -19,11 +19,12 @@ export async function initDatabase(): Promise<void> {
     const db = await getDb();
     await db.execute(`
       CREATE TABLE IF NOT EXISTS draft_assessment (
-        id       INTEGER PRIMARY KEY CHECK (id = 1),
-        profile  TEXT    NOT NULL DEFAULT '{}',
-        responses TEXT   NOT NULL DEFAULT '[]',
-        step     TEXT    NOT NULL DEFAULT 'welcome',
-        savedAt  TEXT    NOT NULL
+        id              INTEGER PRIMARY KEY CHECK (id = 1),
+        profile         TEXT    NOT NULL DEFAULT '{}',
+        responses       TEXT    NOT NULL DEFAULT '[]',
+        step            TEXT    NOT NULL DEFAULT 'welcome',
+        schemaVersion   INTEGER NOT NULL DEFAULT 1,
+        savedAt         TEXT    NOT NULL
       )
     `);
   } catch (err) {
@@ -40,8 +41,8 @@ export async function saveDraft(
   try {
     const db = await getDb();
     await db.execute(
-      `INSERT OR REPLACE INTO draft_assessment (id, profile, responses, step, savedAt)
-       VALUES (1, ?, ?, ?, ?)`,
+      `INSERT OR REPLACE INTO draft_assessment (id, profile, responses, step, schemaVersion, savedAt)
+       VALUES (1, ?, ?, ?, 1, ?)`,
       [
         JSON.stringify(profile),
         JSON.stringify(responses),
@@ -58,21 +59,28 @@ export interface DraftData {
   profile: Partial<OrganizationProfile>;
   responses: QuestionResponse[];
   step: WizardStep;
+  schemaVersion: number;
 }
 
 export async function loadDraft(): Promise<DraftData | null> {
   if (!isTauriContext()) return null;
   try {
     const db = await getDb();
-    const rows = await db.select<{ profile: string; responses: string; step: string }[]>(
-      'SELECT profile, responses, step FROM draft_assessment WHERE id = 1'
+    const rows = await db.select<{ profile: string; responses: string; step: string; schemaVersion: number }[]>(
+      'SELECT profile, responses, step, schemaVersion FROM draft_assessment WHERE id = 1'
     );
     if (!rows || rows.length === 0) return null;
     const row = rows[0];
+    // Guard: if schemaVersion is missing or not 1, return null to force fresh start
+    if (row.schemaVersion !== 1) {
+      console.warn('[db] Draft schema version mismatch; discarding stale data');
+      return null;
+    }
     return {
       profile: JSON.parse(row.profile) as Partial<OrganizationProfile>,
       responses: JSON.parse(row.responses) as QuestionResponse[],
       step: row.step as WizardStep,
+      schemaVersion: row.schemaVersion,
     };
   } catch (err) {
     console.error('[db] loadDraft failed:', err);

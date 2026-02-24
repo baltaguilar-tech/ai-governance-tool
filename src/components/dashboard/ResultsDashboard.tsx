@@ -52,12 +52,66 @@ export function ResultsDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <RiskGauge score={riskScore.overallRisk} level={riskScore.riskLevel} />
         <DimensionRadar dimensionScores={dimensionScores} />
-        <AchieverProgress
-          score={riskScore.achieverScore}
-          currentMaturity={riskScore.currentMaturity}
-          targetMaturity={riskScore.targetMaturity}
-        />
+        <div>
+          <AchieverProgress
+            score={riskScore.achieverScore}
+            currentMaturity={riskScore.currentMaturity}
+            targetMaturity={riskScore.targetMaturity}
+          />
+          <p className="text-xs text-navy-400 mt-2">
+            Includes self-reported maturity adjustment
+          </p>
+        </div>
       </div>
+
+      {/* Estimated Regulatory Exposure */}
+      {(() => {
+        const revenueBand = profile.annualRevenue;
+        const revenueMidpoints: Record<string, number> = {
+          'Under $10M': 5_000_000,
+          '$10M–$50M': 30_000_000,
+          '$10M-$50M': 30_000_000,
+          '$50M–$250M': 150_000_000,
+          '$50M-$250M': 150_000_000,
+          '$250M–$1B': 625_000_000,
+          '$250M-$1B': 625_000_000,
+          'Over $1B': 1_000_000_000,
+        };
+        const revenueMidpoint = revenueBand ? revenueMidpoints[revenueBand] : null;
+
+        if (!revenueMidpoint) return null;
+
+        const riskMultipliers: Record<string, number> = {
+          CRITICAL: 0.07,
+          HIGH: 0.04,
+          MEDIUM: 0.02,
+          LOW: 0.005,
+        };
+        const multiplier = riskMultipliers[riskScore.riskLevel] || 0.02;
+        const exposure = revenueMidpoint * multiplier;
+
+        const formatExposure = (value: number): string => {
+          if (value >= 1_000_000) {
+            return `$${(value / 1_000_000).toFixed(1)}m`;
+          } else if (value >= 1_000) {
+            return `$${(value / 1_000).toFixed(1)}k`;
+          }
+          return `$${Math.round(value)}`;
+        };
+
+        return (
+          <div className="bg-white rounded-xl border border-navy-200 p-6 mb-8">
+            <h3 className="text-lg font-semibold text-navy-900 mb-2">Estimated Regulatory Exposure</h3>
+            <div className="flex items-baseline gap-3 mb-2">
+              <span className="text-3xl font-bold text-red-600">{formatExposure(exposure)}</span>
+              <span className="text-sm text-navy-600">potential annual exposure</span>
+            </div>
+            <p className="text-xs text-navy-500">
+              Based on your revenue band ({revenueBand}) and {riskScore.riskLevel.toLowerCase()} risk level. For reference only.
+            </p>
+          </div>
+        );
+      })()}
 
       {/* Dimension breakdown */}
       <div className="bg-white rounded-xl border border-navy-200 p-6 mb-8">

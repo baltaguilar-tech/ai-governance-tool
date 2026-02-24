@@ -75,7 +75,17 @@ export function calculateDimensionScore(
     }
   }
 
-  const averageRaw = answeredCount > 0 ? totalScore / answeredCount : 100;
+  // Guard: if dimension has no answers (draft migration, new questions), return neutral score
+  if (answeredCount === 0) {
+    return {
+      key: dimension,
+      score: 50,
+      riskLevel: getRiskLevel(50),
+      questionScores: [],
+    };
+  }
+
+  const averageRaw = totalScore / answeredCount;
   // Invert: 0 (worst raw) → 100 (best display), 100 (worst raw) → 0 (worst display)
   const governanceScore = 100 - averageRaw;
 
@@ -178,18 +188,24 @@ export function identifyBlindSpots(
     .filter((sq): sq is NonNullable<typeof sq> => sq !== null)
     .sort((a, b) => a.score - b.score);
 
-  // Top blind spots from lowest-scoring (worst governance) questions
-  for (const sq of scoredQuestions.slice(0, 10)) {
-    if (sq.score <= 40) {
-      blindSpots.push({
-        title: sq.question.text,
-        dimension: sq.question.dimension,
-        severity: getRiskLevel(sq.score),
-        score: sq.score,
-        description: sq.question.helpText,
-        immediateAction: getImmediateAction(sq.question.id, sq.score),
-      });
-    }
+  // Cap at 2 per dimension so one bad dimension can't monopolize all blind spot slots
+  const MAX_PER_DIM = 2;
+  const perDimCount: Record<string, number> = {};
+
+  for (const sq of scoredQuestions) {
+    if (blindSpots.length >= 10) break;
+    if (sq.score > 40) break; // sorted ascending — once above threshold, done
+    const dimCount = perDimCount[sq.question.dimension] ?? 0;
+    if (dimCount >= MAX_PER_DIM) continue;
+    perDimCount[sq.question.dimension] = dimCount + 1;
+    blindSpots.push({
+      title: sq.question.text,
+      dimension: sq.question.dimension,
+      severity: getRiskLevel(sq.score),
+      score: sq.score,
+      description: sq.question.helpText,
+      immediateAction: getImmediateAction(sq.question.id, sq.score),
+    });
   }
 
   return blindSpots;
