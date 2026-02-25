@@ -225,6 +225,41 @@ export interface EmailPrefs {
   registeredAt?: string;
 }
 
+// --- Mitigation Tracker ---
+
+export type MitigationStatus = 'not_started' | 'in_progress' | 'complete';
+export type MitigationSourceType = 'blind_spot' | 'recommendation' | 'custom';
+// 'general' used for custom actions not tied to a specific dimension
+export type MitigationDimension = DimensionKey | 'general';
+
+export interface MitigationItem {
+  id?: number;
+  assessmentId: number;           // FK to completed_assessments.id
+  sourceType: MitigationSourceType;
+  sourceId?: string;              // questionId for blind_spot items; null for custom
+  dimension: MitigationDimension;
+  title: string;
+  description?: string;
+  status: MitigationStatus;
+  notes?: string;
+  completedAt?: string;           // immutable: set once when status → 'complete', never changed
+  createdAt?: string;
+}
+
+// --- Assessment History ---
+
+export interface CompletedAssessmentSnapshot {
+  id?: number;
+  profile: OrganizationProfile;
+  overallScore: number;
+  riskLevel: RiskLevel;
+  dimensionScores: DimensionScore[];
+  achieverScore: number;
+  blindSpots: BlindSpot[];
+  completedAt: string;
+  assessmentVersion: number;
+}
+
 // --- Wizard State ---
 
 export type WizardStep =

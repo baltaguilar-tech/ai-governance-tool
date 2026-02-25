@@ -6,6 +6,10 @@ import type {
   SpendItem,
   AdoptionSnapshot,
   EmailPrefs,
+  MitigationItem,
+  MitigationStatus,
+  CompletedAssessmentSnapshot,
+  BlindSpot,
 } from '../types/assessment';
 
 const DB_PATH = 'sqlite:governance-draft.db';
@@ -63,6 +67,34 @@ export async function initDatabase(): Promise<void> {
         opted_in         INTEGER NOT NULL DEFAULT 1,
         last_reminded_at TEXT,
         registered_at    TEXT    NOT NULL
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS completed_assessments (
+        id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+        profile             TEXT    NOT NULL,
+        overall_score       INTEGER NOT NULL,
+        risk_level          TEXT    NOT NULL,
+        dimension_scores    TEXT    NOT NULL,
+        achiever_score      INTEGER NOT NULL,
+        blind_spots         TEXT    NOT NULL,
+        completed_at        TEXT    NOT NULL,
+        assessment_version  INTEGER NOT NULL DEFAULT 1
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS mitigation_items (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        assessment_id  INTEGER NOT NULL,
+        source_type    TEXT    NOT NULL,
+        source_id      TEXT,
+        dimension      TEXT    NOT NULL,
+        title          TEXT    NOT NULL,
+        description    TEXT,
+        status         TEXT    NOT NULL DEFAULT 'not_started',
+        notes          TEXT,
+        completed_at   TEXT,
+        created_at     TEXT    NOT NULL
       )
     `);
   } catch (err) {
@@ -269,5 +301,207 @@ export async function getEmailPrefs(): Promise<EmailPrefs | null> {
   } catch (err) {
     console.error('[db] getEmailPrefs failed:', err);
     return null;
+  }
+}
+
+// ─── Completed Assessments ────────────────────────────────────────────────────
+
+export async function saveCompletedAssessment(
+  snapshot: Omit<CompletedAssessmentSnapshot, 'id'>
+): Promise<number> {
+  if (!isTauriContext()) return -1;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT INTO completed_assessments
+        (profile, overall_score, risk_level, dimension_scores, achiever_score, blind_spots, completed_at, assessment_version)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        JSON.stringify(snapshot.profile),
+        snapshot.overallScore,
+        snapshot.riskLevel,
+        JSON.stringify(snapshot.dimensionScores),
+        snapshot.achieverScore,
+        JSON.stringify(snapshot.blindSpots),
+        snapshot.completedAt,
+        snapshot.assessmentVersion,
+      ]
+    );
+    // Return the inserted row id for use in seeding mitigation items
+    const rows = await db.select<{ id: number }[]>(
+      'SELECT id FROM completed_assessments ORDER BY id DESC LIMIT 1'
+    );
+    return rows[0]?.id ?? -1;
+  } catch (err) {
+    console.error('[db] saveCompletedAssessment failed:', err);
+    return -1;
+  }
+}
+
+export async function getCompletedAssessments(): Promise<CompletedAssessmentSnapshot[]> {
+  if (!isTauriContext()) return [];
+  try {
+    const db = await getDb();
+    const rows = await db.select<{
+      id: number; profile: string; overall_score: number; risk_level: string;
+      dimension_scores: string; achiever_score: number; blind_spots: string;
+      completed_at: string; assessment_version: number;
+    }[]>('SELECT * FROM completed_assessments ORDER BY completed_at ASC');
+    return rows.map((r) => ({
+      id: r.id,
+      profile: JSON.parse(r.profile) as CompletedAssessmentSnapshot['profile'],
+      overallScore: r.overall_score,
+      riskLevel: r.risk_level as CompletedAssessmentSnapshot['riskLevel'],
+      dimensionScores: JSON.parse(r.dimension_scores) as CompletedAssessmentSnapshot['dimensionScores'],
+      achieverScore: r.achiever_score,
+      blindSpots: JSON.parse(r.blind_spots) as BlindSpot[],
+      completedAt: r.completed_at,
+      assessmentVersion: r.assessment_version,
+    }));
+  } catch (err) {
+    console.error('[db] getCompletedAssessments failed:', err);
+    return [];
+  }
+}
+
+export async function getLatestCompletedAssessment(): Promise<CompletedAssessmentSnapshot | null> {
+  if (!isTauriContext()) return null;
+  try {
+    const db = await getDb();
+    const rows = await db.select<{
+      id: number; profile: string; overall_score: number; risk_level: string;
+      dimension_scores: string; achiever_score: number; blind_spots: string;
+      completed_at: string; assessment_version: number;
+    }[]>('SELECT * FROM completed_assessments ORDER BY completed_at DESC LIMIT 1');
+    if (!rows || rows.length === 0) return null;
+    const r = rows[0];
+    return {
+      id: r.id,
+      profile: JSON.parse(r.profile) as CompletedAssessmentSnapshot['profile'],
+      overallScore: r.overall_score,
+      riskLevel: r.risk_level as CompletedAssessmentSnapshot['riskLevel'],
+      dimensionScores: JSON.parse(r.dimension_scores) as CompletedAssessmentSnapshot['dimensionScores'],
+      achieverScore: r.achiever_score,
+      blindSpots: JSON.parse(r.blind_spots) as BlindSpot[],
+      completedAt: r.completed_at,
+      assessmentVersion: r.assessment_version,
+    };
+  } catch (err) {
+    console.error('[db] getLatestCompletedAssessment failed:', err);
+    return null;
+  }
+}
+
+// ─── Mitigation Items ─────────────────────────────────────────────────────────
+
+/** Seeds mitigation items from blind spots on first assessment save. Max 5 items. */
+export async function seedMitigationItems(
+  assessmentId: number,
+  blindSpots: BlindSpot[]
+): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    // Only seed if no items exist for this assessment yet
+    const existing = await db.select<{ count: number }[]>(
+      'SELECT COUNT(*) as count FROM mitigation_items WHERE assessment_id = ?',
+      [assessmentId]
+    );
+    if (existing[0]?.count > 0) return;
+
+    const now = new Date().toISOString();
+    const topSpots = blindSpots.slice(0, 5);
+    for (const spot of topSpots) {
+      await db.execute(
+        `INSERT INTO mitigation_items
+          (assessment_id, source_type, source_id, dimension, title, description, status, created_at)
+         VALUES (?, 'blind_spot', ?, ?, ?, ?, 'not_started', ?)`,
+        [assessmentId, spot.title, spot.dimension, spot.title, spot.immediateAction, now]
+      );
+    }
+  } catch (err) {
+    console.error('[db] seedMitigationItems failed:', err);
+  }
+}
+
+export async function getMitigationItems(assessmentId?: number): Promise<MitigationItem[]> {
+  if (!isTauriContext()) return [];
+  try {
+    const db = await getDb();
+    const query = assessmentId !== undefined
+      ? `SELECT * FROM mitigation_items WHERE assessment_id = ? ORDER BY created_at ASC`
+      : `SELECT * FROM mitigation_items ORDER BY created_at ASC`;
+    const params = assessmentId !== undefined ? [assessmentId] : [];
+    const rows = await db.select<{
+      id: number; assessment_id: number; source_type: string; source_id: string | null;
+      dimension: string; title: string; description: string | null; status: string;
+      notes: string | null; completed_at: string | null; created_at: string;
+    }[]>(query, params);
+    return rows.map((r) => ({
+      id: r.id,
+      assessmentId: r.assessment_id,
+      sourceType: r.source_type as MitigationItem['sourceType'],
+      sourceId: r.source_id ?? undefined,
+      dimension: r.dimension as MitigationItem['dimension'],
+      title: r.title,
+      description: r.description ?? undefined,
+      status: r.status as MitigationStatus,
+      notes: r.notes ?? undefined,
+      completedAt: r.completed_at ?? undefined,
+      createdAt: r.created_at,
+    }));
+  } catch (err) {
+    console.error('[db] getMitigationItems failed:', err);
+    return [];
+  }
+}
+
+/** Updates status and notes. completedAt is set ONCE when status → 'complete' and never changed thereafter. */
+export async function updateMitigationStatus(
+  id: number,
+  status: MitigationStatus,
+  notes?: string
+): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    const now = new Date().toISOString();
+    await db.execute(
+      `UPDATE mitigation_items
+       SET status = ?,
+           notes = COALESCE(?, notes),
+           completed_at = CASE WHEN ? = 'complete' AND completed_at IS NULL THEN ? ELSE completed_at END
+       WHERE id = ?`,
+      [status, notes ?? null, status, now, id]
+    );
+  } catch (err) {
+    console.error('[db] updateMitigationStatus failed:', err);
+  }
+}
+
+export async function addCustomMitigationItem(
+  item: Omit<MitigationItem, 'id' | 'createdAt' | 'sourceType' | 'completedAt'>
+): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT INTO mitigation_items
+        (assessment_id, source_type, source_id, dimension, title, description, status, notes, created_at)
+       VALUES (?, 'custom', NULL, ?, ?, ?, 'not_started', NULL, ?)`,
+      [item.assessmentId, item.dimension, item.title, item.description ?? null, new Date().toISOString()]
+    );
+  } catch (err) {
+    console.error('[db] addCustomMitigationItem failed:', err);
+  }
+}
+
+export async function deleteMitigationItem(id: number): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute('DELETE FROM mitigation_items WHERE id = ?', [id]);
+  } catch (err) {
+    console.error('[db] deleteMitigationItem failed:', err);
   }
 }
