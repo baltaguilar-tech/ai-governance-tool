@@ -185,6 +185,46 @@ export interface AssessmentResult {
   assessmentVersion: string;
 }
 
+// --- Spend Tracker ---
+
+export type SpendCostType =
+  | 'monthly_subscription'
+  | 'annual_license'
+  | 'one_time'
+  | 'api_infrastructure'
+  | 'internal_labor';
+
+export interface SpendItem {
+  id?: number;
+  name: string;
+  costType: SpendCostType;
+  amount: number;          // raw amount entered by user
+  prorateMonths: number;   // 1=monthly, 12=annual, custom for one-time (12/24/36)
+  monthlyEquivalent: number; // derived: amount / prorateMonths
+  createdAt?: string;
+}
+
+// --- Adoption ROI ---
+
+export interface AdoptionSnapshot {
+  id?: number;
+  adoptionRate: number;       // 0–100 (% of headcount actively using AI)
+  headcount: number;          // total employees in the org
+  hoursSavedPerUser: number;  // estimated hours/week per AI user
+  blendedHourlyRate: number;  // fully-loaded hourly cost per employee (USD)
+  recordedAt?: string;
+}
+
+// --- Email Preferences ---
+
+export interface EmailPrefs {
+  email: string;
+  reminderDays: 30 | 60 | 90;
+  optedIn: boolean;
+  lastRemindedAt?: string;
+  registeredAt?: string;
+}
+
 // --- Wizard State ---
 
 export type WizardStep =
