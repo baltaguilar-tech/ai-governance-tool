@@ -7,9 +7,10 @@ import { RecommendationsList } from './RecommendationsList';
 import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 import { getQuestionsForProfile } from '@/data/questions/index';
-import { MaturityLevel } from '@/types/assessment';
-import { getEmailPrefs } from '@/services/db';
+import { MaturityLevel, type OrganizationProfile } from '@/types/assessment';
+import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems } from '@/services/db';
 import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
+import { TrackProgress } from '@/components/dashboard/TrackProgress';
 
 // Persists across React remounts within the same app session.
 // Resets on app restart, which is intentional — show again next session if no email saved.
@@ -20,6 +21,8 @@ export function ResultsDashboard() {
     useAssessmentStore();
 
   const [showEmailModal, setShowEmailModal] = useState(false);
+  const [activeTab, setActiveTab] = useState<'results' | 'progress'>('results');
+  const [currentAssessmentId, setCurrentAssessmentId] = useState<number>(-1);
 
   useEffect(() => {
     if (_emailModalDismissed) return;
@@ -27,6 +30,27 @@ export function ResultsDashboard() {
       if (!prefs) setShowEmailModal(true);
     });
   }, []);
+
+  // Auto-save completed assessment snapshot + seed mitigation items on first Results render.
+  // Uses currentAssessmentId > 0 as guard — React state resets when user starts a new assessment.
+  useEffect(() => {
+    if (currentAssessmentId > 0 || !riskScore) return;
+    saveCompletedAssessment({
+      profile: profile as OrganizationProfile,
+      overallScore: riskScore.overallRisk,
+      riskLevel: riskScore.riskLevel,
+      dimensionScores,
+      achieverScore: riskScore.achieverScore,
+      blindSpots,
+      completedAt: new Date().toISOString(),
+      assessmentVersion: 1,
+    }).then((id) => {
+      if (id > 0) {
+        setCurrentAssessmentId(id);
+        seedMitigationItems(id, blindSpots);
+      }
+    });
+  }, [riskScore]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!riskScore) return null;
 
@@ -40,6 +64,40 @@ export function ResultsDashboard() {
 
   return (
     <div>
+      {/* Tab navigation */}
+      <div className="flex border-b border-navy-200 mb-8">
+        <button
+          onClick={() => setActiveTab('results')}
+          className={`px-6 py-3 text-sm font-semibold border-b-2 transition-colors ${
+            activeTab === 'results'
+              ? 'border-[#1E2761] text-[#1E2761]'
+              : 'border-transparent text-navy-500 hover:text-navy-700'
+          }`}
+        >
+          Assessment Results
+        </button>
+        <button
+          onClick={() => setActiveTab('progress')}
+          className={`px-6 py-3 text-sm font-semibold border-b-2 transition-colors ${
+            activeTab === 'progress'
+              ? 'border-[#1E2761] text-[#1E2761]'
+              : 'border-transparent text-navy-500 hover:text-navy-700'
+          }`}
+        >
+          Track Progress
+        </button>
+      </div>
+
+      {activeTab === 'progress' && (
+        <TrackProgress
+          assessmentId={currentAssessmentId}
+          currentScore={riskScore.overallRisk}
+          dimensionScores={dimensionScores}
+        />
+      )}
+
+      {activeTab === 'results' && (
+      <>
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
@@ -304,6 +362,8 @@ export function ResultsDashboard() {
           onClose={() => { _emailModalDismissed = true; setShowEmailModal(false); }}
           onSaved={() => setShowEmailModal(false)}
         />
+      )}
+      </>
       )}
     </div>
   );
