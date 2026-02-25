@@ -8,7 +8,8 @@ import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 import { getQuestionsForProfile } from '@/data/questions/index';
 import { MaturityLevel, type OrganizationProfile } from '@/types/assessment';
-import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems } from '@/services/db';
+import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems, initNotificationSchedule } from '@/services/db';
+import { requestNotificationPermission } from '@/utils/notifications';
 import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
 import { TrackProgress } from '@/components/dashboard/TrackProgress';
 
@@ -35,6 +36,7 @@ export function ResultsDashboard() {
   // Uses currentAssessmentId > 0 as guard — React state resets when user starts a new assessment.
   useEffect(() => {
     if (currentAssessmentId > 0 || !riskScore) return;
+    const completedAt = new Date().toISOString();
     saveCompletedAssessment({
       profile: profile as OrganizationProfile,
       overallScore: riskScore.overallRisk,
@@ -42,12 +44,15 @@ export function ResultsDashboard() {
       dimensionScores,
       achieverScore: riskScore.achieverScore,
       blindSpots,
-      completedAt: new Date().toISOString(),
+      completedAt,
       assessmentVersion: 1,
     }).then((id) => {
       if (id > 0) {
         setCurrentAssessmentId(id);
         seedMitigationItems(id, blindSpots);
+        initNotificationSchedule(completedAt).then(() => {
+          requestNotificationPermission();
+        });
       }
     });
   }, [riskScore]); // eslint-disable-line react-hooks/exhaustive-deps

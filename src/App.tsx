@@ -7,6 +7,7 @@ import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
+import { checkDueReminders } from '@/utils/notifications';
 import type { DimensionKey } from '@/types/assessment';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   useEffect(() => {
     initDatabase()
       .then(() => hydrateDraft())
+      .then(() => checkDueReminders())
       .catch(() => {});
   }, []);
 

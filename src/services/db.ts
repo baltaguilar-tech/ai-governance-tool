@@ -10,6 +10,7 @@ import type {
   MitigationStatus,
   CompletedAssessmentSnapshot,
   BlindSpot,
+  NotificationSchedule,
 } from '../types/assessment';
 
 const DB_PATH = 'sqlite:governance-draft.db';
@@ -95,6 +96,15 @@ export async function initDatabase(): Promise<void> {
         notes          TEXT,
         completed_at   TEXT,
         created_at     TEXT    NOT NULL
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS notification_schedule (
+        id           INTEGER PRIMARY KEY CHECK (id = 1),
+        reference_at TEXT    NOT NULL,
+        fired_30     INTEGER NOT NULL DEFAULT 0,
+        fired_60     INTEGER NOT NULL DEFAULT 0,
+        fired_90     INTEGER NOT NULL DEFAULT 0
       )
     `);
   } catch (err) {
@@ -503,5 +513,56 @@ export async function deleteMitigationItem(id: number): Promise<void> {
     await db.execute('DELETE FROM mitigation_items WHERE id = ?', [id]);
   } catch (err) {
     console.error('[db] deleteMitigationItem failed:', err);
+  }
+}
+
+// --- Notification Schedule ---
+
+/** Set the reminder clock start once. Ignores call if a schedule already exists (INSERT OR IGNORE). */
+export async function initNotificationSchedule(referenceAt: string): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT OR IGNORE INTO notification_schedule (id, reference_at) VALUES (1, $1)`,
+      [referenceAt]
+    );
+  } catch (err) {
+    console.error('[db] initNotificationSchedule failed:', err);
+  }
+}
+
+export async function getNotificationSchedule(): Promise<NotificationSchedule | null> {
+  if (!isTauriContext()) return null;
+  try {
+    const db = await getDb();
+    const rows = await db.select<Array<{
+      reference_at: string;
+      fired_30: number;
+      fired_60: number;
+      fired_90: number;
+    }>>(`SELECT reference_at, fired_30, fired_60, fired_90 FROM notification_schedule WHERE id = 1`);
+    if (!rows.length) return null;
+    const r = rows[0];
+    return {
+      referenceAt: r.reference_at,
+      fired30: r.fired_30 === 1,
+      fired60: r.fired_60 === 1,
+      fired90: r.fired_90 === 1,
+    };
+  } catch (err) {
+    console.error('[db] getNotificationSchedule failed:', err);
+    return null;
+  }
+}
+
+export async function markMilestoneFired(days: 30 | 60 | 90): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    const col = `fired_${days}`;
+    await db.execute(`UPDATE notification_schedule SET ${col} = 1 WHERE id = 1`);
+  } catch (err) {
+    console.error('[db] markMilestoneFired failed:', err);
   }
 }

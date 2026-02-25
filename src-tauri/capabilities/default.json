@@ -18,6 +18,10 @@
     "dialog:allow-open",
     "process:default",
     "process:allow-restart",
+    "notification:default",
+    "notification:allow-request-permission",
+    "notification:allow-is-permission-granted",
+    "notification:allow-send-notification",
     {
       "identifier": "fs:allow-read",
       "allow": [

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { saveEmailPrefs } from '@/services/db';
+import { saveEmailPrefs, initNotificationSchedule } from '@/services/db';
 import type { EmailPrefs } from '@/types/assessment';
 
 interface Props {
@@ -25,7 +25,8 @@ export function EmailCaptureModal({ onClose, onSaved }: Props) {
     setSaving(true);
     const prefs: EmailPrefs = { email: email.trim(), reminderDays, optedIn: true };
     await saveEmailPrefs(prefs);
-    // TODO Step 7: call registerEmailReminder(email, reminderDays) — Cloudflare Worker
+    await initNotificationSchedule(new Date().toISOString());
+    // TODO Step 5: call registerEmailReminder(email, reminderDays) — Cloudflare Worker
     onSaved();
   }
 

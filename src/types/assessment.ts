@@ -280,6 +280,15 @@ export interface WizardState {
   isComplete: boolean;
 }
 
+// --- Notification Schedule ---
+
+export interface NotificationSchedule {
+  referenceAt: string;  // ISO date — clock start (assessment or email capture, whichever first)
+  fired30: boolean;
+  fired60: boolean;
+  fired90: boolean;
+}
+
 // --- License ---
 
 export type LicenseTier = 'free' | 'professional';
