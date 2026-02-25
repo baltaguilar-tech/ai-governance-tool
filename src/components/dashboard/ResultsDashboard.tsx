@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { RiskGauge } from './RiskGauge';
 import { DimensionRadar } from './DimensionRadar';
@@ -7,10 +8,25 @@ import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 import { getQuestionsForProfile } from '@/data/questions/index';
 import { MaturityLevel } from '@/types/assessment';
+import { getEmailPrefs } from '@/services/db';
+import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
+
+// Persists across React remounts within the same app session.
+// Resets on app restart, which is intentional — show again next session if no email saved.
+let _emailModalDismissed = false;
 
 export function ResultsDashboard() {
   const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier } =
     useAssessmentStore();
+
+  const [showEmailModal, setShowEmailModal] = useState(false);
+
+  useEffect(() => {
+    if (_emailModalDismissed) return;
+    getEmailPrefs().then((prefs) => {
+      if (!prefs) setShowEmailModal(true);
+    });
+  }, []);
 
   if (!riskScore) return null;
 
@@ -281,6 +297,14 @@ export function ResultsDashboard() {
         audit and does not constitute professional or legal advice. Regulatory exposure estimates are
         illustrative and should not be relied upon for legal or financial decisions.
       </p>
+
+      {/* Email reminder modal — shown once per session until email is saved */}
+      {showEmailModal && (
+        <EmailCaptureModal
+          onClose={() => { _emailModalDismissed = true; setShowEmailModal(false); }}
+          onSaved={() => setShowEmailModal(false)}
+        />
+      )}
     </div>
   );
 }
