@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { saveEmailPrefs, initNotificationSchedule } from '@/services/db';
+import { registerEmailReminder } from '@/utils/emailReminder';
 import type { EmailPrefs } from '@/types/assessment';
 
 interface Props {
@@ -26,7 +27,8 @@ export function EmailCaptureModal({ onClose, onSaved }: Props) {
     const prefs: EmailPrefs = { email: email.trim(), reminderDays, optedIn: true };
     await saveEmailPrefs(prefs);
     await initNotificationSchedule(new Date().toISOString());
-    // TODO Step 5: call registerEmailReminder(email, reminderDays) — Cloudflare Worker
+    // Fire-and-forget — non-blocking; silently skips if VITE_REMINDER_WORKER_URL not set
+    registerEmailReminder(email.trim(), reminderDays, 'aigov://track');
     onSaved();
   }
 
