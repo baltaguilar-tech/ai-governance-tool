@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import type { LicenseTier } from '@/types/assessment';
 
@@ -21,7 +21,17 @@ function LicenseBadge({ tier }: { tier: LicenseTier }) {
 
 export function LicensePanel() {
   const licenseTier = useAssessmentStore((s) => s.licenseTier);
+  const pendingLicenseKey = useAssessmentStore((s) => s.pendingLicenseKey);
+  const setPendingLicenseKey = useAssessmentStore((s) => s.setPendingLicenseKey);
   const [keyInput, setKeyInput] = useState('');
+
+  // Pre-fill key input when arriving via aigov://activate?key=XXXX deep link
+  useEffect(() => {
+    if (pendingLicenseKey) {
+      setKeyInput(pendingLicenseKey);
+      setPendingLicenseKey(null); // consume — don't re-apply on re-renders
+    }
+  }, [pendingLicenseKey, setPendingLicenseKey]);
 
   return (
     <div className="p-6 space-y-6">

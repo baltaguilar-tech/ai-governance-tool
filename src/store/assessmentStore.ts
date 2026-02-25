@@ -36,6 +36,10 @@ interface AssessmentStore {
   pendingDeepLinkTab: 'progress' | null;
   setPendingDeepLinkTab: (tab: 'progress' | null) => void;
 
+  // Deep link license activation intent (set by aigov://activate?key=... handler, consumed by LicensePanel)
+  pendingLicenseKey: string | null;
+  setPendingLicenseKey: (key: string | null) => void;
+
   // Actions
   setStep: (step: WizardStep) => void;
   nextStep: () => void;
@@ -59,9 +63,13 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   riskScore: null,
   blindSpots: [],
   recommendations: [],
+  // TODO: replace DEV fallback with real license check from src/services/license.ts
+  // When Keygen is configured: call getLicenseState() on app start, set tier from tierFromState()
   licenseTier: (import.meta.env.DEV ? 'professional' : 'free') as LicenseTier,
   pendingDeepLinkTab: null,
   setPendingDeepLinkTab: (tab) => set({ pendingDeepLinkTab: tab }),
+  pendingLicenseKey: null,
+  setPendingLicenseKey: (key) => set({ pendingLicenseKey: key }),
 
   setStep: (step) => {
     set({ currentStep: step });

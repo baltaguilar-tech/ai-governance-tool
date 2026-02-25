@@ -29,6 +29,13 @@ function App() {
         for (const url of urls) {
           if (url.startsWith('aigov://track')) {
             useAssessmentStore.getState().setPendingDeepLinkTab('progress');
+          } else if (url.startsWith('aigov://activate')) {
+            // QR activation flow: phone scans QR → opens aigov://activate?key=XXXX
+            // Pre-fills the license key input in LicensePanel (Settings → License Key)
+            const keyMatch = url.match(/[?&]key=([^&]+)/);
+            if (keyMatch?.[1]) {
+              useAssessmentStore.getState().setPendingLicenseKey(decodeURIComponent(keyMatch[1]));
+            }
           }
         }
       })
