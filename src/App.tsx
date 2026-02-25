@@ -8,6 +8,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
 import { checkDueReminders } from '@/utils/notifications';
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import type { DimensionKey } from '@/types/assessment';
 
 function App() {
@@ -18,6 +19,23 @@ function App() {
       .then(() => hydrateDraft())
       .then(() => checkDueReminders())
       .catch(() => {});
+  }, []);
+
+  // Register deep link handler — aigov://track opens the Track Progress tab
+  useEffect(() => {
+    let unlisten: (() => void) | null = null;
+    if ('__TAURI_INTERNALS__' in window) {
+      onOpenUrl((urls) => {
+        for (const url of urls) {
+          if (url.startsWith('aigov://track')) {
+            useAssessmentStore.getState().setPendingDeepLinkTab('progress');
+          }
+        }
+      })
+        .then((fn) => { unlisten = fn; })
+        .catch(() => {});
+    }
+    return () => { unlisten?.(); };
   }, []);
 
   const renderStep = () => {

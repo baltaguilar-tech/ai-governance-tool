@@ -18,12 +18,20 @@ import { TrackProgress } from '@/components/dashboard/TrackProgress';
 let _emailModalDismissed = false;
 
 export function ResultsDashboard() {
-  const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier } =
+  const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier, pendingDeepLinkTab, setPendingDeepLinkTab } =
     useAssessmentStore();
 
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'results' | 'progress'>('results');
   const [currentAssessmentId, setCurrentAssessmentId] = useState<number>(-1);
+
+  // Consume deep link navigation intent — switch to Track Progress tab when aigov://track opens
+  useEffect(() => {
+    if (pendingDeepLinkTab === 'progress') {
+      setActiveTab('progress');
+      setPendingDeepLinkTab(null);
+    }
+  }, [pendingDeepLinkTab, setPendingDeepLinkTab]);
 
   useEffect(() => {
     if (_emailModalDismissed) return;

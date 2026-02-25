@@ -39,7 +39,10 @@
     "category": "Business",
     "shortDescription": "AI Governance Assessment & ROI Measurement Tool",
     "longDescription": "A comprehensive tool that guides organizations through AI governance assessment, calculates risk scores across 6 dimensions, and provides personalized recommendations with ROI tracking.",
-    "copyright": "Copyright 2026 baltaguilar-tech"
+    "copyright": "Copyright 2026 baltaguilar-tech",
+    "macOS": {
+      "urlSchemes": ["aigov"]
+    }
   },
   "plugins": {
     "updater": {
