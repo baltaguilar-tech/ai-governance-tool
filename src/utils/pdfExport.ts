@@ -21,7 +21,6 @@ async function savePdf(doc: jsPDF, defaultName: string): Promise<void> {
     });
     if (filePath) {
       await writeFile(filePath, new Uint8Array(pdfBytes));
-      alert(`PDF saved to:\n${filePath}`);
     }
     return;
   }
@@ -36,6 +35,47 @@ async function savePdf(doc: jsPDF, defaultName: string): Promise<void> {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+// ── Text helpers ──────────────────────────────────────────────────────────────
+
+// Transforms question text into a gap-finding statement for blind spot display.
+// "Do you have a formal AI inventory?" → "No formal AI inventory"
+function formatGapTitle(questionText: string): string {
+  const text = questionText.replace(/\?$/, '').trim();
+  const patterns: [RegExp, string][] = [
+    [/^Does your organization have (a|an) /i, 'No $1 '],
+    [/^Does your organization have /i, 'No '],
+    [/^Do you have (a|an) /i, 'No $1 '],
+    [/^Do you have /i, 'No '],
+    [/^Has your organization (established|implemented|defined|created|developed) /i, 'Not yet $1: '],
+    [/^Has your organization /i, 'Not yet: '],
+    [/^Is there (a|an) /i, 'No $1 '],
+    [/^Is there /i, 'None: '],
+    [/^Are you /i, 'Not yet '],
+    [/^Have you /i, 'Not yet: '],
+    [/^Is your organization /i, 'Not yet: '],
+  ];
+  for (const [pattern, replacement] of patterns) {
+    if (pattern.test(text)) {
+      return text.replace(pattern, replacement);
+    }
+  }
+  return text;
+}
+
+function getFinancialRiskNote(riskLevel: RiskLevel, score: number): string {
+  switch (riskLevel) {
+    case 'CRITICAL':
+      return `Your score of ${score}/100 places you in the Critical risk tier. Organizations at this level face an average AI-related incident cost of $4.4M (IBM Cost of a Data Breach 2024) and potential EU AI Act penalties up to €35M or 7% of worldwide turnover. The recommendations below are sequenced to reduce your highest-exposure risks first.`;
+    case 'HIGH':
+      return `Your score of ${score}/100 indicates material governance gaps. The $67.4B in AI hallucination losses recorded in 2024 disproportionately affects organizations without detection and validation controls. Addressing the high-priority items below within 30 days will substantially reduce your exposure window.`;
+    case 'MEDIUM':
+      return `Your score of ${score}/100 reflects meaningful progress with addressable gaps. Only 12% of organizations reach "Achiever" governance status — the recommendations below show the specific steps to close the distance. Structured attention on your top two weak dimensions will have the greatest ROI.`;
+    case 'LOW':
+    default:
+      return `Your score of ${score}/100 reflects a strong governance foundation. The recommendations below focus on closing the remaining gaps and maintaining your posture as AI regulations and capabilities continue to evolve.`;
+  }
 }
 
 // ── Graph / narrative helpers ─────────────────────────────────────────────────
@@ -264,13 +304,14 @@ export async function generateFreePDF(
     margin: { left: 20, right: 20 },
   });
 
-  // ===== BLIND SPOTS (top 3) =====
+  // ===== PAGE 3: BLIND SPOTS (top 3) =====
+  doc.addPage();
 
   doc.setFillColor(16, 42, 67);
   doc.rect(0, 0, pageWidth, 30, 'F');
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(16);
-  doc.text('Top Blind Spots', 20, 20);
+  doc.text('Top Gap Areas', 20, 20);
 
   let yPos = 45;
   const topSpots = blindSpots.slice(0, 3);
@@ -477,16 +518,16 @@ export async function generateProPDF(
     doc.setTextColor(98, 125, 152);
     doc.text('No critical blind spots identified.', margin, yPos + 6);
   } else {
+    // Summary table: severity + score + gap area (no action column — too long to read in a cell)
     const blindSpotData = blindSpots.map((bs) => [
       bs.severity,
       `${bs.score}/100`,
-      bs.title,
-      bs.immediateAction,
+      formatGapTitle(bs.title),
     ]);
 
     autoTable(doc, {
       startY: yPos + 3,
-      head: [['Severity', 'Score', 'Blind Spot', 'Immediate Action']],
+      head: [['Severity', 'Score', 'Gap Area']],
       body: blindSpotData,
       headStyles: { fillColor: [185, 28, 28], textColor: [255, 255, 255], fontSize: 8 },
       bodyStyles: { fontSize: 8, textColor: [51, 78, 104] },
@@ -495,10 +536,37 @@ export async function generateProPDF(
       columnStyles: {
         0: { cellWidth: 20, halign: 'center' },
         1: { cellWidth: 16, halign: 'center' },
-        2: { cellWidth: 65 },
-        3: { cellWidth: 68 },
+        2: { cellWidth: pageWidth - margin * 2 - 36 },
       },
     });
+
+    // Action blocks below table — one per blind spot, full text, readable
+    let actionY = (doc as any).lastAutoTable.finalY + 8;
+    doc.setFontSize(9);
+    doc.setTextColor(16, 42, 67);
+    doc.text('Recommended Actions', margin, actionY);
+    actionY += 5;
+
+    for (let i = 0; i < blindSpots.length; i++) {
+      const bs = blindSpots[i];
+      const textW = pageWidth - margin * 2;
+
+      if (actionY > pageHeight - 30) {
+        doc.addPage();
+        actionY = 20;
+      }
+
+      doc.setFontSize(8);
+      doc.setTextColor(185, 28, 28);
+      doc.text(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} — ${bs.score}/100)`, margin, actionY);
+      actionY += 5;
+
+      doc.setFontSize(7.5);
+      doc.setTextColor(120, 80, 0);
+      const actionLines = doc.splitTextToSize(bs.immediateAction, textW);
+      doc.text(actionLines, margin, actionY);
+      actionY += actionLines.length * 4.5 + 6;
+    }
   }
 
   addFooter('Executive Summary');
@@ -625,6 +693,43 @@ export async function generateProPDF(
   doc.setTextColor(255, 255, 255);
   doc.text('Action Recommendations', margin, 17);
 
+  // ── "Start Here" box ─────────────────────────────────────────
+  const criticalRecs = recommendations.filter((r) => r.priority === 'critical' && !r.isPaid);
+  const highFreeRecs = recommendations.filter((r) => r.priority === 'high' && !r.isPaid);
+  const startHereItems = [...criticalRecs, ...highFreeRecs].slice(0, 3);
+
+  if (startHereItems.length > 0) {
+    doc.setFillColor(255, 247, 237); // warm orange tint
+    doc.roundedRect(margin, 31, pageWidth - margin * 2, 8 + startHereItems.length * 9 + 4, 3, 3, 'F');
+    doc.setDrawColor(194, 65, 12);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(margin, 31, pageWidth - margin * 2, 8 + startHereItems.length * 9 + 4, 3, 3, 'S');
+
+    doc.setFontSize(8.5);
+    doc.setTextColor(120, 40, 0);
+    doc.text('Do these first — this week:', margin + 4, 38);
+
+    startHereItems.forEach((rec, i) => {
+      doc.setFontSize(8);
+      doc.setTextColor(80, 30, 0);
+      const label = doc.splitTextToSize(`${i + 1}.  ${rec.title}`, pageWidth - margin * 2 - 10);
+      doc.text(label, margin + 6, 46 + i * 9);
+    });
+  }
+
+  // ── Financial risk context ───────────────────────────────────
+  const riskContextY = startHereItems.length > 0
+    ? 31 + 8 + startHereItems.length * 9 + 10
+    : 32;
+
+  const financialNote = getFinancialRiskNote(riskLevel, overallScore);
+  doc.setFontSize(7.5);
+  doc.setTextColor(98, 125, 152);
+  const noteLines = doc.splitTextToSize(financialNote, pageWidth - margin * 2);
+  doc.text(noteLines, margin, riskContextY);
+
+  const tableStartY = riskContextY + noteLines.length * 4.5 + 6;
+
   const priorityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
   const sortedRecs = [...recommendations].sort(
     (a, b) => (priorityOrder[a.priority] ?? 3) - (priorityOrder[b.priority] ?? 3)
@@ -632,15 +737,14 @@ export async function generateProPDF(
 
   const recData = sortedRecs.map((rec) => [
     rec.priority.toUpperCase(),
-    rec.isPaid ? 'PRO' : 'FREE',
     rec.title,
     rec.description,
     rec.timeline.replace('this-', '').replace('-', ' '),
   ]);
 
   autoTable(doc, {
-    startY: 32,
-    head: [['Priority', 'Tier', 'Recommendation', 'Description', 'Timeline']],
+    startY: tableStartY,
+    head: [['Priority', 'Recommendation', 'Description', 'Timeline']],
     body: recData,
     headStyles: { fillColor: [16, 42, 67], textColor: [255, 255, 255], fontSize: 8 },
     bodyStyles: { fontSize: 7.5, textColor: [51, 78, 104] },
@@ -648,23 +752,16 @@ export async function generateProPDF(
     margin: { left: margin, right: margin },
     columnStyles: {
       0: { cellWidth: 18, halign: 'center' },
-      1: { cellWidth: 14, halign: 'center' },
-      2: { cellWidth: 48 },
-      3: { cellWidth: 78 },
-      4: { cellWidth: 18, halign: 'center' },
+      1: { cellWidth: 55 },
+      2: { cellWidth: 88 },
+      3: { cellWidth: 18, halign: 'center' },
     },
     didParseCell: (data) => {
-      if (data.section === 'body') {
-        if (data.column.index === 0) {
-          const p = String(data.cell.raw);
-          if (p === 'CRITICAL') data.cell.styles.textColor = [185, 28, 28];
-          else if (p === 'HIGH') data.cell.styles.textColor = [194, 65, 12];
-          else if (p === 'MEDIUM') data.cell.styles.textColor = [146, 64, 14];
-        }
-        if (data.column.index === 1 && data.cell.raw === 'PRO') {
-          data.cell.styles.textColor = [6, 95, 70];
-          data.cell.styles.fontStyle = 'bold';
-        }
+      if (data.section === 'body' && data.column.index === 0) {
+        const p = String(data.cell.raw);
+        if (p === 'CRITICAL') data.cell.styles.textColor = [185, 28, 28];
+        else if (p === 'HIGH') data.cell.styles.textColor = [194, 65, 12];
+        else if (p === 'MEDIUM') data.cell.styles.textColor = [146, 64, 14];
       }
     },
   });

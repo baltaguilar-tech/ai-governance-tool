@@ -10,6 +10,7 @@ import {
   OrganizationProfile,
 } from '@/types/assessment';
 import { DIMENSION_MAP } from '@/data/dimensions';
+import { immediateActions } from '@/data/immediateActions';
 
 // Dimension weights from the spec
 const DIMENSION_WEIGHTS: Record<DimensionKey, number> = {
@@ -212,8 +213,10 @@ export function identifyBlindSpots(
 }
 
 export function getImmediateAction(questionId: string, score: number): string {
-  // Phase 0: dimension-prefix matching covers all 240 question IDs immediately.
-  // Phase 4 (Option B): replace with full per-question map (shadow-e-1 through roi-a-10).
+  // Per-question lookup first; falls back to dimension-level text if not found.
+  if (immediateActions[questionId]) {
+    return immediateActions[questionId];
+  }
 
   if (questionId.startsWith('shadow-')) {
     return (

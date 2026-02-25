@@ -18,7 +18,8 @@ const DIMENSION_LABELS: Record<DimensionKey, string> = {
 };
 
 export function getTopRiskyDimensions(dimensionScores: DimensionScore[], n: number): DimensionScore[] {
-  return [...dimensionScores].sort((a, b) => b.score - a.score).slice(0, n);
+  // Sort ascending: lowest score = worst governance = most risky
+  return [...dimensionScores].sort((a, b) => a.score - b.score).slice(0, n);
 }
 
 function getIndustryPhrase(industry: Industry): string {
@@ -34,15 +35,6 @@ function getIndustryPhrase(industry: Industry): string {
   return phrases[industry] ?? 'organizational data and operations';
 }
 
-function getMaturityFraming(maturity: MaturityLevel): string {
-  const framings: Record<MaturityLevel, string> = {
-    Experimenter: 'beginning to explore AI\'s potential',
-    Builder: 'actively building AI capabilities',
-    Innovator: 'scaling AI across the organization',
-    Achiever: 'operating AI as a core business driver',
-  };
-  return framings[maturity];
-}
 
 function getMaturityContext(maturity: MaturityLevel, industryPhrase: string): string {
   switch (maturity) {
@@ -63,11 +55,10 @@ function buildPara1(profile: OrganizationProfile): string {
   const { organizationName, industry, aiMaturityLevel } = profile;
   const industryPhrase = getIndustryPhrase(industry);
   const maturityContext = getMaturityContext(aiMaturityLevel, industryPhrase);
-  const maturityFraming = getMaturityFraming(aiMaturityLevel);
 
   return (
-    `This assessment evaluated ${organizationName}\'s AI governance posture across six dimensions of risk and readiness. ` +
-    `As a ${industry} organization ${maturityFraming}, ${maturityContext}`
+    `This assessment evaluated ${organizationName}\'s AI governance posture across six dimensions covering shadow AI, vendor risk, data governance, security, AI-specific risks, and ROI accountability. ` +
+    maturityContext
   );
 }
 
@@ -159,15 +150,40 @@ function getUrgencyOpener(riskLevel: RiskLevel): string {
   }
 }
 
+function getClosingSentence(riskLevel: RiskLevel, topDimension?: DimensionKey): string {
+  const dimLabel = topDimension ? {
+    shadowAI: 'Shadow AI visibility',
+    vendorRisk: 'Vendor Risk controls',
+    dataGovernance: 'Data Governance',
+    securityCompliance: 'Security & Compliance',
+    aiSpecificRisks: 'AI Risk management',
+    roiTracking: 'ROI accountability',
+  }[topDimension] : 'the highest-risk area';
+
+  switch (riskLevel) {
+    case 'LOW':
+      return `Targeted improvements in ${dimLabel} will move your organization closer to industry-leading governance standards.`;
+    case 'MEDIUM':
+      return `Addressing ${dimLabel} first will have the greatest impact on your overall risk posture and compliance readiness.`;
+    case 'HIGH':
+      return `${dimLabel} is the priority — resolving the gaps there will reduce the majority of your current exposure.`;
+    case 'CRITICAL':
+      return `${dimLabel} requires immediate action — this is where a breach, regulatory finding, or AI incident is most likely to originate.`;
+    default:
+      return `Prioritizing ${dimLabel} will have the greatest impact on your overall governance posture.`;
+  }
+}
+
 function buildPara3(riskLevel: RiskLevel, dimensionScores: DimensionScore[]): string {
   const top = getTopRiskyDimensions(dimensionScores, 1)[0];
   const urgencyOpener = getUrgencyOpener(riskLevel);
   const firstAction = top ? getFirstActionSentence(top.key) : '';
+  const closing = getClosingSentence(riskLevel, top?.key);
 
   return (
     urgencyOpener +
     (firstAction ? ` ${firstAction}` : '') +
-    ' With the right framework in place, organizations can build governance capability progressively — reducing risk while continuing to advance their AI programs with confidence.'
+    ` ${closing}`
   );
 }
 
