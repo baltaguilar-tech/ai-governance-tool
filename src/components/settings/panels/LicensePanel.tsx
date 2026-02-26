@@ -21,6 +21,7 @@ function LicenseBadge({ tier }: { tier: LicenseTier }) {
 
 export function LicensePanel() {
   const licenseTier = useAssessmentStore((s) => s.licenseTier);
+  const setLicenseTier = useAssessmentStore((s) => s.setLicenseTier);
   const pendingLicenseKey = useAssessmentStore((s) => s.pendingLicenseKey);
   const setPendingLicenseKey = useAssessmentStore((s) => s.setPendingLicenseKey);
   const [keyInput, setKeyInput] = useState('');
@@ -121,6 +122,39 @@ export function LicensePanel() {
         >
           View Plans
         </button>
+      </div>
+      <hr className="border-gray-200" />
+
+      {/* Testing Mode — remove before commercial launch */}
+      <div className="space-y-2">
+        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Testing Mode</h3>
+        <p className="text-xs text-gray-400">
+          Simulate tier for UI/UX validation. Does not affect billing.
+        </p>
+        <div className="flex rounded-lg border border-gray-200 overflow-hidden text-sm font-medium">
+          <button
+            type="button"
+            onClick={() => setLicenseTier('free')}
+            className={`flex-1 py-1.5 transition-colors ${
+              licenseTier === 'free'
+                ? 'bg-gray-200 text-gray-800'
+                : 'bg-white text-gray-400 hover:bg-gray-50'
+            }`}
+          >
+            Free
+          </button>
+          <button
+            type="button"
+            onClick={() => setLicenseTier('professional')}
+            className={`flex-1 py-1.5 transition-colors ${
+              licenseTier === 'professional'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-400 hover:bg-gray-50'
+            }`}
+          >
+            Professional
+          </button>
+        </div>
       </div>
     </div>
   );

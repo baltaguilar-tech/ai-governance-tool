@@ -31,6 +31,7 @@ interface AssessmentStore {
 
   // License
   licenseTier: LicenseTier;
+  setLicenseTier: (tier: LicenseTier) => void;
 
   // Deep link navigation intent (set by deep link listener, consumed by ResultsDashboard)
   pendingDeepLinkTab: 'progress' | null;
@@ -70,6 +71,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   setPendingDeepLinkTab: (tab) => set({ pendingDeepLinkTab: tab }),
   pendingLicenseKey: null,
   setPendingLicenseKey: (key) => set({ pendingLicenseKey: key }),
+  setLicenseTier: (tier) => set({ licenseTier: tier }),
 
   setStep: (step) => {
     set({ currentStep: step });
