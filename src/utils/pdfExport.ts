@@ -652,9 +652,10 @@ export async function generateProPDF(
 
       yPos = (doc as any).lastAutoTable.finalY;
 
-      // Immediate action note (only if not scored best — value 0 = best)
-      // Use autoTable for the action box so text wraps correctly
-      if (selectedIndex !== 0 || response === undefined) {
+      // Immediate action note: show unless user selected the best option (value 0 = best governance).
+      // Options are ordered worst-first in the array (index 0 = worst), so we check response.value,
+      // not selectedIndex, to correctly identify "best answer selected".
+      if (response === undefined || response.value !== 0) {
         const actionScore = response !== undefined ? 100 - response.value : 100;
         const action = getImmediateAction(question.id, actionScore);
 

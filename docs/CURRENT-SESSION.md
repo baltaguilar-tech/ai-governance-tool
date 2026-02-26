@@ -4,111 +4,127 @@
 # ============================================================
 
 ## Last Updated
-2026-02-24 — Session 12 COMPLETE
+2026-02-25 — Session 16 (PDF audit + overhaul)
 
 ## GitHub State
-- Remote origin/main: b4f74d5 (fully synced)
-- Local working tree: clean
+- Local commit: fab4ee4 (not yet pushed to origin/main)
 - tsc: 0 errors confirmed
 
-## Session 12 Progress
-- [x] Issue 2 — Security Q8/Q10 double-highlight FIXED (06901ec) ✓
-  - security-e-8 option 2: value 35→65
-  - security-e-10 option 2: value 35→65
-  - security-i-10, security-a-8, security-a-10: verified CLEAN
-  - DimensionStep.tsx renderer: hardened to findIndex/index-based selection
-- [x] Issue 4 — Executive Summary + Page 1 graphs COMPLETE (b4f74d5) ✓
-  - NEW: src/utils/executiveSummary.ts (188 lines) — 3-para generator, branching on jurisdiction/maturity/industry/risk
-  - MODIFIED: src/utils/pdfExport.ts — risk bars + maturity scale on page 1, exec summary on page 2 (free + pro)
-  - MODIFIED: src/components/dashboard/ResultsDashboard.tsx — profile passed to both PDF call sites
-- [ ] Issue 1 — Profile details card on PDF page 1 — NEXT
+## Session 16 Progress
+- [x] PDF audit — 14 issues identified and fixed (fab4ee4):
+  - CRITICAL BUG FIX: getTopRiskyDimensions sort was descending (showing best dims as worst) — corrected to ascending
+  - CRITICAL BUG FIX: Free PDF page 2 blind spots header overwrote exec summary — added doc.addPage()
+  - Para 1 double maturity framing fix (template concatenation bug)
+  - Para 3 brochure copy replaced with score+dimension-specific closing sentence (getClosingSentence())
+  - formatGapTitle() helper — transforms question text to gap findings ("Do you have X?" → "No formal X")
+  - Blind spots table restructured: Gap Area column (not raw question text), action blocks printed below table as numbered list
+  - PRO tier column removed from Pro PDF recommendations table
+  - alert() removed from PDF save flow
+  - "Start Here" box added to recommendations page (top 3 CRITICAL/HIGH free items)
+  - getFinancialRiskNote() — score-tier-aware financial risk paragraph with real dollar figures
 
-## Issue 4 — Executive Summary: FINAL DECISIONS
+- [x] 240 per-question immediate actions created (fab4ee4):
+  - 4 new files: experimenter-actions.ts (121 lines), builder-actions.ts (121 lines), innovator-actions.ts (121 lines), achiever-actions.ts (127 lines)
+  - src/data/immediateActions.ts (merger index, 15 lines)
+  - getImmediateAction() updated: exact question ID lookup first, dimension-level fallback second
 
-### Narrative (executiveSummary.ts — new file, use subagent)
-- **Length**: 3 paragraphs
-- **Tone**: Measured, consultative, approachable (not fear-based)
-- **No role breakdown** (no CEO/CFO/COO/CHRO sections)
-- **Personalization**: Uses actual org score + risk level from assessment
-- **Branching**:
-  - Jurisdiction: us / eu / uk / ap / latam / mea
-  - Maturity: Experimenter / Builder / Innovator / Achiever (affects para 1 framing)
-  - Risk level: Low / Medium / High / Critical (affects para 3 urgency)
-  - Industry: all 14 (subtle framing adjustments)
-- **Stats**: Stat-light — let the scores do the talking
-- **Para structure**:
-  1. What we assessed (org name, industry, size, maturity framing)
-  2. What we found (overall score, top 2 dimension risks, jurisdiction regulatory note)
-  3. What's at stake + one concrete first action
-- **Tier**: FREE and PAID
+- Modified files: executiveSummary.ts, pdfExport.ts, scoring.ts, getImmediateAction() logic in assessmentStore.ts
 
-### Page 1 Graphs (bottom of title page, both tiers)
-- **Graph 1 — Risk bars**: 6 horizontal bars, one per dimension, colored by score
-  - Green: score 0–39 | Yellow: 40–69 | Red: 70–100
-  - Labels: dimension name (left) + score number (right)
-- **Graph 2 — Maturity Position**: 4-step horizontal scale (Experimenter→Builder→Innovator→Achiever)
-  - Marker shows where org lands based on their selected aiMaturityLevel
-  - Replaces the "spend graph" (spend tracking moved to Phase 2 live UI)
-- **Spend graph**: REMOVED from PDF — moved to Phase 2 app UI (see below)
+- Known: Question bank AI-risks prefixes are inconsistent (airisks-e-*, risk-b-*, airisk-i-*, airisk-a-*) — action files match actual IDs; dimension fallback still covers misses
 
-### Files to create/modify
-- NEW: src/utils/executiveSummary.ts
-- MODIFY: src/utils/pdfExport.ts (add graphs to page 1, add exec summary to page 2)
+## Next Session (17) — Push & Phase 3
+- Push fab4ee4 to origin/main first (run: ~/bin/gh auth setup-git if needed, then git push)
+- Then: Phase 3 — GitHub Actions CI/CD, macOS code signing, auto-updater
 
-## Phase 2 Features (NOT building now — save for later)
-- **Spend Tracker**: User logs actual AI spend over time in app UI → renders spend vs. governance score trend chart. Captured in Results/Dashboard page.
-- **Adoption Rate ROI**: User enters % of org using AI → app generates ROI projection chart. Formula: ROI = (adoption_rate × headcount × hours_saved × blended_rate) - total_ai_costs. Captured in Results/Dashboard page.
-- Both features make the app a living governance dashboard, not a one-time tool.
-- Add "Track Progress" or "My Dashboard" section to Results screen in Phase 2.
+## Resume Prompt
+Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
+- [x] Tier toggle added + test plan written + pushed to origin/main (89a92ed)
+- [x] tauri.conf.json build error fixed (a273f91) — moved urlSchemes to plugins.deep-link.desktop.schemes (Tauri v2)
+- [ ] User retrying npm run tauri build — awaiting result
 
-## Issue 1 — Profile Details Card (still pending)
-**Decision**: Grouped summary card beneath score circle, 3 sections:
-  - Organization: name, industry, size, annual revenue
-  - AI Profile: maturity level, AI use cases, deployment timeline, expected AI spend
-  - Scope: primary location, operating regions
-**File**: src/utils/pdfExport.ts
+## Future Task (UX — from first production launch)
+- [ ] Add splash screen / startup progress indicator — app takes several seconds to launch on first open (cold start) but shows nothing; user thinks it's not running. Options: Tauri splashscreen window, or a simple "loading..." native window that closes once the webview is ready.
 
-## Next Session — Issue 1 (Profile Details Card)
-**Decision**: Grouped summary card beneath score circle on PDF page 1, 3 sections:
-  - Organization: name, industry, size, annual revenue
-  - AI Profile: maturity level, AI use cases, deployment timeline, expected AI spend
-  - Scope: primary location, operating regions
-**File**: src/utils/pdfExport.ts — add `drawProfileCard(doc, profile, x, startY, width)` helper, call in both generateFreePDF and generateProPDF
+## Session 17 (Continued from Session 16 context rollover)
+### Build & Launch Fixes (DONE — committed)
+- [x] tauri.conf.json: urlSchemes moved to plugins.deep-link.desktop.schemes (Tauri v2) — a273f91
+- [x] capabilities/default.json: notification:allow-send-notification → allow-notify + allow-show — 4a9deb1
+- [x] Production build succeeded. DMG installed. App launched (Applications folder, right-click → Open for Gatekeeper)
 
-## Phase 2 Features (future — NOT building now)
-- **Spend Tracker**: User logs actual AI spend over time → renders spend vs. governance score trend chart on Results/Dashboard page
-- **Adoption Rate ROI**: User enters % of org using AI → ROI projection chart
-  - Formula: `ROI = (adoption_rate × headcount × hours_saved × blended_rate) − total_ai_costs`
-- Both make the app a living governance dashboard. Add "Track Progress" / "My Dashboard" section to Results screen.
+### Manual Test Results — 24 Cases (production build at 4a9deb1)
+#### PASSING (confirmed)
+- TC004: Special chars in org name ✓
+- TC005: Profile change clears responses ✓
+- TC006: Score 0 and 100 extremes correct ✓
+- TC012: Cover page, Exec Summary paras 1/2/3 all pass ✓
+- TC014: PDF filenames correct ✓
 
-## Resume Prompt (paste this into a new session)
-```
-Resume project. Read:
-1. ~/Projects/ai-governance-tool/docs/CURRENT-SESSION.md
-2. ~/Projects/ai-governance-tool/docs/tool-diary.md (last 20 lines only)
-Brief me on state, then ask what's next.
-```
-- [ ] Issue 1 (Profile Card) — DEFERRED to end-of-project PDF review pass (2026-02-24)
-- Phase 1 complete enough to move forward — transitioning to Phase 2
+#### BUGS FOUND
 
-## Gemini Scoring Audit Findings (2026-02-24) — Added to Roadmap
-Source: Gemini 3.0 review of scoring.ts, assessmentStore.ts, types/assessment.ts
+**P0 — INVESTIGATE: Hamburger/Settings**
+- Hamburger IS in AppLayout.tsx header (always rendered, wraps all screens)
+- Bug might be: (a) visually subtle (white/70 on navy-900, no label), or (b) Settings panel throws JS error on open (LicensePanel calls stub invoke() calls)
+- TC015-TC021 (settings tests) all FAIL — likely same root cause
+- ACTION: Check LicensePanel for runtime errors; consider adding visible label to hamburger
 
-### Phase 2 items (scoring fixes):
-- [ ] Blind spot dimension cap: max 2-3 blind spots per dimension (identifyBlindSpots)
-- [ ] Unanswered dimension guard: return null/skip instead of defaulting to score 0 (Critical) when answeredCount=0
-- [ ] Maturity bonus UI disclaimer: note achieverScore includes self-reported maturity component
-- [ ] Financial exposure calculator: Revenue × regional risk multiplier on Results dashboard (uses annualRevenue already collected)
+**P1 — CONFIRMED BUG: Action condition inverted (pdfExport.ts line 657)**
+- Code: `if (selectedIndex !== 0 || response === undefined)`
+- Options are ordered WORST-FIRST: index 0 = value:100 (worst), index 3 = value:0 (best)
+- selectedIndex is ARRAY POSITION, not value
+- Current behavior: HIDES action for worst answer (index 0), SHOWS for all good answers (wrong)
+- Correct behavior: show action when user did NOT select best option (value !== 0)
+- FIX: Change condition to `if (response === undefined || response.value !== 0)`
 
-### Before launch (data integrity):
-- [ ] Draft schema version field: add schemaVersion to saved drafts; reject/migrate mismatched versions on hydrate
+**P1 — CONFIRMED BUG: Welcome screen copy (WelcomePage.tsx line 60)**
+- "Estimated time: 20-30 minutes" → correct is "10-15 minutes"
+- "60 questions across 6 dimensions" → inaccurate (actual count varies by profile: 60 total)
+  - Could say "questions across 6 dimensions" without the count, or keep 60 (it IS 60)
 
-### Phase 4 items:
-- [ ] isCritical hard-stop: tag questions as critical; floor dimension score to ≥90% risk if any critical question unanswered
-- [ ] Full per-question getImmediateAction() map (Option B — already planned)
+**P1 — INVESTIGATE: Per-question actions showing as dimension fallback**
+- getImmediateAction() per-question lookup may fail in practice even though IDs match in code
+- Could be: production bundle issue, or user selected all worst options (hiding all actions), or action texts observed were in blind spots section (different code path)
+- Need production rebuild to confirm after fixing condition bug
 
-### Phase 5:
-- [ ] window.scrollTo fix: use container ref scroll instead of window.scrollTo for Tauri layout
+**P2 — Tier column in Pro PDF recommendations**
+- Code at line 747: only 4 columns ['Priority', 'Recommendation', 'Description', 'Timeline']
+- PRO tier column removal WAS done in Session 16 (CURRENT-SESSION note confirms)
+- If user's test PDF showed tier column, it may have been from an older binary
+- Verify after next rebuild
 
-### Discarded (Gemini inaccuracies):
-- Zustand set/get race condition: NOT real — Zustand set() is synchronous
+**P2 — PRO PDF access in production**
+- In production, licenseTier = 'free' (import.meta.env.DEV is false)
+- Pro PDF button should be disabled — user somehow got Pro PDF output
+- Check if LicenseTier logic has bug in assessmentStore.ts
+- IMPORTANT: Check this before next build
+
+**P2 — Start Here box not rendering**
+- Code checks `recommendations.filter((r) => r.priority === 'critical' && !r.isPaid)`
+- If all critical/high recs are isPaid: true, box won't show
+- Check how recommendations are generated and whether isPaid is set correctly
+
+**P2 — Financial risk note not appearing**
+- Function `getFinancialRiskNote` IS defined and called at line 725
+- Called correctly: `getFinancialRiskNote(riskLevel, overallScore)` → result written to PDF
+- If not visible, may be contrast/position issue or rendered outside page bounds
+- Investigate in next build
+
+**P3 — PRO REPORT badge alignment**
+- Badge rect: `roundedRect(pageWidth/2 - 22, 28, 44, 13, ...)` centered at pageWidth/2
+- Text: `doc.text('PRO REPORT', pageWidth / 2, 37, { align: 'center' })` 
+- Rect top=28, height=13 → midpoint Y = 34.5; text Y = 37 → slightly low, not centered
+- FIX: Change text Y to 36 (center of rect at 34.5 + fontSize/2 ≈ 32+2 = 34 → Y=35 or 36)
+
+**P3 — Copy issues**
+- Welcome screen: "20-30 minutes" → "10-15 minutes"
+- Pro PDF page 2+: add "Higher score = stronger governance" note near score table
+
+**Future (Phase 5 design)**
+- Too much gray, low contrast throughout app
+- Font too small throughout  
+- Splash screen on cold start (app shows nothing for several seconds)
+
+### Next Steps (Session 17 continued)
+1. Fix action condition bug → pdfExport.ts line 657
+2. Fix welcome screen copy → WelcomePage.tsx line 60
+3. Check assessmentStore.ts licenseTier logic (how did production get Pro tier?)
+4. Rebuild and retest
