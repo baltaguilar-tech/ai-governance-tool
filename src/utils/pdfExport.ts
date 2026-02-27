@@ -402,7 +402,7 @@ export async function generateProPDF(
   doc.roundedRect(pageWidth / 2 - 22, 28, 44, 13, 2, 2, 'F');
   doc.setFontSize(8);
   doc.setTextColor(255, 255, 255);
-  doc.text('PRO REPORT', pageWidth / 2, 37, { align: 'center' });
+  doc.text('PRO REPORT', pageWidth / 2, 35, { align: 'center' });
 
   doc.setFontSize(26);
   doc.setTextColor(255, 255, 255);
