@@ -110,7 +110,7 @@ Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
 
 **P3 — PRO REPORT badge alignment**
 - Badge rect: `roundedRect(pageWidth/2 - 22, 28, 44, 13, ...)` centered at pageWidth/2
-- Text: `doc.text('PRO REPORT', pageWidth / 2, 37, { align: 'center' })` 
+- Text: `doc.text('PRO REPORT', pageWidth / 2, 37, { align: 'center' })`
 - Rect top=28, height=13 → midpoint Y = 34.5; text Y = 37 → slightly low, not centered
 - FIX: Change text Y to 36 (center of rect at 34.5 + fontSize/2 ≈ 32+2 = 34 → Y=35 or 36)
 
@@ -120,7 +120,7 @@ Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
 
 **Future (Phase 5 design)**
 - Too much gray, low contrast throughout app
-- Font too small throughout  
+- Font too small throughout
 - Splash screen on cold start (app shows nothing for several seconds)
 
 ### Next Steps (Session 17 continued)
@@ -128,3 +128,66 @@ Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
 2. Fix welcome screen copy → WelcomePage.tsx line 60
 3. Check assessmentStore.ts licenseTier logic (how did production get Pro tier?)
 4. Rebuild and retest
+- [x] Session 17 bug fixes committed bae3131 (action condition, welcome copy)
+
+### Session 17 — END OF SESSION SAVE-POINT (2026-02-26)
+**Final commit**: bae3131 — tsc clean, NOT yet pushed to GitHub
+**Bugs fixed this session**:
+- [x] Inverted PDF action condition (pdfExport.ts line 657: value !== 0 instead of value === 0)
+- [x] Welcome copy: '20-30 minutes' → '10-15 minutes' (WelcomePage.tsx)
+
+**FIRST THING NEXT SESSION**:
+1. git push (bae3131 to origin/main)
+2. npm run tauri build (rebuild .dmg)
+3. Retest PDF action conditions — do per-question actions show or fall back to dimension generic?
+4. Investigate TC015-TC021 settings panel failures
+
+**Open questions**:
+- Per-question actions showing as dimension fallback (unverified post-fix — needs rebuild + retest)
+- Testing Mode must be REMOVED before commercial launch (in LicensePanel.tsx)
+- assessmentStore.ts licenseTier: DEV = professional, PROD = free — confirmed correct
+
+**How to get Pro PDF for testing**:
+Settings → License Key → Testing Mode toggle → select Professional
+
+**Context**: Session ended because context window grew large from file reads.
+- [x] Track Progress PDF section + dashboard charts (fc207ef)
+- [x] B10 Welcome copy fix (90908ff)
+
+## Session 19 — Feb 27, 2026 (COMPLETE)
+
+### Commits this session
+- c1c5d90: Remove tauri-plugin-updater (crash fix from session 18)
+- f23aa32: Center PRO REPORT badge text on cover page (B8)
+- fc207ef: Track Progress PDF section + dashboard charts
+- 90908ff: B10 Welcome copy fix ("Up to 60 questions")
+
+### Bugs fixed
+- B8: PRO REPORT badge centered (Y=35 in roundedRect rect Y=28-41)
+- B10: Welcome screen "60 questions" → "Up to 60 questions"
+- B3/B4/B5/B6/B7: Confirmed working in new build (were code-fixed in session 16, PDF was from old build)
+
+### New features shipped
+- Track Progress & ROI page added to Pro PDF (generateProPDF now accepts optional trackingData param)
+  - AI Spend Summary table (spend items + totals in ice blue)
+  - ROI Snapshot (8 metrics, bold for calculated rows)
+  - Governance Action Plan (status color-coded: green/amber/gray)
+- ProgressCharts component added to TrackProgress tab
+  - Governance Score bar chart (shows when ≥ 2 completed assessments)
+  - Annual Productivity Value line chart (shows when ≥ 2 adoption snapshots)
+
+### Architecture notes
+- generateProPDF now has optional 11th param: `trackingData?: { spendItems, adoptionSnapshot, mitigationItems }`
+- ResultsDashboard fetches tracking data from SQLite before generating Pro PDF (Promise.all)
+- TrackProgress now loads adoptionSnapshots in root component (separate useEffect)
+- recharts imports added to TrackProgress.tsx: BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+
+### Pending / not yet done
+- TC015/TC016 (Track Progress tab): Implicitly working (user entered data successfully), NOT formally retested
+- TC017-TC020 (Settings panels): NOT retested after hamburger fix — carry forward
+- TC021 (Assessment survives restart): NOT retested — carry forward
+- B10 fix: done and pushed
+- B2 (per-question actions): Appears working in Experimenter/Healthcare — needs cross-profile verification
+
+### Next session task
+Industry-specific regulatory action items — see MEMORY.md for clarifying questions needed

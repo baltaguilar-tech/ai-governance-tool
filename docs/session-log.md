@@ -95,3 +95,22 @@ Start a fresh Claude Code session and say:
 **Open questions at session end:**
 - See `docs/open-questions.md` for full list
 - Priority not yet confirmed: SQLite persistence vs. PDF export vs. licensing — ask user next session
+
+---
+
+## Session 16 — 2026-02-25
+
+**Focus**: PDF output audit and overhaul
+
+**Work done**:
+- Full audit of PDF export across Free and Pro tiers — identified 14 issues
+- Fixed 2 critical bugs: wrong sort direction in executive summary dimensions + Free PDF layout overwrite
+- Created 240 per-question immediate actions (4 maturity-calibrated action files, ~120 lines each)
+- Structural PDF fixes: blind spots table, Start Here box, financial risk context, PRO column removal
+- Content upgrades: Para 1 grammar fix, Para 3 specific closing, formatGapTitle() helper
+
+**Commits**: fab4ee4
+
+**State at end**: local only, not pushed — push first thing next session
+
+**Next**: Push to GitHub, then Phase 3 (CI/CD, code signing, auto-updater)
