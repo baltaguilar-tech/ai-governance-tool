@@ -57,7 +57,7 @@ export function WelcomePage() {
 
       {/* Time estimate */}
       <p className="text-sm text-navy-500 mb-6">
-        Estimated time: 10-15 minutes &middot; 60 questions across 6 dimensions &middot;
+        Estimated time: 10-15 minutes &middot; Up to 60 questions across 6 dimensions &middot;
         Your data stays on this device
       </p>
 
