@@ -7,6 +7,7 @@ import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
+import { initContentService } from '@/services/contentService';
 import { checkDueReminders } from '@/utils/notifications';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import type { DimensionKey } from '@/types/assessment';
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     initDatabase()
-      .then(() => hydrateDraft())
+      .then(() => Promise.all([hydrateDraft(), initContentService()]))
       .then(() => checkDueReminders())
       .catch(() => {});
   }, []);

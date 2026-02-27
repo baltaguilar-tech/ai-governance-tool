@@ -107,6 +107,14 @@ export async function initDatabase(): Promise<void> {
         fired_90     INTEGER NOT NULL DEFAULT 0
       )
     `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS content_cache (
+        key        TEXT    PRIMARY KEY,
+        data       TEXT    NOT NULL,
+        version    TEXT    NOT NULL,
+        fetched_at INTEGER NOT NULL
+      )
+    `);
   } catch (err) {
     console.error('[db] initDatabase failed:', err);
   }
@@ -564,5 +572,55 @@ export async function markMilestoneFired(days: 30 | 60 | 90): Promise<void> {
     await db.execute(`UPDATE notification_schedule SET ${col} = 1 WHERE id = 1`);
   } catch (err) {
     console.error('[db] markMilestoneFired failed:', err);
+  }
+}
+
+// ─── Content Cache ─────────────────────────────────────────────────────────────
+
+export async function getCachedContent(
+  key: string
+): Promise<{ data: string; version: string } | null> {
+  if (!isTauriContext()) return null;
+  try {
+    const db = await getDb();
+    const rows = await db.select<{ data: string; version: string }[]>(
+      'SELECT data, version FROM content_cache WHERE key = ?',
+      [key]
+    );
+    return rows[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export async function setCachedContent(
+  key: string,
+  data: string,
+  version: string
+): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT OR REPLACE INTO content_cache (key, data, version, fetched_at) VALUES (?, ?, ?, ?)`,
+      [key, data, version, Date.now()]
+    );
+  } catch (err) {
+    console.error('[db] setCachedContent failed:', err);
+  }
+}
+
+export async function getAllCachedByPrefix(
+  prefix: string
+): Promise<{ key: string; data: string; version: string }[]> {
+  if (!isTauriContext()) return [];
+  try {
+    const db = await getDb();
+    return await db.select<{ key: string; data: string; version: string }[]>(
+      'SELECT key, data, version FROM content_cache WHERE key LIKE ?',
+      [`${prefix}%`]
+    );
+  } catch {
+    return [];
   }
 }
