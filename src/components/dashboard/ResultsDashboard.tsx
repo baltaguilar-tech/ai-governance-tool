@@ -8,7 +8,7 @@ import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 import { getQuestionsForProfile } from '@/data/questions/index';
 import { MaturityLevel, type OrganizationProfile } from '@/types/assessment';
-import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems, initNotificationSchedule } from '@/services/db';
+import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems, initNotificationSchedule, getSpendItems, getAdoptionSnapshots, getMitigationItems } from '@/services/db';
 import { requestNotificationPermission } from '@/utils/notifications';
 import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
 import { TrackProgress } from '@/components/dashboard/TrackProgress';
@@ -321,9 +321,17 @@ export function ResultsDashboard() {
           {/* Pro full report — active for pro, locked for free */}
           {licenseTier === 'professional' ? (
             <button
-              onClick={() => {
+              onClick={async () => {
                 if (!riskScore) return;
                 const orgName = profile.organizationName || 'Organization';
+                const [spendItems, adoptionSnapshots, mitigationItems] = await Promise.all([
+                  getSpendItems(),
+                  getAdoptionSnapshots(),
+                  getMitigationItems(),
+                ]);
+                const adoptionSnapshot = adoptionSnapshots.length > 0
+                  ? adoptionSnapshots[adoptionSnapshots.length - 1]
+                  : null;
                 generateProPDF(
                   dimensionScores,
                   riskScore.overallRisk,
@@ -334,7 +342,8 @@ export function ResultsDashboard() {
                   recommendations,
                   responses,
                   getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
-                  profile as import('@/types/assessment').OrganizationProfile
+                  profile as import('@/types/assessment').OrganizationProfile,
+                  { spendItems, adoptionSnapshot, mitigationItems }
                 ).catch((err) => {
                   console.error('PDF export failed:', err);
                 });

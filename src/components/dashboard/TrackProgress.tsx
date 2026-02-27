@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react';
+import {
+  BarChart, Bar, LineChart, Line,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+} from 'recharts';
 import type {
   DimensionScore,
   DimensionKey,
@@ -1044,10 +1048,93 @@ function ROICalculator({ totalMonthlySpend }: ROICalculatorProps) {
   );
 }
 
+// ─── Progress Charts ─────────────────────────────────────────────────────────
+
+interface ProgressChartsProps {
+  assessments: CompletedAssessmentSnapshot[];
+  adoptionSnapshots: AdoptionSnapshot[];
+}
+
+function ProgressCharts({ assessments, adoptionSnapshots }: ProgressChartsProps) {
+  const showScoreChart = assessments.length >= 2;
+  const showRoiChart = adoptionSnapshots.length >= 2;
+
+  if (!showScoreChart && !showRoiChart) return null;
+
+  const scoreData = assessments.map((a) => ({
+    date: new Date(a.completedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    score: a.overallScore,
+  }));
+
+  const roiData = adoptionSnapshots.map((s) => {
+    const aiUsers = Math.round((s.headcount * s.adoptionRate) / 100);
+    const annualValue = aiUsers * s.hoursSavedPerUser * 52 * s.blendedHourlyRate;
+    return {
+      date: new Date(s.recordedAt!).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      value: Math.round(annualValue),
+    };
+  });
+
+  return (
+    <div className="bg-white rounded-xl border border-navy-200 p-5 mb-6">
+      <h3 className="text-sm font-semibold text-navy-700 mb-4">Progress Over Time</h3>
+      <div className={showScoreChart && showRoiChart ? 'grid grid-cols-2 gap-6' : ''}>
+        {showScoreChart && (
+          <div>
+            <p className="text-xs text-navy-500 font-medium mb-2">Governance Score</p>
+            <ResponsiveContainer width="100%" height={160}>
+              <BarChart data={scoreData} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748b' }} />
+                <YAxis domain={[0, 100]} tick={{ fontSize: 10, fill: '#64748b' }} />
+                <Tooltip
+                  formatter={(v) => [`${v ?? 0}/100`, 'Score']}
+                  contentStyle={{ fontSize: 11 }}
+                />
+                <Bar dataKey="score" fill="#1E2761" radius={[3, 3, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+        {showRoiChart && (
+          <div>
+            <p className="text-xs text-navy-500 font-medium mb-2">Annual Productivity Value</p>
+            <ResponsiveContainer width="100%" height={160}>
+              <LineChart data={roiData} margin={{ top: 4, right: 8, left: -8, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748b' }} />
+                <YAxis
+                  tick={{ fontSize: 10, fill: '#64748b' }}
+                  tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`}
+                />
+                <Tooltip
+                  formatter={(v) => [
+                    Number(v ?? 0).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }),
+                    'Annual Value',
+                  ]}
+                  contentStyle={{ fontSize: 11 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#4CAF50"
+                  strokeWidth={2}
+                  dot={{ r: 4, fill: '#4CAF50' }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function TrackProgress({ assessmentId, currentScore, dimensionScores }: Props) {
   const [assessments, setAssessments] = useState<CompletedAssessmentSnapshot[]>([]);
+  const [adoptionSnapshots, setAdoptionSnapshots] = useState<AdoptionSnapshot[]>([]);
   const [spendItems, setSpendItems] = useState<SpendItem[]>([]);
 
   useEffect(() => {
@@ -1070,6 +1157,18 @@ export function TrackProgress({ assessmentId, currentScore, dimensionScores }: P
         setSpendItems(data);
       } catch (err) {
         console.error('[TrackProgress] getSpendItems (root) failed:', err);
+      }
+    })();
+  }, []);
+
+  // Load adoption snapshots for progress charts
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getAdoptionSnapshots();
+        setAdoptionSnapshots(data);
+      } catch (err) {
+        console.error('[TrackProgress] getAdoptionSnapshots failed:', err);
       }
     })();
   }, []);
@@ -1100,6 +1199,8 @@ export function TrackProgress({ assessmentId, currentScore, dimensionScores }: P
           assessments={assessments}
         />
       )}
+
+      <ProgressCharts assessments={assessments} adoptionSnapshots={adoptionSnapshots} />
 
       <MitigationTracker assessmentId={assessmentId} />
 

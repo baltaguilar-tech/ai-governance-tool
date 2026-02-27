@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, Region } from '@/types/assessment';
+import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, Region, SpendItem, AdoptionSnapshot, MitigationItem } from '@/types/assessment';
 import { DIMENSION_MAP, DIMENSIONS } from '@/data/dimensions';
 import { getRiskColor, getImmediateAction } from './scoring';
 import { generateExecutiveSummary } from './executiveSummary';
@@ -371,7 +371,8 @@ export async function generateProPDF(
   recommendations: Recommendation[],
   responses: QuestionResponse[],
   questions: AssessmentQuestion[],
-  profile: OrganizationProfile
+  profile: OrganizationProfile,
+  trackingData?: { spendItems: SpendItem[]; adoptionSnapshot: AdoptionSnapshot | null; mitigationItems: MitigationItem[] }
 ): Promise<void> {
   const doc = new jsPDF({ format: 'a4' });
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -768,6 +769,170 @@ export async function generateProPDF(
   });
 
   addFooter('Recommendations');
+
+  // ============================================================
+  // TRACK PROGRESS & ROI PAGE (only rendered when data exists)
+  // ============================================================
+  if (
+    trackingData &&
+    (trackingData.spendItems.length > 0 ||
+      trackingData.adoptionSnapshot !== null ||
+      trackingData.mitigationItems.length > 0)
+  ) {
+    doc.addPage();
+    let ty = margin;
+
+    // Section header band
+    doc.setFillColor(30, 39, 97);
+    doc.rect(margin, ty, pageWidth - margin * 2, 10, 'F');
+    doc.setFontSize(11);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('TRACK PROGRESS & ROI', margin + 4, ty + 7);
+    ty += 16;
+
+    const costTypeLabel: Record<string, string> = {
+      monthly_subscription: 'Monthly Subscription',
+      annual_license: 'Annual License',
+      one_time: 'One-Time',
+      api_infrastructure: 'API / Infrastructure',
+      internal_labor: 'Internal Labor',
+    };
+
+    const statusLabel: Record<string, string> = {
+      complete: 'Complete',
+      in_progress: 'In Progress',
+      not_started: 'Not Started',
+    };
+
+    const dimShortLabel = (d: string): string =>
+      DIMENSION_MAP[d as keyof typeof DIMENSION_MAP]?.shortLabel ?? (d === 'general' ? 'General' : d);
+
+    // ── AI Spend Summary ────────────────────────────────────────
+    if (trackingData.spendItems.length > 0) {
+      doc.setFontSize(10);
+      doc.setTextColor(30, 39, 97);
+      doc.setFont('helvetica', 'bold');
+      doc.text('AI Spend Summary', margin, ty);
+      ty += 6;
+
+      const monthlyTotal = trackingData.spendItems.reduce((s, i) => s + i.monthlyEquivalent, 0);
+
+      autoTable(doc, {
+        startY: ty,
+        head: [['Tool / Vendor', 'Cost Type', 'Monthly Cost']],
+        body: [
+          ...trackingData.spendItems.map((item) => [
+            item.name,
+            costTypeLabel[item.costType] ?? item.costType,
+            `$${Math.round(item.monthlyEquivalent).toLocaleString()}`,
+          ]),
+          ['Total Monthly Spend', '', `$${Math.round(monthlyTotal).toLocaleString()}`],
+          ['Annual Projection', '', `$${Math.round(monthlyTotal * 12).toLocaleString()}`],
+        ],
+        margin: { left: margin, right: margin },
+        styles: { fontSize: 8, cellPadding: 3 },
+        headStyles: { fillColor: [30, 39, 97], textColor: [255, 255, 255], fontStyle: 'bold' },
+        columnStyles: { 2: { halign: 'right' } },
+        didParseCell: (data) => {
+          if (data.section === 'body' && data.row.index >= trackingData.spendItems.length) {
+            data.cell.styles.fontStyle = 'bold';
+            data.cell.styles.fillColor = [202, 220, 252];
+          }
+        },
+      });
+      ty = (doc as any).lastAutoTable.finalY + 10;
+    }
+
+    // ── ROI Snapshot ────────────────────────────────────────────
+    if (trackingData.adoptionSnapshot) {
+      const snap = trackingData.adoptionSnapshot;
+      const aiUsers = Math.round((snap.headcount * snap.adoptionRate) / 100);
+      const annualValue = aiUsers * snap.hoursSavedPerUser * 52 * snap.blendedHourlyRate;
+      const monthlySpend = trackingData.spendItems.reduce((s, i) => s + i.monthlyEquivalent, 0);
+      const annualCost = monthlySpend * 12;
+      const netRoi = annualValue - annualCost;
+      const roiPct = annualCost > 0 ? Math.round((netRoi / annualCost) * 100) : null;
+
+      doc.setFontSize(10);
+      doc.setTextColor(30, 39, 97);
+      doc.setFont('helvetica', 'bold');
+      doc.text('ROI Snapshot', margin, ty);
+      ty += 6;
+
+      autoTable(doc, {
+        startY: ty,
+        head: [['Metric', 'Value']],
+        body: [
+          ['Adoption Rate', `${snap.adoptionRate}%`],
+          ['Headcount (AI Users)', `${aiUsers.toLocaleString()} of ${snap.headcount.toLocaleString()}`],
+          ['Hours Saved / User / Week', `${snap.hoursSavedPerUser}h`],
+          ['Blended Hourly Rate', `$${snap.blendedHourlyRate}`],
+          ['Estimated Annual Value', `$${Math.round(annualValue).toLocaleString()}`],
+          ['Annual AI Spend', annualCost > 0 ? `$${Math.round(annualCost).toLocaleString()}` : '—'],
+          ['Net ROI', `$${Math.round(netRoi).toLocaleString()}`],
+          ['ROI %', roiPct !== null ? `${roiPct}%` : '—'],
+        ],
+        margin: { left: margin, right: margin },
+        styles: { fontSize: 8, cellPadding: 3 },
+        headStyles: { fillColor: [30, 39, 97], textColor: [255, 255, 255], fontStyle: 'bold' },
+        columnStyles: { 0: { cellWidth: 80 }, 1: { halign: 'right' } },
+        didParseCell: (data) => {
+          if (data.section === 'body' && data.row.index >= 4) {
+            data.cell.styles.fontStyle = 'bold';
+          }
+        },
+      });
+      ty = (doc as any).lastAutoTable.finalY + 10;
+    }
+
+    // ── Governance Action Plan ──────────────────────────────────
+    if (trackingData.mitigationItems.length > 0) {
+      const total = trackingData.mitigationItems.length;
+      const done = trackingData.mitigationItems.filter((m) => m.status === 'complete').length;
+      const pct = Math.round((done / total) * 100);
+
+      doc.setFontSize(10);
+      doc.setTextColor(30, 39, 97);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Governance Action Plan', margin, ty);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(80, 80, 80);
+      doc.text(`${done} of ${total} actions complete (${pct}%)`, pageWidth - margin, ty, { align: 'right' });
+      ty += 6;
+
+      autoTable(doc, {
+        startY: ty,
+        head: [['Action', 'Dimension', 'Status', 'Notes']],
+        body: trackingData.mitigationItems.map((m) => [
+          m.title,
+          dimShortLabel(m.dimension),
+          statusLabel[m.status] ?? m.status,
+          m.notes ?? '',
+        ]),
+        margin: { left: margin, right: margin },
+        styles: { fontSize: 7, cellPadding: 3 },
+        headStyles: { fillColor: [30, 39, 97], textColor: [255, 255, 255], fontStyle: 'bold' },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 32 },
+          2: { cellWidth: 22, halign: 'center' },
+          3: { cellWidth: 'auto' },
+        },
+        didParseCell: (data) => {
+          if (data.section === 'body' && data.column.index === 2) {
+            const s = String(data.cell.raw);
+            if (s === 'Complete') data.cell.styles.textColor = [22, 163, 74];
+            else if (s === 'In Progress') data.cell.styles.textColor = [202, 138, 4];
+            else data.cell.styles.textColor = [107, 114, 128];
+          }
+        },
+      });
+    }
+
+    addFooter('Track Progress & ROI');
+  }
 
   // ============================================================
   // SAVE
