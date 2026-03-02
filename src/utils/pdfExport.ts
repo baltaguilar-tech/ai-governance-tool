@@ -45,15 +45,15 @@ async function savePdf(doc: jsPDF, defaultName: string): Promise<void> {
 function formatGapTitle(questionText: string): string {
   const text = questionText.replace(/\?$/, '').trim();
   const patterns: [RegExp, string][] = [
-    [/^Does your organization have (a|an) /i, 'No $1 '],
+    [/^Does your organization have (a|an) /i, 'No '],
     [/^Does your organization have /i, 'No '],
-    [/^Do you have (a|an) /i, 'No $1 '],
+    [/^Do you have (a|an) /i, 'No '],
     [/^Do you have /i, 'No '],
-    [/^Has your organization (established|implemented|defined|created|developed) /i, 'Not yet $1: '],
+    [/^Has your organization (established|implemented|defined|created|developed) /i, 'Not yet: '],
     [/^Has your organization /i, 'Not yet: '],
-    [/^Is there (a|an) /i, 'No $1 '],
-    [/^Is there /i, 'None: '],
-    [/^Are you /i, 'Not yet '],
+    [/^Is there (a|an) /i, 'No '],
+    [/^Is there /i, 'No '],
+    [/^Are you /i, 'Not yet: '],
     [/^Have you /i, 'Not yet: '],
     [/^Is your organization /i, 'Not yet: '],
   ];
@@ -63,6 +63,14 @@ function formatGapTitle(questionText: string): string {
     }
   }
   return text;
+}
+
+/**
+ * Strips typographic em dashes and en dashes before PDF rendering so all dashes are
+ * plain hyphens. Space-padded dashes (" — ") become a comma-space to preserve flow.
+ */
+function pdfText(text: string): string {
+  return text.replace(/ [—–] /g, ', ').replace(/[—–]/g, '-');
 }
 
 function getFinancialRiskNote(riskLevel: RiskLevel, score: number): string {
@@ -110,8 +118,8 @@ function drawRiskBars(
   const labelW = 52;
   const scoreW = 16;
   const barW = availWidth - labelW - scoreW - 4;
-  const barH = 6;
-  const rowH = 9;
+  const barH = 5;
+  const rowH = 8;
 
   doc.setFontSize(7.5);
   doc.setTextColor(darkMode ? 155 : 16, darkMode ? 179 : 42, darkMode ? 200 : 67);
@@ -198,7 +206,7 @@ function drawExecSummaryText(
   for (const para of [para1, para2, para3]) {
     doc.setFontSize(8.5);
     doc.setTextColor(...bodyColor);
-    const lines = doc.splitTextToSize(para, textW);
+    const lines = doc.splitTextToSize(pdfText(para), textW);
     doc.text(lines, margin, y);
     y += lines.length * lineH + paraGap;
   }
@@ -323,7 +331,7 @@ export async function generateFreePDF(
 
     doc.setFontSize(10);
     doc.setTextColor(51, 78, 104);
-    const lines = doc.splitTextToSize(spot.title, pageWidth - 40);
+    const lines = doc.splitTextToSize(pdfText(spot.title), pageWidth - 40);
     doc.text(lines, 20, yPos + 8);
 
     yPos += 8 + lines.length * 6 + 10;
@@ -432,32 +440,50 @@ export async function generateProPDF(
     { align: 'center' }
   );
 
+  // Org profile summary — 2-col compact table between date and score card
+  {
+    const colL = margin;
+    const colR = pageWidth / 2 + 5;
+    const rows: [string, string][] = [
+      [`Industry: ${profile.industry}`, `Org Size: ${profile.size}`],
+      [`Location: ${profile.primaryLocation}`, `AI Maturity: ${profile.aiMaturityLevel}`],
+      [`Deployment: ${profile.deploymentTimeline}`, `Est. AI Spend: ${profile.expectedAISpend || 'Not specified'}`],
+    ];
+    doc.setFontSize(7.5);
+    doc.setTextColor(155, 179, 200);
+    rows.forEach(([left, right], idx) => {
+      const rowY = 156 + idx * 4.5;
+      doc.text(left, colL, rowY);
+      doc.text(right, colR, rowY);
+    });
+  }
+
   // Score summary on cover
   doc.setFillColor(30, 60, 100);
-  doc.roundedRect(margin, 168, pageWidth - margin * 2, 55, 4, 4, 'F');
+  doc.roundedRect(margin, 172, pageWidth - margin * 2, 55, 4, 4, 'F');
 
   doc.setFontSize(10);
   doc.setTextColor(155, 179, 200);
-  doc.text('OVERALL GOVERNANCE SCORE', pageWidth / 2, 183, { align: 'center' });
+  doc.text('OVERALL GOVERNANCE SCORE', pageWidth / 2, 187, { align: 'center' });
 
   const riskColor = getRiskColor(riskLevel);
   doc.setFillColor(riskColor);
-  doc.circle(pageWidth / 2, 202, 11, 'F');
+  doc.circle(pageWidth / 2, 206, 11, 'F');
   doc.setFontSize(14);
   doc.setTextColor(255, 255, 255);
-  doc.text(String(overallScore), pageWidth / 2, 202, { align: 'center', baseline: 'middle' });
+  doc.text(String(overallScore), pageWidth / 2, 206, { align: 'center', baseline: 'middle' });
 
   doc.setFontSize(9);
   doc.setTextColor(155, 179, 200);
   doc.text(
     `Risk Level: ${riskLevel}   |   Achiever Score: ${achieverScore}/100`,
     pageWidth / 2,
-    218,
+    222,
     { align: 'center' }
   );
 
   // ===== COVER PAGE GRAPHS (dark mode) =====
-  drawRiskBars(doc, dimensionScores, margin, 232, pageWidth - margin * 2, true);
+  drawRiskBars(doc, dimensionScores, margin, 236, pageWidth - margin * 2, true);
 
   addFooter();
 
@@ -560,12 +586,14 @@ export async function generateProPDF(
 
       doc.setFontSize(8);
       doc.setTextColor(185, 28, 28);
-      doc.text(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} — ${bs.score}/100)`, margin, actionY);
-      actionY += 5;
+      const titleText = pdfText(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} - ${bs.score}/100)`);
+      const titleLines = doc.splitTextToSize(titleText, textW);
+      doc.text(titleLines, margin, actionY);
+      actionY += titleLines.length * 5;
 
       doc.setFontSize(7.5);
       doc.setTextColor(120, 80, 0);
-      const actionLines = doc.splitTextToSize(bs.immediateAction, textW);
+      const actionLines = doc.splitTextToSize(pdfText(bs.immediateAction), textW);
       doc.text(actionLines, margin, actionY);
       actionY += actionLines.length * 4.5 + 6;
     }
@@ -663,7 +691,7 @@ export async function generateProPDF(
 
         autoTable(doc, {
           startY: yPos,
-          body: [[`Action: ${action}`]],
+          body: [[`Action: ${pdfText(action)}`]],
           bodyStyles: {
             fontSize: 7,
             textColor: [120, 80, 0],
@@ -688,7 +716,7 @@ export async function generateProPDF(
         if (regContext) {
           autoTable(doc, {
             startY: yPos,
-            body: [[`${regContext.citation}: ${regContext.action}`]],
+            body: [[`${pdfText(regContext.citation)}: ${pdfText(regContext.action)}`]],
             bodyStyles: {
               fontSize: 7,
               textColor: [30, 39, 97],
@@ -751,7 +779,7 @@ export async function generateProPDF(
     ? 31 + 8 + startHereItems.length * 9 + 10
     : 32;
 
-  const financialNote = getFinancialRiskNote(riskLevel, overallScore);
+  const financialNote = pdfText(getFinancialRiskNote(riskLevel, overallScore));
   doc.setFontSize(7.5);
   doc.setTextColor(98, 125, 152);
   const noteLines = doc.splitTextToSize(financialNote, pageWidth - margin * 2);
@@ -766,8 +794,8 @@ export async function generateProPDF(
 
   const recData = sortedRecs.map((rec) => [
     rec.priority.toUpperCase(),
-    rec.title,
-    rec.description,
+    pdfText(rec.title),
+    pdfText(rec.description),
     rec.timeline.replace('this-', '').replace('-', ' '),
   ]);
 
