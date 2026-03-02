@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { WelcomePage } from '@/components/wizard/WelcomePage';
 import { ProfileStep } from '@/components/wizard/ProfileStep';
@@ -14,13 +14,25 @@ import type { DimensionKey } from '@/types/assessment';
 
 function App() {
   const { currentStep, hydrateDraft } = useAssessmentStore();
+  const [isInitializing, setIsInitializing] = useState(true);
 
   useEffect(() => {
     initDatabase()
       .then(() => Promise.all([hydrateDraft(), initContentService()]))
       .then(() => checkDueReminders())
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setIsInitializing(false));
   }, []);
+
+  if (isInitializing) {
+    return (
+      <div style={{ background: '#1E2761', height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: '-apple-system, system-ui, sans-serif' }}>
+        <p style={{ color: '#CADCFC', fontSize: '20px', fontWeight: 600, margin: '0 0 20px' }}>AI Governance Assessment</p>
+        <div style={{ width: 36, height: 36, border: '3px solid rgba(202,220,252,0.2)', borderTopColor: '#CADCFC', borderRadius: '50%', animation: 'ai-spin 0.8s linear infinite' }} />
+        <p style={{ color: 'rgba(202,220,252,0.6)', fontSize: '13px', margin: '16px 0 0' }}>Initializing...</p>
+      </div>
+    );
+  }
 
   // Register deep link handler — aigov://track opens the Track Progress tab
   useEffect(() => {
