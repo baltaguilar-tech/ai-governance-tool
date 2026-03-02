@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "industry": "technology",
+  "regulations": {
+    "shadow-e-9": {
+      "citation": "FTC Act Section 5 (15 U.S.C. § 45) / FTC AI Policy Statement (2023)",
+      "action": "The FTC considers undisclosed AI features in consumer-facing products an unfair or deceptive practice under Section 5. AI embedded in tools like Microsoft 365, Slack, or Salesforce that activates by default can trigger this exposure without your awareness. Audit your existing SaaS subscriptions for activated AI features and document any requiring disclosure or configuration change — reviewed quarterly as vendors update their products."
+    },
+    "shadow-b-10": {
+      "citation": "FTC Act Section 5 / OMB Memorandum M-25-21 (March 2025)",
+      "action": "The FTC has signaled that failing to disclose AI capabilities embedded in products can be deceptive, particularly when those features collect data or change user experiences without notice. Unreviewed AI feature activations in enterprise tools are a recurring source of unintended FTC exposure. Implement a vendor AI feature change monitoring process — tracking release notes, AI policy updates, and default settings — with a governance review gate before any new AI feature activates in your environment."
+    },
+    "shadow-i-2": {
+      "citation": "FTC Act Section 5 / NIST AI RMF GOVERN 1.1",
+      "action": "The FTC's AI Policy Statement makes clear that technology companies are accountable for all AI deployed in their environments — including tools not formally inventoried. Gaps in AI inventory coverage undermine your ability to demonstrate accountability to regulators. Conduct a quarterly AI inventory completeness assessment using discovery tools and business unit attestation — targeting 95%+ coverage — with the gap report reviewed by the CISO and tracked to remediation."
+    },
+    "shadow-i-3": {
+      "citation": "FTC Act Section 5 / COPPA (16 C.F.R. Part 312)",
+      "action": "FTC enforcement of Section 5 holds technology companies accountable for AI deployed without adequate governance. COPPA imposes strict requirements on AI tools in environments serving children. Weak procurement enforcement exposes both obligations simultaneously. Enforce mandatory AI procurement review as a gate in your SDLC and vendor onboarding — with COPPA compliance documented as a required checklist item for any AI tool deployed in consumer-facing or child-accessible environments."
+    },
+    "shadow-a-5": {
+      "citation": "FTC Act Section 5 / ISO/IEC 42001:2023",
+      "action": "The FTC expects technology companies to demonstrate accountability for AI in their products and operations. A self-reported, unverified inventory provides weak regulatory defense in an FTC investigation. Commission an annual independent verification of your AI tool inventory — using automated discovery, access log analysis, and departmental attestation — with gaps compared against your official registry and remediated within 30 days."
+    },
+    "vendor-b-1": {
+      "citation": "FTC Act Section 5 / FTC Guidance on AI (2021, 2023)",
+      "action": "The FTC has made clear that technology companies cannot outsource legal accountability for AI harms — liability follows the company deploying the AI, not just the vendor who built it. A pre-onboarding security review is your first line of regulatory defense. Require a structured AI vendor security review before onboarding — covering model documentation, bias testing, data handling, and audit rights — with a compliance attestation signed by the vendor and retained in your vendor governance file."
+    },
+    "vendor-b-9": {
+      "citation": "FTC Act Section 5 / NIST AI RMF MAP 1.5",
+      "action": "FTC enforcement recognizes that AI harms can flow through multiple vendor tiers — a vendor's subprocessors can expose your organization to liability even if your direct vendor is compliant. Unreviewed subprocessor chains are a common FTC enforcement gap. Require AI vendors to provide and update subprocessor lists on a defined cadence — reviewed for security posture and data handling practices before onboarding and annually thereafter."
+    },
+    "vendor-i-1": {
+      "citation": "FTC Act Section 5 / NIST AI RMF MAP 1.5",
+      "action": "FTC guidance and NIST AI RMF both require structured, documented due diligence proportionate to the risk level of the AI vendor. A generic security questionnaire isn't adequate for high-risk AI systems. Deploy a tiered AI vendor due diligence framework — lightweight reviews for low-risk tools, and comprehensive AI-specific questionnaires covering model cards, bias reports, data provenance, and incident history for vendors with material AI exposure."
+    },
+    "vendor-i-3": {
+      "citation": "NIST SP 800-53 Rev. 5 (SA-11) / NIST AI RMF MAP 1.5",
+      "action": "NIST SP 800-53 Rev. 5 requires security assessments for AI/ML components in the supply chain — including vendor components integrated into your products. Third-party AI components that skip security assessment are a direct NIST control gap. Conduct AI-specific security assessments for all third-party AI components in your products or infrastructure — including model integrity checks, input validation testing, and provenance review — documented and updated with each major vendor release."
+    },
+    "vendor-i-4": {
+      "citation": "NIST AI RMF MAP 1.5 / FTC Act Section 5",
+      "action": "NIST AI RMF requires organizations to understand the provenance and lineage of third-party AI models they deploy. The FTC holds technology companies liable for outcomes of those models regardless of who built them. Maintain a third-party AI model registry capturing model version, training data disclosure, validation status, and vendor documentation — updated with every model release and reviewed by the AI governance function before deployment."
+    },
+    "vendor-a-7": {
+      "citation": "FTC Act Section 5 / NIST AI RMF MEASURE 2.5",
+      "action": "The FTC expects technology companies deploying high-risk AI to have conducted independent assessments of vendor systems — and NIST AI RMF requires third-party validation for high-consequence AI. Vendor self-assessments are insufficient for regulatory defense. Commission independent third-party assessments for your highest-risk AI vendors annually — scoped to bias, security, and data handling — with findings integrated into your vendor risk register and reported to the AI Governance Committee."
+    },
+    "data-e-10": {
+      "citation": "CCPA / CPRA (Cal. Civ. Code §§ 1798.100–1798.199.100) / CPRA Regulations (effective 2023)",
+      "action": "CCPA and CPRA impose data privacy obligations on technology companies serving California residents — including AI-specific rights around automated decision-making and data deletion. Not knowing whether you process California personal data is itself a compliance risk. Conduct a data residency and privacy jurisdiction assessment identifying all personal data flowing into your AI systems — mapping California, EU, and other jurisdiction exposure — before your next product release cycle."
+    },
+    "data-b-6": {
+      "citation": "CCPA / CPRA (Cal. Civ. Code § 1798.105) / CPPA Enforcement Regulations",
+      "action": "CCPA/CPRA gives California consumers the right to request deletion of their personal data — which must cascade to AI training datasets where technically feasible. A deletion workflow that stops at the database but doesn't reach AI training sets is a CPRA compliance gap. Implement an AI-aware data deletion workflow that flags consumer deletion requests for propagation to AI training pipelines — with a technical feasibility review, deletion confirmation, and 45-day SLA documented for CPPA audit."
+    },
+    "data-b-10": {
+      "citation": "FTC Act Section 5 / FTC Policy Statement on Biometric Information (2023)",
+      "action": "The FTC has ordered companies to delete AI models trained on data collected beyond its consented purpose — treating over-collection as an unfair practice. Data minimization isn't just best practice; it's the FTC's enforcement standard for AI training data. Apply data minimization reviews at the AI model design stage — documenting the minimum data necessary for each model and requiring Compliance sign-off before any new data category enters an AI training pipeline."
+    },
+    "data-i-3": {
+      "citation": "FTC Act Section 5 / CCPA / CPRA (Cal. Civ. Code § 1798.121)",
+      "action": "FTC enforcement has ordered model deletion when training data was collected beyond its consented scope. CCPA/CPRA adds specific restrictions on sensitive personal information in AI pipelines. Unenforced data minimization is the most common trigger for both regulatory actions. Establish a formal data minimization governance process for AI workloads — covering dataset scoping, sensitive data flagging, ongoing pipeline audits, and a model deletion protocol triggered by data provenance findings."
+    },
+    "data-i-6": {
+      "citation": "FTC Act Section 5 / NIST Privacy Framework 1.0 CONTROL-P 4.1",
+      "action": "The FTC has required companies to demonstrate data provenance for AI training datasets as part of enforcement actions — and has ordered model deletion when provenance is inadequate. Without documented lineage, you cannot defend your AI training data practices. Implement automated data lineage tooling for all AI model training pipelines — capturing data source, collection method, consent basis, and transformation history — reviewed at each training cycle and stored in your AI governance repository."
+    },
+    "data-a-9": {
+      "citation": "CCPA / CPRA (Cal. Civ. Code §§ 1798.105, 1798.110, 1798.130) / CPPA Enforcement",
+      "action": "CPRA gives California consumers the right to access, correct, and delete personal data used in automated decision-making — including AI inference. A company that cannot fulfill these rights against its AI systems faces CPPA enforcement and private right of action. Build a consumer rights fulfillment workflow that covers AI inference data — documenting how access, correction, and deletion requests are processed against AI systems — with an audit trail and 45-day response SLA."
+    },
+    "security-b-3": {
+      "citation": "NIST SP 800-53 Rev. 5 / NIST SP 800-218A (Secure AI/ML Development, 2024)",
+      "action": "NIST SP 800-53 Rev. 5 is the security control baseline for technology companies serving federal agencies, and SP 800-218A extends it explicitly to AI/ML systems. Without a compliance framework mapping, gaps in AI security controls go undetected until an examination or incident. Map your AI systems against NIST SP 800-53 Rev. 5 and SP 800-218A controls — identify coverage gaps — and build a remediation roadmap prioritized by the risk level of each AI system."
+    },
+    "security-i-1": {
+      "citation": "NIST SP 800-53 Rev. 5 (RA-3) / EO 14110 (Oct 2023) / OMB M-25-21 (2025)",
+      "action": "NIST SP 800-53 requires threat modeling for AI systems in government-facing technology. EO 14110 directed NIST to develop AI safety standards that now inform government procurement requirements. Undocumented AI threat models are a disqualifying gap for federal contracts. Conduct and document AI-specific threat modeling for every production AI system — covering adversarial inputs, data poisoning, model inversion, and supply chain risks — reviewed by the security team and updated with each major model version."
+    },
+    "security-i-2": {
+      "citation": "NIST SP 800-218A (Secure AI/ML Development, 2024) / EO 14110",
+      "action": "NIST SP 800-218A specifically requires technology companies to test AI/ML systems for adversarial inputs, prompt injection, and model-specific vulnerabilities before deployment. These tests are now expected by federal customers and sophisticated enterprise buyers. Add AI-specific security test cases — covering prompt injection, adversarial examples, and data poisoning — to your CI/CD pipeline and pre-release security assessment process, with results documented in your security evidence library."
+    },
+    "security-i-7": {
+      "citation": "NIST SP 800-53 Rev. 5 (AC-6) / NIST SP 800-218A",
+      "action": "NIST SP 800-53 requires least-privilege access controls for all information systems — including AI model training, deployment, and inference environments. Uncontrolled admin access to AI infrastructure is among the most common findings in federal security assessments. Apply principle of least privilege to all AI system environments — enforcing role-based access, MFA on all privileged accounts, session logging, and quarterly access certification — aligned to NIST AC-6 controls."
+    },
+    "security-a-3": {
+      "citation": "NIST SP 800-218A / EO 14110 / NIST AI RMF MANAGE 3",
+      "action": "NIST SP 800-218A requires AI-specific security testing including adversarial ML techniques. EO 14110 mandated red-team testing for high-risk AI systems. Technology companies selling to government or regulated industries are increasingly required to demonstrate this testing. Conduct annual penetration testing of AI systems with explicit AI attack vector coverage — prompt injection, model inversion, adversarial inputs — performed by an independent firm, with findings reported to the CISO and AI Governance Committee."
+    },
+    "security-a-6": {
+      "citation": "EO 14110 (Oct 2023) / OMB M-25-21 (2025) / NIST AI RMF GOVERN 4",
+      "action": "EO 14110 directed NIST to develop AI red-team standards, and OMB M-25-21 requires agencies to assess vendor AI security posture — making a red team program a de facto procurement requirement for government-facing technology companies. Establish a formal AI security red team program — conducting adversarial exercises against your AI systems at least annually — with findings documented in your risk register and used to update threat models and security controls."
+    },
+    "airisks-e-5": {
+      "citation": "FTC Act Section 5 / FTC Report on Algorithmic Accountability (2022)",
+      "action": "The FTC's algorithmic accountability guidance makes clear that deploying AI with known or discoverable bias is an unfair practice under Section 5. Employee-level bias awareness is the first line of defense against inadvertent AI harm in consumer products. Include AI bias risk in annual compliance training — covering protected characteristics, how to identify potentially biased AI outputs, and the escalation path for raising AI bias concerns before those outputs reach customers."
+    },
+    "risk-b-5": {
+      "citation": "FTC Act Section 5 / FTC Report on Algorithmic Accountability (2022)",
+      "action": "The FTC requires bias testing before deployment of AI in consumer products and has taken action against companies whose AI produced discriminatory outcomes. A bias assessment isn't optional for consumer-facing technology. Implement mandatory pre-deployment bias testing for all AI systems in consumer products or employee-affecting workflows — documenting test methodology, protected class analysis, and sign-off by your AI ethics or compliance function before launch."
+    },
+    "risk-b-7": {
+      "citation": "FTC AI Claims Guidance (2023) / ISO/IEC 42001:2023 Clause 9",
+      "action": "The FTC requires technology companies to monitor AI systems for performance drift and bias emergence over time. Deploying and forgetting is not an acceptable compliance posture — model drift that introduces new bias creates direct FTC enforcement exposure. Implement post-deployment AI monitoring with defined performance and fairness thresholds — triggering automated alerts and a documented review workflow when drift is detected — reviewed monthly and reported to the product AI governance function."
+    },
+    "airisk-i-1": {
+      "citation": "FTC Act Section 5 / ISO/IEC 42001:2023 (Clauses 6, 9) / FTC Algorithmic Accountability Report (2022)",
+      "action": "FTC enforcement and ISO 42001 both require systematic, repeatable bias auditing — not one-time assessments. The FTC has taken action against companies where bias auditing was inadequate or poorly documented. Establish a quarterly bias audit program for all consumer-facing and employee-affecting AI systems — using standardized methodology, protected class coverage, and an independent reviewer — with findings documented and remediation tracked in your AI risk register."
+    },
+    "airisk-i-2": {
+      "citation": "FTC AI Claims Guidance (2023) / FTC Report on Algorithmic Accountability",
+      "action": "FTC guidance holds technology companies responsible for monitoring AI performance drift — not just at launch. Consumer harm from AI models that were once accurate but degraded over time is an active FTC enforcement focus. Define drift thresholds for each production AI model and implement automated monitoring — triggering a formal revalidation workflow when thresholds are breached — with revalidation outcomes documented and reported to the AI product governance function."
+    },
+    "roi-b-7": {
+      "citation": "SEC Regulation S-K, Item 303 / FTC Act Section 5",
+      "action": "Public technology companies must disclose material AI investment trends in their MD&A — which requires a regular leadership reporting cadence. The FTC also requires that public AI performance claims be substantiated with documented evidence. Establish a quarterly AI ROI dashboard for the CFO and senior leadership — tracking AI program costs, productivity outcomes, and risk-adjusted returns — in a format that feeds directly into the MD&A and supports FTC substantiation requirements."
+    },
+    "roi-i-8": {
+      "citation": "SEC Regulation S-K, Item 303 (17 C.F.R. § 229.303)",
+      "action": "SEC Reg S-K requires material AI investment and performance trends to be disclosed accurately — which cannot be done without formal executive reporting. Informal AI reporting is insufficient for SEC disclosure obligations and creates securities fraud risk under Rule 10b-5. Formalize a semi-annual AI value realization report to the board and CFO — with documented KPIs, actual vs. projected returns, and cost attribution — structured to directly inform the SEC MD&A narrative."
+    },
+    "roi-a-1": {
+      "citation": "SEC Regulation S-K, Item 303 / COSO ERM Framework (2017)",
+      "action": "SEC Reg S-K requires board-level visibility into material AI investments and their business impact. The COSO ERM framework requires AI program ROI metrics to be integrated into enterprise risk reporting. Present a risk-adjusted AI investment portfolio review to the board annually — covering capital deployed, realized returns, governance costs, and strategic AI risk — prepared by Finance and the CRO in a format aligned to SEC MD&A disclosure requirements."
+    },
+    "roi-a-2": {
+      "citation": "SEC Regulation S-K, Item 303 / COSO Internal Control Framework (2013)",
+      "action": "SEC Reg S-K requires that material AI benefit claims in MD&A filings be accurate and supported by auditable data. An unaudited ROI figure in a public filing creates securities fraud exposure under Rule 10b-5. Commission an annual independent audit of AI value realization by the Finance function or external auditor — validating the methodology, data sources, and conclusions in your AI ROI reports before they inform any public disclosure."
+    }
+  }
+}

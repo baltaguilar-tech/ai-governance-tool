@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "industry": "financial-services",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "SR 11-7 (FRB/OCC) / FFIEC IT Exam Handbook (Management Booklet, 2022)",
+      "action": "SR 11-7 requires all AI/ML tools influencing credit, risk, or pricing decisions to be inventoried and governed. The FFIEC Handbook extends this obligation to board-level oversight of all technology, including AI. Establish a formal AI tool registry with named model owners and require business-unit attestation of all AI in use — examiners will ask for it."
+    },
+    "shadow-e-3": {
+      "citation": "SR 11-7 (FRB/OCC) / OCC Model Risk Management Exam Procedures (2021)",
+      "action": "SR 11-7 mandates that only approved, validated models enter production in regulated financial operations. An informal or undocumented approved-tool list is cited as a model governance deficiency in OCC examinations. Publish a board-approved AI allowlist and enforce a mandatory pre-deployment approval gate aligned to OCC Model Risk Management Exam Procedures."
+    },
+    "shadow-b-1": {
+      "citation": "SR 11-7 (FRB/OCC) / FFIEC IT Exam Handbook (Management Booklet, 2022)",
+      "action": "SR 11-7 requires a comprehensive model inventory covering all AI/ML systems influencing business decisions — including vendor-supplied models. The FFIEC Handbook requires documented change management before any AI tool adoption. Maintain a living AI model inventory with model owner, data inputs, business use, and validation status — updated quarterly and formatted for examiner review."
+    },
+    "shadow-b-2": {
+      "citation": "FFIEC IT Exam Handbook (Management Booklet, 2022)",
+      "action": "The FFIEC Management Booklet requires documented change management processes before deploying any new technology system, including AI tools. Without a formal approval gate, AI adoptions bypass required compliance and risk review. Implement a mandatory AI procurement checklist covering compliance review, data classification, and change management sign-off before any AI tool goes live."
+    },
+    "shadow-i-1": {
+      "citation": "SR 11-7 (FRB/OCC)",
+      "action": "SR 11-7 explicitly requires tracking of unauthorized or shadow model use across all business units. Inadequate shadow model detection has been cited in formal OCC enforcement orders. Implement automated shadow AI discovery tools and integrate model inventory reconciliation into your quarterly audit cycle — with escalation to the CRO for any unregistered model found in production."
+    },
+    "shadow-a-9": {
+      "citation": "SR 11-7 (FRB/OCC) / FFIEC IT Exam Handbook",
+      "action": "Examiners routinely request AI and model inventory documentation during SR 11-7 and FFIEC IT examinations. Inability to produce current, complete inventory evidence is cited as a Matters Requiring Attention (MRA). Maintain pre-packaged regulatory evidence files for your AI asset inventory — updated quarterly and ready for examiner review without manual assembly under exam pressure."
+    },
+    "vendor-e-9": {
+      "citation": "OCC Bulletin 2023-17 / FDIC FIL-29-2023 (Interagency TPRM Guidance)",
+      "action": "Interagency TPRM guidance requires financial institutions to have documented termination and incident response plans for all third-party AI relationships. An undocumented vendor breach response is a direct TPRM examination finding. Document a vendor breach response runbook for each critical AI vendor — naming internal contacts, regulatory notification timelines, and data recovery procedures."
+    },
+    "vendor-b-1": {
+      "citation": "OCC Bulletin 2023-17 / FDIC FIL-29-2023 (Interagency TPRM Guidance)",
+      "action": "Interagency TPRM guidance requires risk-based due diligence on all third-party relationships before contract execution — including AI vendors. Skipping pre-onboarding review has been cited in OCC enforcement actions. Use a structured AI vendor due diligence checklist covering security certifications, model documentation, data handling, and audit rights — completed and signed off before any vendor contract is executed."
+    },
+    "vendor-b-8": {
+      "citation": "OCC Bulletin 2023-17 / FDIC FIL-29-2023",
+      "action": "Interagency TPRM guidance specifically calls out AI vendor concentration risk — over-reliance on a single AI provider for credit decisioning or fraud detection creates systemic exposure. Assess concentration risk across your AI vendor portfolio and document a contingency plan for your top three critical AI dependencies — reviewed annually and approved by the Chief Risk Officer."
+    },
+    "vendor-i-1": {
+      "citation": "OCC Bulletin 2023-17 / CFPB Circular 2022-03 (Adverse Action Explainability)",
+      "action": "OCC 2023-17 requires AI-specific due diligence covering audit rights and model change protocols. CFPB Circular 2022-03 requires vendors providing credit-decisioning AI to support explainability for adverse action notices. Expand your vendor questionnaire to include sections on model cards, fairness testing, inference audit trails, and CFPB adverse action explainability support."
+    },
+    "vendor-i-7": {
+      "citation": "OCC Bulletin 2023-17",
+      "action": "OCC 2023-17 requires ongoing monitoring and management of AI vendor concentration risk — not just initial assessment at onboarding. Over-reliance on a single AI vendor for material decisioning is an active examiner focus. Produce an AI vendor concentration heatmap annually, define threshold triggers for escalation to the board risk committee, and document tested contingency options for each critical vendor."
+    },
+    "vendor-i-10": {
+      "citation": "OCC Bulletin 2023-17 / FDIC FIL-29-2023",
+      "action": "Interagency TPRM guidance requires documented exit and transition plans for all critical third-party relationships — including data portability and model transition procedures for AI vendors. Develop and test AI vendor exit plans for your top-tier vendors, covering data extraction procedures, transition timelines, and backup capability assessments — reviewed by the CRO and updated annually."
+    },
+    "vendor-a-6": {
+      "citation": "OCC Bulletin 2023-17 / FDIC FIL-29-2023",
+      "action": "Interagency TPRM guidance elevates exit planning for critical AI vendors to a board-level risk management obligation. An untested exit plan is not a plan — regulators expect documented and validated data portability and transition procedures. Validate AI vendor exit plans through tabletop exercises — confirming data extraction timelines, operational continuity, and regulatory notification obligations — with results reported to the board's risk committee."
+    },
+    "data-e-4": {
+      "citation": "GLBA Safeguards Rule (16 C.F.R. Part 314, updated 2023)",
+      "action": "The GLBA Safeguards Rule requires financial institutions to protect customer nonpublic personal information (NPI) from unauthorized access — including through unapproved AI tools. Customer data entered into unsanctioned AI tools constitutes a direct Safeguards Rule control failure. Issue a documented employee prohibition on entering customer NPI into unapproved AI tools and implement DLP controls to detect and block NPI exposure through AI platforms."
+    },
+    "data-b-3": {
+      "citation": "GLBA Safeguards Rule (16 C.F.R. Part 314)",
+      "action": "The GLBA Safeguards Rule requires access controls ensuring only authorized personnel can access NPI — an obligation that extends to AI tools and the pipelines they connect to. Role-based restrictions on AI tool access are a required Safeguards control. Implement role-based AI tool access provisioning so only employees with a documented business need can access AI tools connected to customer data — with quarterly access reviews enforced through your identity provider."
+    },
+    "data-b-6": {
+      "citation": "Fair Credit Reporting Act (FCRA, 15 U.S.C. § 1681) / Regulation V (12 C.F.R. Part 1022)",
+      "action": "FCRA requires that when consumers dispute data accuracy used in decisions, the institution must investigate and — if upheld — delete the data, including from AI model features. Without a process covering AI-processed data, FCRA deletion obligations cannot be met. Map all FCRA-covered consumer data flowing into AI models and implement an automated deletion workflow triggered by upheld consumer disputes — documented and auditable for CFPB examination."
+    },
+    "data-b-7": {
+      "citation": "GLBA Safeguards Rule / FCRA (15 U.S.C. § 1681)",
+      "action": "Both GLBA and FCRA require documented controls over how NPI and consumer report data flow into AI systems. An unmapped AI data flow is an uncontrolled compliance exposure. Produce and maintain an AI data flow map showing every system, vendor, and pipeline that touches regulated financial data — reviewed annually and validated against actual AI tool configurations."
+    },
+    "data-i-6": {
+      "citation": "FCRA (15 U.S.C. § 1681) / NIST AI RMF GOVERN 6.2",
+      "action": "FCRA requires institutions to demonstrate the provenance and permissible purpose of all consumer report data used in AI-driven decisions. Incomplete data lineage creates direct FCRA compliance exposure and CFPB examination risk. Implement automated AI training data lineage documentation — capturing source, collection date, permissible purpose, and transformation steps — for every feature derived from consumer report data."
+    },
+    "data-i-10": {
+      "citation": "GLBA Safeguards Rule (16 C.F.R. Part 314, 2023 update) / NIST SP 800-53 (AC-2)",
+      "action": "The 2023 GLBA Safeguards Rule update requires access controls and encryption for all NPI — including NPI used in AI training and inference pipelines. Insufficient access controls on AI environments are a direct Safeguards Rule gap. Apply principle of least privilege to all AI training and inference environments touching NPI — with MFA on all access, quarterly access reviews, and automated de-provisioning for departed employees."
+    },
+    "security-b-2": {
+      "citation": "SEC Cybersecurity Risk Management Rule (Release No. 33-11216, 2023)",
+      "action": "The SEC cybersecurity rule requires public financial institutions to disclose material cybersecurity incidents within 4 business days on Form 8-K. An incident response plan that doesn't explicitly cover AI system failures leaves this obligation unmet. Update your incident response plan to cover AI system compromises — defining materiality thresholds, 4-day disclosure triggers, and board notification procedures aligned to SEC Form 8-K requirements."
+    },
+    "security-b-4": {
+      "citation": "FDIC Part 364 (12 C.F.R. Part 364, Appendix A) / ISO/IEC 42001:2023",
+      "action": "FDIC Part 364 safety and soundness standards require audit programs covering AI systems used in core operations. Without access logs, internal audit cannot cover AI system activity — a direct examination finding. Implement centralized access logging for all AI tools handling regulated or sensitive data — reviewed monthly by the security operations team and available for FDIC examiner inspection."
+    },
+    "security-i-1": {
+      "citation": "SEC Rule 33-11216 / FDIC Part 364 / NIST CSF 2.0 (Detect, Respond)",
+      "action": "The SEC cybersecurity rule requires threat modeling for AI systems material to business operations. FDIC Part 364 requires operational risk controls for AI in core functions. Both regulators treat undocumented threat models as a governance deficiency. Conduct AI-specific threat modeling for every production AI system handling regulated data or influencing material decisions — documented, reviewed annually, and stored in your regulatory evidence library."
+    },
+    "security-i-6": {
+      "citation": "FDIC Part 364 (12 C.F.R. Part 364) / ISO/IEC 42001:2023",
+      "action": "FDIC Part 364 requires operational controls — including logging — for AI systems used in core functions like fraud detection, underwriting, and trading. Inference logs are the audit trail regulators expect to see during examinations. Deploy structured inference logging for all production AI systems — capturing inputs, outputs, timestamps, and model version — retained per your data governance policy and accessible for FDIC and internal audit review."
+    },
+    "security-i-7": {
+      "citation": "FDIC Part 364 / NIST SP 800-53 Rev. 5 (AC-6)",
+      "action": "FDIC Part 364 requires sound internal controls for AI model environments, including privileged access management. Uncontrolled admin access to AI model infrastructure is a safety and soundness deficiency. Implement a privileged access management (PAM) solution for all AI model training and deployment environments — enforcing just-in-time access, full session logging, and quarterly access certification by the CISO."
+    },
+    "airisks-e-5": {
+      "citation": "ECOA (15 U.S.C. § 1691) / Regulation B (12 C.F.R. Part 1002)",
+      "action": "ECOA and Regulation B prohibit AI-driven credit decisions that result in disparate impact against protected classes. Employees unaware of bias risk can inadvertently deploy or approve AI outputs that trigger DOJ pattern-or-practice investigations. Deliver mandatory ECOA fair lending training that explicitly covers AI bias risk — including proxy variable risk, disparate impact testing, and how to escalate AI output concerns before they reach consumers."
+    },
+    "risk-b-5": {
+      "citation": "ECOA / Regulation B / CFPB Exam Procedures for Fair Lending",
+      "action": "CFPB and DOJ require financial institutions to conduct regular fair lending testing of AI models and demonstrate non-discriminatory outcomes. An undocumented bias assessment is a direct CFPB examination gap. Implement pre-deployment disparate impact testing for any AI system used in credit, hiring, or customer-facing decisions — documented with adverse action ratio analysis and signed off by Compliance before go-live."
+    },
+    "risk-b-7": {
+      "citation": "SR 11-7 (FRB/OCC) / NIST AI RMF MEASURE 2.2",
+      "action": "SR 11-7 requires ongoing monitoring to detect model drift — where performance degrades over time — with more frequent monitoring expected for AI/ML models than traditional models. An undocumented drift process is an SR 11-7 deficiency. Define model performance thresholds for each AI system and implement automated monitoring that triggers revalidation when thresholds are breached — with escalation to the Model Risk Officer and documentation in the model risk log."
+    },
+    "airisk-i-1": {
+      "citation": "ECOA (15 U.S.C. § 1691) / SR 11-7 (FRB/OCC) / NIST AI RMF GOVERN 1.7",
+      "action": "ECOA requires ongoing disparate impact analysis for AI credit models. SR 11-7 requires periodic independent bias review for models with fair lending implications. Both obligations require a systematic, documented audit program — not ad hoc reviews. Establish a quarterly automated bias audit cadence for all credit-facing AI models, supplemented by annual third-party fair lending audits — with findings reported to the Chief Compliance Officer and remediation tracked to closure."
+    },
+    "airisk-i-2": {
+      "citation": "SR 11-7 (FRB/OCC) / NIST AI RMF MEASURE 2.2, 2.3",
+      "action": "SR 11-7 requires that model drift triggers revalidation by a function independent of model development. Undetected drift in financial AI systems has led to MRAs and formal enforcement orders against banks. Implement trigger-based drift detection for all production AI models — with defined performance thresholds, revalidation workflows, and independent review escalation — monitored quarterly by the Model Risk Management function."
+    },
+    "roi-b-7": {
+      "citation": "SEC Regulation S-K, Item 303 (MD&A) / 17 C.F.R. § 229.303",
+      "action": "SEC Reg S-K requires public financial institutions to disclose material AI investment trends and their business impact in the MD&A. Without a leadership reporting cadence, AI ROI data isn't available when disclosure decisions must be made. Establish a quarterly AI ROI reporting package for the CFO and board — capturing program costs, productivity benefits, and risk-adjusted returns in a format ready for MD&A disclosure review."
+    },
+    "roi-i-1": {
+      "citation": "SEC Regulation S-K, Item 303 / COSO Internal Control Framework (2013)",
+      "action": "SEC Reg S-K requires that material AI investment trends be disclosed accurately — which requires a formal, auditable ROI framework, not informal estimates. Build a structured AI ROI measurement framework with documented methodology, data sources, and assumptions — independently reviewed by Finance annually and aligned to COSO internal controls over financial reporting."
+    },
+    "roi-i-8": {
+      "citation": "SEC Regulation S-K, Item 303 (17 C.F.R. § 229.303)",
+      "action": "SEC requires public companies to disclose material trends related to AI — which requires formal executive visibility into AI performance before disclosure season. Informal or ad hoc AI reporting cannot support accurate SEC filings. Formalize a semi-annual AI value realization report to the CFO and board — with defined KPIs, actual vs. projected ROI, and cost attribution — structured to feed directly into the MD&A disclosure process."
+    },
+    "roi-a-1": {
+      "citation": "SEC Regulation S-K, Item 303 / COSO ERM Framework (2017)",
+      "action": "SEC Reg S-K requires board-level visibility into material AI investments and their business impact. The COSO ERM framework requires AI program ROI metrics to be integrated into enterprise risk reporting. Present a risk-adjusted AI investment portfolio review to the board annually — covering capital deployed, realized returns, governance costs, and strategic AI risk — prepared by Finance with input from the CRO and CTO."
+    }
+  }
+}
