@@ -61,11 +61,13 @@ function App() {
     run();
   }, []);
 
-  if (isInitializing) {
-    return <LoadingScreen progress={initProgress} message={initMessage} />;
-  }
-
-  // Register deep link handler — aigov://track opens the Track Progress tab
+  // ── Deep link handler ────────────────────────────────────────────────────
+  // MUST be declared here — before any conditional return — to satisfy the
+  // Rules of Hooks (hooks must be called in the same order every render).
+  // It is safe to register this before init completes: the handler only
+  // writes to Zustand store, which is ready immediately at mount.
+  //   aigov://track         → opens the Track Progress tab
+  //   aigov://activate?key= → pre-fills the license key in Settings
   useEffect(() => {
     let unlisten: (() => void) | null = null;
     if ('__TAURI_INTERNALS__' in window) {
@@ -88,6 +90,11 @@ function App() {
     }
     return () => { unlisten?.(); };
   }, []);
+
+  // All hooks declared — conditional return is now safe
+  if (isInitializing) {
+    return <LoadingScreen progress={initProgress} message={initMessage} />;
+  }
 
   const renderStep = () => {
     switch (currentStep) {
