@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { WelcomePage } from '@/components/wizard/WelcomePage';
 import { ProfileStep } from '@/components/wizard/ProfileStep';
 import { DimensionStep } from '@/components/wizard/DimensionStep';
 import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
 import { initContentService } from '@/services/contentService';
@@ -16,22 +17,52 @@ function App() {
   const { currentStep, hydrateDraft } = useAssessmentStore();
   const [isInitializing, setIsInitializing] = useState(true);
 
+  // ── Staged loading progress ───────────────────────────────────────────────
+  // Progress advances through three natural checkpoints in the init sequence:
+  //   0  → Database initializing
+  //   35 → Database ready; regulatory content loading from CDN or cache
+  //   85 → Content loaded; running final checks
+  //  100 → Done — brief 300ms pause before the app appears
+  const [initProgress, setInitProgress] = useState(0);
+  const [initMessage, setInitMessage] = useState('Starting up\u2026');
+
+  // Guard against state updates after the component unmounts (strict mode / fast-refresh)
+  const aliveRef = useRef(true);
+  useEffect(() => () => { aliveRef.current = false; }, []);
+
   useEffect(() => {
-    initDatabase()
-      .then(() => Promise.all([hydrateDraft(), initContentService()]))
-      .then(() => checkDueReminders())
-      .catch(() => {})
-      .finally(() => setIsInitializing(false));
+    const set = (progress: number, message: string) => {
+      if (!aliveRef.current) return;
+      setInitProgress(progress);
+      setInitMessage(message);
+    };
+
+    const run = async () => {
+      try {
+        set(10, 'Initializing database\u2026');
+        await initDatabase();
+
+        set(35, 'Loading regulatory content\u2026');
+        await Promise.all([hydrateDraft(), initContentService()]);
+
+        set(85, 'Almost ready\u2026');
+        await checkDueReminders();
+
+        set(100, 'Ready');
+        // Brief pause at 100% so users can see the bar complete before it disappears
+        await new Promise((r) => setTimeout(r, 350));
+      } catch {
+        // Init errors are non-fatal — proceed to the app so users aren't stuck
+      } finally {
+        if (aliveRef.current) setIsInitializing(false);
+      }
+    };
+
+    run();
   }, []);
 
   if (isInitializing) {
-    return (
-      <div style={{ background: '#1E2761', height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: '-apple-system, system-ui, sans-serif' }}>
-        <p style={{ color: '#CADCFC', fontSize: '20px', fontWeight: 600, margin: '0 0 20px' }}>AI Governance Assessment</p>
-        <div style={{ width: 36, height: 36, border: '3px solid rgba(202,220,252,0.2)', borderTopColor: '#CADCFC', borderRadius: '50%', animation: 'ai-spin 0.8s linear infinite' }} />
-        <p style={{ color: 'rgba(202,220,252,0.6)', fontSize: '13px', margin: '16px 0 0' }}>Initializing...</p>
-      </div>
-    );
+    return <LoadingScreen progress={initProgress} message={initMessage} />;
   }
 
   // Register deep link handler — aigov://track opens the Track Progress tab
