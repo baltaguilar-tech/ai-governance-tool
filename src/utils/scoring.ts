@@ -200,6 +200,7 @@ export function identifyBlindSpots(
     if (dimCount >= MAX_PER_DIM) continue;
     perDimCount[sq.question.dimension] = dimCount + 1;
     blindSpots.push({
+      questionId: sq.question.id,
       title: sq.question.text,
       dimension: sq.question.dimension,
       severity: getRiskLevel(sq.score),

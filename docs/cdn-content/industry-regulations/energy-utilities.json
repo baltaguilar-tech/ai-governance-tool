@@ -1,0 +1,966 @@
+{
+  "version": "1.0.0",
+  "industry": "energy-utilities",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-2": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-3": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-4": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-5": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-6": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-7": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-8": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-9": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-e-10": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-1": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-2": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-3": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-4": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-5": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-6": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-7": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-8": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-9": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-b-10": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-1": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-2": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-3": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-4": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-5": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-6": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-7": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-8": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-9": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-i-10": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-1": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-2": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-3": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-4": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-5": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-6": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-7": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-8": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-9": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "shadow-a-10": {
+      "citation": "NERC CIP-013 / CIP-015",
+      "action": "Under NERC CIP-013 and CIP-015, any AI tool or algorithm operating on or adjacent to the Bulk Electric System (BES) must be formally documented, approved, and included in your supply chain risk management program. Undocumented AI on grid networks is a critical compliance violation subject to fines up to $1.5M per day. Establish a formal AI tool registry with mandatory procurement approval before any grid-adjacent deployment."
+    },
+    "vendor-e-1": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-2": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-3": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-4": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-5": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-6": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-7": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-8": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-9": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-e-10": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-1": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-2": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-3": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-4": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-5": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-6": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-7": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-8": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-9": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-b-10": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-1": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-2": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-3": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-4": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-5": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-6": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-7": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-8": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-9": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-i-10": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-1": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-2": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-3": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-4": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-5": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-6": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-7": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-8": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-9": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "vendor-a-10": {
+      "citation": "NERC CIP-013 / FTC Act §5",
+      "action": "NERC CIP-013 and FTC Act §5 hold utilities strictly liable for third-party AI vulnerabilities or black-box failures affecting grid operations or customer-facing decisions. Require vendors to disclose AI training data provenance, model update cadences, and security incident history. Contract for audit rights and explicit exit clauses if vendor AI systems fail compliance reviews."
+    },
+    "data-e-1": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-2": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-3": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-4": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-5": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-6": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-7": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-8": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-9": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-e-10": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-1": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-2": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-3": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-4": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-5": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-6": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-7": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-8": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-9": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-b-10": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-1": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-2": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-3": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-4": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-5": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-6": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-7": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-8": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-9": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-i-10": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-1": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-2": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-3": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-4": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-5": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-6": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-7": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-8": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-9": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "data-a-10": {
+      "citation": "ECOA / FCRA (CFPB)",
+      "action": "CFPB-enforced ECOA and FCRA require immutable data lineage and strict isolation of protected demographic data in any AI system making customer-affecting decisions—including billing, credit, and service eligibility. Implement access-logged data pipelines, retention schedules aligned to federal mandates, and customer-accessible dispute mechanisms for adverse AI-driven decisions."
+    },
+    "security-e-1": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-2": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-3": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-4": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-5": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-6": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-7": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-8": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-9": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-e-10": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-1": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-2": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-3": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-4": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-5": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-6": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-7": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-8": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-9": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-b-10": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-1": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-2": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-3": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-4": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-5": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-6": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-7": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-8": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-9": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-i-10": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-1": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-2": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-3": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-4": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-5": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-6": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-7": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-8": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-9": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "security-a-10": {
+      "citation": "NERC CIP-015 / NRC 10 CFR 50.65",
+      "action": "NERC CIP-015 requires continuous Internal Network Security Monitoring (INSM) of all AI traffic on BES networks, with deep packet capture (PCAP) retained for forensic review. NRC 10 CFR 50.65 mandates ongoing validation of AI used in maintenance-critical systems. Ensure AI deployments introduce no operational latency and cannot bypass privileged access controls."
+    },
+    "airisks-e-1": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-2": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-3": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-4": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-5": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-6": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-7": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-8": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-9": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisks-e-10": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-1": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-2": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-3": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-4": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-5": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-6": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-7": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-8": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-9": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "risk-b-10": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-1": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-2": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-3": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-4": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-5": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-6": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-7": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-8": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-9": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-i-10": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-1": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-2": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-3": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-4": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-5": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-6": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-7": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-8": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-9": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "airisk-a-10": {
+      "citation": "CFPB AI Guidelines / NRC DI&C-ISG-06",
+      "action": "CFPB guidance and NRC DI&C-ISG-06 require explainable AI (e.g., SHAP or LIME) for any model influencing customer or safety-adjacent decisions. Establish continuous model drift monitoring with documented remediation thresholds and validate AI performance against physical system benchmarks on a recurring schedule. Nuclear-adjacent AI must operate under human-in-the-loop architectures—no autonomous safety control is permitted."
+    },
+    "roi-e-1": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-2": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-3": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-4": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-5": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-6": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-7": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-8": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-9": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-e-10": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-1": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-2": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-3": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-4": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-5": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-6": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-7": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-8": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-9": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-b-10": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-1": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-2": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-3": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-4": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-5": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-6": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-7": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-8": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-9": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-i-10": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-1": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-2": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-3": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-4": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-5": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-6": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-7": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-8": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-9": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    },
+    "roi-a-10": {
+      "citation": "FERC Docket EL25-49",
+      "action": "FERC Docket EL25-49 requires AI data center operators (≥20 MW grid load) to provide standardized financial tracking demonstrating that AI infrastructure costs are not shifted to residential ratepayers. Maintain transparent cost attribution between AI compute and operational service delivery, with documented benefit realization metrics required for grid interconnection agreement approval."
+    }
+  }
+}

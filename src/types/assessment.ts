@@ -156,6 +156,7 @@ export interface RiskScore {
 }
 
 export interface BlindSpot {
+  questionId: string;
   title: string;
   dimension: DimensionKey;
   severity: RiskLevel;

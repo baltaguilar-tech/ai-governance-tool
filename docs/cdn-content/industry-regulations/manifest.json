@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-02",
+  "industries": {
+    "energy-utilities": {
+      "label": "Energy & Utilities",
+      "url": "industry-regulations/energy-utilities.json",
+      "version": "1.0.0"
+    }
+  }
+}

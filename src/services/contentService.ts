@@ -125,3 +125,18 @@ export function getIndustryContext(
 export function getCurrentContentVersion(): string | null {
   return _manifestVersion;
 }
+
+// Maps Industry enum display values to CDN content keys.
+// Add a new entry here when each industry content file is published.
+const INDUSTRY_CDN_KEYS: Record<string, string> = {
+  'Energy & Utilities': 'energy-utilities',
+};
+
+/**
+ * Converts an Industry enum value (e.g. "Energy & Utilities") to the
+ * CDN key used to look up cached content (e.g. "energy-utilities").
+ * Returns null if no content file has been published for this industry.
+ */
+export function industryToCdnKey(industry: string): string | null {
+  return INDUSTRY_CDN_KEYS[industry] ?? null;
+}

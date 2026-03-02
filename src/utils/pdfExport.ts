@@ -4,6 +4,7 @@ import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse,
 import { DIMENSION_MAP, DIMENSIONS } from '@/data/dimensions';
 import { getRiskColor, getImmediateAction } from './scoring';
 import { generateExecutiveSummary } from './executiveSummary';
+import { getIndustryContext, industryToCdnKey } from '@/services/contentService';
 
 // ── Save helper ──────────────────────────────────────────────────────────────
 // Tries the Tauri native save dialog first; falls back to browser blob download
@@ -676,6 +677,32 @@ export async function generateProPDF(
         });
 
         yPos = (doc as any).lastAutoTable.finalY;
+
+        // Industry-specific regulatory context (US-only, requires published content file)
+        const cdnKey =
+          profile.primaryLocation === 'United States'
+            ? industryToCdnKey(profile.industry)
+            : null;
+        const regContext = cdnKey ? getIndustryContext(cdnKey, question.id) : null;
+
+        if (regContext) {
+          autoTable(doc, {
+            startY: yPos,
+            body: [[`${regContext.citation}: ${regContext.action}`]],
+            bodyStyles: {
+              fontSize: 7,
+              textColor: [30, 39, 97],
+              fillColor: [202, 220, 252],
+              cellPadding: { top: 2.5, right: 4, bottom: 2.5, left: 4 },
+            },
+            columnStyles: {
+              0: { cellWidth: pageWidth - margin * 2 },
+            },
+            margin: { left: margin, right: margin },
+          });
+
+          yPos = (doc as any).lastAutoTable.finalY;
+        }
       }
 
       yPos += 4; // gap between questions

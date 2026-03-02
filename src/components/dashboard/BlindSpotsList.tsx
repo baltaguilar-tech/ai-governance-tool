@@ -1,15 +1,22 @@
 import { BlindSpot, RiskLevel } from '@/types/assessment';
 import { DIMENSION_MAP } from '@/data/dimensions';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { getIndustryContext, industryToCdnKey } from '@/services/contentService';
 
 interface BlindSpotsListProps {
   blindSpots: BlindSpot[];
 }
 
 export function BlindSpotsList({ blindSpots }: BlindSpotsListProps) {
-  const { licenseTier } = useAssessmentStore();
+  const { licenseTier, profile } = useAssessmentStore();
   const visibleSpots = licenseTier === 'free' ? blindSpots.slice(0, 3) : blindSpots;
   const hiddenCount = blindSpots.length - visibleSpots.length;
+
+  // Industry regulatory context: US-only, only when a content file is published
+  const cdnKey =
+    profile.primaryLocation === 'United States'
+      ? industryToCdnKey(profile.industry ?? '')
+      : null;
 
   if (blindSpots.length === 0) return null;
 
@@ -23,43 +30,52 @@ export function BlindSpotsList({ blindSpots }: BlindSpotsListProps) {
       </p>
 
       <div className="space-y-3">
-        {visibleSpots.map((spot, i) => (
-          <div
-            key={i}
-            className={`rounded-lg border p-4 ${
-              spot.severity === RiskLevel.Critical
-                ? 'border-red-300 bg-red-50'
-                : spot.severity === RiskLevel.High
-                ? 'border-orange-300 bg-orange-50'
-                : 'border-amber-300 bg-amber-50'
-            }`}
-          >
-            <div className="flex items-start justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <span
-                  className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                    spot.severity === RiskLevel.Critical
-                      ? 'bg-red-200 text-red-800'
-                      : spot.severity === RiskLevel.High
-                      ? 'bg-orange-200 text-orange-800'
-                      : 'bg-amber-200 text-amber-800'
-                  }`}
-                >
-                  {spot.severity}
-                </span>
-                <span className="text-xs text-navy-500">
-                  {DIMENSION_MAP[spot.dimension]?.shortLabel}
-                </span>
+        {visibleSpots.map((spot, i) => {
+          const regContext = cdnKey ? getIndustryContext(cdnKey, spot.questionId) : null;
+          return (
+            <div
+              key={i}
+              className={`rounded-lg border p-4 ${
+                spot.severity === RiskLevel.Critical
+                  ? 'border-red-300 bg-red-50'
+                  : spot.severity === RiskLevel.High
+                  ? 'border-orange-300 bg-orange-50'
+                  : 'border-amber-300 bg-amber-50'
+              }`}
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      spot.severity === RiskLevel.Critical
+                        ? 'bg-red-200 text-red-800'
+                        : spot.severity === RiskLevel.High
+                        ? 'bg-orange-200 text-orange-800'
+                        : 'bg-amber-200 text-amber-800'
+                    }`}
+                  >
+                    {spot.severity}
+                  </span>
+                  <span className="text-xs text-navy-500">
+                    {DIMENSION_MAP[spot.dimension]?.shortLabel}
+                  </span>
+                </div>
+                <span className="text-sm font-bold text-navy-700">{spot.score}/100</span>
               </div>
-              <span className="text-sm font-bold text-navy-700">{spot.score}/100</span>
+              <p className="text-sm font-medium text-navy-900 mb-1">{spot.title}</p>
+              <p className="text-xs text-navy-600 mb-2">{spot.description}</p>
+              <div className="text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-md p-2">
+                Action: {spot.immediateAction}
+              </div>
+              {regContext && (
+                <div className="mt-2 text-xs text-navy-700 bg-[#CADCFC] border border-[#b3caf7] rounded-md p-2">
+                  <span className="font-semibold">{regContext.citation}:</span>{' '}
+                  {regContext.action}
+                </div>
+              )}
             </div>
-            <p className="text-sm font-medium text-navy-900 mb-1">{spot.title}</p>
-            <p className="text-xs text-navy-600 mb-2">{spot.description}</p>
-            <div className="text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-md p-2">
-              Action: {spot.immediateAction}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {hiddenCount > 0 && (
