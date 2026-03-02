@@ -40,6 +40,9 @@ pnpm-debug.log*
 *.pfx
 credentials.json
 
+# Cloudflare Wrangler local state (dev bindings, local R2 simulation)
+.wrangler/
+
 # IDE / AI assistant artifacts
 .claude/
 docs/## *
