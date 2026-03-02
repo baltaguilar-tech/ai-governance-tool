@@ -1,0 +1,966 @@
+{
+  "version": "1.0.0",
+  "industry": "healthcare",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-1": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-1": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-1": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-1": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-2": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-2": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-2": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-2": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-2": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-3": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-3": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-3": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-3": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-3": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-4": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-4": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-4": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-4": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-4": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-5": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-5": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-5": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-5": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-5": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-6": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-6": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-6": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-6": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-6": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-7": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-7": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-7": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-7": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-7": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-8": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-8": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-8": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-8": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-8": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-9": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-9": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-9": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-9": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-9": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-e-10": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-e-10": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-e-10": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-e-10": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-e-10": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-1": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-1": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-1": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-1": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-1": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-2": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-2": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-2": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-2": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-2": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-3": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-3": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-3": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-3": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-3": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-4": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-4": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-4": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-4": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-4": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-5": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-5": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-5": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-5": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-5": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-6": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-6": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-6": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-6": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-6": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-7": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-7": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-7": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-7": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-7": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-8": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-8": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-8": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-8": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-8": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-9": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-9": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-9": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-9": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-9": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-b-10": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-b-10": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-b-10": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-b-10": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-b-10": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-1": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-1": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-1": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-1": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-1": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-2": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-2": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-2": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-2": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-2": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-3": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-3": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-3": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-3": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-3": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-4": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-4": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-4": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-4": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-4": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-5": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-5": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-5": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-5": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-5": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-6": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-6": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-6": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-6": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-6": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-7": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-7": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-7": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-7": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-7": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-8": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-8": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-8": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-8": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-8": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-9": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-9": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-9": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-9": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-9": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-i-10": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-i-10": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-i-10": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-i-10": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-i-10": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-1": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-1": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-1": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-1": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-1": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-2": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-2": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-2": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-2": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-2": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-3": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-3": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-3": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-3": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-3": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-4": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-4": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-4": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-4": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-4": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-5": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-5": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-5": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-5": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-5": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-6": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-6": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-6": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-6": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-6": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-7": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-7": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-7": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-7": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-7": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-8": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-8": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-8": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-8": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-8": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-9": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-9": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-9": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-9": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-9": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "shadow-a-10": {
+      "citation": "ONC HTI-1 / Joint Commission Standards",
+      "action": "The ONC HTI-1 rule requires all Predictive Decision Support Interventions (DSIs) in EHR systems to carry transparent algorithm documentation—training data demographics, known limitations, and validation methods. Providers must prevent clinical staff from using unauthorized AI tools with patient data. Establish a centralized DSI inventory and block unauthorized API calls to public AI services to protect ONC certification and Medicare/Medicaid program eligibility."
+    },
+    "vendor-a-10": {
+      "citation": "HIPAA / HITECH Act",
+      "action": "HIPAA and HITECH require a signed Business Associate Agreement (BAA) before any Protected Health Information (PHI) is processed by a third-party AI vendor. Healthcare providers retain strict liability for vendor AI data breaches. Procurement contracts must explicitly prohibit vendors from using your PHI to train generalized commercial models. Include mandatory security posture assessments and data destruction requirements in all AI vendor exit plans."
+    },
+    "data-a-10": {
+      "citation": "Illinois BIPA / HIPAA Privacy Rule",
+      "action": "Illinois BIPA requires explicit written consent and public-facing retention and deletion schedules before capturing biometric data for AI (e.g., computer vision for patient monitoring). HIPAA mandates rigorous de-identification—Safe Harbor (18 identifiers stripped) or Expert Determination—before using patient data for AI training. Implement automated PHI redaction pipelines and Role-Based Access Controls that strictly separate production data from training datasets."
+    },
+    "security-a-10": {
+      "citation": "FDA Cybersecurity Guidance (SaMD) / HIPAA Security Rule",
+      "action": "AI qualifying as Software as a Medical Device (SaMD) requires FDA threat modeling and a Software Bill of Materials (SBOM) submission. Healthcare providers must maintain immutable inference logs recording every AI decision, the requesting user, and the data accessed. Deploy Zero Trust access controls to prevent unauthorized modification of model weights or data flowing into revenue cycle and clinical diagnostic algorithms."
+    },
+    "roi-a-10": {
+      "citation": "CMS Reimbursement Rules (CPT Codes)",
+      "action": "CMS and private payers require objective proof of clinical efficacy, time savings, or outcome improvement before approving AI-specific CPT code reimbursements for AI-assisted workflows. Finance and IT must maintain clean cloud cost attribution by clinical department, enabling teams to demonstrate that AI investment translates to measurable billing capture improvements and workflow throughput gains."
+    },
+    "airisks-e-1": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-2": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-3": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-4": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-5": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-6": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-7": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-8": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-9": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisks-e-10": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-1": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-2": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-3": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-4": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-5": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-6": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-7": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-8": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-9": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "risk-b-10": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-1": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-2": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-3": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-4": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-5": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-6": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-7": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-8": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-9": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-i-10": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-1": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-2": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-3": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-4": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-5": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-6": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-7": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-8": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-9": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    },
+    "airisk-a-10": {
+      "citation": "Colorado AI Act SB24-205 / FDA PCCP",
+      "action": "Colorado's AI Act prohibits algorithmic discrimination in consequential decisions—including care prioritization and insurance claim denials—and requires documented Algorithmic Impact Assessments. The FDA's Predetermined Change Control Plan (PCCP) requires developers to define strict drift boundaries; if a model exceeds those boundaries in production, it must halt self-updating and trigger a review. Maintain continuous disparate impact monitoring and a model versioning registry."
+    }
+  }
+}

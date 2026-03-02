@@ -130,6 +130,7 @@ export function getCurrentContentVersion(): string | null {
 // Add a new entry here when each industry content file is published.
 const INDUSTRY_CDN_KEYS: Record<string, string> = {
   'Energy & Utilities': 'energy-utilities',
+  'Healthcare': 'healthcare',
 };
 
 /**
