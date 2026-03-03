@@ -191,3 +191,156 @@ Settings → License Key → Testing Mode toggle → select Professional
 
 ### Next session task
 Industry-specific regulatory action items — see MEMORY.md for clarifying questions needed
+
+## Session 20 — Feb 27, 2026 (IN PROGRESS)
+
+### Architectural Decision: Remote Content (CONFIRMED)
+- Industry regulation files will be remote JSON on Cloudflare R2 — NOT TypeScript baked into bundle
+- Reason: all sectors planned (10–15), content changes, internet OK for updates
+- Question banks stay baked in for now (stable, type-safe)
+- Full plan: `docs/remote-content-plan.md`
+- Memory detail: `~/.claude/projects/.../memory/content-architecture.md`
+
+### Open questions before implementation
+- Cloudflare R2 account — set up or needs creating?
+- Gap-only vs all-questions display (user to decide)
+- CDN base URL for contentService.ts
+
+### Implementation phases (see remote-content-plan.md)
+A. CDN infrastructure (R2 bucket + manifest schema)
+B. SQLite schema (content_cache table + content_version on assessments)
+C. contentService.ts (fetch, cache, getIndustryContext)
+D. First content file — Energy & Utilities JSON
+E. Render integration (PDF + blind spots)
+F. Assessment version locking
+- R2 bucket created: ai-governance-content | CDN URL: https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev
+
+## Phase B+C COMPLETE (164a0a3)
+- content_cache table added to SQLite (db.ts)
+- getCachedContent / setCachedContent / getAllCachedByPrefix exported from db.ts
+- src/services/contentService.ts created (fetch, cache, getIndustryContext, getCurrentContentVersion)
+- App.tsx: initContentService() runs in parallel with hydrateDraft() after DB init
+- tsc: 0 errors
+
+### Remaining phases
+D. Upload first content file — Energy & Utilities JSON to R2
+E. Render integration (PDF + blind spots) — after D
+F. Assessment version locking — after E
+
+## Session 20 — END OF SESSION SAVE-POINT (2026-02-27)
+**Final commit**: 164a0a3 — pushed to origin/main. tsc: 0 errors.
+
+**Completed this session:**
+- Architectural decision: remote JSON on Cloudflare R2 for industry content (NOT baked into bundle)
+- Cloudflare account created, R2 bucket `ai-governance-content` live
+- CDN public URL: https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev
+- Gap-only display confirmed (show industry content only when response.value !== 0)
+- Phase B+C complete: content_cache SQLite table, getCachedContent/setCachedContent/getAllCachedByPrefix in db.ts, contentService.ts (fetch/cache/lookup), App.tsx wired
+
+**FIRST THING NEXT SESSION:**
+Read CURRENT-SESSION.md and brief me on state, then ask what's next.
+Phases remaining: D (upload Energy & Utilities JSON to R2), E (render integration in PDF + blind spots), F (assessment version locking)
+
+**Phase D requires:**
+- User to provide Energy & Utilities regulatory content (research via Gamma by dimension)
+- Claude generates energy-utilities.json from that content
+- Upload manifest.json + energy-utilities.json to R2 bucket
+
+## Session 21 — Mar 2, 2026 (IN PROGRESS)
+
+### Commits this session
+- energy-utilities.json generated (240 entries, all question IDs across 4 profiles)
+- manifest.json created (CDN manifest, `file` field corrected to `url`)
+- 79b1dc5: Phase E complete — industry regulatory context wired into PDF + blind spots
+
+### Completed this session
+- Phase D: Energy & Utilities JSON generated and uploaded to R2 (remote, confirmed)
+- manifest.json bug fixed: `file` → `url` to match ManifestEntry type in contentService.ts
+- Phase E: render integration complete
+  - questionId added to BlindSpot type + passed through scoring.ts
+  - industryToCdnKey() added to contentService.ts (Industry enum → CDN key)
+  - BlindSpotsList.tsx: shows ice-blue regulatory citation+action below each gap item (US + E&U only)
+  - pdfExport.ts (Pro PDF): navy-on-ice-blue regulatory block below per-question action row (US only)
+  - Display rule: US-only, gap questions only (response.value !== 0), only when CDN content is cached
+
+### CDN state
+- Bucket: ai-governance-content (Cloudflare R2)
+- Public URL: https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev
+- Live files: manifest.json (v1.1.0), energy-utilities.json (v1.0.0), healthcare.json (v1.0.0)
+- wrangler auth: configured at ~/.wrangler/ (use --remote flag for all uploads)
+
+### Remaining phases
+- Phase F: Assessment version locking — DEFERRED until after beta testing
+- Loading screen: add HTML/CSS init indicator (in progress this session)
+- Beta testing package: TESTING.md + GitHub Release v0.9.0-beta + fresh .dmg build
+
+### Resume prompt
+Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
+
+## Session 21 — END OF SESSION SAVE-POINT (2026-03-02)
+**Final commit**: db12304 — pushed to origin/main. tsc: 0 errors.
+
+**All commits this session (164a0a3 → db12304):**
+- 79b1dc5: Phase E — industry regulatory context in PDF + blind spots
+- 451f8cf: Healthcare industry content (CDN + INDUSTRY_CDN_KEYS)
+- f7da10a: Loading screen (index.html static + App.tsx isInitializing state)
+- db12304: TESTING.md beta guide
+
+**GitHub Release**: v0.9.0-beta live at https://github.com/baltaguilar-tech/ai-governance-tool/releases/tag/v0.9.0-beta
+**CDN**: manifest v1.1.0 — energy-utilities + healthcare both live
+
+**FIRST THING NEXT SESSION:**
+Read docs/CURRENT-SESSION.md and brief me on state, then ask what's next.
+
+**Open items after beta feedback:**
+- Phase F: Assessment version locking
+- Phase 4: Question quality (38 improvements)
+- Phase 5: UI redesign
+- Testing Mode must be REMOVED before commercial launch
+
+## Industry Content Extension Plan (Session 21 continuation)
+
+**Decision**: Continue adding industry JSON files tonight in a new session.
+**Rule**: Generate JSON → upload to R2 → local commit only. Do NOT push to GitHub or rebuild .dmg until tomorrow.
+**Why**: Beta tester already has v0.9.0-beta. New industries won't show until new build — that's fine.
+**Tomorrow**: push all local commits + rebuild .dmg + update GitHub Release v0.9.0-beta (or create v0.9.1-beta).
+
+**INDUSTRY_CDN_KEYS current state (db12304):**
+- 'Energy & Utilities' → 'energy-utilities' ✅
+- 'Healthcare' → 'healthcare' ✅
+- All others: pending research
+
+**Industries in app Industry enum (not yet covered):**
+Financial Services, Retail & E-Commerce, Manufacturing, Technology,
+Government, Education, Legal Services, Telecommunications,
+Media & Entertainment, Real Estate, Nonprofit, Other
+
+**Per-industry workflow:**
+1. User provides dimension-by-dimension research
+2. Claude generates {industry}.json (240 entries via Python script)
+3. Upload content file to R2 (--remote flag)
+4. Update manifest.json (bump minor version, add entry with url field)
+5. Upload manifest.json to R2 (--remote flag, AFTER content file)
+6. Add one line to INDUSTRY_CDN_KEYS in contentService.ts
+7. Local commit only — no push
+
+**Resume phrase for industry content session:**
+"We're continuing Session 21 industry content work. Read the last section of docs/CURRENT-SESSION.md for the plan. I have [INDUSTRY NAME] research ready. Local commits only tonight — no push until tomorrow."
+
+## Session 22/23 — Pre-feedback notes (2026-03-02)
+
+### CONFIRMED: BlindSpotsList.tsx bug was NEVER committed
+- Line 18: passes `profile.primaryLocation` to `industryToCdnKey()` instead of `profile.industry`
+- Regulatory content never shows in in-app blind spots view
+- PDF (pdfExport.ts:712) correctly uses `profile.industry` — PDF regulatory blocks may work
+
+### User workflow rule (PERMANENT)
+- NEVER load PDF files. They cause timeout/error loops.
+- Share PDF findings as TEXT only, iteratively (one finding at a time)
+- Do NOT ask for the PDF — wait for user to type findings one by one
+
+### Industry content testing
+- Tested: Healthcare (US)
+- Nothing new showed up in either PDF or in-app blind spots
+- Root cause: BlindSpotsList bug + possibly healthcare CDN content not triggering correctly
+

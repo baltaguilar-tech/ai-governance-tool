@@ -49,6 +49,8 @@ function formatGapTitle(questionText: string): string {
     [/^Does your organization have /i, 'No '],
     [/^Do you have (a|an) /i, 'No '],
     [/^Do you have /i, 'No '],
+    [/^Do employees have (a|an) /i, 'Employees lack a '],
+    [/^Do employees have /i, 'Employees lack '],
     [/^Has your organization (established|implemented|defined|created|developed) /i, 'Not yet: '],
     [/^Has your organization /i, 'Not yet: '],
     [/^Is there (a|an) /i, 'No '],
@@ -56,10 +58,18 @@ function formatGapTitle(questionText: string): string {
     [/^Are you /i, 'Not yet: '],
     [/^Have you /i, 'Not yet: '],
     [/^Is your organization /i, 'Not yet: '],
+    [/^How frequently (do|does) (you|your organization) /i, 'No regular cadence to '],
+    [/^How frequently /i, 'No regular cadence for '],
+    [/^How often (do|does) (you|your organization) /i, 'No regular cadence to '],
+    [/^Are all /i, 'Not yet: confirmed that all '],
+    [/^Are access /i, 'No access '],
+    [/^Is access /i, 'No access '],
   ];
   for (const [pattern, replacement] of patterns) {
     if (pattern.test(text)) {
-      return text.replace(pattern, replacement);
+      const result = text.replace(pattern, replacement);
+      // Safety net: strip any "No a/an" artifact left by a pattern that didn't consume the article
+      return result.replace(/^No (a|an) /, 'No ');
     }
   }
   return text;
@@ -483,7 +493,7 @@ export async function generateProPDF(
   );
 
   // ===== COVER PAGE GRAPHS (dark mode) =====
-  drawRiskBars(doc, dimensionScores, margin, 236, pageWidth - margin * 2, true);
+  drawRiskBars(doc, dimensionScores, margin, 230, pageWidth - margin * 2, true);
 
   addFooter();
 
@@ -579,21 +589,26 @@ export async function generateProPDF(
       const bs = blindSpots[i];
       const textW = pageWidth - margin * 2;
 
-      if (actionY > pageHeight - 30) {
+      // Pre-calculate line counts so we can do a single accurate page-break check
+      doc.setFontSize(8);
+      const titleText = pdfText(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} - ${bs.score}/100)`);
+      const titleLines = doc.splitTextToSize(titleText, textW);
+      doc.setFontSize(7.5);
+      const actionLines = doc.splitTextToSize(pdfText(bs.immediateAction), textW);
+      const itemHeight = titleLines.length * 5 + actionLines.length * 4.5 + 10;
+
+      if (actionY + itemHeight > pageHeight - 18) {
         doc.addPage();
         actionY = 20;
       }
 
       doc.setFontSize(8);
       doc.setTextColor(185, 28, 28);
-      const titleText = pdfText(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} - ${bs.score}/100)`);
-      const titleLines = doc.splitTextToSize(titleText, textW);
       doc.text(titleLines, margin, actionY);
       actionY += titleLines.length * 5;
 
       doc.setFontSize(7.5);
       doc.setTextColor(120, 80, 0);
-      const actionLines = doc.splitTextToSize(pdfText(bs.immediateAction), textW);
       doc.text(actionLines, margin, actionY);
       actionY += actionLines.length * 4.5 + 6;
     }
