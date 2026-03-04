@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0",
+  "industry": "retail-ecommerce",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC AI Policy Statement (2023)",
+      "action": "FTC enforcement of unfair or deceptive practices increasingly targets AI deployed in consumer-facing retail systems — recommendation engines, dynamic pricing, chatbots, and search ranking. You cannot demonstrate compliance with FTC standards for what you haven't catalogued. Conduct an immediate inventory of all AI tools deployed in customer-facing systems, classifying each by type (pricing, recommendation, chatbot, search) and whether it makes decisions that affect consumers. This product-level AI feature registry is the foundation of your FTC compliance posture."
+    },
+    "shadow-e-3": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; FTC Dark Patterns Report (2022)",
+      "action": "The FTC requires that AI systems deployed in retail not engage in unfair or deceptive practices — and CCPA/CPRA requires disclosure of AI-driven profiling of consumers before deployment. Approving AI tools without assessing consumer harm means both risks go undetected until enforcement action. Add a mandatory consumer harm assessment to your AI procurement process for any pricing, recommendation, or personalization AI, and require CCPA profiling disclosure review before deployment approval."
+    },
+    "shadow-e-7": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100 (consumer rights requests)",
+      "action": "The FTC treats consumer complaints about AI-driven deception as signals of unfair practices — and CCPA/CPRA requires retailers to track and respond to consumer rights requests related to AI profiling within statutory timeframes. Without structured tracking, repeated failures compound regulatory exposure. Implement a consumer AI incident log capturing complaints related to AI recommendations, pricing, chatbot interactions, and CCPA rights requests, with required review and response timelines."
+    },
+    "shadow-b-1": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "CCPA/CPRA requires retailers to disclose the categories of AI-driven profiling applied to consumers and the purposes for which consumer data is used. An incomplete AI inventory means you cannot produce an accurate privacy notice — and any undisclosed AI profiling creates statutory violation exposure under CPRA's automated decision-making provisions. Audit your AI tool inventory against your published privacy notice and update both to accurately reflect all AI personalization, targeted advertising, and profiling activities."
+    },
+    "shadow-b-2": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Dark Patterns Report (2022); NIST AI RMF GOVERN 1.1",
+      "action": "FTC enforcement holds retailers accountable for deceptive AI practices regardless of whether the AI was formally approved — deploying customer-facing AI without documented review is a recognized risk. NIST AI RMF GOVERN 1.1 requires organizational accountability structures that prevent unauthorized high-risk AI deployment. Implement a documented AI deployment process for customer-facing systems requiring a consumer harm assessment and FTC deceptive practices review before any AI tool is launched in recommendation, pricing, or chatbot contexts."
+    },
+    "shadow-i-1": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "CCPA/CPRA's opt-out and deletion rights apply to all AI profiling of California consumers — not just the systems you've formally inventoried. AI tools deployed without formal approval that profile consumers create undisclosed CPRA violations and FTC deceptive practice exposure. Deploy active shadow AI discovery across customer-facing digital systems — e-commerce platforms, mobile apps, marketing stacks — with findings escalated to both the privacy and legal functions for consumer harm assessment."
+    },
+    "shadow-i-4": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "CPRA requires retailers to respond to consumer rights requests within statutory timeframes and document compliance. CCPA enforcement increasingly focuses on systemic failures in rights request processing — and informal tracking cannot demonstrate the pattern-of-compliance regulators require. Implement a structured AI incident and consumer rights request tracking system, capturing CCPA opt-out requests, deletion requests cascaded to AI training data, and FTC-relevant consumer complaints about AI interactions — with SLA compliance reporting."
+    },
+    "vendor-e-5": {
+      "citation": "PCI DSS v4.0 — Requirement 12.8 (Third-Party Service Providers); PCI SSC (March 2022)",
+      "action": "PCI DSS v4.0 Requirement 12.8 requires retailers to maintain a list of all third-party service providers — including AI vendors — with access to the cardholder data environment, and to ensure each has demonstrated PCI DSS compliance. Cloud-based AI fraud detection, AI customer service tools with payment access, or AI analytics tools connected to your CDE all require PCI DSS attestation from the vendor. Before adding any AI vendor with CDE access, require a current PCI DSS Attestation of Compliance (AOC) and confirm the scope covers the AI services you are using."
+    },
+    "vendor-e-7": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Guidance on Endorsements and Reviews (2023)",
+      "action": "The FTC holds retailers directly liable for deceptive practices implemented through third-party AI tools — including AI-generated fake reviews, deceptive pricing displays, or recommendation engines that unfairly steer consumers. Procuring AI tools without FTC deceptive practices due diligence means the retailer bears enforcement risk for vendor behavior. Before deploying any AI vendor managing customer-facing personalization, reviews, or pricing, require written certification that the AI tool does not engage in FTC-prohibited deceptive practices and contractually prohibit such practices."
+    },
+    "vendor-b-1": {
+      "citation": "PCI DSS v4.0 — Requirements 6, 8, 12.8; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "PCI DSS v4.0 requires pre-onboarding compliance verification for AI vendors with CDE access — and FTC guidance requires retailers to conduct due diligence before deploying AI vendors with consumer-facing functions. Standard security certification reviews (SOC 2) do not confirm PCI DSS compliance or FTC deceptive practices guardrails. Expand pre-onboarding review to include: PCI DSS AOC verification for any AI vendor with CDE access, and a consumer harm assessment for any AI vendor managing recommendations, pricing, or chatbot interactions."
+    },
+    "vendor-b-5": {
+      "citation": "PCI DSS v4.0 — Requirement 12.8; PCI SSC (effective April 1, 2025)",
+      "action": "PCI DSS v4.0 Requirement 12.8 mandates an annual compliance review for all third-party service providers with CDE access — fully effective April 1, 2025. AI vendors providing fraud detection, payment authentication, or customer service functions with payment data access are in scope. Incorporate all AI vendors with CDE access into your annual TPSP compliance review, documenting each vendor's current PCI DSS AOC status and the scope of their CDE access — with findings reviewed by the QSA."
+    },
+    "vendor-b-6": {
+      "citation": "PCI DSS v4.0 — Requirements 8, 12.8; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "PCI DSS v4.0 Requirements 8 and 12.8 require documented access controls and records for all entities — including AI vendors — with access to the cardholder data environment. FTC liability for vendor AI behavior also requires retailers to know precisely which vendors have access to consumer data driving AI decisions. Maintain a CDE access register for AI vendors, documenting system access scope, contractual PCI DSS obligations, and annual AOC verification status — reviewed as part of the quarterly PCI compliance governance cycle."
+    },
+    "vendor-i-1": {
+      "citation": "PCI DSS v4.0 — Requirements 6, 8, 12.8; FTC Act Section 5 — 15 U.S.C. § 45; FTC Dark Patterns Report (2022)",
+      "action": "Standard AI vendor questionnaires do not cover PCI DSS-specific requirements for AI tools in payment environments or FTC-specific guardrails for consumer-facing AI. Missing coverage of PCI DSS Requirement 6 (secure development), Requirement 8 (identity and access), and FTC deceptive practices prohibitions creates undetected compliance gaps. Rebuild your AI vendor due diligence questionnaire to include PCI DSS controls coverage for CDE-adjacent AI tools and explicit FTC compliance certifications for consumer-facing AI vendors — reviewed annually."
+    },
+    "vendor-i-3": {
+      "citation": "PCI DSS v4.0 — Requirements 6, 12.8; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "PCI DSS v4.0 requires ongoing monitoring of third-party service providers — and AI-powered fraud detection or payment authentication tools require continuous performance and compliance monitoring beyond annual reviews. FTC enforcement patterns indicate that deteriorating AI vendor performance on consumer-facing systems creates liability for the retailer. Implement SLA monitoring for all AI vendors in payment and consumer-facing environments, with automated alerts for performance degradation, security incident notifications, and annual PCI DSS compliance reconfirmation requirements."
+    },
+    "vendor-i-7": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; PCI DSS v4.0 — Requirement 12.8; NIST AI RMF MANAGE 2.2",
+      "action": "Retailers dependent on a dominant AI personalization or fraud detection vendor face both FTC vendor accountability risk and PCI DSS resilience gaps if that vendor fails or is found non-compliant. NIST AI RMF MANAGE 2.2 requires documenting and managing dependencies on critical AI vendors. Assess AI vendor concentration across personalization, fraud detection, and payment AI — identify vendors whose loss would impair consumer-facing operations or CDE security — and document tested contingency options reviewed annually."
+    },
+    "data-e-1": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; COPPA — 16 C.F.R. Part 312",
+      "action": "CCPA/CPRA requires retailers to document and disclose how consumer personal information — including purchase history, browsing behavior, location, and demographic data — flows into and through AI systems. Without explicit employee guidance, consumer data is routinely entered into AI tools in ways that violate CCPA retention limits, COPPA prohibitions on child data collection, or CPRA sensitive data category restrictions. Issue a retail-specific AI data handling policy defining: what consumer data types may enter AI systems, which data types require opt-in consent, and which are prohibited entirely (child data, biometric data without consent)."
+    },
+    "data-e-3": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; COPPA — 16 C.F.R. Part 312",
+      "action": "CCPA/CPRA defines sensitive personal information categories — health data, precise geolocation, race, financial data — that require opt-in consent when used in AI profiling. Without a data classification scheme, retail employees cannot determine whether data entering AI tools requires elevated consent controls. Implement a data classification taxonomy covering: CCPA-sensitive categories, standard consumer PII, payment card data (PCI scope), and child data (COPPA scope), with clear AI-use restrictions for each class including consent requirements and prohibited uses."
+    },
+    "data-e-4": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100",
+      "action": "CCPA/CPRA requires retailers to honor consumer deletion requests — and where feasible, deletion must cascade to AI training datasets that incorporate consumer personal information. Without a documented deletion workflow, deletion requests are completed in transactional systems but consumer data persists in AI training pipelines — creating ongoing violations. Conduct a data flow mapping exercise for all consumer data entering AI systems and implement automated deletion workflows that cascade CCPA deletion requests through AI training data pipelines, with feasibility documentation where full deletion is technically constrained."
+    },
+    "data-b-1": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; COPPA — 15 U.S.C. §§ 6501–6506; 16 C.F.R. Part 312",
+      "action": "COPPA prohibits the collection and processing of personal information from children under 13 without verifiable parental consent — and AI personalization, recommendation, or profiling systems that process child consumer data without consent create per-violation FTC penalty exposure up to $51,744 per day. CCPA/CPRA imposes opt-in requirements for sensitive categories. Define explicit prohibited and restricted data categories for external AI tools: child data (COPPA scope), CCPA-sensitive categories without opt-in, and biometric data without written consent — with technical DLP controls enforcing these restrictions."
+    },
+    "data-b-7": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; NIST Privacy Framework 1.0 (IDENTIFY-P 2.1)",
+      "action": "CCPA/CPRA requires retailers to maintain accurate data inventories covering all personal information flowing into AI systems — and the California Privacy Protection Agency expects these inventories to be current, not point-in-time snapshots. Data flows into AI systems change as new vendors are onboarded and new AI features are launched. Conduct an annual data flow mapping exercise for all consumer data entering AI systems — including personalization engines, targeted advertising pipelines, and recommendation models — with results used to update the CCPA privacy notice and consumer rights request routing."
+    },
+    "data-i-8": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; NIST Privacy Framework 1.0",
+      "action": "CCPA/CPRA requires that AI profiling of consumers be based on accurate personal information — and retailers are liable for AI decisions (recommendations, pricing) based on inaccurate consumer data. Low data quality in AI training pipelines produces biased or inaccurate consumer profiling that creates both CCPA accuracy exposure and FTC unfair practices risk. Implement data quality monitoring for all consumer data entering AI training and inference pipelines, with lineage tracking that confirms data origin, consent status, and deletion eligibility for each data element used in AI consumer profiling."
+    },
+    "data-i-10": {
+      "citation": "CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100; COPPA — 16 C.F.R. Part 312",
+      "action": "CCPA/CPRA requires access controls for sensitive personal information categories used in AI systems — and COPPA requires strict controls on who can access child consumer data. Without role-based access controls on AI training and inference pipelines, sensitive consumer data is accessible beyond the minimum necessary scope, creating both CCPA and COPPA violation exposure. Implement role-based access controls for all AI pipelines processing CCPA-sensitive categories or child data, with audit logs for all data access events and quarterly access reviews — with COPPA-scope systems reviewed separately given elevated penalty exposure."
+    },
+    "security-e-3": {
+      "citation": "NIST Cybersecurity Framework 2.0 (February 2024); PCI DSS v4.0",
+      "action": "NIST CSF 2.0 adds an explicit GOVERN function requiring organizational cybersecurity governance that covers all systems — including AI. For retailers, this intersects with PCI DSS requirements for AI tools in payment environments and state breach notification obligations triggered by AI-related security incidents. If your organization hasn't mapped applicable compliance requirements to AI systems, start with: (1) PCI DSS v4.0 scope assessment for AI tools with CDE access, (2) NIST CSF 2.0 GOVERN function coverage for consumer-facing AI, and (3) state biometric privacy law applicability for any AI processing biometric data."
+    },
+    "security-b-3": {
+      "citation": "NIST Cybersecurity Framework 2.0 (February 2024); Illinois BIPA — 740 ILCS 14; Texas CUBI — Tex. Bus. & Com. Code § 503.001",
+      "action": "Retailers using AI-powered facial recognition, biometric checkout, or emotion detection must comply with state biometric privacy laws — and NIST CSF 2.0 requires that AI systems be covered by the enterprise cybersecurity program. BIPA (Illinois) requires a publicly posted retention policy and written consent before any biometric data collection — failure is per-occurrence at $1,000–$5,000 per person. Conduct a compliance mapping exercise for all AI systems processing biometric data, documenting BIPA/CUBI applicability by state, consent status, and NIST CSF 2.0 GOVERN coverage — with a remediation plan reviewed by legal counsel."
+    },
+    "security-b-6": {
+      "citation": "Illinois BIPA — 740 ILCS 14; Texas CUBI — Tex. Bus. & Com. Code § 503.001; NIST Privacy Framework 1.0 (PROTECT-P 2.1)",
+      "action": "BIPA requires that biometric data be protected using the same or greater standard as other confidential and sensitive information — and AI systems processing biometric data introduce attack surfaces not covered by standard security assessments (adversarial inputs, model inversion to extract biometric features). Class action settlements under BIPA have exceeded $650 million, making biometric AI security assessment a high-priority risk control. Conduct a biometric data impact assessment and AI-specific security assessment before deploying any AI system processing biometric data, and repeat annually — with findings reviewed by legal counsel given private right of action exposure."
+    },
+    "security-i-4": {
+      "citation": "NIST Cybersecurity Framework 2.0 (February 2024); PCI DSS v4.0 — Requirements 6, 12.8; Illinois BIPA — 740 ILCS 14",
+      "action": "PCI QSA assessments, state AG investigations under biometric privacy laws, and FTC enforcement actions all require retailers to produce AI governance documentation on short notice. Inability to demonstrate consumer harm assessments, vendor PCI AOC status, biometric consent records, and AI incident logs is a direct compliance finding. Maintain a pre-packaged AI governance evidence package, updated quarterly: AI asset inventory by category, vendor compliance records, consumer rights request logs, biometric consent and retention records, and AI security assessment findings."
+    },
+    "security-i-6": {
+      "citation": "NIST Cybersecurity Framework 2.0 (February 2024) — IDENTIFY, PROTECT functions; PCI DSS v4.0",
+      "action": "NIST CSF 2.0 requires logging and audit trail capabilities for AI systems across the cybersecurity program — and PCI DSS v4.0 requires audit logs for AI systems with CDE access. AI fraud detection and anomaly detection systems that lack inference logging cannot support post-incident forensic investigation or PCI compliance audit. Implement inference logging for all AI systems in fraud detection, bot mitigation, and payment environments, with logs stored in a tamper-evident system, retained per PCI DSS audit log requirements, and included in the quarterly security review cycle."
+    },
+    "security-i-7": {
+      "citation": "NIST Cybersecurity Framework 2.0 (February 2024); Illinois BIPA — 740 ILCS 14; PCI DSS v4.0 — Requirement 8",
+      "action": "PCI DSS v4.0 Requirement 8 requires privileged access controls for all systems handling cardholder data — including AI tools and their underlying model infrastructure. BIPA requires that biometric data access be limited and logged. Administrative access to AI model pipelines processing payment or biometric data requires the same rigor as access to core payment systems. Implement PAM controls for all AI system administrative access in payment and biometric environments: session logging, just-in-time provisioning, and quarterly access reviews — aligned to PCI DSS Requirement 8 and BIPA data protection requirements."
+    },
+    "airisks-e-1": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Report on Algorithmic Accountability (2022)",
+      "action": "The FTC holds retailers liable for consumer harm caused by AI systems — including dynamic pricing that discriminates against protected groups and recommendation engines that unfairly steer consumers. Employees operating or relying on AI pricing and recommendation systems must understand what constitutes an unfair or deceptive AI practice under FTC standards. Conduct mandatory training for staff responsible for AI-powered pricing, recommendation, and customer service systems, covering FTC's unfair and deceptive practices standards and the specific consumer harm indicators that must be reported."
+    },
+    "airisks-e-3": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; CCPA/CPRA — Cal. Civ. Code §§ 1798.100–1798.199.100",
+      "action": "FTC enforcement patterns show that regulators look for systemic consumer harm — and without structured incident tracking, recurring AI-driven consumer harm events (discriminatory pricing, deceptive recommendations, chatbot misrepresentation) go undetected and uncorrected, compounding liability. CCPA/CPRA similarly requires tracking of AI-related consumer rights failures. Establish a formal AI incident log capturing consumer harm events related to AI recommendations, pricing, and chatbot interactions — with mandatory legal review for any incident indicating systemic FTC unfair practices exposure."
+    },
+    "risk-b-2": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Report on Algorithmic Accountability (2022); ISO/IEC 42001:2023 (Clause 6.1.2)",
+      "action": "FTC guidance requires retailers to assess consumer harm potential before deploying AI in pricing, recommendations, and targeted advertising. AI impact assessments must be commensurate with the risk — dynamic pricing algorithms with potential to discriminate require more rigorous review than AI-powered site search. Document AI use cases by consumer harm risk tier and require a consumer harm impact assessment — aligned to ISO/IEC 42001 Clause 6.1.2 — for all high-tier use cases, with legal review before deployment."
+    },
+    "risk-b-7": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Price Discrimination enforcement; ISO/IEC 42001:2023",
+      "action": "FTC enforcement treats AI-driven price discrimination against minority consumers as an unfair practice — and model drift is the mechanism by which a once-compliant pricing algorithm becomes discriminatory over time without detection. Without drift monitoring, a pricing model may generate discriminatory outputs for months before a consumer complaint surfaces the problem. Implement automated drift monitoring for all dynamic pricing AI, with fairness metrics (demographic parity, equal treatment indicators) reviewed quarterly — and automated alerts when drift indicators suggest potential discriminatory pricing patterns."
+    },
+    "airisk-i-2": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; ISO/IEC 42001:2023 (Clause 6.1.2); FTC Report on Algorithmic Accountability (2022)",
+      "action": "ISO/IEC 42001 Clause 6.1.2 requires AI impact assessments for high-risk AI applications — and FTC guidance indicates that retail pricing and recommendation algorithms with discriminatory potential require ongoing fairness testing, not just pre-deployment review. FTC enforcement actions increasingly cite the absence of fairness testing as evidence of organizational recklessness. Implement a formal fairness testing protocol for all dynamic pricing and recommendation AI: define fairness metrics by use case, conduct baseline testing before deployment, and repeat quarterly — with results reviewed by both the AI governance function and legal counsel."
+    },
+    "airisk-i-7": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; ISO/IEC 42001:2023; FTC Dark Patterns Report (2022)",
+      "action": "ISO/IEC 42001 requires an ethics review process for high-risk AI deployments — and the FTC has specifically flagged AI-driven dark patterns and pricing algorithms that exploit consumer psychology as priority enforcement targets. Without a formal ethics review gate, pricing and recommendation algorithm changes can introduce FTC-prohibited deceptive practices without organizational awareness. Establish a mandatory ethics review for all AI systems managing pricing, recommendations, or consumer-facing personalization — with documented review findings and sign-off from legal counsel required before any significant model change goes live."
+    },
+    "airisk-i-9": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; ISO/IEC 42001:2023",
+      "action": "When a pricing or recommendation AI produces discriminatory or deceptive outputs, the FTC expects prompt remediation — including the ability to roll back to a previous compliant model version. Without version-controlled model deployment, retailers cannot demonstrate rapid remediation capability or prove that a harmful model version is no longer in production. Implement version-controlled model deployment with documented rollback procedures for all consumer-facing AI systems, with tested restoration SLAs that allow immediate rollback within hours of detecting discriminatory pricing or deceptive recommendation patterns."
+    },
+    "airisk-i-10": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; FTC Report on Algorithmic Accountability (2022); ISO/IEC 42001:2023",
+      "action": "FTC guidance on algorithmic accountability recommends independent third-party audits as a key control for AI systems with consumer harm potential — particularly pricing and recommendation algorithms with potential discriminatory impact. State AGs in California, New York, and Illinois are increasingly requiring algorithmic audit evidence as part of enforcement investigations. Commission third-party algorithmic fairness audits for all dynamic pricing and recommendation AI systems annually, with findings documented and remediation plans reviewed by legal counsel — and evidence package maintained for potential regulatory production."
+    },
+    "roi-e-9": {
+      "citation": "FTC Act Section 5 — 15 U.S.C. § 45; SEC MD&A — 17 C.F.R. § 229.303",
+      "action": "Public retailers are required to disclose material AI investments and outcomes in SEC MD&A filings — and the FTC has warned that unsubstantiated claims about AI-driven improvements (conversion rate lifts, fraud reduction) constitute deceptive practices enforceable under Section 5. Without even an informal ROI calculation, you have no basis for materiality assessment and cannot substantiate public performance claims. Initiate structured AI cost and benefit tracking immediately: capture AI tool spend versus measurable retail outcomes (conversion rates, average order value, fraud rates) as a baseline for both SEC materiality assessment and FTC claims substantiation."
+    },
+    "roi-b-3": {
+      "citation": "SEC MD&A — 17 C.F.R. § 229.303; FTC Act Section 5 — 15 U.S.C. § 45",
+      "action": "Public retailers that have made material AI investments — in personalization, fraud detection, or supply chain optimization — face SEC MD&A disclosure obligations when those investments represent known trends affecting results of operations. FTC enforcement of unsubstantiated AI performance claims requires retailers to maintain documentation of AI-driven outcomes. Build a centralized AI spend register by business unit — merchandising, digital, fraud, supply chain — used as input to annual MD&A materiality assessment and as the basis for substantiating any public claims about AI-driven performance improvements."
+    },
+    "roi-b-7": {
+      "citation": "SEC MD&A — 17 C.F.R. § 229.303; FTC Act Section 5 — 15 U.S.C. § 45; COSO ERM Framework (2017)",
+      "action": "Public retailers making AI investment decisions require board-level ROI visibility to support both SEC MD&A trend disclosure obligations and FTC compliance oversight of consumer-facing AI claims. COSO ERM Framework requires that material risks — including AI-driven consumer harm risk — be surfaced to senior leadership. Establish a regular cadence of AI productivity and ROI reporting to senior leadership, formatted to support SEC MD&A disclosure obligations, FTC claims substantiation requirements, and board-level oversight of consumer-facing AI risk."
+    },
+    "roi-i-4": {
+      "citation": "SEC MD&A — 17 C.F.R. § 229.303; FTC Act Section 5 — 15 U.S.C. § 45; COSO ERM Framework (2017)",
+      "action": "Public retailers must systematically collect productivity and outcome metrics attributable to AI deployments — both to support SEC MD&A trend disclosure requirements and to substantiate FTC-required AI performance claims. Anecdotal performance claims without documented measurement methodology cannot withstand SEC staff comment letter scrutiny or FTC enforcement review. Implement a structured productivity metrics program for AI deployments across personalization, fraud detection, and supply chain functions: define measurement methodology per use case, collect baseline and post-deployment data, and maintain a substantiation evidence package updated quarterly."
+    }
+  }
+}
