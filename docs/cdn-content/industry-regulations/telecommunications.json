@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0",
+  "industry": "telecommunications",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "Communications Act of 1934 — 47 U.S.C. §§ 151 et seq.; FCC AI Task Force (2023); CPNI Rules — 47 C.F.R. Part 64, Subpart U",
+      "action": "The FCC's network reliability oversight and CPNI rules both require carriers to know which AI systems touch regulated functions — network operations, traffic management, and CPNI-bearing customer data. Without an AI tool inventory, you cannot demonstrate to FCC regulators that regulated functions are under appropriate governance. Conduct an immediate inventory of all AI tools deployed in network operations, customer service, and CPNI-processing contexts, classifying each by function (traffic management, churn prediction, customer analytics) and whether it accesses CPNI or safety-critical network functions."
+    },
+    "shadow-e-3": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; 47 C.F.R. Part 64, Subpart U; FCC AI Task Force (2023)",
+      "action": "CPNI rules require carriers to ensure that AI systems processing call records, usage data, and network behavior are governed by use-limitation controls aligned to approved CPNI purposes. Deploying AI analytics or marketing tools without a CPNI use assessment means prohibited uses may be in production before the compliance team is aware. Add a mandatory CPNI use-limitation review to your AI procurement process for any tool with access to call records, usage data, or customer network behavior — with documented approval from the regulatory compliance function."
+    },
+    "shadow-e-7": {
+      "citation": "47 C.F.R. Part 4 (Network Outage Reporting System — NORS); CPNI Rules — 47 U.S.C. § 222",
+      "action": "FCC NORS rules require carriers to report network outages meeting defined thresholds — and AI-related outages are within scope. CPNI rules require tracking of unauthorized CPNI access incidents. Without structured incident tracking, AI-related network failures may not be identified as reportable events, creating late-reporting violations on top of the underlying outage. Implement a unified AI incident log capturing: AI-related network events assessed against NORS reporting thresholds, and CPNI unauthorized access events — with mandatory regulatory compliance review for all incidents."
+    },
+    "shadow-b-1": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; 47 C.F.R. Part 64, Subpart U; FCC AI Task Force (2023)",
+      "action": "CPNI compliance requires carriers to document and control every system with access to customer proprietary network information — and AI tools not in the formal inventory may be accessing CPNI without the required use-limitation controls. An FCC CPNI audit that surfaces undocumented AI systems with CPNI access is a direct compliance finding with forfeiture exposure. Audit your AI tool inventory specifically for CPNI data access — confirm that every AI system touching call records, usage data, or network behavior data is documented, classified, and governed by a use-limitation policy."
+    },
+    "shadow-b-2": {
+      "citation": "Communications Act of 1934 — 47 U.S.C. §§ 151 et seq.; NIST AI RMF GOVERN 1.1; 47 C.F.R. Part 4 (NORS)",
+      "action": "The FCC's growing scrutiny of AI in carrier network operations means undocumented AI deployments in critical network functions — traffic management, predictive maintenance, network orchestration — may not be covered by the carrier's outage reporting and root cause analysis obligations. NIST AI RMF GOVERN 1.1 requires accountability structures for AI deployments in high-consequence contexts. Implement a documented AI deployment approval process for all network operations AI, requiring sign-off from both engineering and regulatory compliance before any AI tool is deployed in functions subject to FCC network reliability oversight."
+    },
+    "shadow-i-1": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; 47 C.F.R. Part 64, Subpart U; FCC Supply Chain Order (FCC 19-121)",
+      "action": "AI tools deployed by network operations teams without procurement review may be accessing CPNI without use-limitation controls or may include components from FCC-restricted vendors. Passive inventory processes miss shadow deployments in network engineering and operations environments. Deploy active AI discovery across network operations systems — OSS/BSS platforms, customer analytics environments, and network management tools — with findings escalated to both regulatory compliance (CPNI review) and supply chain security (FCC Covered List screening)."
+    },
+    "shadow-i-4": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; 47 C.F.R. Part 64, Subpart U; 47 C.F.R. Part 4 (NORS)",
+      "action": "FCC rules require carriers to respond to CPNI breach notifications and network outage reports within defined timeframes — and informal incident tracking cannot demonstrate the compliance posture regulators require. CPNI rules impose notification obligations when unauthorized access occurs. Implement a structured AI incident tracking system for all telecom AI contexts, capturing: CPNI unauthorized access events (with breach notification workflow), NORS-threshold network events involving AI systems, and AI-related customer harm complaints — with regulatory compliance review SLAs for each category."
+    },
+    "vendor-e-5": {
+      "citation": "FCC Supply Chain Order (FCC 19-121); Secure and Trusted Communications Networks Act of 2019 (P.L. 116-124); CISA AI Supply Chain Guidance (2024)",
+      "action": "The FCC's Covered List prohibits carriers from using equipment or services from designated national security threats — and this prohibition extends to AI vendors integrated into network operations. Carriers that receive Universal Service Fund support are prohibited from purchasing covered equipment and face clawback of prior USF distributions for non-compliance. Before onboarding any AI vendor for network functions, screen the vendor and its key technology components against the FCC Covered List and CISA Known Exploited Vulnerabilities catalog — and document the screening in your AI vendor registry."
+    },
+    "vendor-e-7": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; FTC Act Section 5 — 15 U.S.C. § 45; FCC Declaratory Ruling on AI-Generated Voice (February 2024)",
+      "action": "Carriers are responsible for CPNI violations committed by AI vendors with CPNI access — and the FTC holds companies liable for deceptive AI practices implemented through third-party tools. AI vendors providing customer analytics, AI calling systems, or network intelligence that misuse CPNI or violate TCPA create direct carrier liability. Before deploying any AI vendor with CPNI access or consumer-facing functions, require written certification of CPNI use-limitation compliance and TCPA-compliant calling practices — and contractually prohibit prohibited uses."
+    },
+    "vendor-b-1": {
+      "citation": "FCC Supply Chain Order (FCC 19-121); CPNI Rules — 47 U.S.C. § 222; NIST SP 800-161 Rev. 1",
+      "action": "FCC supply chain rules require carriers to assess national security risk before deploying network AI vendors — and CPNI rules require documented use-limitation controls before any vendor accesses customer proprietary network information. Standard security certification reviews (SOC 2, ISO 27001) do not confirm FCC Covered List clean status or CPNI use-limitation compliance. Expand pre-onboarding review to include: FCC Covered List screening for all AI vendors integrated into network functions, and CPNI use-limitation assessment for any AI vendor with access to call records or network behavior data."
+    },
+    "vendor-b-5": {
+      "citation": "FCC Supply Chain Order (FCC 19-121); NIST SP 800-161 Rev. 1 (Cybersecurity Supply Chain Risk Management)",
+      "action": "NIST SP 800-161 Rev. 1 and FCC supply chain guidance require annual supply chain risk assessments for critical network components — including AI vendors integrated into network operations. The FCC Covered List is updated as new national security determinations are made, meaning a vendor that passed screening at onboarding may subsequently be designated. Conduct an annual supply chain risk assessment for all AI vendors in network operations, re-screening each against the current FCC Covered List and reviewing CISA security advisories — with findings reviewed by the regulatory compliance function."
+    },
+    "vendor-b-6": {
+      "citation": "CPNI Rules — 47 C.F.R. Part 64, Subpart U; FCC Supply Chain Order (FCC 19-121)",
+      "action": "CPNI rules require carriers to maintain documented controls on which entities — including AI vendors — have access to CPNI, with what limitations, and under what contractual restrictions. FCC supply chain rules require tracking of vendors integrated into critical network functions. Maintain a CPNI access register for AI vendors, documenting: the scope of CPNI accessible to each vendor, approved use cases, contractual use-limitation clauses, and annual compliance certification status — reviewed by regulatory compliance quarterly."
+    },
+    "vendor-i-1": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; FCC Supply Chain Order (FCC 19-121); NIST SP 800-161 Rev. 1",
+      "action": "Standard AI vendor questionnaires do not address FCC-specific requirements: CPNI use-limitation compliance, FCC Covered List clean status, national security supply chain risk, and TCPA compliance for AI calling systems. Gaps in CPNI use-limitation coverage and supply chain screening create FCC enforcement exposure that standard SOC 2 or ISO 27001 assessments will not surface. Rebuild your AI vendor due diligence questionnaire to include: CPNI use-limitation policy documentation, FCC Covered List attestation, component-level supply chain provenance for network AI vendors, and TCPA compliance certification for AI systems involved in customer communications."
+    },
+    "vendor-i-3": {
+      "citation": "47 C.F.R. Part 4 (NORS); CPNI Rules — 47 U.S.C. § 222; NIST AI RMF MANAGE 2.2",
+      "action": "FCC network reliability obligations require carriers to maintain network performance standards — and AI vendors integrated into traffic management, predictive maintenance, or network orchestration are part of that reliability posture. Performance degradation by a network AI vendor that contributes to a reportable outage creates both vendor liability and carrier FCC enforcement exposure. Implement SLA monitoring for all AI vendors in network operations, with automated alerts for performance thresholds that could affect NORS-reportable network reliability — and CPNI access audit log reviews for AI vendors with customer data access."
+    },
+    "vendor-i-7": {
+      "citation": "47 U.S.C. § 201 (just and reasonable practices); NIST AI RMF GOVERN 4.2, MAP 5.1; FCC Supply Chain Order (FCC 19-121)",
+      "action": "Carriers heavily dependent on a single AI vendor for network orchestration, fraud detection, or customer analytics face both operational resilience risk and FCC supply chain compliance risk if that vendor is designated or becomes non-compliant. FCC network reliability obligations require carriers to address single points of failure in critical network functions. Assess AI vendor concentration across network operations and customer-facing functions, identify vendors whose failure or designation would impair network reliability or CPNI compliance, and document tested contingency options — with minimum data portability requirements included in all critical AI vendor contracts."
+    },
+    "data-e-1": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; ECPA — 18 U.S.C. §§ 2510–2523; 47 C.F.R. Part 64, Subpart U",
+      "action": "CPNI rules restrict the use of call records, usage data, and network behavior data to approved purposes — and ECPA prohibits unauthorized interception and use of electronic communications content for AI training or inference. Without explicit employee guidance, telecom employees may feed CPNI or communication content into AI tools beyond permitted purposes. Issue a telecommunications-specific AI data handling policy defining: prohibited AI uses of CPNI beyond approved purposes, ECPA restrictions on AI analysis of communication content, consent and authorization requirements for AI training datasets derived from customer communications, and required data handling for call recordings used in AI customer service."
+    },
+    "data-e-3": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; ECPA — 18 U.S.C. §§ 2510–2523",
+      "action": "Telecommunications data exists in multiple regulatory categories with distinct AI use restrictions: CPNI (call records, usage data) governed by 47 U.S.C. § 222 use limitations; communication content (messages, call recordings) governed by ECPA; and standard business data with no special restrictions. Without a data classification scheme, employees cannot determine what restrictions apply when entering telecom data into AI tools. Implement a data classification taxonomy covering at minimum: CPNI-restricted data, ECPA-protected communication content, network infrastructure data, and standard business data — with documented AI use restrictions and consent requirements for each class."
+    },
+    "data-e-4": {
+      "citation": "CPNI Rules — 47 C.F.R. Part 64, Subpart U; NIST SP 800-53 Rev. 5 (SI-12)",
+      "action": "CPNI rules require that customer proprietary network information not be retained beyond the period necessary for authorized use. AI training datasets derived from CPNI must be subject to the same retention limits — but AI training data is rarely included in standard CPNI retention enforcement. Conduct a data flow mapping exercise for all CPNI entering AI systems, document the retention periods applicable to each AI use of CPNI, and implement automated purging workflows that enforce CPNI retention limits in AI training datasets — with documented retention schedules reviewed by the regulatory compliance function."
+    },
+    "data-b-1": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; ECPA — 18 U.S.C. §§ 2510–2523; California Invasion of Privacy Act (CIPA) — Cal. Penal Code § 630 et seq.",
+      "action": "ECPA prohibits disclosure of intercepted communication content to third parties — including AI vendors — without authorization, and California CIPA imposes all-party consent requirements for recording and AI analysis of calls involving California parties. CPNI rules prohibit disclosure of customer proprietary network information to AI vendors beyond approved purposes without customer approval. Define explicit prohibited data categories for external AI tools: ECPA-protected communication content without legal authorization, CPNI beyond approved use cases without customer consent, and biometric voice data without written consent — with technical controls enforcing these restrictions."
+    },
+    "data-b-7": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; 47 C.F.R. Part 64, Subpart U; NIST Privacy Framework 1.0 (IDENTIFY-P 2.1)",
+      "action": "FCC CPNI audits increasingly examine whether carriers can demonstrate complete visibility into how CPNI flows through AI systems — analytics pipelines, churn prediction models, customer service AI, and network intelligence platforms. An incomplete CPNI data flow map creates both audit findings and ongoing violation exposure for undocumented uses. Conduct an annual CPNI data flow mapping exercise for all AI systems with CPNI access, documenting: approved use purpose per AI system, data retention enforcement, access controls, and vendor disclosure scope — with results reviewed by regulatory compliance and used to update the annual CPNI compliance certification."
+    },
+    "data-i-8": {
+      "citation": "CPNI Rules — 47 U.S.C. § 222; NIST SP 800-53 Rev. 5 (AU-3, SI-12)",
+      "action": "CPNI-derived AI training data must meet the same accuracy and use-limitation standards as the underlying CPNI — and AI models trained on stale, corrupted, or impermissibly retained CPNI create compounding compliance exposure. Low data quality in CPNI-derived AI training datasets also degrades model performance in churn prediction, fraud detection, and network analytics. Implement data quality monitoring and lineage tracking for all CPNI entering AI training pipelines, confirming data origin, retention eligibility, approved use purpose, and deletion status for each CPNI data element — with quarterly quality and compliance audits reviewed by the regulatory compliance function."
+    },
+    "data-i-10": {
+      "citation": "CPNI Rules — 47 C.F.R. Part 64, Subpart U; ECPA — 18 U.S.C. §§ 2510–2523; NIST SP 800-53 Rev. 5 (AC-2)",
+      "action": "CPNI rules and ECPA both require carriers to implement access controls limiting who can access regulated customer data — and AI training and inference pipelines that process CPNI or communication content must enforce the same access restrictions as production systems. Uncontrolled access to AI datasets derived from regulated communications data creates ongoing CPNI and ECPA violation exposure. Implement role-based access controls for all AI training and inference pipelines processing CPNI or ECPA-protected communication content, with audit logs for all access events and quarterly access reviews — reviewed by the regulatory compliance function given FCC forfeiture exposure."
+    },
+    "security-e-3": {
+      "citation": "47 C.F.R. Part 4 (NORS); CISA Telecommunications Sector-Specific Plan; Presidential Policy Directive 21 (PPD-21)",
+      "action": "The FCC's network outage reporting requirements and CISA's critical infrastructure risk management obligations both require telecommunications carriers to address AI-related risks as part of their operational security posture. AI systems in traffic management, predictive maintenance, and network orchestration are subject to NORS reporting if they contribute to reportable outages. If your organization hasn't mapped applicable compliance requirements to AI systems, start with: (1) NORS applicability assessment for AI systems in network-critical functions, (2) CISA sector risk management AI coverage, and (3) CPNI compliance scope for all AI tools with customer data access."
+    },
+    "security-b-3": {
+      "citation": "47 C.F.R. Part 4 (NORS); CISA Telecommunications Sector-Specific Plan; NIST CSF 2.0",
+      "action": "FCC NORS regulations require carriers to conduct root cause analysis for reportable outages — which must include AI system involvement analysis for AI-enabled network functions. CISA sector guidance requires telecom carriers to address AI in their sector risk management programs. Conduct a compliance mapping exercise for all AI tools in network operations and customer-facing environments, documenting NORS applicability for network AI, CISA sector risk coverage, and CPNI compliance status — with a remediation plan reviewed by the regulatory compliance and network engineering functions."
+    },
+    "security-b-6": {
+      "citation": "CISA AI Roadmap (2023); CISA Telecommunications Sector-Specific Plan; FCC Supply Chain Order (FCC 19-121)",
+      "action": "CISA's sector risk management guidance requires telecom carriers to assess AI-specific security risks — including prompt injection in customer service AI, adversarial attacks on network traffic classification models, and supply chain risks in AI network components. Standard IT security assessments do not cover AI-specific attack surfaces. Conduct AI-specific security assessments for all AI tools in network operations and customer-facing environments, incorporating: adversarial input testing for network AI models, supply chain provenance validation against the FCC Covered List, and AI model access control review — with findings reviewed by the CISO and regulatory compliance."
+    },
+    "security-i-4": {
+      "citation": "47 C.F.R. Part 4 (NORS); CPNI Rules — 47 U.S.C. § 222; CISA Telecommunications Sector-Specific Plan",
+      "action": "FCC enforcement investigations, CPNI audits, and CISA sector reviews all require carriers to produce AI governance documentation on short notice. Inability to demonstrate CPNI use-limitation compliance, NORS-applicable AI incident records, FCC Covered List screening results for AI vendors, and AI security assessment findings is a direct compliance gap. Maintain a pre-packaged AI governance evidence package, updated quarterly: AI asset inventory by regulatory category, CPNI data flow maps, vendor FCC Covered List screening records, AI security assessment results, and NORS-applicable incident logs — organized for rapid production during FCC enforcement review or CISA sector assessment."
+    },
+    "security-i-6": {
+      "citation": "47 C.F.R. Part 4 (NORS); CISA AI Roadmap (2023); NIST CSF 2.0 — Detect, Respond functions",
+      "action": "FCC NORS root cause analysis requirements and CISA sector guidance both require carriers to maintain comprehensive logging for AI systems in critical network functions. AI operational logs — capturing system inputs, outputs, decision points, and anomalies — are essential for post-incident investigation when AI network management tools contribute to outages. Implement operational logging for all AI systems in network-critical functions (traffic management, predictive maintenance, network orchestration), with logs stored in a tamper-evident system, retained for NORS investigation purposes, and reviewed as part of the quarterly security audit cycle."
+    },
+    "security-i-7": {
+      "citation": "CPNI Rules — 47 C.F.R. Part 64, Subpart U; FCC Supply Chain Order (FCC 19-121); NIST CSF 2.0 — PROTECT function",
+      "action": "CPNI rules require carriers to implement rigorous access controls for systems with CPNI access — including AI tools and their underlying infrastructure. FCC supply chain security requires that administrative access to network AI systems be controlled to prevent unauthorized modification that could affect reliability or introduce prohibited components. Implement PAM controls for all AI system administrative access in network operations and CPNI-processing environments: session logging, just-in-time provisioning, dual authorization for model updates in production network functions, and quarterly access reviews aligned to CPNI compliance requirements."
+    },
+    "airisks-e-1": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); 47 C.F.R. Part 64, Subpart L",
+      "action": "The FCC ruled in February 2024 that AI-generated voices in robocalls are covered by TCPA — making every AI voice synthesis, AI autodialer, and AI call center agent system subject to prior express written consent requirements. Employees deploying or operating AI calling systems may not understand that TCPA consent obligations now explicitly cover AI-generated voice and AI-powered calling workflows. Conduct mandatory training for all staff responsible for AI calling systems, customer outreach AI, and AI-powered IVR — covering the FCC's February 2024 ruling, TCPA consent requirements for AI voice, and the reporting process for potential TCPA violations by AI systems."
+    },
+    "airisks-e-3": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); CPNI Rules — 47 U.S.C. § 222",
+      "action": "TCPA class action exposure for AI calling violations is per-call at $500–$1,500 — making a single AI system misconfiguration capable of generating tens of millions in liability before the issue is discovered. CPNI violations by AI systems similarly require rapid detection and remediation. Without structured incident tracking, AI-driven TCPA violations and CPNI misuse events compound before discovery. Establish a formal AI incident log capturing: AI-generated calling consent failures (TCPA scope), CPNI unauthorized access by AI systems, and AI-related customer complaints — with mandatory legal review for any incident indicating systematic TCPA or CPNI violation exposure."
+    },
+    "risk-b-2": {
+      "citation": "TCPA — 47 U.S.C. § 227; CPNI Rules — 47 U.S.C. § 222; ISO/IEC 42001:2023 (Clause 6.1.2)",
+      "action": "FCC guidance requires that AI systems used in consumer communications be assessed for TCPA compliance before deployment — and CPNI use-limitation rules require that AI use cases be scoped to approved purposes before launch. AI impact assessments must be commensurate with the risk — an AI autodialer with AI-generated voice requires more rigorous review than an internal network analytics tool. Document AI use cases by regulatory risk tier (TCPA-scope, CPNI-scope, network-critical, standard) and require a regulatory compliance assessment — aligned to ISO/IEC 42001 Clause 6.1.2 — for all high-tier use cases, with legal sign-off before deployment."
+    },
+    "risk-b-7": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); ISO/IEC 42001:2023",
+      "action": "TCPA compliance for AI calling systems depends on consistent consent verification — and model drift is the mechanism by which an AI autodialer or AI voice system that was compliant at launch begins generating non-compliant calling patterns over time. Each non-compliant AI-generated call is a separate TCPA violation at $500–$1,500. Implement automated drift monitoring for all AI calling and voice systems, with consent validation rate as a key performance indicator — and automated suspension triggers when consent verification rates fall below defined thresholds, pending manual review and remediation."
+    },
+    "airisk-i-2": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); ISO/IEC 42001:2023 (Clause 6.1.2)",
+      "action": "ISO/IEC 42001 Clause 6.1.2 requires AI impact assessments for high-risk AI applications — and TCPA-scope AI calling systems are high-risk by definition, with per-call violation exposure. Ongoing compliance testing of AI calling systems — verifying consent validation logic, call classification accuracy, and AI voice disclosure compliance — is the telecom equivalent of fairness testing in other industries. Implement a formal compliance testing protocol for all AI calling and voice systems: define TCPA compliance metrics by use case, conduct baseline testing before deployment, and repeat quarterly — with results reviewed by legal counsel given class action exposure."
+    },
+    "airisk-i-7": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); ISO/IEC 42001:2023",
+      "action": "ISO/IEC 42001 requires an ethics review process for high-risk AI deployments — and AI calling systems using AI-generated voice, AI autodialers, or AI-powered IVR require mandatory ethics review before deployment given the FCC's February 2024 ruling and TCPA class action exposure. Without a formal ethics review gate, AI calling deployments may launch with undisclosed AI voice, non-compliant consent flows, or impermissible calling patterns. Establish a mandatory ethics review for all AI calling, IVR, and customer outreach AI systems, with documented review findings and sign-off from legal counsel required before any AI voice or autodialer feature goes live."
+    },
+    "airisk-i-9": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); ISO/IEC 42001:2023",
+      "action": "When an AI calling system generates non-compliant calls under TCPA, the FCC and class action plaintiffs expect immediate remediation — including the ability to suspend or roll back to a previously compliant model version. Without version-controlled model deployment for AI calling systems, carriers cannot demonstrate rapid remediation capability or prove that a non-compliant AI version is no longer in production. Implement version-controlled model deployment for all AI calling, voice synthesis, and autodialer systems, with documented rollback procedures and tested restoration SLAs allowing immediate suspension within minutes of detecting TCPA consent validation failures."
+    },
+    "airisk-i-10": {
+      "citation": "TCPA — 47 U.S.C. § 227; FCC Declaratory Ruling on AI-Generated Voice (February 2024); ISO/IEC 42001:2023",
+      "action": "FCC enforcement and TCPA class action discovery both require telecommunications carriers to demonstrate due diligence in AI calling system compliance — and third-party audits provide documented evidence of that diligence. State AGs and class action plaintiffs increasingly use internal audit records (or their absence) to establish recklessness. Commission third-party TCPA compliance audits for all AI calling, voice synthesis, and autodialer systems annually, with findings documented and remediation plans reviewed by legal counsel — and evidence package maintained for potential FCC enforcement production or class action discovery."
+    },
+    "roi-e-9": {
+      "citation": "47 C.F.R. Part 54 (Universal Service); FCC Form 477; Infrastructure Investment and Jobs Act, P.L. 117-58 (BEAD Program)",
+      "action": "Telecommunications companies receiving Universal Service Fund support or BEAD broadband funding must report deployment and performance data — and AI investments tied to network efficiency or coverage expansion that are funded by federal programs must be tracked and documented. Misrepresentation of AI-driven network improvements to claim or retain federal funding creates False Claims Act liability. Initiate structured AI cost and benefit tracking immediately: capture AI tool spend by network function versus measurable performance outcomes (network uptime, coverage expansion, mean time to repair) as a baseline for federal program reporting and FCC performance commitment compliance."
+    },
+    "roi-b-3": {
+      "citation": "47 C.F.R. Part 54 (Universal Service); FCC Form 477; COSO Internal Control — Integrated Framework (2013)",
+      "action": "FCC USF reporting and BEAD program compliance require carriers to document AI investments tied to network performance outcomes — and COSO internal control requirements mandate that material investment programs have documented cost tracking. Without a consolidated view of AI spend by business unit and network function, carriers cannot assess whether AI investments are material to USF reporting obligations or validate AI-driven performance claims made to regulators. Build a centralized AI spend register organized by business unit and network function — network operations, customer service, fraud, analytics — used as input to FCC regulatory reporting and BEAD program performance documentation."
+    },
+    "roi-b-7": {
+      "citation": "47 C.F.R. Part 54 (Universal Service); FCC Form 477; COSO Internal Control — Integrated Framework (2013)",
+      "action": "Telecommunications carriers making material AI investments in network operations require board-level ROI visibility to support FCC regulatory reporting accuracy and BEAD program compliance oversight. COSO internal control requirements mandate that material risk programs — including AI-related network reliability risk — be surfaced to senior leadership. Establish a regular cadence of AI productivity and ROI reporting to senior leadership, formatted to support: FCC regulatory reporting obligations, BEAD program performance tracking, and board-level oversight of AI-related network reliability and compliance risk."
+    },
+    "roi-i-4": {
+      "citation": "Infrastructure Investment and Jobs Act, P.L. 117-58 (BEAD Program); 47 C.F.R. Part 54 (Universal Service); False Claims Act — 31 U.S.C. §§ 3729–3733",
+      "action": "False Claims Act liability attaches when carriers misrepresent AI-driven network improvements to claim or retain federal broadband or universal service funding — and anecdotal performance claims without documented measurement methodology cannot withstand DOJ or Inspector General scrutiny. FCC BEAD program performance commitments require carriers to demonstrate measured network improvement outcomes. Implement a structured performance metrics program for all AI deployments tied to federal funding: define measurement methodology per network function, collect baseline and post-deployment data, and maintain a substantiation evidence package updated quarterly — reviewed by both engineering and regulatory compliance before any federal performance reporting submission."
+    }
+  }
+}

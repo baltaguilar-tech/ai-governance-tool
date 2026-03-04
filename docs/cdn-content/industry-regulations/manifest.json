@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "lastUpdated": "2026-03-04",
   "industries": {
     "energy-utilities": {
@@ -35,6 +35,11 @@
     "retail-ecommerce": {
       "label": "Retail & E-Commerce",
       "url": "industry-regulations/retail-ecommerce.json",
+      "version": "1.0.0"
+    },
+    "telecommunications": {
+      "label": "Telecommunications",
+      "url": "industry-regulations/telecommunications.json",
       "version": "1.0.0"
     }
   }

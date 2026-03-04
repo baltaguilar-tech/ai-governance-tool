@@ -183,8 +183,9 @@ const INDUSTRY_CDN_KEYS: Record<string, string> = {
   'Government':            'government',
   // Phase D continued (session 26): retail & e-commerce
   'Retail & E-Commerce': 'retail-ecommerce',
+  // Phase D continued (session 26): telecommunications
+  'Telecommunications':  'telecommunications',
   // Planned — add entries below as content files are published to R2:
-  // 'Telecommunications':  'telecommunications',
 };
 
 /**
