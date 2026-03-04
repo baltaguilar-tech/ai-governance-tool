@@ -12,7 +12,7 @@ export function generateRecommendations(
   dimensionScores: DimensionScore[],
   _riskScore: RiskScore,
   profile: OrganizationProfile,
-  _licenseTier: LicenseTier
+  licenseTier: LicenseTier
 ): Recommendation[] {
   const recommendations: Recommendation[] = [];
   const dimMap = Object.fromEntries(dimensionScores.map((d) => [d.key, d]));
@@ -22,7 +22,9 @@ export function generateRecommendations(
   // So low scores indicate problems
 
   // Shadow AI recommendations
-  if (dimMap.shadowAI?.score < 40) {
+  // Guard: only fire if dimension was answered — unanswered dims have score:0 which
+  // would otherwise trigger every threshold and produce misleading recommendations.
+  if (dimMap.shadowAI?.answered !== false && dimMap.shadowAI?.score < 40) {
     recommendations.push({
       category: 'audit',
       title: 'Deploy Shadow AI Detection Immediately',
@@ -34,7 +36,7 @@ export function generateRecommendations(
     });
   }
 
-  if (dimMap.shadowAI?.score < 60) {
+  if (dimMap.shadowAI?.answered !== false && dimMap.shadowAI?.score < 60) {
     recommendations.push({
       category: 'audit',
       title: 'Conduct Comprehensive AI Inventory',
@@ -47,7 +49,7 @@ export function generateRecommendations(
   }
 
   // Vendor risk recommendations
-  if (dimMap.vendorRisk?.score < 40) {
+  if (dimMap.vendorRisk?.answered !== false && dimMap.vendorRisk?.score < 40) {
     recommendations.push({
       category: 'vendor',
       title: 'Urgent: Assess Top 10 Critical AI Vendors',
@@ -59,7 +61,7 @@ export function generateRecommendations(
     });
   }
 
-  if (dimMap.vendorRisk?.score < 60) {
+  if (dimMap.vendorRisk?.answered !== false && dimMap.vendorRisk?.score < 60) {
     recommendations.push({
       category: 'vendor',
       title: 'Establish Quarterly Vendor Review Process',
@@ -72,7 +74,7 @@ export function generateRecommendations(
   }
 
   // Governance committee
-  if (dimMap.securityCompliance?.score < 50) {
+  if (dimMap.securityCompliance?.answered !== false && dimMap.securityCompliance?.score < 50) {
     recommendations.push({
       category: 'roadmap',
       title: 'Form AI Governance Committee',
@@ -85,7 +87,7 @@ export function generateRecommendations(
   }
 
   // AI Acceptable Use Policy
-  if (dimMap.shadowAI?.score < 70) {
+  if (dimMap.shadowAI?.answered !== false && dimMap.shadowAI?.score < 70) {
     recommendations.push({
       category: 'compliance',
       title: 'Develop AI Acceptable Use Policy',
@@ -98,7 +100,7 @@ export function generateRecommendations(
   }
 
   // Incident response
-  if (dimMap.securityCompliance?.score < 50) {
+  if (dimMap.securityCompliance?.answered !== false && dimMap.securityCompliance?.score < 50) {
     recommendations.push({
       category: 'monitoring',
       title: 'Create AI Incident Response Plan',
@@ -111,93 +113,97 @@ export function generateRecommendations(
   }
 
   // --- PAID TIER RECOMMENDATIONS ---
+  // Only appended when licenseTier === 'professional'. Structure is in place so
+  // activating Keygen (LB-2) automatically gates these without further changes.
 
-  // Industry-specific vendor questionnaire
-  recommendations.push({
-    category: 'vendor',
-    title: 'Customized Vendor Assessment Questionnaire',
-    description: getIndustryVendorDescription(profile.industry),
-    priority: 'high',
-    timeline: 'this-month',
-    isPaid: true,
-  });
-
-  // Regulatory compliance
-  const regulatoryRecs = getRegulatorRecommendations(profile);
-  recommendations.push(...regulatoryRecs);
-
-  // ROI framework
-  if (dimMap.roiTracking?.score < 70) {
+  if (licenseTier === 'professional') {
+    // Industry-specific vendor questionnaire
     recommendations.push({
-      category: 'roi',
-      title: 'Multi-Dimensional ROI Framework',
-      description:
-        'Implement a comprehensive ROI tracking framework measuring Financial, Operational, Innovation, Customer, and Strategic value — including hidden costs (data prep, maintenance, talent premium).',
-      priority: 'medium',
-      timeline: 'this-quarter',
-      isPaid: true,
-    });
-  }
-
-  // Implementation roadmap
-  recommendations.push({
-    category: 'roadmap',
-    title: 'Detailed Implementation Roadmap',
-    description:
-      'A week-by-week action plan prioritized by your specific risk profile, including task owners, milestones, and success criteria.',
-    priority: 'medium',
-    timeline: 'this-quarter',
-    isPaid: true,
-  });
-
-  // ISO 42001
-  if (dimMap.securityCompliance?.score < 70) {
-    recommendations.push({
-      category: 'compliance',
-      title: 'ISO 42001 Gap Assessment & Certification Roadmap',
-      description:
-        'ISO 42001 is becoming enterprise-expected in 2026. Get a gap assessment showing what you need to achieve certification and a phased implementation plan.',
-      priority: 'medium',
-      timeline: 'this-quarter',
-      isPaid: true,
-    });
-  }
-
-  // Monitoring strategies
-  recommendations.push({
-    category: 'monitoring',
-    title: 'Continuous AI Monitoring Strategy',
-    description:
-      'Comprehensive monitoring strategy including quarterly vendor reviews, monthly AI sprawl scans, real-time performance dashboards, and annual AI-specific penetration testing.',
-    priority: 'medium',
-    timeline: 'this-quarter',
-    isPaid: true,
-  });
-
-  // Data governance
-  if (dimMap.dataGovernance?.score < 50) {
-    recommendations.push({
-      category: 'audit',
-      title: 'AI Data Governance Framework',
-      description:
-        'Comprehensive data governance framework for AI including classification, lineage, DLP, consent management, and retention policies.',
+      category: 'vendor',
+      title: 'Customized Vendor Assessment Questionnaire',
+      description: getIndustryVendorDescription(profile.industry),
       priority: 'high',
       timeline: 'this-month',
       isPaid: true,
     });
-  }
 
-  // AI-specific risk mitigations
-  if (dimMap.aiSpecificRisks?.score < 50) {
+    // Regulatory compliance
+    const regulatoryRecs = getRegulatorRecommendations(profile);
+    recommendations.push(...regulatoryRecs);
+
+    // ROI framework
+    if (dimMap.roiTracking?.answered !== false && dimMap.roiTracking?.score < 70) {
+      recommendations.push({
+        category: 'roi',
+        title: 'Multi-Dimensional ROI Framework',
+        description:
+          'Implement a comprehensive ROI tracking framework measuring Financial, Operational, Innovation, Customer, and Strategic value — including hidden costs (data prep, maintenance, talent premium).',
+        priority: 'medium',
+        timeline: 'this-quarter',
+        isPaid: true,
+      });
+    }
+
+    // Implementation roadmap
+    recommendations.push({
+      category: 'roadmap',
+      title: 'Detailed Implementation Roadmap',
+      description:
+        'A week-by-week action plan prioritized by your specific risk profile, including task owners, milestones, and success criteria.',
+      priority: 'medium',
+      timeline: 'this-quarter',
+      isPaid: true,
+    });
+
+    // ISO 42001
+    if (dimMap.securityCompliance?.answered !== false && dimMap.securityCompliance?.score < 70) {
+      recommendations.push({
+        category: 'compliance',
+        title: 'ISO 42001 Gap Assessment & Certification Roadmap',
+        description:
+          'ISO 42001 is becoming enterprise-expected in 2026. Get a gap assessment showing what you need to achieve certification and a phased implementation plan.',
+        priority: 'medium',
+        timeline: 'this-quarter',
+        isPaid: true,
+      });
+    }
+
+    // Monitoring strategies
     recommendations.push({
       category: 'monitoring',
-      title: 'AI Risk Mitigation Playbook',
+      title: 'Continuous AI Monitoring Strategy',
       description:
-        'Detailed playbook for mitigating AI-specific risks: hallucination validation, model drift detection, prompt injection defense, agentic AI governance, and bias testing.',
-      priority: 'high',
-      timeline: 'this-month',
+        'Comprehensive monitoring strategy including quarterly vendor reviews, monthly AI sprawl scans, real-time performance dashboards, and annual AI-specific penetration testing.',
+      priority: 'medium',
+      timeline: 'this-quarter',
       isPaid: true,
     });
+
+    // Data governance
+    if (dimMap.dataGovernance?.answered !== false && dimMap.dataGovernance?.score < 50) {
+      recommendations.push({
+        category: 'audit',
+        title: 'AI Data Governance Framework',
+        description:
+          'Comprehensive data governance framework for AI including classification, lineage, DLP, consent management, and retention policies.',
+        priority: 'high',
+        timeline: 'this-month',
+        isPaid: true,
+      });
+    }
+
+    // AI-specific risk mitigations
+    if (dimMap.aiSpecificRisks?.answered !== false && dimMap.aiSpecificRisks?.score < 50) {
+      recommendations.push({
+        category: 'monitoring',
+        title: 'AI Risk Mitigation Playbook',
+        description:
+          'Detailed playbook for mitigating AI-specific risks: hallucination validation, model drift detection, prompt injection defense, agentic AI governance, and bias testing.',
+        priority: 'high',
+        timeline: 'this-month',
+        isPaid: true,
+      });
+    }
   }
 
   return recommendations;

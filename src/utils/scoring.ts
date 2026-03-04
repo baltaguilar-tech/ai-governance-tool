@@ -76,13 +76,14 @@ export function calculateDimensionScore(
     }
   }
 
-  // Guard: if dimension has no answers (draft migration, new questions), return neutral score
+  // If no questions were answered, mark as unanswered — exclude from scoring and display.
   if (answeredCount === 0) {
     return {
       key: dimension,
-      score: 50,
-      riskLevel: getRiskLevel(50),
+      score: 0,
+      riskLevel: getRiskLevel(0),
       questionScores: [],
+      answered: false,
     };
   }
 
@@ -95,6 +96,7 @@ export function calculateDimensionScore(
     score: Math.round(governanceScore),
     riskLevel: getRiskLevel(governanceScore),
     questionScores,
+    answered: true,
   };
 }
 
@@ -103,11 +105,21 @@ export function calculateOverallRisk(
   profile: Partial<OrganizationProfile>
 ): RiskScore {
   const dimensions = {} as Record<DimensionKey, number>;
-  let overallScore = 0;
 
+  // Re-normalize weights across answered dimensions only so the score stays
+  // on the 0-100 scale regardless of how many dimensions were skipped.
+  const answeredScores = dimensionScores.filter((ds) => ds.answered);
+  const totalAnsweredWeight = answeredScores.reduce(
+    (sum, ds) => sum + DIMENSION_WEIGHTS[ds.key],
+    0
+  );
+
+  let overallScore = 0;
   for (const ds of dimensionScores) {
     dimensions[ds.key] = ds.score;
-    overallScore += ds.score * DIMENSION_WEIGHTS[ds.key];
+    if (ds.answered && totalAnsweredWeight > 0) {
+      overallScore += ds.score * (DIMENSION_WEIGHTS[ds.key] / totalAnsweredWeight);
+    }
   }
 
   overallScore = Math.round(overallScore);
@@ -159,6 +171,7 @@ function identifyMaturityGaps(
   const gaps: string[] = [];
 
   for (const ds of dimensionScores) {
+    if (!ds.answered) continue;
     if (ds.score < 40) {
       const config = DIMENSION_MAP[ds.key];
       gaps.push(`${config.label} governance is ${ds.riskLevel.toLowerCase()} (score: ${ds.score}/100)`);

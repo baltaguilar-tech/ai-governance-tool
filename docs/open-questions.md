@@ -63,3 +63,15 @@ Unresolved decisions to revisit. Remove items when resolved; add date resolved a
 - [ ] **Pricing** — $500–$3K range noted. One-time purchase or annual? Tiered by org size?
 - [ ] **Payment processor** — Stripe, LemonSqueezy, or Paddle? (Affects how licenses are generated)
 - [ ] **Target launch date** — Before EU AI Act enforcement (Aug 2, 2026)?
+
+---
+
+## Code Quality / Independent Review
+
+- [ ] **Adversarial code review** — Schedule a critical, independent review of the full codebase before any paid release. Claude Code has inherent bias toward decisions it helped make. Use one or more of the following for genuine independent perspective:
+  1. **GitHub PR review (human)** — Highest independence. Open a PR and invite a developer who has no context on this project.
+  2. **GitHub Copilot PR review** — Different model, reviews the diff cold. Good second opinion on logic and security.
+  3. **Fresh Claude Code session (no prior context)** — Same model but no accumulated assumptions. Useful for challenging architecture and spotting patterns that look wrong from the outside.
+  - **Scope of review should cover:** Security (Tauri capabilities/CSP, IPC surface), scoring engine correctness, state management patterns, PDF export reliability, TypeScript strictness, dependency risk, and general maintainability.
+  - **Trigger:** Before Phase 3 (CI/CD + distribution) begins, or before any public/paid release.
+  - **Noted:** 2026-03-04 — user confirmed this is a long-term endeavor and wants standards upheld from the start.

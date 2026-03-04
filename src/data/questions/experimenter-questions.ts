@@ -570,8 +570,8 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
     type: 'radio',
     options: [
       { label: 'Yes, and we didn’t track or learn from it', value: 100 },
-      { label: 'Not that we’re aware of', value: 35 },
-      { label: 'Yes, but it was minor and handled informally', value: 65 },
+      { label: 'Not that we’re aware of', value: 65 },
+      { label: 'Yes, but it was minor and handled informally', value: 35 },
       { label: 'Yes — we documented it and updated our practices', value: 0 },
     ],
   },

@@ -4,6 +4,7 @@ import {
   OrganizationProfile,
   QuestionResponse,
   DimensionScore,
+  DimensionKey,
   RiskScore,
   BlindSpot,
   Recommendation,
@@ -190,22 +191,20 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
 
   canProceed: () => {
     const { currentStep, profile, responses } = get();
-    if (currentStep === 'welcome') return true;
+    if (currentStep === 'welcome' || currentStep === 'results') return true;
     if (currentStep === 'profile') {
       return !!(profile.organizationName && profile.industry && profile.size);
     }
-    // For dimension steps, require at least half the questions answered
-    const dimensionQuestionCount = 10;
-    const dimensionResponses = responses.filter((r) => {
-      const prefix = currentStep === 'shadowAI' ? 'shadow'
-        : currentStep === 'vendorRisk' ? 'vendor'
-        : currentStep === 'dataGovernance' ? 'data'
-        : currentStep === 'securityCompliance' ? 'security'
-        : currentStep === 'aiSpecificRisks' ? 'airisk'
-        : currentStep === 'roiTracking' ? 'roi'
-        : '';
-      return r.questionId.startsWith(prefix);
-    });
-    return dimensionResponses.length >= Math.ceil(dimensionQuestionCount / 2);
+    // For dimension steps, require at least half the actual questions answered.
+    // Derived from the real question bank so any question count change is automatically respected.
+    const questions = getQuestionsForProfile(
+      (profile as OrganizationProfile).aiMaturityLevel ?? MaturityLevel.Experimenter,
+      (profile as OrganizationProfile).operatingRegions ?? []
+    );
+    const dimensionQuestions = questions.filter((q) => q.dimension === (currentStep as DimensionKey));
+    const dimensionResponses = responses.filter((r) =>
+      dimensionQuestions.some((q) => q.id === r.questionId)
+    );
+    return dimensionResponses.length >= Math.ceil(dimensionQuestions.length / 2);
   },
 }));

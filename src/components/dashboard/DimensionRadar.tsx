@@ -14,7 +14,8 @@ interface DimensionRadarProps {
 }
 
 export function DimensionRadar({ dimensionScores }: DimensionRadarProps) {
-  const data = dimensionScores.map((ds) => ({
+  const answeredScores = dimensionScores.filter((ds) => ds.answered);
+  const data = answeredScores.map((ds) => ({
     dimension: DIMENSION_MAP[ds.key].shortLabel,
     risk: ds.score,
     fullMark: 100,
@@ -23,7 +24,7 @@ export function DimensionRadar({ dimensionScores }: DimensionRadarProps) {
   return (
     <div className="bg-white rounded-xl border border-navy-200 p-6 text-center">
       <h3 className="text-sm font-semibold text-navy-500 uppercase tracking-wider mb-2">
-        Risk by Dimension
+        Risk by Dimension{answeredScores.length < dimensionScores.length ? ' (assessed only)' : ''}
       </h3>
 
       <ResponsiveContainer width="100%" height={200}>

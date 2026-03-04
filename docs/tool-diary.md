@@ -1848,3 +1848,373 @@
 | 2026-03-04 12:07:50 | Bash                 | git status |
 | 2026-03-04 12:07:54 | Read                 | docs/remote-content-plan.md |
 | 2026-03-04 12:10:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git diff --stat |
+| 2026-03-04 12:10:27 | Bash                 | git add src/utils/pdfExport.ts docs/CURRENT-SESSION.md docs/test-plan.md docs/tool-diary.m... |
+| 2026-03-04 12:10:32 | Bash                 | ~/bin/gh auth setup-git 2>/dev/null; git push origin main |
+| 2026-03-04 15:26:43 | Read                 | docs/open-questions.md |
+| 2026-03-04 15:26:43 | Read                 | docs/session-log.md |
+| 2026-03-04 15:27:31 | Edit                 | docs/open-questions.md |
+| 2026-03-04 15:27:38 | Edit                 | docs/session-log.md |
+| 2026-03-04 15:28:18 | Read                 | src/services/contentService.ts |
+| 2026-03-04 15:28:18 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-04 15:28:23 | Bash                 | ls ~/Projects/ai-governance-tool/docs/cdn-content/ |
+| 2026-03-04 15:28:25 | Bash                 | ls ~/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/ |
+| 2026-03-04 15:28:28 | Bash                 | head -60 ~/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/financial-ser... |
+| 2026-03-04 15:34:48 | Bash                 | grep -h "id:" ~/Projects/ai-governance-tool/src/data/questions/*.ts | sed "s/.*id: '//;s/'... |
+| 2026-03-04 15:34:52 | Bash                 | grep -h "id:" ~/Projects/ai-governance-tool/src/data/questions/*.ts | sed "s/.*id: '//;s/'... |
+| 2026-03-04 15:35:00 | Bash                 | grep -h "id:" ~/Projects/ai-governance-tool/src/data/questions/*.ts | sed "s/.*id: '//;s/'... |
+| 2026-03-04 15:35:08 | Bash                 | cat ~/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/financial-services... |
+| 2026-03-04 15:35:20 | Bash                 | grep -A3 "id: 'shadow-e-" ~/Projects/ai-governance-tool/src/data/questions/experimenter-qu... |
+| 2026-03-04 15:35:23 | Bash                 | grep -A3 "id: 'shadow-b-\|id: 'vendor-e-\|id: 'vendor-b-" ~/Projects/ai-governance-tool/sr... |
+| 2026-03-04 15:35:26 | Bash                 | grep -A3 "id: 'vendor-e-\|id: 'data-e-\|id: 'data-b-\|id: 'security-e-\|id: 'security-b-" ... |
+| 2026-03-04 15:35:30 | Bash                 | grep -A3 "id: 'shadow-i-\|id: 'shadow-a-\|id: 'vendor-i-\|id: 'vendor-a-'" ~/Projects/ai-g... |
+| 2026-03-04 15:35:35 | Bash                 | grep -A3 "id: 'airisks-e-\|id: 'risk-b-\|id: 'airisk-i-\|id: 'airisk-a-'" ~/Projects/ai-go... |
+| 2026-03-04 15:35:38 | Bash                 | grep -A3 "id: 'airisk-i-\|id: 'airisk-a-'" ~/Projects/ai-governance-tool/src/data/question... |
+| 2026-03-04 15:35:41 | Bash                 | grep -A3 "id: 'roi-e-\|id: 'roi-b-\|id: 'roi-i-\|id: 'roi-a-'" ~/Projects/ai-governance-to... |
+| 2026-03-04 15:38:36 | Bash                 | grep -A3 "id: 'data-b-\|id: 'data-i-\|id: 'security-b-\|id: 'security-i-\|id: 'roi-i-'" ~/... |
+| 2026-03-04 15:38:42 | Bash                 | grep -A3 "id: 'security-i-\|id: 'roi-i-'" ~/Projects/ai-governance-tool/src/data/questions... |
+| 2026-03-04 15:38:45 | Bash                 | grep -A3 "id: 'roi-i-'" ~/Projects/ai-governance-tool/src/data/questions/innovator-questio... |
+| 2026-03-04 15:38:48 | Bash                 | grep -A3 "id: 'roi-i-\|id: 'roi-a-'" ~/Projects/ai-governance-tool/src/data/questions/inno... |
+| 2026-03-04 15:41:40 | Write                | docs/cdn-content/industry-regulations/manufacturing.json |
+| 2026-03-04 15:41:44 | Bash                 | cat ~/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/manufacturing.json... |
+| 2026-03-04 15:45:53 | Bash                 | which wrangler || npx wrangler --version 2>/dev/null | head -1 || ls ~/Projects/ai-governa... |
+| 2026-03-04 15:46:06 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 15:46:24 | Read                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:46:26 | Grep                 | pattern='INDUSTRY_CDN_KEYS' in src/services/contentService.ts |
+| 2026-03-04 15:46:37 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:46:53 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:47:31 | Read                 | src/services/contentService.ts |
+| 2026-03-04 15:47:55 | Edit                 | src/services/contentService.ts |
+| 2026-03-04 15:48:14 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 15:48:38 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/cdn-content/industry-regulations/manufact... |
+| 2026-03-04 15:55:25 | Write                | docs/cdn-content/industry-regulations/government.json |
+| 2026-03-04 15:55:30 | Bash                 | cat ~/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/government.json | ... |
+| 2026-03-04 15:55:39 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 15:55:44 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:55:52 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:56:00 | Read                 | src/services/contentService.ts |
+| 2026-03-04 15:56:04 | Edit                 | src/services/contentService.ts |
+| 2026-03-04 15:56:12 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 15:56:27 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/cdn-content/industry-regulations/governme... |
+| 2026-03-04 15:58:20 | Read                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 15:58:20 | Read                 | src/services/contentService.ts |
+| 2026-03-04 15:59:53 | Read                 | docs/cdn-content/industry-regulations/manufacturing.json |
+| 2026-03-04 16:06:47 | Write                | docs/cdn-content/industry-regulations/retail-ecommerce.json |
+| 2026-03-04 16:06:59 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 16:07:04 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 16:07:12 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 16:07:44 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 16:07:52 | Read                 | src/services/contentService.ts |
+| 2026-03-04 16:07:55 | Edit                 | src/services/contentService.ts |
+| 2026-03-04 16:08:51 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/cdn-content/industry-regulations/retail-e... |
+| 2026-03-04 16:15:22 | Write                | docs/cdn-content/industry-regulations/telecommunications.json |
+| 2026-03-04 16:15:33 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 16:15:38 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 16:15:46 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-04 16:15:54 | Bash                 | cd ~/Projects/ai-governance-tool && npx wrangler r2 object put ai-governance-content/indus... |
+| 2026-03-04 16:15:57 | Read                 | src/services/contentService.ts |
+| 2026-03-04 16:16:02 | Edit                 | src/services/contentService.ts |
+| 2026-03-04 16:16:18 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/cdn-content/industry-regulations/telecomm... |
+| 2026-03-04 16:16:28 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline origin/main..HEAD 2>&1 |
+| 2026-03-04 16:16:37 | Bash                 | cd ~/Projects/ai-governance-tool && ~/bin/gh auth status 2>&1 | head -5 && git push origin... |
+| 2026-03-04 16:16:41 | Read                 | docs/session-log.md |
+| 2026-03-04 16:16:45 | Read                 | docs/session-log.md |
+| 2026-03-04 16:16:49 | Read                 | docs/session-log.md |
+| 2026-03-04 16:17:05 | Edit                 | docs/session-log.md |
+| 2026-03-04 16:20:02 | Read                 | CLAUDE.md |
+| 2026-03-04 16:20:02 | Read                 | docs/session-log.md |
+| 2026-03-04 16:20:07 | Read                 | docs/session-log.md |
+| 2026-03-04 16:20:08 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src/components/wizard/**/* |
+| 2026-03-04 16:20:12 | Read                 | src/components/wizard/WelcomePage.tsx |
+| 2026-03-04 16:20:12 | Read                 | src/components/wizard/ProfileStep.tsx |
+| 2026-03-04 16:20:12 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-04 16:20:13 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 16:20:18 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src/**/*.tsx |
+| 2026-03-04 16:20:22 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.tsx" | sort |
+| 2026-03-04 16:20:22 | Bash                 | ls /Users/baltmac/Projects/ai-governance-tool/docs/ |
+| 2026-03-04 16:20:25 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-04 16:20:25 | Read                 | src/components/layout/ProgressStepper.tsx |
+| 2026-03-04 16:20:39 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-04 16:21:43 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool -name "tailwind.config*" | xargs cat 2>/de... |
+| 2026-03-04 16:23:20 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 16:23:40 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 16:23:52 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 16:23:54 | Agent                | {'description': 'Save Phase 5 pre-work findings to memory', 'prompt': 'Append a ... |
+| 2026-03-04 16:24:30 | Bash                 | cd ~/Projects/ai-governance-tool && git status && git branch -a && git log --oneline -5 |
+| 2026-03-04 16:33:35 | TodoWrite            | in_progress: Run 4 parallel adversarial code review subagents |
+| 2026-03-04 16:33:53 | Agent                | {'description': 'Adversarial review: React/TypeScript components', 'prompt': 'Yo... |
+| 2026-03-04 16:33:56 | Read                 | src/components/ErrorBoundary.tsx |
+| 2026-03-04 16:33:56 | Read                 | src/App.tsx |
+| 2026-03-04 16:33:59 | Read                 | src/components/LoadingScreen.tsx |
+| 2026-03-04 16:33:59 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-04 16:34:01 | Read                 | src/components/layout/ProgressStepper.tsx |
+| 2026-03-04 16:34:02 | Read                 | src/components/wizard/WelcomePage.tsx |
+| 2026-03-04 16:34:03 | Agent                | {'description': 'Adversarial review: state, data, scoring, types', 'prompt': 'Yo... |
+| 2026-03-04 16:34:06 | Read                 | src/components/wizard/ProfileStep.tsx |
+| 2026-03-04 16:34:06 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-04 16:34:08 | Read                 | src/types/assessment.ts |
+| 2026-03-04 16:34:08 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 16:34:08 | Read                 | src/data/dimensions.ts |
+| 2026-03-04 16:34:10 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 16:34:10 | Read                 | src/components/dashboard/BlindSpotsList.tsx |
+| 2026-03-04 16:34:10 | Read                 | src/data/questions/index.ts |
+| 2026-03-04 16:34:11 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 16:34:11 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 16:34:13 | Agent                | {'description': 'Adversarial review: services, infrastructure, Tauri config, sec... |
+| 2026-03-04 16:34:13 | Read                 | src/components/dashboard/RecommendationsList.tsx |
+| 2026-03-04 16:34:13 | Read                 | src/components/dashboard/AchieverProgress.tsx |
+| 2026-03-04 16:34:15 | Read                 | src/main.tsx |
+| 2026-03-04 16:34:15 | Read                 | src/services/db.ts |
+| 2026-03-04 16:34:16 | Read                 | src/services/contentService.ts |
+| 2026-03-04 16:34:16 | Read                 | src/services/license.ts |
+| 2026-03-04 16:34:16 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 16:34:17 | Read                 | src/components/dashboard/DimensionRadar.tsx |
+| 2026-03-04 16:34:17 | Read                 | src/components/dashboard/RiskGauge.tsx |
+| 2026-03-04 16:34:18 | Read                 | src-tauri/src/lib.rs |
+| 2026-03-04 16:34:19 | Read                 | src-tauri/tauri.conf.json |
+| 2026-03-04 16:34:19 | Read                 | src-tauri/capabilities/default.json |
+| 2026-03-04 16:34:19 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 16:34:21 | Read                 | package.json |
+| 2026-03-04 16:34:21 | Read                 | vite.config.ts |
+| 2026-03-04 16:34:22 | Read                 | ~/.claude/projects/-Users-baltmac/17c9e919-c947-447e-91d7-f5f5fcc9c459/tool-results/toolu_01Ewny9rWbC3UpYmu21Z7csc.txt |
+| 2026-03-04 16:34:22 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 16:34:23 | Glob                 | **/immediateActions* |
+| 2026-03-04 16:34:26 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackProgress.ts... |
+| 2026-03-04 16:34:26 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src-tauri/Cargo.toml |
+| 2026-03-04 16:34:26 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/.env* |
+| 2026-03-04 16:34:27 | Read                 | src/data/immediateActions.ts |
+| 2026-03-04 16:34:28 | Read                 | src-tauri/Cargo.toml |
+| 2026-03-04 16:34:28 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src-tauri/capabilities/*.json |
+| 2026-03-04 16:34:30 | Agent                | {'description': 'Adversarial review: domain accuracy, PM, product-market fit', '... |
+| 2026-03-04 16:34:31 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src-tauri/gen/schemas/desktop-schema.json |
+| 2026-03-04 16:34:31 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 16:34:33 | Grep                 | pattern='isPro|isProUser|tier.*professional|professional.*tier|DEV_PRO|devPro|forceP|bypassL' in src |
+| 2026-03-04 16:34:34 | Read                 | CLAUDE.md |
+| 2026-03-04 16:34:35 | Read                 | docs/decisions.md |
+| 2026-03-04 16:34:35 | Read                 | docs/open-questions.md |
+| 2026-03-04 16:34:35 | Read                 | src/data/dimensions.ts |
+| 2026-03-04 16:34:36 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 16:34:36 | Grep                 | pattern='licenseTier|DEV_FORCE|import.*license|setLicenseTier' in src/store |
+| 2026-03-04 16:34:37 | Grep                 | pattern='http:default|allow-fetch|fetch-send|connect-src' in src-tauri |
+| 2026-03-04 16:34:39 | Read                 | src/data/questions/index.ts |
+| 2026-03-04 16:34:39 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 16:34:39 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 16:34:39 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 16:34:40 | Read                 | src/types/assessment.ts |
+| 2026-03-04 16:34:41 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 16:34:41 | Grep                 | pattern='markMilestoneFired|col.*fired_' in src/services/db.ts |
+| 2026-03-04 16:34:43 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 16:34:43 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-04 16:34:44 | Grep                 | pattern='deep.link|aigov://|pendingLicenseKey' in src |
+| 2026-03-04 16:34:48 | Read                 | src/components/settings/panels/AboutPanel.tsx |
+| 2026-03-04 16:34:48 | Read                 | src/App.tsx |
+| 2026-03-04 16:34:48 | Read                 | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-04 16:34:53 | Read                 | src/components/settings/panels/EmailPanel.tsx |
+| 2026-03-04 16:34:53 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-04 16:34:57 | Read                 | src/components/settings/panels/NotificationsPanel.tsx |
+| 2026-03-04 16:34:57 | Read                 | src/components/modals/EmailCaptureModal.tsx |
+| 2026-03-04 16:37:56 | TaskOutput           | {'task_id': 'a74bb64ba16a74e8a', 'block': False, 'timeout': 5000} |
+| 2026-03-04 16:37:56 | TaskOutput           | {'task_id': 'abd17d832cc270f93', 'block': False, 'timeout': 5000} |
+| 2026-03-04 16:37:57 | TaskOutput           | {'task_id': 'ab84d990ceff730e5', 'block': False, 'timeout': 5000} |
+| 2026-03-04 16:38:19 | TaskOutput           | {'task_id': 'a74bb64ba16a74e8a', 'block': False, 'timeout': 5000} |
+| 2026-03-04 16:40:10 | TodoWrite            | in_progress: Synthesize findings into docs/code-review.md |
+| 2026-03-04 16:44:23 | Write                | docs/code-review.md |
+| 2026-03-04 16:59:49 | TodoWrite            | in_progress: Write project-plan.md from code review findings |
+| 2026-03-04 17:01:09 | Write                | docs/project-plan.md |
+| 2026-03-04 17:01:15 | TodoWrite            | in_progress: Update memory with accessibility pre-go-live flag and scope decisions |
+| 2026-03-04 17:01:24 | Edit                 | docs/project-plan.md |
+| 2026-03-04 17:01:45 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:01:58 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:02 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:12 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:14 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:19 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:21 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:23 | Bash                 | ls -la /Users/baltmac/.claude/projects/-Users-baltmac/docs/ | grep -E "(code-review|projec... |
+| 2026-03-04 17:02:24 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/docs -type f -name "*.md" 2>/dev/null | he... |
+| 2026-03-04 17:02:36 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:38 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:02:47 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:02 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:04 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:11 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:13 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:22 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:24 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:40 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:42 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:43 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:45 | Bash                 | grep -n "Phase 5\|Pre-Go-Live\|Project Plan Decisions\|code-review\|project-plan" /Users/b... |
+| 2026-03-04 17:03:47 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:03:54 | Agent                | {'description': 'Update memory with project plan decisions', 'prompt': 'Update t... |
+| 2026-03-04 17:03:57 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 17:07:26 | Read                 | CLAUDE.md |
+| 2026-03-04 17:07:28 | Read                 | docs/session-log.md |
+| 2026-03-04 17:07:32 | Bash                 | tail -100 ~/Projects/ai-governance-tool/docs/session-log.md |
+| 2026-03-04 17:07:35 | Read                 | docs/project-plan.md |
+| 2026-03-04 17:07:36 | Read                 | src-tauri/capabilities/default.json |
+| 2026-03-04 17:07:36 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:07:37 | Read                 | src/services/contentService.ts |
+| 2026-03-04 17:07:37 | Read                 | src/services/db.ts |
+| 2026-03-04 17:07:38 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:07:42 | Read                 | ~/.claude/projects/-Users-baltmac/2e9b0d30-29d4-406f-87a2-5116d4ef5483/tool-results/toolu_01S1kS3JJ2qixL1j1Yek1xhk.txt |
+| 2026-03-04 17:07:45 | Bash                 | wc -l ~/Projects/ai-governance-tool/src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:07:49 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:07:53 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:07:57 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:12:18 | TodoWrite            | in_progress: P1-1: Scope fs write permissions in default.json |
+| 2026-03-04 17:12:30 | Edit                 | src-tauri/capabilities/default.json |
+| 2026-03-04 17:12:36 | Edit                 | src-tauri/capabilities/default.json |
+| 2026-03-04 17:12:46 | TodoWrite            | in_progress: P1-3: Fix operatingRegions reference equality in assessmentStore.ts |
+| 2026-03-04 17:12:50 | Edit                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:12:56 | TodoWrite            | in_progress: P1-5: Validate CDN content in contentService.ts |
+| 2026-03-04 17:13:11 | Edit                 | src/services/contentService.ts |
+| 2026-03-04 17:13:20 | Edit                 | src/services/db.ts |
+| 2026-03-04 17:13:27 | TodoWrite            | in_progress: P1-4: Fix TrackProgress ROI snapshot corruption |
+| 2026-03-04 17:13:36 | Read                 | src/types/assessment.ts |
+| 2026-03-04 17:13:36 | Read                 | src/services/db.ts |
+| 2026-03-04 17:13:42 | Agent                | {'description': 'Research AdoptionSnapshot type and db schema', 'prompt': 'Read ... |
+| 2026-03-04 17:13:58 | Read                 | src/types/assessment.ts |
+| 2026-03-04 17:14:03 | Edit                 | src/types/assessment.ts |
+| 2026-03-04 17:14:11 | Edit                 | src/services/db.ts |
+| 2026-03-04 17:14:18 | Edit                 | src/services/db.ts |
+| 2026-03-04 17:14:27 | Edit                 | src/services/db.ts |
+| 2026-03-04 17:14:34 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:14:42 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-04 17:14:53 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-04 17:15:16 | Bash                 | cat >> ~/Projects/ai-governance-tool/docs/session-log.md << 'EOF'  ---  ## Session 27 — 20... |
+| 2026-03-04 17:15:21 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 17:16:47 | Bash                 | cd ~/Projects/ai-governance-tool && git status && git diff --stat |
+| 2026-03-04 17:17:05 | Bash                 | cd ~/Projects/ai-governance-tool && git add src-tauri/capabilities/default.json src/compon... |
+| 2026-03-04 17:17:13 | Bash                 | cd ~/Projects/ai-governance-tool && ~/bin/gh auth setup-git 2>/dev/null; git push origin m... |
+| 2026-03-04 17:17:30 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:36 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:40 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:45 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:47 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:49 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 17:17:53 | Agent                | {'description': 'Update MEMORY.md with session 27 state', 'prompt': 'Update the ... |
+| 2026-03-04 17:21:16 | Read                 | CLAUDE.md |
+| 2026-03-04 17:21:16 | Read                 | docs/session-log.md |
+| 2026-03-04 17:21:17 | Read                 | docs/project-plan.md |
+| 2026-03-04 17:21:20 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 17:21:21 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:21:23 | Read                 | src/data/dimensions.ts |
+| 2026-03-04 17:21:24 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:21:24 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 17:21:26 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:21:27 | Agent                | {'description': 'Read experimenter-questions.ts airisks-e-3', 'prompt': 'Read /U... |
+| 2026-03-04 17:21:30 | Agent                | {'description': 'Read dimensions.ts', 'prompt': 'Read /Users/baltmac/Projects/ai... |
+| 2026-03-04 17:21:31 | Agent                | {'description': 'Read assessmentStore.ts canProceed function', 'prompt': "Read /... |
+| 2026-03-04 17:21:32 | Agent                | {'description': 'Read project-plan.md Tier 2 section', 'prompt': 'Read /Users/ba... |
+| 2026-03-04 17:21:41 | Agent                | {'description': 'Read recommendations.ts', 'prompt': 'Read /Users/baltmac/Projec... |
+| 2026-03-04 17:21:53 | Agent                | {'description': 'Read scoring.ts full content', 'prompt': 'Read /Users/baltmac/P... |
+| 2026-03-04 17:21:57 | Agent                | {'description': 'Read ResultsDashboard.tsx radar + score sections', 'prompt': "R... |
+| 2026-03-04 17:22:06 | Agent                | {'description': 'Read CLAUDE.md and session-log.md', 'prompt': 'Read these two f... |
+| 2026-03-04 17:26:19 | Read                 | src/components/dashboard/DimensionRadar.tsx |
+| 2026-03-04 17:26:20 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:26:24 | Agent                | {'description': 'Read DimensionRadar.tsx', 'prompt': 'Read /Users/baltmac/Projec... |
+| 2026-03-04 17:26:27 | Agent                | {'description': 'Read pdfExport.ts full content', 'prompt': 'Read /Users/baltmac... |
+| 2026-03-04 17:26:45 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:26:51 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:26:55 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:26:59 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:27:03 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:35:36 | Read                 | src/types/assessment.ts |
+| 2026-03-04 17:35:55 | Agent                | {'description': 'Read DimensionScore type definition', 'prompt': 'Read /Users/ba... |
+| 2026-03-04 17:36:53 | TodoWrite            | in_progress: P2-5: Fix airisks-e-3 option order (100,65,35,0) + audit all 4 banks |
+| 2026-03-04 17:36:59 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 17:37:06 | Edit                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 17:37:20 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-04 17:37:20 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-04 17:37:20 | Read                 | src/data/questions/innovator-questions.ts |
+| 2026-03-04 17:37:26 | Grep                 | pattern="dimension: 'aiSpecificRisks'" in src/data/questions |
+| 2026-03-04 17:37:27 | Grep                 | pattern='airisks-b-|airisks-i-|airisks-a-' in src/data/questions |
+| 2026-03-04 17:37:29 | Bash                 | grep -n "incorrect or problematic outputs" /Users/baltmac/Projects/ai-governance-tool/src/... |
+| 2026-03-04 17:37:29 | Bash                 | grep -n "id: 'airisks" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/*.ts |
+| 2026-03-04 17:37:32 | Bash                 | grep -n "dimension:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builder... |
+| 2026-03-04 17:37:32 | Bash                 | grep "incorrect\|problematic" /Users/baltmac/Projects/ai-governance-tool/src/data/question... |
+| 2026-03-04 17:37:36 | Bash                 | cat /Users/baltmac/.claude/projects/-Users-baltmac/3a4db2d3-2467-41f1-a864-3c61f52604f5/to... |
+| 2026-03-04 17:37:41 | Bash                 | sed -n '540,672p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builder-qu... |
+| 2026-03-04 17:37:43 | Bash                 | grep -n "dimension: 'aiSpecificRisks'" /Users/baltmac/Projects/ai-governance-tool/src/data... |
+| 2026-03-04 17:37:44 | Bash                 | grep -n "dimension: 'aiSpecificRisks'" /Users/baltmac/Projects/ai-governance-tool/src/data... |
+| 2026-03-04 17:37:48 | Bash                 | sed -n '643,850p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innovator-... |
+| 2026-03-04 17:37:52 | Bash                 | sed -n '649,850p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-q... |
+| 2026-03-04 17:37:57 | Bash                 | sed -n '649,670p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-q... |
+| 2026-03-04 17:37:59 | Bash                 | grep -n "id: 'airisk" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiev... |
+| 2026-03-04 17:38:03 | Bash                 | sed -n '679,694p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-q... |
+| 2026-03-04 17:38:06 | Bash                 | grep -n "id: 'airisks-i\|id: 'airisk-i" /Users/baltmac/Projects/ai-governance-tool/src/dat... |
+| 2026-03-04 17:38:07 | Bash                 | grep -n "id: 'risk-b\|id: 'airisk-b" /Users/baltmac/Projects/ai-governance-tool/src/data/q... |
+| 2026-03-04 17:38:12 | Bash                 | sed -n '570,581p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builder-qu... |
+| 2026-03-04 17:38:15 | Bash                 | sed -n '673,688p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innovator-... |
+| 2026-03-04 17:38:20 | Bash                 | sed -n '648,805p' /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-q... |
+| 2026-03-04 17:38:33 | Agent                | {'description': 'Audit 3 question banks for option order issues', 'prompt': 'Sea... |
+| 2026-03-04 17:39:01 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-04 17:39:09 | Read                 | src/data/questions/innovator-questions.ts |
+| 2026-03-04 17:39:55 | TodoWrite            | in_progress: P2-3: Wire licenseTier into generateRecommendations() |
+| 2026-03-04 17:40:06 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:40:09 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:40:16 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:40:20 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:40:39 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:40:49 | TodoWrite            | in_progress: P2-4: Replace canProceed() prefix map with getQuestionsForProfile() |
+| 2026-03-04 17:40:52 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:41:20 | Edit                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:41:31 | Edit                 | src/store/assessmentStore.ts |
+| 2026-03-04 17:41:43 | TodoWrite            | in_progress: P2-2: Add weight rationale comment to dimensions.ts + PDF disclaimer |
+| 2026-03-04 17:42:09 | Read                 | src/data/dimensions.ts |
+| 2026-03-04 17:42:18 | Edit                 | src/data/dimensions.ts |
+| 2026-03-04 17:42:29 | Grep                 | pattern='self-reported responses' in src/utils/pdfExport.ts |
+| 2026-03-04 17:42:34 | Grep                 | pattern='indicative only' in src/utils/pdfExport.ts |
+| 2026-03-04 17:42:40 | Grep                 | pattern='Data processed locally|Confidential|disclaimer' in src/utils/pdfExport.ts |
+| 2026-03-04 17:42:53 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:42:57 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:43:05 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:43:13 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:43:21 | TodoWrite            | in_progress: P2-1: Add answered:boolean to DimensionScore, null-safe scoring + UI + PDF |
+| 2026-03-04 17:43:32 | Read                 | src/types/assessment.ts |
+| 2026-03-04 17:43:36 | Edit                 | src/types/assessment.ts |
+| 2026-03-04 17:43:57 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:03 | Edit                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:08 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:15 | Edit                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:22 | Read                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:27 | Edit                 | src/utils/scoring.ts |
+| 2026-03-04 17:44:34 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:44:38 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:44:56 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:45:01 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:45:05 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:45:12 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-04 17:45:17 | Read                 | src/components/dashboard/DimensionRadar.tsx |
+| 2026-03-04 17:45:23 | Edit                 | src/components/dashboard/DimensionRadar.tsx |
+| 2026-03-04 17:45:29 | Edit                 | src/components/dashboard/DimensionRadar.tsx |
+| 2026-03-04 17:45:47 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:45:57 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:46:03 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:46:09 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:46:21 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 17:47:10 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:19 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:24 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:30 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:35 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:40 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:45 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:50 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:55 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:47:59 | Read                 | src/utils/recommendations.ts |
+| 2026-03-04 17:48:04 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:48:11 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:48:16 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:48:21 | Edit                 | src/utils/recommendations.ts |
+| 2026-03-04 17:48:37 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 17:49:21 | Bash                 | python3 -c " with open('/Users/baltmac/Projects/ai-governance-tool/src/data/questions/expe... |
+| 2026-03-04 17:50:03 | Bash                 | cd ~/Projects/ai-governance-tool && git checkout HEAD -- src/data/questions/experimenter-q... |
+| 2026-03-04 17:50:18 | Bash                 | python3 -c " with open('/Users/baltmac/Projects/ai-governance-tool/src/data/questions/expe... |
+| 2026-03-04 17:50:34 | Bash                 | python3 -c " with open('/Users/baltmac/Projects/ai-governance-tool/src/data/questions/expe... |
+| 2026-03-04 17:50:41 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-04 17:50:46 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-04 17:51:54 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 17:52:05 | Bash                 | cd ~/Projects/ai-governance-tool && git diff --stat HEAD |
+| 2026-03-04 17:53:55 | Bash                 | cd ~/Projects/ai-governance-tool && git status --short |
+| 2026-03-04 17:54:08 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline -3 |

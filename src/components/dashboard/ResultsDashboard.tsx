@@ -138,6 +138,15 @@ export function ResultsDashboard() {
       </div>
 
       {/* Top-level scores */}
+      {(() => {
+        const answeredCount = dimensionScores.filter((ds) => ds.answered).length;
+        const totalCount = dimensionScores.length;
+        return answeredCount < totalCount ? (
+          <p className="text-xs text-navy-500 mb-4 italic">
+            Overall score based on {answeredCount} of {totalCount} dimensions assessed. Unanswered dimensions are excluded and weights are re-normalized.
+          </p>
+        ) : null;
+      })()}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <RiskGauge score={riskScore.overallRisk} level={riskScore.riskLevel} />
         <DimensionRadar dimensionScores={dimensionScores} />
@@ -216,48 +225,62 @@ export function ResultsDashboard() {
                 {ds.key === 'aiSpecificRisks' && 'AI Risks'}
                 {ds.key === 'roiTracking' && 'ROI Tracking'}
               </div>
-              <div className="flex-1 h-4 bg-navy-100 rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-1000 ${
-                    ds.score >= 70
-                      ? 'bg-emerald-500'
-                      : ds.score >= 40
-                      ? 'bg-amber-500'
-                      : ds.score >= 20
-                      ? 'bg-orange-500'
-                      : 'bg-red-500'
-                  }`}
-                  style={{ width: `${ds.score}%` }}
-                />
-              </div>
-              <div className="w-20 text-right">
-                <span
-                  className={`text-sm font-semibold ${
-                    ds.score >= 70
-                      ? 'text-emerald-600'
-                      : ds.score >= 40
-                      ? 'text-amber-600'
-                      : ds.score >= 20
-                      ? 'text-orange-600'
-                      : 'text-red-600'
-                  }`}
-                >
-                  {ds.score}/100
-                </span>
-              </div>
-              <span
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                  ds.score >= 70
-                    ? 'bg-emerald-100 text-emerald-700'
-                    : ds.score >= 40
-                    ? 'bg-amber-100 text-amber-700'
-                    : ds.score >= 20
-                    ? 'bg-orange-100 text-orange-700'
-                    : 'bg-red-100 text-red-700'
-                }`}
-              >
-                {ds.riskLevel}
-              </span>
+              {ds.answered ? (
+                <>
+                  <div className="flex-1 h-4 bg-navy-100 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all duration-1000 ${
+                        ds.score >= 70
+                          ? 'bg-emerald-500'
+                          : ds.score >= 40
+                          ? 'bg-amber-500'
+                          : ds.score >= 20
+                          ? 'bg-orange-500'
+                          : 'bg-red-500'
+                      }`}
+                      style={{ width: `${ds.score}%` }}
+                    />
+                  </div>
+                  <div className="w-20 text-right">
+                    <span
+                      className={`text-sm font-semibold ${
+                        ds.score >= 70
+                          ? 'text-emerald-600'
+                          : ds.score >= 40
+                          ? 'text-amber-600'
+                          : ds.score >= 20
+                          ? 'text-orange-600'
+                          : 'text-red-600'
+                      }`}
+                    >
+                      {ds.score}/100
+                    </span>
+                  </div>
+                  <span
+                    className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      ds.score >= 70
+                        ? 'bg-emerald-100 text-emerald-700'
+                        : ds.score >= 40
+                        ? 'bg-amber-100 text-amber-700'
+                        : ds.score >= 20
+                        ? 'bg-orange-100 text-orange-700'
+                        : 'bg-red-100 text-red-700'
+                    }`}
+                  >
+                    {ds.riskLevel}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <div className="flex-1 h-4 bg-navy-100 rounded-full overflow-hidden" />
+                  <div className="w-20 text-right">
+                    <span className="text-sm text-navy-400 italic">—</span>
+                  </div>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-navy-100 text-navy-400">
+                    Not assessed
+                  </span>
+                </>
+              )}
             </div>
           ))}
         </div>

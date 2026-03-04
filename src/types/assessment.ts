@@ -143,6 +143,9 @@ export interface DimensionScore {
   score: number;
   riskLevel: RiskLevel;
   questionScores: { questionId: string; score: number }[];
+  /** True if at least one question in this dimension was answered. When false,
+   * score is 0 and should be excluded from display and overall score calculation. */
+  answered: boolean;
 }
 
 export interface RiskScore {
