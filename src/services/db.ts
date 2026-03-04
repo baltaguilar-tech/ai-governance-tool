@@ -39,6 +39,15 @@ export async function initDatabase(): Promise<void> {
         savedAt         TEXT    NOT NULL
       )
     `);
+    // Migration: add schemaVersion if table was created by an older build.
+    // SQLite has no ADD COLUMN IF NOT EXISTS — try and ignore the duplicate-column error.
+    try {
+      await db.execute(
+        `ALTER TABLE draft_assessment ADD COLUMN schemaVersion INTEGER NOT NULL DEFAULT 1`
+      );
+    } catch {
+      // Column already present — safe to continue
+    }
     await db.execute(`
       CREATE TABLE IF NOT EXISTS spend_items (
         id              INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -344,3 +344,88 @@ Media & Entertainment, Real Estate, Nonprofit, Other
 - Nothing new showed up in either PDF or in-app blind spots
 - Root cause: BlindSpotsList bug + possibly healthcare CDN content not triggering correctly
 
+
+## Session 22/23 continued — PDF fixes committed (486e582, 2026-03-02)
+
+### Committed fixes (486e582)
+- formatGapTitle(): 6 new patterns + safety net for 'No a/an' artifacts
+- Pro PDF cover: risk bars startY 236→230 (clears footer on A4)
+- Recommended Actions: pre-calculate item height before page break check
+- BlindSpotsList.tsx: already had correct profile.industry — no change needed
+
+### What still needs a build
+- All above changes + profile summary block (lines 443-459) + article fix already in code
+- User to test with new .dmg built from current main
+
+### Known unchanged issues
+- 'Not yet: determined whether...' style gap entries — grammatically passable, left as-is
+- Industry regulatory blocks in PDF — depends on CDN cache being populated on first app launch
+
+
+## Session 22/23 continued — Cover page fixes + memory updates (2026-03-04)
+
+### Commits this session
+- 245e498 + 486e582: pushed to origin/main (were local only)
+- PDF cover page fixes committed locally (NOT yet pushed — no new commit made, changes are unstaged edits)
+
+### Wait — need to commit cover page fixes before next session
+Changes made to pdfExport.ts (not yet committed):
+- Profile info block: font 7.5pt → 9pt, row spacing 4.5 → 6mm (rows at y=156, 162, 168)
+- Score card rect: y=172 → 178 (+6mm)
+- "OVERALL GOVERNANCE SCORE" text: y=187 → 193
+- Score circle: y=206 → 212
+- "Risk Level | Achiever Score" text: y=222 → 228
+- Bars startY: 230 → 236
+- rowH: 8 → 7 in drawRiskBars (fixes footer overlap)
+- Build succeeded — new .dmg generated
+
+### Memory updates
+- Created ai-governance-concepts.md (10 AI governance concepts + one-liners, dimension mapping, Phase 4 Human Oversight flag)
+- Created roi-framework.md (People/Performance/Innovation ROI framework, 6 stats, future application ideas)
+- Both indexed in MEMORY.md
+
+### FIRST THING NEXT SESSION
+1. Commit pdfExport.ts cover page fixes
+2. Push to origin/main
+3. UI/UX design review session
+
+### Next session focus
+UI/UX design review — see Phase 5 notes in MEMORY.md
+
+## Session 23 — UI/UX Design Review (Phase 5) — 2026-03-04
+
+### Decisions made this session
+- Design direction: B+C hybrid (dark hero screens + light data screens + persistent deep navy chrome)
+- Dark screens: Loading, Welcome, Results Dashboard top band
+- Light screens: Org Profile, all 6 wizard steps, Settings, Track Progress
+- Results Dashboard: dark top band (score/risk reveal) → white below (dimension bars, blind spots, recs)
+- Gloss: SUBTLE (soft shadows, gradient buttons, radial spotlight on hero headings — no glass morphism)
+- Font: system font stack only (no custom fonts in Phase 5)
+- No component library changes in Phase 5
+- Semantic colors preserved (red=risk, orange=warning, green=success, gold=achievement, blue=primary)
+- Hero gradients (conic/radial): Welcome + Results top band ONLY
+- Loading screen: dark branded, app name "AI Governance and ROI Assessment", tagline "Know your AI risk. Before it knows you."
+- Body background: #F8FAFF (very slight cool tint — modern, not clinical, not gray)
+- App chrome: #02093A deep navy persistent on all screens
+
+### Commits this session
+- 89b894c: Phase 5 UI — design tokens (index.css) + loading screen redesign (LoadingScreen.tsx + index.html)
+- Pushed to origin/main ✓
+
+### What was built
+- index.css: Full Design System v2 — @theme color tokens + :root CSS vars + card shadow vars
+- LoadingScreen.tsx: Dark branded redesign — navy bg + radial spotlight + gradient shield + gradient progress bar
+- index.html: Matching static pre-React loading state
+
+### Phase 5 execution plan (full)
+1. Design tokens ✅ DONE (89b894c)
+2. Loading screen ✅ DONE (89b894c)
+3. App chrome — AppLayout.tsx + ProgressStepper.tsx (NEXT SESSION)
+4. Welcome screen — WelcomePage.tsx (NEXT SESSION)
+5. Wizard screens — ProfileStep.tsx + DimensionStep.tsx
+6. Results Dashboard — ResultsDashboard.tsx + 5 sub-components
+7. Settings + Track Progress — Settings.tsx + panels + TrackProgress.tsx
+
+### FIRST THING NEXT SESSION
+Resume prompt (copy exactly):
+"We're continuing Phase 5 UI redesign. Phases 1+2 are done (commit 89b894c). Today we do Phase 3 (AppLayout.tsx + ProgressStepper.tsx — deep navy chrome) and Phase 4 (WelcomePage.tsx — dark hero). Read ui-design-system.md in memory first, then read those 3 files before starting any work. Ask questions before touching code."

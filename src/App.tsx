@@ -31,6 +31,7 @@ function App() {
   useEffect(() => () => { aliveRef.current = false; }, []);
 
   useEffect(() => {
+    aliveRef.current = true; // reset on each mount — fixes React Strict Mode double-invoke race
     const set = (progress: number, message: string) => {
       if (!aliveRef.current) return;
       setInitProgress(progress);
