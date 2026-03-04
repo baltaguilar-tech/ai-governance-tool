@@ -27,28 +27,26 @@
     {
       "identifier": "fs:allow-read",
       "allow": [
-        { "path": "$APPDATA/**" },
+        { "path": "$APPDATA/ai-governance-tool/**" },
         { "path": "$RESOURCE/**" }
       ]
     },
     {
       "identifier": "fs:allow-write",
       "allow": [
-        { "path": "$APPDATA/**" },
+        { "path": "$APPDATA/ai-governance-tool/**" },
         { "path": "$DOWNLOAD/**" },
         { "path": "$DESKTOP/**" },
-        { "path": "$DOCUMENT/**" },
-        { "path": "$HOME/**" }
+        { "path": "$DOCUMENT/**" }
       ]
     },
     {
       "identifier": "fs:allow-write-file",
       "allow": [
-        { "path": "$APPDATA/**" },
+        { "path": "$APPDATA/ai-governance-tool/**" },
         { "path": "$DOWNLOAD/**" },
         { "path": "$DESKTOP/**" },
-        { "path": "$DOCUMENT/**" },
-        { "path": "$HOME/**" }
+        { "path": "$DOCUMENT/**" }
       ]
     },
     {

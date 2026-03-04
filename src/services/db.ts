@@ -66,9 +66,18 @@ export async function initDatabase(): Promise<void> {
         headcount             INTEGER NOT NULL,
         hours_saved_per_user  REAL    NOT NULL,
         blended_hourly_rate   REAL    NOT NULL,
+        cost_at_snapshot      REAL    NOT NULL DEFAULT 0,
         recorded_at           TEXT    NOT NULL
       )
     `);
+    // Migration: add cost_at_snapshot for installs predating this column
+    try {
+      await db.execute(
+        `ALTER TABLE adoption_snapshots ADD COLUMN cost_at_snapshot REAL NOT NULL DEFAULT 0`
+      );
+    } catch {
+      // Column already present — safe to continue
+    }
     await db.execute(`
       CREATE TABLE IF NOT EXISTS email_prefs (
         id               INTEGER PRIMARY KEY CHECK (id = 1),
@@ -255,9 +264,9 @@ export async function saveAdoptionSnapshot(
   try {
     const db = await getDb();
     await db.execute(
-      `INSERT INTO adoption_snapshots (adoption_rate, headcount, hours_saved_per_user, blended_hourly_rate, recorded_at)
-       VALUES (?, ?, ?, ?, ?)`,
-      [snapshot.adoptionRate, snapshot.headcount, snapshot.hoursSavedPerUser, snapshot.blendedHourlyRate, new Date().toISOString()]
+      `INSERT INTO adoption_snapshots (adoption_rate, headcount, hours_saved_per_user, blended_hourly_rate, cost_at_snapshot, recorded_at)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [snapshot.adoptionRate, snapshot.headcount, snapshot.hoursSavedPerUser, snapshot.blendedHourlyRate, snapshot.costAtSnapshot, new Date().toISOString()]
     );
   } catch (err) {
     console.error('[db] saveAdoptionSnapshot failed:', err);
@@ -270,7 +279,7 @@ export async function getAdoptionSnapshots(): Promise<AdoptionSnapshot[]> {
     const db = await getDb();
     const rows = await db.select<{
       id: number; adoption_rate: number; headcount: number;
-      hours_saved_per_user: number; blended_hourly_rate: number; recorded_at: string;
+      hours_saved_per_user: number; blended_hourly_rate: number; cost_at_snapshot: number; recorded_at: string;
     }[]>('SELECT * FROM adoption_snapshots ORDER BY recorded_at ASC');
     return rows.map((r) => ({
       id: r.id,
@@ -278,6 +287,7 @@ export async function getAdoptionSnapshots(): Promise<AdoptionSnapshot[]> {
       headcount: r.headcount,
       hoursSavedPerUser: r.hours_saved_per_user,
       blendedHourlyRate: r.blended_hourly_rate,
+      costAtSnapshot: r.cost_at_snapshot,
       recordedAt: r.recorded_at,
     }));
   } catch (err) {
@@ -575,6 +585,11 @@ export async function getNotificationSchedule(): Promise<NotificationSchedule | 
 
 export async function markMilestoneFired(days: 30 | 60 | 90): Promise<void> {
   if (!isTauriContext()) return;
+  const VALID_DAYS: ReadonlyArray<number> = [30, 60, 90];
+  if (!VALID_DAYS.includes(days)) {
+    console.error(`[db] markMilestoneFired: invalid days value "${days}"`);
+    return;
+  }
   try {
     const db = await getDb();
     const col = `fired_${days}`;

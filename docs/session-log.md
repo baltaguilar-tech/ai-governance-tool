@@ -98,6 +98,38 @@ Start a fresh Claude Code session and say:
 
 ---
 
+## 2026-03-04 — Tooling discussion + adversarial review queued
+
+**What changed:**
+- No code changes this session
+- Discussed Claude Code vs. VS Code Claude extension: same model, different context scope. VS Code = inline/local; Claude Code = agentic/whole-codebase.
+- Discussed review bias: Claude Code cannot give a truly independent review of work it helped build. Agreed that a genuinely independent review is needed before any paid/public release.
+- Added new open question to `docs/open-questions.md`: **Adversarial code review** — scoped, triggered before Phase 3 or public release, using GitHub PR (human or Copilot) and/or a fresh Claude Code session with no prior context.
+
+**Decision:** This is a long-term project and code quality standards should be enforced from the start, not retrofitted later.
+
+---
+
+## Session 26 — 2026-03-04
+
+**Focus**: Industry regulatory content — Retail & E-Commerce + Telecommunications (Phase D complete)
+
+**Work done**:
+- Generated `retail-ecommerce.json` — 40 entries (FTC §5, CCPA/CPRA, PCI DSS v4.0, COPPA, NIST CSF 2.0, BIPA/CUBI, SEC MD&A)
+- Generated `telecommunications.json` — 40 entries (FCC Comms Act, CPNI Rules, FCC Supply Chain Order, ECPA, NORS, CISA, TCPA/FCC AI-voice ruling Feb 2024, BEAD/USF)
+- Uploaded both to R2 (ai-governance-content bucket)
+- Manifest bumped: v1.4.0 → v1.5.0 (retail) → v1.6.0 (telecom)
+- contentService.ts: both entries activated in INDUSTRY_CDN_KEYS
+
+**Commits pushed** (4 together): 0eb80f8 (manufacturing), 4f68efe (government), c34794b (retail), f9bdd86 (telecom) → origin/main @ f9bdd86
+
+**Phase D status**: COMPLETE — all 8 industries live on R2:
+energy-utilities, healthcare, financial-services, technology, manufacturing, government, retail-ecommerce, telecommunications
+
+**Next**: Phase 5 wizard screens (ProfileStep.tsx + DimensionStep.tsx) — Phase 5 UI work pending
+
+---
+
 ## Session 16 — 2026-02-25
 
 **Focus**: PDF output audit and overhaul
@@ -114,3 +146,22 @@ Start a fresh Claude Code session and say:
 **State at end**: local only, not pushed — push first thing next session
 
 **Next**: Push to GitHub, then Phase 3 (CI/CD, code signing, auto-updater)
+
+---
+
+## Session 27 — 2026-03-04
+
+**Focus**: Tier 1 — Security & Data Integrity fixes (all 5 items complete)
+
+**Work done**:
+- P1-1 · default.json — Removed `$HOME/**` from `fs:allow-write` + `fs:allow-write-file`. Tightened all `$APPDATA/**` to `$APPDATA/ai-governance-tool/**` across read + write + write-file blocks.
+- P1-3 · assessmentStore.ts — Fixed `operatingRegions` reference equality bug in `updateProfile()`. Now uses `JSON.stringify()` comparison; profile updates no longer silently wipe dimension responses.
+- P1-5 · contentService.ts — Added 3-layer CDN content validation: (1) final URL must start with CDN_BASE, (2) response rejected if >500KB, (3) JSON validated for required fields (version, industry, regulations) before SQLite write. Added `isValidIndustryContent()` type guard.
+- P1-2 · db.ts — Added runtime whitelist `[30, 60, 90]` guard in `markMilestoneFired()` before dynamic column name interpolation. (Note: project plan had wrong whitelist `[1, 3, 7, 30]` — corrected to match actual schema columns.)
+- P1-4 · types/assessment.ts + db.ts + TrackProgress.tsx — Added `costAtSnapshot` field to `AdoptionSnapshot`. Schema migration in `initDatabase()`. `saveAdoptionSnapshot()` now stores `annualCost` at save time. `getAdoptionSnapshots()` returns the field. Historical snapshot display uses `snap.costAtSnapshot` (falls back to live `annualCost` for pre-migration rows where DEFAULT=0).
+
+**TypeScript**: `tsc -b tsconfig.app.json --noEmit` — clean, no errors.
+
+**Commits**: not yet pushed — awaiting user go-ahead.
+
+**Next**: Tier 2 (P2-1 through P2-5) — Scoring & Assessment Accuracy fixes.

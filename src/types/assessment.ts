@@ -213,6 +213,7 @@ export interface AdoptionSnapshot {
   headcount: number;          // total employees in the org
   hoursSavedPerUser: number;  // estimated hours/week per AI user
   blendedHourlyRate: number;  // fully-loaded hourly cost per employee (USD)
+  costAtSnapshot: number;     // annualCost recorded at save time — never use live spend for historical ROI
   recordedAt?: string;
 }
 

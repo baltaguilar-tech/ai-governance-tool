@@ -79,6 +79,20 @@ async function fetchWithTimeout(url: string, ms = 5000): Promise<Response> {
   }
 }
 
+const MAX_CONTENT_BYTES = 500 * 1024; // 500 KB
+
+function isValidIndustryContent(obj: unknown): obj is IndustryContent {
+  if (!obj || typeof obj !== 'object') return false;
+  const c = obj as Record<string, unknown>;
+  return (
+    typeof c.version === 'string' &&
+    typeof c.industry === 'string' &&
+    c.regulations !== null &&
+    typeof c.regulations === 'object' &&
+    !Array.isArray(c.regulations)
+  );
+}
+
 async function fetchAndCacheIndustry(industry: string, entry: ManifestEntry): Promise<void> {
   const cacheKey = `industry-regulations/${industry}`;
   const cached = await getCachedContent(cacheKey);
@@ -90,13 +104,26 @@ async function fetchAndCacheIndustry(industry: string, entry: ManifestEntry): Pr
 
   try {
     const url = `${CDN_BASE}${entry.url.startsWith('/') ? '' : '/'}${entry.url}`;
+    // Validate the final URL is pinned to the known CDN base before fetching
+    if (!url.startsWith(CDN_BASE)) throw new Error(`Rejected URL outside CDN base: ${url}`);
+
     const res = await fetchWithTimeout(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const content: IndustryContent = await res.json();
-    await setCachedContent(cacheKey, JSON.stringify(content), entry.version);
-    _memCache[industry] = content;
-  } catch {
-    // Network error — fall back to stale cache if available
+
+    // Reject oversized responses before parsing
+    const text = await res.text();
+    if (text.length > MAX_CONTENT_BYTES) throw new Error(`Response too large (${text.length} bytes)`);
+
+    // Validate required JSON fields before writing to cache
+    let parsed: unknown;
+    try { parsed = JSON.parse(text); } catch { throw new Error('Invalid JSON from CDN'); }
+    if (!isValidIndustryContent(parsed)) throw new Error('CDN response missing required fields');
+
+    await setCachedContent(cacheKey, text, entry.version);
+    _memCache[industry] = parsed;
+  } catch (err) {
+    console.warn('[contentService] fetchAndCacheIndustry failed:', err);
+    // Network/validation error — fall back to stale cache if available
     if (cached) {
       try { _memCache[industry] = JSON.parse(cached.data) as IndustryContent; } catch { /* corrupt */ }
     }

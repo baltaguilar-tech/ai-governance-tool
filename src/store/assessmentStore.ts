@@ -119,7 +119,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
     set((state) => {
       const questionsWillChange =
         ('aiMaturityLevel' in updates && updates.aiMaturityLevel !== state.profile.aiMaturityLevel) ||
-        ('operatingRegions' in updates && updates.operatingRegions !== state.profile.operatingRegions);
+        ('operatingRegions' in updates && JSON.stringify(updates.operatingRegions) !== JSON.stringify(state.profile.operatingRegions));
       return {
         profile: { ...state.profile, ...updates },
         ...(questionsWillChange ? { responses: [] } : {}),

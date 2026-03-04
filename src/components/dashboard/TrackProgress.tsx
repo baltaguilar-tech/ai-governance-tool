@@ -847,6 +847,7 @@ function ROICalculator({ totalMonthlySpend }: ROICalculatorProps) {
         headcount: headcountNum,
         hoursSavedPerUser: hoursSavedNum,
         blendedHourlyRate: hourlyRateNum,
+        costAtSnapshot: annualCost,
       });
       const refreshed = await getAdoptionSnapshots();
       setSnapshots(refreshed);
@@ -1015,7 +1016,10 @@ function ROICalculator({ totalMonthlySpend }: ROICalculatorProps) {
             {displayedSnapshots.map((snap) => {
               const snapAiUsers = Math.round((snap.adoptionRate / 100) * snap.headcount);
               const snapAnnualValue = snapAiUsers * snap.hoursSavedPerUser * 52 * snap.blendedHourlyRate;
-              const snapNetROI = snapAnnualValue - annualCost;
+              // Use cost recorded at snapshot time, not live spend, to preserve historical accuracy.
+              // Fall back to annualCost for snapshots saved before this field existed (DEFAULT 0 → use live).
+              const snapCost = snap.costAtSnapshot > 0 ? snap.costAtSnapshot : annualCost;
+              const snapNetROI = snapAnnualValue - snapCost;
               const snapColor = snapNetROI >= 0 ? 'text-green-600' : 'text-red-600';
               return (
                 <div
