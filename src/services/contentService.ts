@@ -179,8 +179,9 @@ const INDUSTRY_CDN_KEYS: Record<string, string> = {
   'Technology':         'technology',
   // Phase D continued (session 24): manufacturing
   'Manufacturing':         'manufacturing',
+  // Phase D continued (session 24): government
+  'Government':            'government',
   // Planned — add entries below as content files are published to R2:
-  // 'Government':          'government',
   // 'Retail & E-Commerce': 'retail-ecommerce',
   // 'Telecommunications':  'telecommunications',
 };

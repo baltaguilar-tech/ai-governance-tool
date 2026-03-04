@@ -1,0 +1,182 @@
+{
+  "version": "1.0.0",
+  "industry": "government",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "AI in Government Act of 2020 — P.L. 116-260, Div. U, Title I; OMB M-25-21",
+      "action": "The AI in Government Act requires OMB to establish agency AI governance practices — including maintaining visibility into which AI tools are in active use. OMB M-25-21 extends this to require agencies to identify all AI use cases and maintain an AI use case inventory. Without knowing which AI tools employees are using, your agency cannot produce the required inventory or conduct mandatory impact assessments for high-risk, public-facing AI. Conduct an immediate census of AI tools in use across all program offices and begin building your required agency AI use case registry."
+    },
+    "shadow-e-3": {
+      "citation": "AI in Government Act of 2020 — P.L. 116-260; OMB M-25-21; NIST AI RMF GOVERN 1.6",
+      "action": "The AI in Government Act and OMB M-25-21 require agencies to maintain an approved AI use case inventory and conduct impact assessments for high-risk, public-facing AI systems. An informal or non-existent approved-tool list means high-risk AI can enter agency operations without the required review. Establish a formal approved AI tool list tied to an impact assessment workflow — prioritizing AI systems that make or support decisions affecting individual rights, benefits, or public safety for first-wave assessment."
+    },
+    "shadow-e-8": {
+      "citation": "OMB M-25-21; AI in Government Act of 2020 — P.L. 116-260",
+      "action": "OMB M-25-21 requires federal agencies to designate a Chief AI Officer (CAIO) responsible for coordinating AI governance, overseeing AI use cases, and ensuring compliance with OMB AI policy. Without a named owner for AI oversight, agencies face IG findings and OMB accountability reviews. Designate a CAIO or equivalent accountable official, publish their responsibilities internally, and establish a cross-functional AI governance body to support the oversight function required by OMB."
+    },
+    "shadow-b-1": {
+      "citation": "AI in Government Act of 2020 — P.L. 116-260; OMB M-25-21",
+      "action": "Federal agencies are required under the AI in Government Act and OMB M-25-21 to maintain a current, complete inventory of AI use cases across the agency — including AI tools used in administrative operations, public-facing services, and internal decision support. An incomplete or informal inventory creates IG audit exposure and prevents required impact assessments from being conducted. Maintain a formal, up-to-date AI use case inventory with fields for: system name, use case, risk classification, data sources, and impact assessment status."
+    },
+    "shadow-b-2": {
+      "citation": "OMB M-25-21; FAR 48 C.F.R.; NIST AI RMF GOVERN 1.6",
+      "action": "OMB M-25-21 and FAR acquisition rules require that AI systems entering agency use go through a documented procurement and risk assessment process before deployment. Employees adopting AI tools outside the acquisition process create unauthorized IT systems that bypass required security, privacy, and impact assessments. Implement a documented AI adoption gate requiring acquisition review, impact assessment, and CAIO approval before any AI tool — including free or commercial off-the-shelf tools — is used for agency business."
+    },
+    "shadow-i-3": {
+      "citation": "FAR 48 C.F.R.; DFARS Subpart 239.76; OMB M-25-21",
+      "action": "FAR and DFARS require that AI systems procured by federal agencies go through formal acquisition processes including security, privacy, and performance evaluation. OMB M-25-21 adds AI-specific risk assessment requirements to the acquisition workflow. Shadow AI that bypasses formal procurement creates unauthorized IT systems and FAR compliance violations. Enforce AI procurement policy by integrating an AI-specific acquisition checklist into the contracting officer workflow — requiring impact assessment, FedRAMP verification, and CAIO sign-off before any AI contract is awarded."
+    },
+    "shadow-a-9": {
+      "citation": "AI in Government Act of 2020 — P.L. 116-260; GAO AI Accountability Framework (GAO-21-519SP)",
+      "action": "GAO's AI Accountability Framework and the AI in Government Act require agencies to maintain transparent documentation of their AI use case landscape — including what systems are in use, their risk classifications, and governance status. GAO audits on AI accountability increasingly request agencies to produce this documentation quickly, and inability to do so results in public audit findings. Maintain a pre-packaged AI governance evidence package — AI use case inventory, impact assessment records, vendor compliance documentation — updated quarterly and formatted for rapid GAO or IG production."
+    },
+    "vendor-e-5": {
+      "citation": "FedRAMP Authorization Act — P.L. 117-263, § 5921; OMB M-25-21",
+      "action": "Federal agencies are prohibited from deploying cloud AI services that lack FedRAMP authorization. Cloud AI vendors must host and process agency data within FedRAMP-authorized environments — data residency in unauthorized regions or cloud environments is a direct FedRAMP compliance violation. Before deploying any cloud AI tool, verify that the vendor holds active FedRAMP authorization at the appropriate impact level (Low, Moderate, or High), and confirm that agency data will be processed only within the authorized environment."
+    },
+    "vendor-e-7": {
+      "citation": "FedRAMP Authorization Act — P.L. 117-263, § 5921; NIST SP 800-53 Rev. 5",
+      "action": "For federal agencies, SOC 2 or ISO 27001 certifications are insufficient for cloud AI vendors — FedRAMP authorization is the required threshold. Deploying cloud AI tools without FedRAMP authorization exposes the agency to OMB sanctions, IG findings, and budget implications. Add FedRAMP authorization status as a required procurement field in your AI vendor assessment process, and maintain a registry of FedRAMP-authorized AI tools approved for agency use at each impact level."
+    },
+    "vendor-b-1": {
+      "citation": "FAR 48 C.F.R.; OMB M-25-21; FedRAMP Authorization Act — P.L. 117-263, § 5921",
+      "action": "FAR and OMB M-25-21 require agencies to conduct AI-specific risk assessments as part of the acquisition process — not after contract award. A security review limited to standard certifications will miss FedRAMP authorization requirements, AI-specific NIST SP 800-53 controls, and OMB M-25-21 impact assessment obligations. Develop a pre-onboarding AI vendor assessment checklist covering: FedRAMP authorization status, NIST SP 800-53 Rev. 5 control coverage, AI governance practices, and audit rights — completed and approved by the contracting officer and CAIO before contract execution."
+    },
+    "vendor-b-5": {
+      "citation": "FedRAMP Authorization Act — P.L. 117-263, § 5921; NIST SP 800-53 Rev. 5 (CA-3, SA-9)",
+      "action": "Federal agencies must verify FedRAMP authorization — not just standard commercial certifications — for all cloud AI vendors. SOC 2 or ISO 27001 do not meet the federal security authorization threshold and accepting them in lieu of FedRAMP creates OMB compliance exposure. Establish FedRAMP authorization as a hard threshold requirement in your AI procurement checklist. For AI vendors without FedRAMP authorization, initiate a formal exception process through your CISO and document the compensating controls accepted."
+    },
+    "vendor-b-7": {
+      "citation": "FAR 48 C.F.R.; OMB M-25-21",
+      "action": "FAR procurement rules require agencies to plan for vendor exit and transition as part of AI system acquisition — including data portability, service continuity, and transition timelines. OMB M-25-21 specifically directs agencies to include exit planning in AI vendor contracts. An agency with no vendor outage or shutdown contingency plan cannot meet mission continuity obligations. Document an AI vendor continuity plan for each critical AI system: covering backup capabilities, data extraction procedures, and mission continuity protocols in the event of vendor outage or contract termination."
+    },
+    "vendor-b-8": {
+      "citation": "FAR 48 C.F.R.; OMB M-25-21; NIST AI RMF MAP 1.5",
+      "action": "OMB M-25-21 directs agencies to evaluate concentration risk in their cloud AI provider landscape — particularly for AI capabilities supporting high-impact mission functions. Dependence on a single cloud AI provider for critical agency operations creates both mission continuity and procurement compliance risk. Assess AI vendor concentration across your agency's mission systems, identify single-provider dependencies for critical capabilities, and document tested contingency options — reviewed annually as part of your IT investment portfolio review and reported to the CAIO."
+    },
+    "vendor-i-1": {
+      "citation": "FAR 48 C.F.R.; DFARS Subpart 239.76; OMB M-25-21; GSA AI Vendor Assessment Toolkit",
+      "action": "OMB M-25-21 requires agencies to include AI-specific risk assessments in the acquisition process — covering AI governance practices, bias controls, explainability, and audit rights — not just standard IT security questionnaires. A vendor questionnaire that doesn't address AI-specific risks will miss material compliance gaps that affect agency obligations under the Privacy Act, FISMA, and civil rights statutes. Develop a comprehensive AI vendor questionnaire aligned to OMB M-25-21 requirements: covering AI governance documentation, bias testing methodology, model explainability, FedRAMP authorization, audit access rights, and incident notification obligations."
+    },
+    "vendor-i-10": {
+      "citation": "FAR 48 C.F.R.; OMB M-25-21",
+      "action": "FAR requires agencies to plan for transition and exit from AI vendor relationships — including data portability, mission continuity, and knowledge transfer. OMB M-25-21 elevates this to include AI-specific transition requirements: model documentation handover, training data access, and capability transition timelines. Undocumented or untested AI vendor exit plans are a FAR compliance gap and a mission continuity risk. Validate AI vendor exit plans for all critical AI capabilities through tabletop exercises — confirming data extraction, operational continuity, and transition timelines — with results reviewed by the contracting officer and CAIO."
+    },
+    "data-e-1": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; OMB Circular A-130 (2016)",
+      "action": "The Privacy Act requires federal agencies to protect System of Records (SOR) data — including records used to make decisions about individuals — from unauthorized disclosure or use. Employees entering SOR data into AI tools without proper authorization may create unauthorized disclosures and Privacy Act violations. Issue agency-specific guidance prohibiting employees from entering Privacy Act-protected records, personally identifiable information (PII), or data from active SORNs into AI tools not specifically authorized and covered by a Privacy Impact Assessment."
+    },
+    "data-e-2": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; E-Government Act of 2002, § 208",
+      "action": "Federal agencies have legal obligations under the Privacy Act and E-Government Act to protect citizen PII from unauthorized exposure through IT systems — including AI tools that may store, process, or transmit PII in ways not covered by existing System of Records Notices. Employees unaware of these risks may expose agency records to unauthorized systems. Conduct targeted awareness training for employees on the Privacy Act obligations that apply specifically to AI tool usage — emphasizing that entering citizen PII into unauthorized AI tools may constitute a Privacy Act violation."
+    },
+    "data-e-3": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; OMB Circular A-130; E-Government Act of 2002, § 208",
+      "action": "The Privacy Act requires agencies to classify which records are subject to SOR protections and ensure AI systems using those records are covered by valid SORNs. The E-Government Act requires Privacy Impact Assessments whenever an IT system — including an AI tool — collects, maintains, or disseminates PII. Without a data classification scheme, employees cannot determine which data types require PIA coverage or are restricted under Privacy Act SORNs. Implement a federal data classification framework covering: Privacy Act SOR data, PII subject to PIA requirements, controlled unclassified information, and unrestricted agency data — with explicit AI-use restrictions for each class."
+    },
+    "data-e-4": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; E-Government Act of 2002, § 208 (44 U.S.C. § 3501 note)",
+      "action": "Federal agencies that allow employees to enter citizen information — benefits records, case files, tax data, law enforcement records — into AI tools not covered by a System of Records Notice or Privacy Impact Assessment are in direct violation of the Privacy Act and E-Government Act. Criminal penalties apply for willful violations. Conduct an audit of which AI tools have received PIA coverage and are authorized for citizen-data processing, and implement controls preventing unauthorized AI tool access to citizen records pending completion of required PIAs."
+    },
+    "data-b-2": {
+      "citation": "E-Government Act of 2002, § 208 (44 U.S.C. § 3501 note); OMB Memorandum M-03-22",
+      "action": "The E-Government Act requires agencies to conduct Privacy Impact Assessments before developing or procuring any IT system that processes PII — including AI tools — and to document data handling procedures as part of that assessment. AI tools deployed without documented PIA-aligned data handling procedures are in violation of E-Government Act requirements. Develop and publish AI-specific data handling procedures for each authorized AI tool, including: what data types are permitted, data retention schedules, access restrictions, and the PIA reference — updated whenever the AI system's capabilities change materially."
+    },
+    "data-b-7": {
+      "citation": "E-Government Act of 2002, § 208; OMB Memorandum M-03-22; NIST SP 800-53 Rev. 5 (PT-2, PT-3)",
+      "action": "The E-Government Act requires agencies to map data flows for all IT systems processing PII as part of the Privacy Impact Assessment process. AI tools that process citizen data create new data flows — to vendor systems, training environments, and inference pipelines — that must be documented in the PIA and covered by appropriate SORNs. Map all data flows between internal agency systems and AI tools, identify flows involving citizen PII or SOR data, and ensure each flow is disclosed in the relevant PIA and covered by an active SORN or SORN amendment."
+    },
+    "data-i-1": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; OMB Circular A-130",
+      "action": "The Privacy Act requires that AI systems making decisions about individuals use only accurate, relevant, and timely information from properly authorized SORNs. AI training data that includes personal records without proper classification and SORN coverage creates Privacy Act violations. Formally classify all training data used in agency AI models against your data classification framework — ensuring any training data derived from Privacy Act records is covered by an active SORN and that data quality controls are documented in the model's governance record."
+    },
+    "data-i-6": {
+      "citation": "Privacy Act of 1974 — 5 U.S.C. § 552a; OMB Circular A-130; NIST Privacy Framework 1.0 (IDENTIFY-P 1.1)",
+      "action": "The Privacy Act requires that agency decisions affecting individuals be based on accurate records — which means agencies must be able to trace what data was used to train AI models that support those decisions, and verify its accuracy and relevance. Without comprehensive data lineage documentation, the agency cannot demonstrate Privacy Act compliance for AI-assisted decisions and cannot support individual access or correction requests. Implement full data lineage documentation for all AI model training datasets, capturing data sources, SORN coverage, data quality controls applied, and the date of last accuracy review."
+    },
+    "security-e-1": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-37 Rev. 2 (RMF)",
+      "action": "FISMA requires all federal information systems — including AI tools — to be authorized to operate (ATO) through the NIST Risk Management Framework. AI tools deployed without IT/security team review are unauthorized information systems operating without an ATO — a direct FISMA violation that can trigger IG findings and mandatory system shutdown. Require IT and security review as a prerequisite for any AI tool entering agency use, with AI-specific security assessment covering adversarial ML risks, data exposure, and NIST SP 800-53 Rev. 5 control applicability."
+    },
+    "security-e-3": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; FedRAMP Authorization Act — P.L. 117-263, § 5921; OMB M-25-21",
+      "action": "Federal agencies must navigate multiple overlapping AI compliance obligations: FISMA ATO requirements, FedRAMP cloud authorization rules, Privacy Act SOR obligations, and OMB M-25-21 AI governance requirements. Without a clear mapping of which requirements apply to which AI systems, agencies risk compliance gaps across all frameworks simultaneously. Conduct a compliance mapping exercise for each AI system in the agency's inventory, documenting applicable FISMA impact level, FedRAMP authorization status, Privacy Act SOR obligations, and OMB M-25-21 high-impact designation — reviewed annually by the CAIO and CISO."
+    },
+    "security-b-3": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-37 Rev. 2; NIST SP 800-53 Rev. 5",
+      "action": "FISMA requires agencies to map all information systems — including AI systems — to NIST SP 800-53 Rev. 5 security controls as part of the RMF process. AI systems introduce control categories not covered in traditional IT assessments: adversarial ML threat modeling (SA-11), model integrity monitoring (SI-7), and AI-specific audit logging (AU-12). Map all agency AI systems against NIST SP 800-53 Rev. 5 controls — including AI-specific control enhancements — as part of the FISMA system categorization and control selection process."
+    },
+    "security-b-6": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-37 Rev. 2 (RMF Step 4: Assess)",
+      "action": "FISMA RMF Step 4 requires security assessments of all information systems — including AI tools handling sensitive or regulated data — before ATO is granted and on an ongoing basis. Security assessments of AI tools must go beyond standard IT controls to address AI-specific vulnerabilities: adversarial inputs, data poisoning, model inversion, and prompt injection. Conduct FISMA-aligned security assessments for all AI tools that handle federal data, explicitly including AI-specific vulnerability testing categories and documenting findings in the system's Plan of Action and Milestones (POA&M)."
+    },
+    "security-i-1": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-53 Rev. 5 (SA-11, RA-3); NIST SP 800-37 Rev. 2",
+      "action": "FISMA requires that security assessments for federal AI systems explicitly address adversarial ML threats — including data poisoning, model inversion, and adversarial input attacks — as part of the NIST RMF process. NIST SP 800-53 Rev. 5 SA-11 and RA-3 require threat modeling that accounts for AI-specific attack vectors. Conduct AI-specific threat modeling for all agency AI systems before and during production deployment, documenting adversarial ML threat scenarios in the system security plan and addressing findings in the POA&M before ATO is granted."
+    },
+    "security-i-4": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; GAO AI Accountability Framework (GAO-21-519SP)",
+      "action": "FISMA annual reporting and GAO AI accountability audits require agencies to produce AI governance evidence on short notice — including ATO documentation, security assessment results, POA&M status, and continuous monitoring records. Agencies that cannot rapidly produce this evidence face IG findings and public GAO audit reports. Maintain a pre-packaged AI governance evidence package for each authorized AI system: ATO documentation, security assessment reports, POA&M status, continuous monitoring metrics, and privacy assessment records — updated quarterly and organized for rapid IG or GAO production."
+    },
+    "security-i-6": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-53 Rev. 5 (AU-12, SI-4); NIST SP 800-37 Rev. 2",
+      "action": "FISMA continuous monitoring requirements — implemented through NIST SP 800-53 Rev. 5 AU-12 and SI-4 — require comprehensive audit logging for all federal information systems, including AI inference operations. AI-specific logging must capture model inputs, outputs, user identities, and decision context to support FISMA annual reporting, IG investigations, and Privacy Act individual access requests. Implement inference logging for all AI systems in production, with logs retained per FISMA AU control requirements, stored in a tamper-evident system, and integrated into your continuous monitoring dashboard."
+    },
+    "security-i-7": {
+      "citation": "FISMA — 44 U.S.C. §§ 3551–3558; NIST SP 800-53 Rev. 5 (AC-2, AC-6, IA-2)",
+      "action": "FISMA and NIST SP 800-53 Rev. 5 require least-privilege and privileged access management controls for all federal information systems — including AI training infrastructure, model repositories, and inference APIs. Privileged access to AI systems in government environments creates audit and integrity risks that FISMA assessors specifically examine. Implement PAM controls for all AI system administrative functions: role-based access with least privilege, session logging, just-in-time access provisioning, and quarterly access reviews — documented in the system security plan and reviewed as part of the annual FISMA assessment."
+    },
+    "airisks-e-5": {
+      "citation": "OMB M-25-21; NIST AI RMF GOVERN 1.7; Civil Rights Acts (42 U.S.C. § 1983)",
+      "action": "OMB M-25-21 requires agencies to monitor AI systems used in benefits determinations, law enforcement, and public services for disparate impact on protected populations. AI bias in government decisions affecting individual rights creates civil rights litigation exposure under § 1983 and federal civil rights statutes — in addition to OMB accountability findings. Conduct bias awareness training for all employees using AI in public-facing decision support, and establish a bias incident reporting channel — with escalation to the CAIO for any AI system where disparate impact is reported or suspected."
+    },
+    "risk-b-3": {
+      "citation": "OMB M-25-21; NIST AI RMF GOVERN 1.7, MANAGE 4.2",
+      "action": "OMB M-25-21 explicitly requires that high-impact AI systems — those affecting individual rights, benefits, or public safety — have documented human review requirements and override capabilities before AI-assisted decisions are finalized. AI-assisted decisions in government without defined human review gates create OMB non-compliance findings and civil rights litigation risk. Define and document human review requirements for each high-impact AI use case in your agency inventory, specifying the review threshold, override authority, and documentation requirements — with sign-off from the CAIO and agency legal counsel."
+    },
+    "risk-b-7": {
+      "citation": "OMB M-25-21; NIST AI RMF MANAGE 4.2; GAO AI Accountability Framework (GAO-21-519SP)",
+      "action": "OMB M-25-21 requires ongoing monitoring of AI systems — particularly public-facing and high-impact systems — for performance degradation, output distribution shifts, and emerging bias. GAO's AI Accountability Framework identifies performance monitoring as one of five core accountability principles for federal AI. Establish a formal AI performance monitoring process for all agency AI systems, with quarterly reviews of output distributions for disparate impact, drift detection metrics, and documented escalation procedures when performance falls below defined thresholds."
+    },
+    "airisk-i-2": {
+      "citation": "OMB M-25-21; NIST AI RMF MANAGE 4.2; GAO AI Accountability Framework (GAO-21-519SP, Principle 4: Monitoring)",
+      "action": "OMB M-25-21 and GAO's AI Accountability Framework both require ongoing monitoring of federal AI systems for performance drift — particularly for systems affecting public rights, benefits, or safety. A degraded model producing biased or inaccurate outputs in high-impact government decisions creates both OMB compliance violations and civil rights litigation exposure. Implement automated drift detection for all high-impact agency AI systems, with defined performance thresholds, mandatory human escalation when thresholds are breached, and quarterly output distribution reviews documented in the agency's AI use case inventory."
+    },
+    "airisk-i-5": {
+      "citation": "OMB M-25-21; NIST AI RMF GOVERN 1.7; AI in Government Act of 2020 — P.L. 116-260",
+      "action": "OMB M-25-21 requires agencies to maintain a registry of AI use cases with risk classification — and to apply heightened governance to those classified as high-impact. The AI in Government Act requires agencies to disclose high-risk AI use cases as part of the OMB AI use case inventory. Without a tiered risk classification registry, agencies cannot identify which AI systems require impact assessments, human review mandates, or third-party evaluation. Establish a tiered AI risk classification system for all agency AI use cases — aligned to OMB M-25-21 high-impact criteria — and update the AI use case registry quarterly with classification status and governance measure compliance."
+    },
+    "airisk-i-6": {
+      "citation": "OMB M-25-21; NIST AI RMF MANAGE 4.2; Civil Rights Acts (42 U.S.C. § 1983)",
+      "action": "OMB M-25-21 mandates that high-impact AI systems — those affecting benefits determinations, law enforcement, healthcare access, and critical services — have verified human oversight mechanisms, including the ability to override AI recommendations. Automated decisions without human override capability in rights-affecting contexts create OMB non-compliance findings and expose the agency to § 1983 civil rights liability. Implement and verify human override capability for all high-impact AI systems — documenting the override workflow, responsible official, and override logging in the system's governance record and annual FISMA reporting."
+    },
+    "airisk-i-7": {
+      "citation": "OMB M-25-21; NIST AI RMF GOVERN 1.7; GAO AI Accountability Framework (GAO-21-519SP)",
+      "action": "OMB M-25-21 requires agencies to apply additional safeguards — including ethics review and impact assessment — before deploying high-impact AI use cases. GAO's Governance principle requires formal ethics and legal review as part of the AI lifecycle. Deploying new high-impact AI systems without documented ethics review creates OMB non-compliance and IG audit exposure. Establish a formal ethics and impact review gate for all new AI use cases classified as high-impact under OMB M-25-21 criteria — with CAIO, legal counsel, and civil rights officer sign-off before deployment."
+    },
+    "airisk-i-10": {
+      "citation": "OMB M-25-21; NIST AI RMF MANAGE 4.2; GAO AI Accountability Framework (GAO-21-519SP)",
+      "action": "OMB M-25-21 requires independent review for AI systems with significant impact on rights or safety — and GAO's AI Accountability Framework identifies third-party assessment as a governance best practice for federal AI. Without third-party assessment, agencies cannot demonstrate the independence of their AI risk management to IG auditors or congressional oversight. Commission third-party assessments for all AI systems classified as high-impact under OMB M-25-21, with findings documented in the AI use case registry and remediation tracked through the FISMA POA&M process."
+    },
+    "roi-e-4": {
+      "citation": "GAO AI Accountability Framework (GAO-21-519SP, Principle 3: Performance); OMB Circular A-11",
+      "action": "GAO's AI Accountability Framework requires agencies to define performance expectations and success metrics at AI project inception — not after deployment. OMB Circular A-11 budget preparation guidance requires agencies to justify IT investments including AI with expected performance outcomes. Without defined success metrics, agencies cannot demonstrate AI value during budget justification, IT investment portfolio reviews, or GAO audits — and OMB can deny funding for programs without demonstrated value. Conduct a structured AI value conversation for each AI investment, defining measurable success metrics before or at program initiation — documented in the AI use case registry and IT investment submission."
+    },
+    "roi-b-1": {
+      "citation": "GAO AI Accountability Framework (GAO-21-519SP); OMB Circular A-11; OMB M-25-21",
+      "action": "GAO's AI Accountability Framework Principle 3 (Performance) requires agencies to define specific, measurable performance metrics for AI systems — covering accuracy, speed, cost reduction, and mission outcome improvements. OMB A-11 requires agencies to report IT investment performance including AI. Without measurable success metrics, agencies face GAO findings for non-accountable AI and cannot defend AI program budgets during OMB review. Define and document measurable success metrics for each agency AI system at program initiation, aligned to mission outcomes and formatted for inclusion in annual IT investment portfolio reporting and OMB A-11 budget submissions."
+    },
+    "roi-b-7": {
+      "citation": "GAO AI Accountability Framework (GAO-21-519SP); OMB Circular A-11; AI in Government Act of 2020 — P.L. 116-260",
+      "action": "GAO's Monitoring principle and OMB Circular A-11 require agencies to report AI system performance outcomes to leadership on a regular cadence — with results included in annual IT investment portfolio reviews submitted to OMB. Agencies that do not report AI value realization face GAO findings, OMB budget challenges, and congressional scrutiny of AI spending. Establish a regular AI performance reporting cadence — at minimum quarterly to the CAIO and annually in the IT investment portfolio review — formatted to support OMB A-11 submissions and respond to GAO or IG requests for evidence of AI program value."
+    },
+    "roi-i-1": {
+      "citation": "GAO AI Accountability Framework (GAO-21-519SP, all 5 principles); OMB Circular A-11",
+      "action": "GAO's AI Accountability Framework identifies performance measurement as one of five core principles for accountable federal AI — and requires agencies to have a formalized framework for measuring outcomes, not just activity. OMB A-11 formalizes the budget justification obligation for AI investments. An informal or ad-hoc ROI approach cannot satisfy GAO accountability standards or OMB budget scrutiny. Formalize your agency's AI ROI measurement framework: define standard metrics categories (mission effectiveness, cost efficiency, time savings, error reduction), assign measurement ownership per AI program, and integrate results into the annual IT investment portfolio review."
+    },
+    "roi-i-7": {
+      "citation": "GAO AI Accountability Framework (GAO-21-519SP, Principle 3: Performance); OMB Circular A-11",
+      "action": "GAO's AI Accountability Framework requires agencies to conduct post-implementation reviews of AI systems to assess whether expected performance outcomes were realized — and to use those findings to inform future AI investment decisions. OMB A-11 similarly requires agencies to demonstrate benefit realization for IT investments. Agencies without post-implementation review processes cannot demonstrate AI accountability to GAO auditors or OMB program examiners. Establish a structured post-implementation review process for all completed AI projects: comparing projected versus realized performance metrics, documenting lessons learned, and using findings to update the AI use case registry and future investment justifications."
+    }
+  }
+}
