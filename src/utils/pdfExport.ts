@@ -129,7 +129,7 @@ function drawRiskBars(
   const scoreW = 16;
   const barW = availWidth - labelW - scoreW - 4;
   const barH = 5;
-  const rowH = 8;
+  const rowH = 7;
 
   doc.setFontSize(7.5);
   doc.setTextColor(darkMode ? 155 : 16, darkMode ? 179 : 42, darkMode ? 200 : 67);
@@ -459,10 +459,10 @@ export async function generateProPDF(
       [`Location: ${profile.primaryLocation}`, `AI Maturity: ${profile.aiMaturityLevel}`],
       [`Deployment: ${profile.deploymentTimeline}`, `Est. AI Spend: ${profile.expectedAISpend || 'Not specified'}`],
     ];
-    doc.setFontSize(7.5);
+    doc.setFontSize(9);
     doc.setTextColor(155, 179, 200);
     rows.forEach(([left, right], idx) => {
-      const rowY = 156 + idx * 4.5;
+      const rowY = 156 + idx * 6;
       doc.text(left, colL, rowY);
       doc.text(right, colR, rowY);
     });
@@ -470,30 +470,30 @@ export async function generateProPDF(
 
   // Score summary on cover
   doc.setFillColor(30, 60, 100);
-  doc.roundedRect(margin, 172, pageWidth - margin * 2, 55, 4, 4, 'F');
+  doc.roundedRect(margin, 178, pageWidth - margin * 2, 55, 4, 4, 'F');
 
   doc.setFontSize(10);
   doc.setTextColor(155, 179, 200);
-  doc.text('OVERALL GOVERNANCE SCORE', pageWidth / 2, 187, { align: 'center' });
+  doc.text('OVERALL GOVERNANCE SCORE', pageWidth / 2, 193, { align: 'center' });
 
   const riskColor = getRiskColor(riskLevel);
   doc.setFillColor(riskColor);
-  doc.circle(pageWidth / 2, 206, 11, 'F');
+  doc.circle(pageWidth / 2, 212, 11, 'F');
   doc.setFontSize(14);
   doc.setTextColor(255, 255, 255);
-  doc.text(String(overallScore), pageWidth / 2, 206, { align: 'center', baseline: 'middle' });
+  doc.text(String(overallScore), pageWidth / 2, 212, { align: 'center', baseline: 'middle' });
 
   doc.setFontSize(9);
   doc.setTextColor(155, 179, 200);
   doc.text(
     `Risk Level: ${riskLevel}   |   Achiever Score: ${achieverScore}/100`,
     pageWidth / 2,
-    222,
+    228,
     { align: 'center' }
   );
 
   // ===== COVER PAGE GRAPHS (dark mode) =====
-  drawRiskBars(doc, dimensionScores, margin, 230, pageWidth - margin * 2, true);
+  drawRiskBars(doc, dimensionScores, margin, 236, pageWidth - margin * 2, true);
 
   addFooter();
 
