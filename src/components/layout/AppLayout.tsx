@@ -65,8 +65,11 @@ export function AppLayout({ children }: AppLayoutProps) {
           onClose={() => setIsSettingsOpen(false)}
         />
 
-        {/* Main content column */}
-        <div className="flex flex-col flex-1 min-w-0">
+        {/* Main content column — clicking anywhere here closes the settings panel */}
+        <div
+          className="flex flex-col flex-1 min-w-0"
+          onClick={isSettingsOpen ? () => setIsSettingsOpen(false) : undefined}
+        >
           <ProgressStepper />
 
           {/* Dark screens: children control their own layout and centering.
