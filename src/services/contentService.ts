@@ -177,8 +177,9 @@ const INDUSTRY_CDN_KEYS: Record<string, string> = {
   // Phase D continued (session 22): financial services and technology
   'Financial Services': 'financial-services',
   'Technology':         'technology',
+  // Phase D continued (session 24): manufacturing
+  'Manufacturing':         'manufacturing',
   // Planned — add entries below as content files are published to R2:
-  // 'Manufacturing':       'manufacturing',
   // 'Government':          'government',
   // 'Retail & E-Commerce': 'retail-ecommerce',
   // 'Telecommunications':  'telecommunications',

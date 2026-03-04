@@ -1,0 +1,170 @@
+{
+  "version": "1.0.0",
+  "industry": "manufacturing",
+  "regulations": {
+    "shadow-e-1": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1)",
+      "action": "OSHA's General Duty Clause requires employers to identify and control recognized hazards — including AI systems deployed on the shop floor without safety review. Without knowing which AI tools employees are using in production environments, you cannot assess or control the associated safety risks. Conduct an immediate sweep of all AI tools in use across plant operations, production lines, and maintenance, and classify each by whether it interfaces with physical equipment or safety-critical processes."
+    },
+    "shadow-e-3": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); NIST AI RMF MAP 2.1",
+      "action": "OSHA expects a documented safety review gate before any AI system is deployed in production environments. An approved-tool list with no safety screening for shop-floor applications is a recognized-hazard control gap. Add a mandatory safety impact assessment — aligned to NIST AI RMF MAP 2.1 — as a prerequisite for any AI tool deployed in or adjacent to production, maintenance, or quality control operations."
+    },
+    "shadow-e-7": {
+      "citation": "ITAR — 22 C.F.R. Parts 120–130; EAR — 15 C.F.R. Parts 730–774 (ECRA 2018)",
+      "action": "Employees entering export-controlled technical data, manufacturing processes, or defense-article specifications into AI tools — especially cloud-based platforms — may constitute an unauthorized export under ITAR or EAR. Criminal penalties reach $1 million per violation and include contract debarment. Issue an immediate directive prohibiting entry of ITAR/EAR-controlled data into any AI tool not approved for export-controlled environments, and implement technical controls to enforce this prohibition."
+    },
+    "shadow-b-1": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); NIST AI RMF MANAGE 2.4",
+      "action": "OSHA inspectors increasingly request documentation of AI systems in production environments as part of process hazard analysis (PHA) reviews. An informal or incomplete AI inventory in a manufacturing environment — where AI tools control or influence physical equipment — is a recognized hazard control failure. Maintain a shop-floor AI inventory integrated with your PHA program, with each AI tool tagged by operational zone, safety classification, and named owner."
+    },
+    "shadow-b-2": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1)",
+      "action": "An undocumented AI adoption process in a manufacturing environment means AI tools can reach the shop floor without a safety impact assessment — a direct OSHA compliance gap. OSHA expects employers to proactively eliminate recognized hazards before they cause harm. Implement a mandatory AI deployment gate requiring a documented safety review for any AI tool that will interface with production equipment, automation systems, or quality control processes."
+    },
+    "shadow-i-1": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); ITAR — 22 C.F.R. Parts 120–130",
+      "action": "Shadow AI on the shop floor — AI tools deployed outside formal procurement — creates both OSHA safety exposure and potential ITAR/EAR violations if those tools process export-controlled technical data. Passive inventory is insufficient; you must actively scan for undiscovered AI use in production environments. Deploy active shadow AI discovery across plant networks and OT-connected systems, with alerts escalated to both the safety officer and compliance function."
+    },
+    "shadow-i-4": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1)",
+      "action": "OSHA's General Duty Clause requires tracking and root-cause analysis of recognized hazards — including AI-related near-misses and incidents in production environments. Without structured incident tracking, recurring AI safety failures go undetected and uncorrected, creating willful-violation exposure. Integrate AI-related near-miss and incident reporting into your OSHA 300 log and PHA program, with mandatory root-cause review for any AI system involvement in a safety event."
+    },
+    "shadow-a-9": {
+      "citation": "ITAR — 22 C.F.R. Parts 120–130; EAR — 15 C.F.R. Parts 730–774",
+      "action": "ITAR and EAR enforcement increasingly scrutinizes AI-enabled manufacturing environments for unauthorized access to controlled technical data. Regulatory examiners and government auditors expect documentation of which AI systems access export-controlled processes, who has access, and what data residency controls are in place. Maintain a pre-packaged compliance evidence package for your AI asset inventory — including data residency attestations and access control logs — ready for DDTC or BIS review without manual assembly under examination pressure."
+    },
+    "vendor-e-5": {
+      "citation": "ITAR — 22 C.F.R. Parts 120–130; EAR — 15 C.F.R. Parts 730–774; CMMC 2.0 — 32 C.F.R. Part 170",
+      "action": "Cloud-based AI vendors storing or processing ITAR-controlled technical data offshore may constitute an unauthorized export — even when accessed via a domestic interface. CMMC 2.0 similarly requires that CUI processed by AI vendors remains within approved enclaves. Before using any AI vendor for defense manufacturing or export-controlled processes, require written attestation of U.S. data residency and confirm the vendor meets applicable CMMC Level 2 requirements."
+    },
+    "vendor-e-7": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; DFARS 252.204-7012",
+      "action": "For defense manufacturers, SOC 2 or ISO 27001 alone are insufficient for AI vendors touching CUI or FCI — CMMC Level 2 certification is required. Relying on standard security certifications without verifying CMMC status creates False Claims Act exposure if you certify CMMC compliance to DoD while using non-compliant vendors (treble damages, plus up to $27,894 per false claim). Add CMMC Level 2 certification status as a required field in your AI vendor registry and procurement checklist."
+    },
+    "vendor-b-1": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; DFARS 252.204-7012; NIST SP 800-171 Rev. 2",
+      "action": "CMMC 2.0 requires that all AI vendors in the DoD supply chain handling CUI meet the applicable CMMC level — verified before onboarding, not after. A security review limited to general IT certifications will miss CMMC-specific requirements across all 110 NIST SP 800-171 controls. Expand pre-onboarding review to include a CMMC compliance assessment for any AI vendor that will access, process, or store CUI in defense manufacturing workflows."
+    },
+    "vendor-b-5": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; NIST SP 800-171 Rev. 2",
+      "action": "CMMC 2.0 (effective December 2024) mandates that defense manufacturers verify CMMC certification — not just SOC 2 or ISO 27001 — for AI vendors handling CUI. Falsely certifying CMMC compliance while using non-CMMC-certified vendors triggers False Claims Act liability with treble damages. Add CMMC Level 2 verification as a hard requirement in your AI vendor procurement checklist for any vendor touching CUI or FCI in defense manufacturing operations."
+    },
+    "vendor-b-6": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; ITAR — 22 C.F.R. Parts 120–130",
+      "action": "CMMC 2.0 requires documented tracking of all third parties — including AI vendors — with access to CUI in defense manufacturing environments. ITAR similarly requires access controls limiting AI system access to authorized persons for export-controlled data. Maintain a classified-data access register for AI vendors, documenting which vendors access CUI or ITAR-controlled data, the scope of access, and contractual CMMC compliance obligations in each vendor agreement."
+    },
+    "vendor-i-1": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; NIST SP 800-171 Rev. 2 (110 controls)",
+      "action": "CMMC Level 2 covers all 110 NIST SP 800-171 security controls — most standard AI vendor questionnaires do not. Gaps against specific controls (AC-2 account management, AU-9 audit log protection, SC-28 encryption at rest) create undetected compliance risk that CMMC third-party assessors will surface. Rebuild your AI vendor due diligence questionnaire to map explicitly to all 110 SP 800-171 controls applicable to CUI — particularly for vendors processing manufacturing IP, design data, or defense-related technical information."
+    },
+    "vendor-i-3": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; NIST SP 800-171 Rev. 2",
+      "action": "CMMC 2.0 requires ongoing assessment of all vendors in the CUI supply chain — including AI-specific components such as inference APIs, model hosting, and training pipelines. Standard IT security assessments don't address AI-specific attack surfaces (prompt injection, model inversion, training data poisoning). Conduct AI-specific security assessments for all AI vendor components that touch CUI or defense manufacturing data, covering model access controls, audit logging, and adversarial input protections."
+    },
+    "vendor-i-7": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; DFARS 252.204-7012",
+      "action": "Defense manufacturers with concentrated AI vendor dependency — especially for CUI-processing tools — face both CMMC compliance and operational resilience risk if a primary vendor fails or loses certification. CMMC 2.0 requires documented contingency plans for critical third-party dependencies. Assess AI vendor concentration across defense programs, identify vendors whose failure would halt CUI processing, and document tested contingency options — reviewed annually by the CISO and legal counsel."
+    },
+    "data-e-1": {
+      "citation": "NIST SP 800-82 Rev. 3 (2023) — OT Security; ITAR — 22 C.F.R. Parts 120–130",
+      "action": "In manufacturing environments, employees may inadvertently enter OT system data (SCADA readings, PLC configurations, production specifications) or export-controlled technical data into AI tools — creating both OT security exposure and potential ITAR/EAR violations. Without explicit guidance, employees have no basis for assessing what is prohibited. Issue a manufacturing-specific AI data handling policy prohibiting entry of OT system data, CUI, ITAR-controlled technical data, or production process specifications into any AI tool not approved for those data types."
+    },
+    "data-e-3": {
+      "citation": "NIST SP 800-82 Rev. 3 (2023); NIST SP 800-171 Rev. 2 (CUI); ITAR — 22 C.F.R. Parts 120–130",
+      "action": "Manufacturing organizations typically handle multiple regulated data types simultaneously: CUI (CMMC), export-controlled technical data (ITAR/EAR), OT/production system data (NIST 800-82), and standard business data. Without a data classification scheme, employees cannot determine whether data they are entering into AI tools is regulated — and cannot make appropriate decisions. Implement a data classification taxonomy covering at minimum: OT/production data, CUI, ITAR-controlled data, and standard business data, with clear AI-use restrictions for each class."
+    },
+    "data-e-4": {
+      "citation": "ITAR — 22 C.F.R. Parts 120–130; EAR — 15 C.F.R. Parts 730–774",
+      "action": "Defense and dual-use manufacturers whose employees enter technical data (design specs, manufacturing processes, materials data) into cloud AI tools may be committing an unauthorized export under ITAR or EAR — even when the data is considered internal and non-public. Criminal ITAR penalties reach $1 million per violation. Conduct a rapid assessment of which data types employees are entering into AI tools, and implement DLP controls to detect and block export-controlled data entry into unsanctioned AI platforms."
+    },
+    "data-b-1": {
+      "citation": "NIST SP 800-82 Rev. 3 (2023); ITAR — 22 C.F.R. Parts 120–130; CMMC 2.0 — 32 C.F.R. Part 170",
+      "action": "Manufacturing organizations face overlapping prohibitions on sharing regulated data with external AI tools: ITAR and EAR restrict export-controlled technical data, CMMC prohibits CUI from leaving approved enclaves, and NIST SP 800-82 requires that OT system data be protected within defined security zones. A single general policy is insufficient. Define prohibited data types for external AI tools with specific manufacturing categories: OT/SCADA data, CUI, ITAR/EAR-controlled technical data, and production process IP — each with tool-specific restrictions and employee acknowledgment requirements."
+    },
+    "data-b-7": {
+      "citation": "NIST SP 800-82 Rev. 3 (2023); IEC 62443 (Industrial Automation and Control Systems Security); CMMC 2.0 — 32 C.F.R. Part 170",
+      "action": "AI systems that source data from ICS, SCADA, or OT environments must operate within the zone-and-conduit network architecture required by NIST SP 800-82 and IEC 62443 — and any AI data flow crossing OT/IT boundaries must be documented and controlled. Unmapped AI data flows create both OT security gaps and CMMC audit findings. Map all AI data flows between internal systems — including OT data pipelines — and external AI tools, and validate that every cross-zone AI data transfer has an approved conduit with documented security controls."
+    },
+    "data-i-8": {
+      "citation": "NIST SP 800-82 Rev. 3 (2023); IEC 62443",
+      "action": "AI systems consuming OT production data — sensor readings, equipment telemetry, process control outputs — inherit the integrity requirements of their source systems. Corrupted or tampered input data from production systems can cause AI models to generate dangerous operational recommendations. NIST SP 800-82 requires data integrity controls for OT-sourced information flows. Implement data quality monitoring and anomaly detection for all AI input pipelines sourcing from OT environments, with alerts for data integrity failures and documented procedures for suspending AI-driven recommendations when source data quality degrades."
+    },
+    "data-i-10": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; NIST SP 800-82 Rev. 3 (2023)",
+      "action": "CMMC 2.0 requires documented access controls for all systems — including AI training and inference pipelines — that process CUI. NIST SP 800-82 requires equivalent controls for AI systems accessing OT data, with enforced separation between IT and OT AI environments. Implement role-based access controls for all AI training and inference pipelines that access CUI or OT-connected data, with audit logs for all data access events and quarterly access reviews aligned to CMMC Level 2 AC domain requirements."
+    },
+    "security-e-3": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; CISA Cybersecurity Performance Goals (CPGs, 2023)",
+      "action": "Manufacturing organizations with DoD contracts face CMMC 2.0 compliance obligations that extend to all AI systems processing CUI. CISA CPGs establish baseline cybersecurity expectations for critical manufacturing infrastructure — and AI systems are explicitly in scope. If your organization hasn't mapped applicable compliance requirements to AI systems, start with: (1) CMMC Level 2 assessment scope for AI tools touching CUI, and (2) CISA CPG coverage check for AI systems in critical manufacturing processes."
+    },
+    "security-b-3": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; CISA Cybersecurity Performance Goals (CPGs, 2023); NIST CSF 2.0",
+      "action": "Defense manufacturers must map AI tool usage to CMMC Level 2 requirements — not just general frameworks like SOC 2 or ISO 27001. CISA CPGs require critical infrastructure manufacturers to baseline cybersecurity coverage across all operational systems, including AI. Conduct a compliance mapping exercise for all AI tools in production and defense manufacturing environments, documenting CMMC Level 2 coverage status and CISA CPG alignment gaps — with a remediation plan reviewed by the CISO."
+    },
+    "security-b-6": {
+      "citation": "CISA Cybersecurity Performance Goals (CPGs, 2023); CMMC 2.0 — 32 C.F.R. Part 170",
+      "action": "CISA CPGs and CMMC 2.0 require security assessments of all systems — including AI tools — handling sensitive or regulated data in critical manufacturing environments. AI tools introduce attack surfaces not covered by traditional assessments: prompt injection, adversarial inputs to quality control models, and model inversion attacks. Conduct AI-specific security assessments for all AI tools handling CUI, OT data, or export-controlled information, incorporating AI-specific vulnerability categories alongside standard controls."
+    },
+    "security-i-4": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170; CISA Cybersecurity Performance Goals (CPGs, 2023)",
+      "action": "CMMC 2.0 third-party assessors (C3PAOs) and CISA CPG reviews require manufacturers to produce audit evidence for AI governance controls on short notice. Inability to produce current evidence — access logs, incident records, vendor compliance documentation — is a direct CMMC assessment finding. Maintain a pre-packaged AI governance evidence package, updated quarterly: AI asset inventory, vendor CMMC status records, access control logs, incident reports, and configuration documentation — organized for rapid production during CMMC assessment or CISA review."
+    },
+    "security-i-6": {
+      "citation": "CISA Cybersecurity Performance Goals (CPGs, 2023); CMMC 2.0 — 32 C.F.R. Part 170 (AU controls)",
+      "action": "CISA CPGs and CMMC 2.0 both require comprehensive logging and audit trail capabilities for systems processing CUI or operating in critical manufacturing infrastructure. AI inference logs — capturing inputs, outputs, and user identities — are required for audit readiness and incident investigation under both frameworks. Implement inference logging for all AI systems in production environments, with logs stored in a tamper-evident system, retained per CMMC AU control requirements, and reviewed as part of the quarterly security audit cycle."
+    },
+    "security-i-7": {
+      "citation": "CMMC 2.0 — 32 C.F.R. Part 170 (AC domain); CISA Cybersecurity Performance Goals (CPGs, 2023)",
+      "action": "CMMC 2.0 requires privileged access management (PAM) controls for all systems processing CUI — including AI tools and their underlying infrastructure (model update pipelines, training data stores, inference APIs). Privileged access to AI systems in manufacturing environments requires the same rigor as access to OT control systems. Implement PAM controls for all AI system administrative access: session logging, just-in-time provisioning, and quarterly access reviews aligned to CMMC Level 2 AC domain requirements."
+    },
+    "airisks-e-1": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); OSHA Machine Guarding — 29 C.F.R. § 1910.212",
+      "action": "In manufacturing, AI hallucinations are not just an accuracy problem — they are a potential safety hazard. AI systems providing incorrect maintenance guidance, quality control decisions, or equipment operating recommendations can result in equipment damage or injury that falls under OSHA machine guarding standards. Employees must understand that AI outputs affecting equipment, safety, or quality control require human verification before action — and this requirement must be documented as a recognized hazard control in your formal safety program."
+    },
+    "airisks-e-3": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1)",
+      "action": "AI-related near-misses in manufacturing — where AI guidance contributed to a near-equipment failure, near-injury, or quality escape — must be tracked under OSHA's General Duty Clause as recognized hazard events. Undocumented incidents prevent root-cause correction and create willful-violation exposure if the same AI failure causes a subsequent injury. Establish a formal AI incident and near-miss log integrated with your OSHA 300 program, with mandatory safety officer review for any event involving AI system outputs."
+    },
+    "risk-b-2": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); OSHA Machine Guarding — 29 C.F.R. § 1910.212",
+      "action": "OSHA's General Duty Clause requires employers to identify and document recognized hazards — which includes AI use cases in production where errors have material safety consequences. AI-assisted quality control, predictive maintenance alerts, and robotic system guidance are all high-consequence AI applications in manufacturing. Document AI use cases by safety risk tier and include the highest-consequence cases in your process hazard analysis, with defined human review requirements and fail-safe protocols for each."
+    },
+    "risk-b-7": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); ISO 10218 (Robots and Robotic Devices Safety)",
+      "action": "AI model performance degradation (drift) in manufacturing safety systems is a recognized hazard under OSHA's General Duty Clause. ISO 10218 requires that robotic and automated systems maintain defined safety performance boundaries — AI drift that allows a model to violate those boundaries is a compliance failure. Implement automated performance monitoring for all AI systems in safety-critical manufacturing applications, with drift alerts that trigger equipment shutdown or mandatory human review before safety thresholds are exceeded."
+    },
+    "airisk-i-2": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); ISO/IEC 42001:2023; ISO 10218",
+      "action": "Model drift in production AI systems — predictive maintenance, quality inspection, autonomous equipment control — is a recognized safety hazard under OSHA and violates ISO 10218 performance requirements for robotic systems. Without systematic drift detection, a degraded AI model may continue influencing safety-critical decisions long after its performance has become unreliable. Implement automated drift detection with defined performance thresholds for all safety-critical AI models, and establish mandatory human escalation and equipment safeguard activation when thresholds are breached."
+    },
+    "airisk-i-7": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); ISO/IEC 42001:2023",
+      "action": "OSHA's General Duty Clause requires safety review before any process change that introduces new recognized hazards — including AI model updates that affect production equipment control, quality decisions, or maintenance guidance. ISO/IEC 42001 aligns this to formal ethics and safety review for high-risk AI deployments. Integrate AI model change management into your Management of Change (MOC) process: require a documented safety impact assessment and safety officer sign-off before any AI model update goes live in a production environment."
+    },
+    "airisk-i-9": {
+      "citation": "OSHA Machine Guarding — 29 C.F.R. § 1910.212; ISO/IEC 42001:2023; ISO 10218",
+      "action": "AI systems controlling or guiding manufacturing equipment require rollback capability — the ability to revert to a previous, validated model version if a new deployment causes unsafe behavior. OSHA machine guarding standards require that automated systems maintain defined safe operating parameters; a model deployment without rollback means you cannot quickly restore safe operation after an AI failure. Implement version-controlled model deployment with documented rollback procedures and tested restoration SLAs for all AI systems in safety-critical manufacturing applications."
+    },
+    "airisk-i-10": {
+      "citation": "OSHA General Duty Clause — 29 U.S.C. § 654(a)(1); ISO 10218; ISO/IEC 42001:2023",
+      "action": "OSHA's General Duty Clause imposes strict obligations on employers deploying AI-controlled machinery — and third-party safety assessments provide documented evidence of due diligence in the event of an inspection or injury investigation. ISO 10218 requires that robotic systems meet defined safety standards, which AI enhancements must not violate. Commission third-party safety assessments for all AI systems controlling or directly influencing manufacturing equipment, with findings documented in PHA records and remediation tracked to closure."
+    },
+    "roi-e-9": {
+      "citation": "Sarbanes-Oxley Act § 404 (15 U.S.C. § 7262); SEC MD&A — 17 C.F.R. § 229.303",
+      "action": "Public manufacturers are required to disclose material AI investments and their operational impact under SEC MD&A rules, and SOX 404 extends internal control obligations to any AI systems affecting financial reporting processes. Without even an informal ROI calculation, you have no basis for materiality assessment — and risk either missing a required disclosure or being unable to substantiate cost-savings claims made to investors. Initiate structured AI cost and benefit tracking immediately: capture AI tool spend versus measurable operational efficiency gains across major production lines as a baseline."
+    },
+    "roi-b-3": {
+      "citation": "Sarbanes-Oxley Act § 404 (15 U.S.C. § 7262); COSO Internal Control Framework (2013)",
+      "action": "SOX 404 requires internal controls over financial reporting to cover AI systems that affect financial processes — including AI tools used in production cost tracking, demand forecasting, procurement, or quality management. Without a consolidated view of AI spend by business unit, you cannot assess materiality for SOX 404 scope. Build a centralized AI spend register organized by business unit and process area, used as input to your annual SOX 404 scope determination and disclosed to the external auditor as part of the controls review."
+    },
+    "roi-b-7": {
+      "citation": "SEC MD&A — 17 C.F.R. § 229.303; Sarbanes-Oxley Act § 404",
+      "action": "Public manufacturers that have made material AI investments — in automation, predictive maintenance, or AI-enabled quality control — face SEC MD&A disclosure obligations when those investments represent a known trend affecting results of operations. Board-level AI ROI reporting also supports effective SOX 404 oversight of AI-affected financial controls. Establish a regular cadence of AI productivity and ROI reporting to senior leadership, formatted to support both internal SOX 404 governance and external MD&A disclosure obligations."
+    },
+    "roi-i-4": {
+      "citation": "Sarbanes-Oxley Act § 404 (15 U.S.C. § 7262); SEC MD&A — 17 C.F.R. § 229.303; COSO Internal Control Framework (2013)",
+      "action": "Public manufacturers must systematically collect productivity metrics attributable to AI deployments to support both SOX 404 internal control assessments and SEC MD&A trend disclosures. Anecdotal productivity claims without documented measurement methodology cannot withstand external auditor or SEC staff scrutiny. Implement a structured productivity metrics program for AI deployments in production: define measurement methodology per AI use case, collect baseline and post-deployment data, and format results to support annual 10-K disclosures and SOX 404 evidence requirements."
+    }
+  }
+}
