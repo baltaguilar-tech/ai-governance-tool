@@ -429,3 +429,4 @@ UI/UX design review — see Phase 5 notes in MEMORY.md
 ### FIRST THING NEXT SESSION
 Resume prompt (copy exactly):
 "We're continuing Phase 5 UI redesign. Phases 1+2 are done (commit 89b894c). Today we do Phase 3 (AppLayout.tsx + ProgressStepper.tsx — deep navy chrome) and Phase 4 (WelcomePage.tsx — dark hero). Read ui-design-system.md in memory first, then read those 3 files before starting any work. Ask questions before touching code."
+- [x] PDF improvements: exec summary font 8.5→9.5, paraGap 6→3, lineH 5→5.5; orphaned 'Recommended Actions' heading fixed (page-break guard <60mm); blind spot title/action fonts +1pt; dimension Q table head/body 8→9; action/reg note cells 7→8

@@ -1362,3 +1362,489 @@
 | 2026-02-27 12:33:01 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
 | 2026-02-27 12:33:15 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
 | 2026-02-27 12:33:19 | Task                 | Update MEMORY.md with next-session architecture decisions |
+| 2026-02-27 12:33:28 | Bash                 | git add docs/CURRENT-SESSION.md docs/session-log.md docs/test-plan.md docs/tool-diary.md &... |
+| 2026-02-27 12:46:06 | AskUserQuestion      | {'questions': [{'question': 'What specific UX/UI problem are you trying to solve... |
+| 2026-02-27 12:53:57 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 12:53:58 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-02-27 12:54:56 | TodoWrite            | in_progress: Update MEMORY.md with remote content architecture decision |
+| 2026-02-27 12:55:03 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 12:55:07 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 12:55:11 | TodoWrite            | in_progress: Create content-architecture.md detail file in memory |
+| 2026-02-27 12:55:56 | Write                | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-02-27 12:56:00 | TodoWrite            | in_progress: Write remote-content-plan.md in project docs |
+| 2026-02-27 12:56:38 | Write                | docs/remote-content-plan.md |
+| 2026-02-27 12:56:43 | TodoWrite            | in_progress: Append session 20 opening to CURRENT-SESSION.md |
+| 2026-02-27 12:56:51 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-02-27 12:56:53 | TodoWrite            | in_progress: (none) |
+| 2026-02-27 13:26:42 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 13:26:50 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-02-27 13:26:56 | Bash                 | echo "- R2 bucket created: ai-governance-content | CDN URL: https://pub-18fdaa9defa54790ad... |
+| 2026-02-27 13:28:13 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-02-27 13:28:21 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 13:29:15 | TodoWrite            | in_progress: Read database.ts and main entry point |
+| 2026-02-27 13:29:20 | Glob                 | src/services/*.ts |
+| 2026-02-27 13:29:20 | Glob                 | src/main.tsx |
+| 2026-02-27 13:29:24 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.ts" -o -name "*.tsx" | grep -... |
+| 2026-02-27 13:29:28 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.ts" -o -name "*.tsx" | sort |
+| 2026-02-27 13:29:33 | Read                 | src/services/db.ts |
+| 2026-02-27 13:29:34 | Read                 | src/main.tsx |
+| 2026-02-27 13:29:37 | Read                 | src/App.tsx |
+| 2026-02-27 13:31:12 | TodoWrite            | in_progress: Add content_cache table + DB helpers to db.ts |
+| 2026-02-27 13:31:20 | Edit                 | src/services/db.ts |
+| 2026-02-27 13:31:31 | Edit                 | src/services/db.ts |
+| 2026-02-27 13:31:35 | TodoWrite            | in_progress: Write src/services/contentService.ts |
+| 2026-02-27 13:31:56 | Write                | src/services/contentService.ts |
+| 2026-02-27 13:32:01 | TodoWrite            | in_progress: Wire initContentService() into App.tsx |
+| 2026-02-27 13:32:05 | Edit                 | src/App.tsx |
+| 2026-02-27 13:32:10 | Edit                 | src/App.tsx |
+| 2026-02-27 13:32:14 | TodoWrite            | in_progress: Run tsc + build check |
+| 2026-02-27 13:32:34 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-02-27 13:32:43 | Bash                 | git add src/services/db.ts src/services/contentService.ts src/App.tsx && git commit -m "$(... |
+| 2026-02-27 13:32:46 | TodoWrite            | in_progress: (none) |
+| 2026-02-27 13:32:52 | Bash                 | echo " ## Phase B+C COMPLETE (164a0a3) - content_cache table added to SQLite (db.ts) - get... |
+| 2026-02-27 13:34:43 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && ~/bin/gh auth setup-git 2>&1 && git push ... |
+| 2026-02-27 13:35:10 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-02-27 13:35:10 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 13:35:10 | Read                 | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-02-27 13:35:18 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-02-27 13:35:30 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 13:35:35 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-02-27 13:35:39 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-02-27 13:35:42 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md /Users/baltmac/.c... |
+| 2026-02-27 13:35:43 | Task                 | End-of-session memory update |
+| 2026-02-27 17:53:13 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 08:14:55 | Bash                 | grep -h "id: '" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimenter... |
+| 2026-03-02 08:16:21 | Bash                 | mkdir -p /Users/baltmac/Projects/ai-governance-tool/docs/cdn-content/industry-regulations |
+| 2026-03-02 08:16:35 | Bash                 | python3 << 'PYEOF' import json  profiles = ['e', 'b', 'i', 'a'] nums = list(range(1, 11)) ... |
+| 2026-03-02 08:16:39 | Write                | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 08:16:47 | Bash                 | python3 -c " import json with open('/Users/baltmac/Projects/ai-governance-tool/docs/cdn-co... |
+| 2026-03-02 08:16:57 | Bash                 | which wrangler npx rclone aws 2>/dev/null; echo "---"; ls ~/bin/ 2>/dev/null |
+| 2026-03-02 08:17:03 | Bash                 | ls /Users/baltmac/.nvm/versions/node/v24.13.1/bin/ | grep -E "wrangler|npx|rclone" |
+| 2026-03-02 08:17:15 | Bash                 | ls ~/.wrangler/ 2>/dev/null || echo "no wrangler dir"; ls ~/Projects/ai-governance-tool/ |... |
+| 2026-03-02 08:17:51 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" npx wrangler --version 2>&1 |
+| 2026-03-02 08:31:38 | Bash                 | curl -s "https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev/industry-regulations/manifest... |
+| 2026-03-02 08:31:49 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.tsx" | xargs grep -l -i "blin... |
+| 2026-03-02 08:31:55 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/BlindSpotsList.t... |
+| 2026-03-02 08:31:58 | Read                 | src/services/contentService.ts |
+| 2026-03-02 08:31:58 | Read                 | src/components/dashboard/BlindSpotsList.tsx |
+| 2026-03-02 08:32:07 | Bash                 | grep -n "BlindSpot\|questionId\|industry" /Users/baltmac/Projects/ai-governance-tool/src/t... |
+| 2026-03-02 08:32:14 | Bash                 | sed -n '155,175p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-02 08:32:19 | Bash                 | grep -n "Industry\|BlindSpot\|blindSpot" /Users/baltmac/Projects/ai-governance-tool/src/ut... |
+| 2026-03-02 08:32:24 | Bash                 | sed -n '175,215p' /Users/baltmac/Projects/ai-governance-tool/src/utils/scoring.ts |
+| 2026-03-02 08:32:42 | Bash                 | grep -n "Industry\|enum" /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.t... |
+| 2026-03-02 08:32:46 | Bash                 | sed -n '7,23p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-02 08:33:19 | Bash                 | sed -n '640,680p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-02 08:33:24 | Bash                 | grep -n "generateProPDF\|generateFreePDF\|orgProfile\|Industry\|region\|primaryLocation" /... |
+| 2026-03-02 08:33:31 | Bash                 | sed -n '207,225p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts && ech... |
+| 2026-03-02 08:33:48 | Bash                 | sed -n '80,100p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-02 08:33:56 | Bash                 | grep -n "primaryLocation\|United States\|US\b" /Users/baltmac/Projects/ai-governance-tool/... |
+| 2026-03-02 08:33:59 | Bash                 | grep -rn "primaryLocation\|United States" /Users/baltmac/Projects/ai-governance-tool/src/c... |
+| 2026-03-02 08:34:41 | Bash                 | grep -n "orgProfile\|profile" /Users/baltmac/Projects/ai-governance-tool/src/store/assessm... |
+| 2026-03-02 08:34:50 | TodoWrite            | in_progress: Fix manifest.json (file→url) and re-upload |
+| 2026-03-02 08:34:54 | Read                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 08:34:56 | Edit                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 08:35:04 | TodoWrite            | in_progress: Add questionId to BlindSpot type + scoring.ts |
+| 2026-03-02 08:35:08 | Edit                 | src/types/assessment.ts |
+| 2026-03-02 08:35:15 | Edit                 | src/utils/scoring.ts |
+| 2026-03-02 08:35:20 | TodoWrite            | in_progress: Add industryToCdnKey() to contentService.ts |
+| 2026-03-02 08:35:30 | Edit                 | src/services/contentService.ts |
+| 2026-03-02 08:35:35 | TodoWrite            | in_progress: Wire BlindSpotsList.tsx with regulatory context |
+| 2026-03-02 08:35:52 | Write                | src/components/dashboard/BlindSpotsList.tsx |
+| 2026-03-02 08:35:57 | TodoWrite            | in_progress: Wire pdfExport.ts Pro PDF with regulatory context |
+| 2026-03-02 08:36:42 | Bash                 | sed -n '1,15p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-02 08:36:47 | Bash                 | sed -n '658,690p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-02 08:36:51 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 08:37:04 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 08:37:10 | TodoWrite            | in_progress: tsc check + commit |
+| 2026-03-02 08:40:27 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-02 08:40:32 | Bash                 | git add src/types/assessment.ts src/utils/scoring.ts src/services/contentService.ts src/co... |
+| 2026-03-02 08:40:40 | Bash                 | git commit -m "$(cat <<'EOF' Phase E: wire industry regulatory context into PDF + blind sp... |
+| 2026-03-02 08:40:45 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 08:44:30 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 08:44:31 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 08:44:41 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 08:44:47 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 08:44:51 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 08:44:56 | Task                 | Update session .md files |
+| 2026-03-02 08:49:33 | Bash                 | python3 << 'PYEOF' import json  profiles = ['e', 'b', 'i', 'a'] nums = list(range(1, 11)) ... |
+| 2026-03-02 08:49:38 | Write                | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 08:49:43 | Edit                 | src/services/contentService.ts |
+| 2026-03-02 08:49:53 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-02 08:51:09 | Bash                 | curl -s "https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev/industry-regulations/manifest... |
+| 2026-03-02 08:51:16 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add src/services/contentService.ts do... |
+| 2026-03-02 09:04:13 | Task                 | Update session memory files |
+| 2026-03-02 09:04:15 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 09:04:15 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 09:04:18 | Read                 | index.html |
+| 2026-03-02 09:04:18 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 09:04:21 | Edit                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 09:04:22 | Bash                 | sed -n '1,60p' /Users/baltmac/Projects/ai-governance-tool/src/App.tsx |
+| 2026-03-02 09:04:24 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 09:04:26 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 09:04:29 | Grep                 | pattern='Live files:.*manifest' in /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 09:04:31 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 09:04:31 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-02 09:05:19 | TodoWrite            | in_progress: Add loading screen to index.html + App.tsx |
+| 2026-03-02 09:05:25 | Edit                 | index.html |
+| 2026-03-02 09:05:30 | Edit                 | src/App.tsx |
+| 2026-03-02 09:05:39 | Edit                 | src/App.tsx |
+| 2026-03-02 09:05:50 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-02 09:05:57 | Bash                 | git add index.html src/App.tsx && git commit -m "$(cat <<'EOF' Add loading screen for app ... |
+| 2026-03-02 09:06:01 | TodoWrite            | in_progress: Push all commits to GitHub |
+| 2026-03-02 09:06:09 | Bash                 | ~/bin/gh auth setup-git 2>/dev/null; git push origin main 2>&1 |
+| 2026-03-02 09:06:13 | TodoWrite            | in_progress: Build fresh .dmg (npm run tauri build) |
+| 2026-03-02 09:07:58 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" npm run tauri build 2>&1 |
+| 2026-03-02 09:08:41 | Write                | TESTING.md |
+| 2026-03-02 09:08:49 | Bash                 | git add TESTING.md && git commit -m "$(cat <<'EOF' Add TESTING.md beta testing guide  Inst... |
+| 2026-03-02 09:08:54 | TodoWrite            | in_progress: Create GitHub Release v0.9.0-beta + attach .dmg |
+| 2026-03-02 09:09:57 | Bash                 | ~/bin/gh release create v0.9.0-beta \   "/Users/baltmac/Projects/ai-governance-tool/src-ta... |
+| 2026-03-02 09:10:01 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 09:10:25 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-02 10:31:01 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ind... |
+| 2026-03-02 10:31:02 | Task                 | Final session memory update |
+| 2026-03-02 11:03:31 | Bash                 | tail -80 /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md |
+| 2026-03-02 11:03:35 | Task                 | Read session log tail |
+| 2026-03-02 11:16:15 | Bash                 | grep -rn "Financial\|Technology\|Manufacturing\|Retail\|Telecom\|Government" /Users/baltma... |
+| 2026-03-02 11:16:15 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src/data/industry-regulations -name "*.jso... |
+| 2026-03-02 11:16:15 | Bash                 | grep -n "id:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimenter-q... |
+| 2026-03-02 11:16:18 | Bash                 | grep -A 30 -B 5 "Financial\|Technology\|Manufacturing" /Users/baltmac/Projects/ai-governan... |
+| 2026-03-02 11:16:18 | Bash                 | ls -la /Users/baltmac/Projects/ai-governance-tool/src/data/industry-regulations/ 2>/dev/nu... |
+| 2026-03-02 11:16:21 | Bash                 | grep -n "industrytoCdnKey\|Energy\|Utilities" /Users/baltmac/Projects/ai-governance-tool/s... |
+| 2026-03-02 11:16:21 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool -name "*energy*" -o -name "industry-regula... |
+| 2026-03-02 11:16:22 | Bash                 | head -100 /Users/baltmac/Projects/ai-governance-tool/docs/cdn-content/industry-regulations... |
+| 2026-03-02 11:16:30 | Task                 | Check industry dropdown values and JSON structure |
+| 2026-03-02 11:16:59 | Bash                 | grep -n "industryToCdnKey\|Financial\|Telecom\|Retail\|Manufactur\|Government\|Technology"... |
+| 2026-03-02 11:17:00 | Bash                 | sed -n '141,160p' /Users/baltmac/Projects/ai-governance-tool/src/services/contentService.t... |
+| 2026-03-02 11:17:02 | Bash                 | grep -n "INDUSTRY_CDN_KEYS" /Users/baltmac/Projects/ai-governance-tool/src/services/conten... |
+| 2026-03-02 11:17:04 | Bash                 | sed -n '131,143p' /Users/baltmac/Projects/ai-governance-tool/src/services/contentService.t... |
+| 2026-03-02 11:17:06 | Task                 | Check industryToCdnKey function |
+| 2026-03-02 13:45:48 | TodoWrite            | in_progress: Extract question IDs + text from all 4 question banks |
+| 2026-03-02 13:46:00 | Bash                 | grep -E "^\s+id:|^\s+text:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/... |
+| 2026-03-02 13:46:00 | Bash                 | grep -E "^\s+id:|^\s+text:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/... |
+| 2026-03-02 13:46:00 | Bash                 | grep -E "^\s+id:|^\s+text:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/... |
+| 2026-03-02 13:46:00 | Bash                 | grep -E "^\s+id:|^\s+text:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/... |
+| 2026-03-02 13:47:19 | Task                 | Extract question IDs and text from all 4 question banks |
+| 2026-03-02 13:52:32 | TodoWrite            | in_progress: Generate financial-services.json (targeted, ~32 entries) |
+| 2026-03-02 13:52:38 | Read                 | src/services/contentService.ts |
+| 2026-03-02 13:52:38 | Read                 | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 13:57:48 | Write                | docs/cdn-content/industry-regulations/financial-services.json |
+| 2026-03-02 13:57:56 | TodoWrite            | in_progress: Generate technology.json (targeted, ~32 entries) |
+| 2026-03-02 13:59:44 | Write                | docs/cdn-content/industry-regulations/technology.json |
+| 2026-03-02 13:59:55 | TodoWrite            | in_progress: Update contentService.ts (add 2 new CDN keys + section comments) |
+| 2026-03-02 14:00:11 | Edit                 | src/services/contentService.ts |
+| 2026-03-02 14:00:22 | Edit                 | src/services/contentService.ts |
+| 2026-03-02 14:00:31 | Write                | docs/cdn-content/industry-regulations/manifest.json |
+| 2026-03-02 14:00:39 | TodoWrite            | in_progress: Upload JSON files to R2 CDN |
+| 2026-03-02 14:00:57 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && \ PATH="/Users/baltmac/.nvm/versions/node... |
+| 2026-03-02 14:03:25 | Bash                 | \ PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" \ npx wrangler r2 object put... |
+| 2026-03-02 14:03:58 | Bash                 | \ PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" \ npx wrangler r2 object put... |
+| 2026-03-02 14:04:14 | Bash                 | \ PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" && \ \ PATH="/Users/baltmac/... |
+| 2026-03-02 14:04:19 | Bash                 | git add \   docs/cdn-content/industry-regulations/financial-services.json \   docs/cdn-con... |
+| 2026-03-02 14:04:31 | Bash                 | git commit -m "$(cat <<'EOF' Add Financial Services and Technology industry regulatory con... |
+| 2026-03-02 14:04:36 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 14:12:40 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src/App.tsx |
+| 2026-03-02 14:12:46 | Task                 | Read App.tsx initialization flow |
+| 2026-03-02 14:12:56 | Read                 | src/App.tsx |
+| 2026-03-02 14:13:50 | TodoWrite            | in_progress: Create LoadingScreen component with logo and progress bar |
+| 2026-03-02 14:14:13 | Write                | src/components/LoadingScreen.tsx |
+| 2026-03-02 14:14:19 | TodoWrite            | in_progress: Update App.tsx to use LoadingScreen with staged progress |
+| 2026-03-02 14:14:40 | Edit                 | src/App.tsx |
+| 2026-03-02 14:14:46 | TodoWrite            | in_progress: TypeScript check and local commit |
+| 2026-03-02 14:15:25 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && \ PATH="/Users/baltmac/.nvm/versions/node... |
+| 2026-03-02 14:15:50 | Bash                 | \ git add src/components/LoadingScreen.tsx src/App.tsx && \ git commit -m "$(cat <<'EOF' A... |
+| 2026-03-02 14:15:55 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 14:21:01 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status && git log --oneline -5 2>&1 |
+| 2026-03-02 14:21:19 | Bash                 | ~/bin/gh auth setup-git 2>&1 && git push origin main 2>&1 |
+| 2026-03-02 14:22:57 | Bash                 | \ PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" \ npm run tauri build 2>&1 |
+| 2026-03-02 14:28:05 | Read                 | src/App.tsx |
+| 2026-03-02 14:28:34 | Edit                 | src/App.tsx |
+| 2026-03-02 14:28:45 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && \ PATH="/Users/baltmac/.nvm/versions/node... |
+| 2026-03-02 14:29:01 | Bash                 | \ git add src/App.tsx && \ git commit -m "$(cat <<'EOF' Fix Rules of Hooks violation in Ap... |
+| 2026-03-02 14:30:31 | Bash                 | \ PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" \ npm run tauri build 2>&1 |
+| 2026-03-02 14:30:40 | Bash                 | ~/bin/gh auth setup-git 2>&1 && git push origin main 2>&1 |
+| 2026-03-02 14:38:36 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -8 |
+| 2026-03-02 14:38:36 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status |
+| 2026-03-02 14:38:36 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git diff origin/main HEAD |
+| 2026-03-02 14:38:37 | Bash                 | grep -n "useEffect\|if (isInitializing\|All hooks" /Users/baltmac/Projects/ai-governance-t... |
+| 2026-03-02 14:38:38 | Bash                 | grep -n "Financial Services\|Technology\|Energy\|Healthcare" /Users/baltmac/Projects/ai-go... |
+| 2026-03-02 14:38:38 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/LoadingScreen.tsx |
+| 2026-03-02 14:38:39 | Bash                 | ls -la /Users/baltmac/Projects/ai-governance-tool/docs/cdn-content/industry-regulations/ |
+| 2026-03-02 14:38:51 | Task                 | Review GitHub state and key files for correctness |
+| 2026-03-02 14:39:27 | Grep                 | pattern='wrangler' in .gitignore |
+| 2026-03-02 14:39:36 | Read                 | .gitignore |
+| 2026-03-02 14:39:42 | Edit                 | .gitignore |
+| 2026-03-02 14:39:53 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && \ git add .gitignore && \ git commit -m "... |
+| 2026-03-02 15:17:15 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 15:17:51 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -10 |
+| 2026-03-02 15:17:53 | Grep                 | pattern='INDUSTRY_CDN_KEYS' in src/services/contentService.ts |
+| 2026-03-02 15:17:56 | Read                 | src/services/contentService.ts |
+| 2026-03-02 15:17:57 | Bash                 | git show --stat 931c54b |
+| 2026-03-02 15:18:22 | Bash                 | git show --stat a10e9f3 && echo "---" && git show --stat 7b4cda7 |
+| 2026-03-02 15:26:43 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-02 15:26:46 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:26:47 | Bash                 | grep -n "formatGapTitle\|blindSpot\|gapTitle\|No a\|Not yet" /Users/baltmac/Projects/ai-go... |
+| 2026-03-02 15:27:02 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:27:08 | Bash                 | grep -n "generateProPDF\|COVER\|cover\|PRO REPORT\|Generated\|orgName\|pageWidth.*2\|margi... |
+| 2026-03-02 15:27:11 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:27:53 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:27:54 | Bash                 | grep -n "OrganizationProfile\|orgSize\|industry\|primaryLocation\|aiMaturity\|deploymentTi... |
+| 2026-03-02 15:27:59 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:28:01 | Bash                 | grep -n "OrganizationProfile\|orgSize\|industry\|primaryLocation\|aiMaturity\|deploymentTi... |
+| 2026-03-02 15:28:04 | Read                 | src/types/assessment.ts |
+| 2026-03-02 15:28:58 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:30:10 | TodoWrite            | in_progress: Fix formatGapTitle() grammar (No a / No an) |
+| 2026-03-02 15:31:02 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:31:29 | Bash                 | grep -c "—\|–" /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts /Users/ba... |
+| 2026-03-02 15:31:32 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -rn "—\|–" src/utils/pdfExport.ts sr... |
+| 2026-03-02 15:31:43 | Bash                 | find src/data -name "*.ts" | xargs grep -l "—\|–" 2>/dev/null && echo "---" && find src/da... |
+| 2026-03-02 15:32:27 | TodoWrite            | in_progress: Fix formatGapTitle() grammar (No a / No an) |
+| 2026-03-02 15:32:39 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:32:44 | TodoWrite            | in_progress: Add pdfText() helper for em dash removal and apply throughout |
+| 2026-03-02 15:32:51 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:02 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:06 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:13 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:20 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:25 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:33 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:42 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:51 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:33:56 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:34:05 | TodoWrite            | in_progress: Add org profile fields to Pro PDF cover page |
+| 2026-03-02 15:34:14 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:34:20 | TodoWrite            | in_progress: Fix risk bars overlap with footer (rowH 9→8) |
+| 2026-03-02 15:34:25 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:34:29 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:34:34 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:35:04 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:35:13 | TodoWrite            | in_progress: Fix all long text wrapping (title lines + general audit) |
+| 2026-03-02 15:35:18 | Bash                 | grep -n "doc\.text(" /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts | g... |
+| 2026-03-02 15:35:22 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:35:26 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:35:48 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:35:52 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 15:36:04 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" node ./node_modules/.bin/tsc -... |
+| 2026-03-02 15:36:13 | TodoWrite            | in_progress: Commit all PDF fixes |
+| 2026-03-02 15:36:36 | Bash                 | git add src/utils/pdfExport.ts && git commit -m "$(cat <<'EOF' Fix Pro PDF cover page layo... |
+| 2026-03-02 15:36:41 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 17:53:29 | Read                 | docs/session-log.md |
+| 2026-03-02 17:53:29 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 17:53:40 | Task                 | Read session state files |
+| 2026-03-02 17:53:43 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-02 18:37:53 | Read                 | src/services/contentService.ts |
+| 2026-03-02 18:37:55 | Read                 | src/services/contentService.ts |
+| 2026-03-02 18:38:00 | Glob                 | **/BlindSpotsList.tsx |
+| 2026-03-02 18:38:02 | Read                 | src/components/dashboard/BlindSpotsList.tsx |
+| 2026-03-02 18:38:32 | Task                 | Read PDF and industry integration files |
+| 2026-03-02 18:39:00 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/**/pdfExport.ts |
+| 2026-03-02 18:39:01 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 18:39:14 | Task                 | Read pdfExport regulatory section |
+| 2026-03-02 18:42:20 | Bash                 | echo " ## Session 22/23 — Pre-feedback notes (2026-03-02)  ### CONFIRMED: BlindSpotsList.t... |
+| 2026-03-02 18:42:30 | Bash                 | grep -n "Model usage" "/Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md" |
+| 2026-03-02 18:42:33 | Bash                 | sed -n '71,75p' "/Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md" |
+| 2026-03-02 18:42:38 | Bash                 | cat > /tmp/pdf_rule.txt << 'EOF' - **PDF sharing rule (PERMANENT)**: NEVER load PDF files ... |
+| 2026-03-02 18:42:41 | Bash                 | sed -n '71,76p' "/Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md" |
+| 2026-03-02 18:42:43 | Task                 | Update memory with PDF workflow rule |
+| 2026-03-02 18:54:17 | Bash                 | ls -la "/Users/baltmac/Projects/ai-governance-tool/" | head -20 |
+| 2026-03-02 18:54:18 | Bash                 | find "/Users/baltmac/Projects/ai-governance-tool/src" -name "pdfExport*" -o -name "scoring... |
+| 2026-03-02 18:54:20 | Read                 | src/utils/scoring.ts |
+| 2026-03-02 18:54:20 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-02 18:54:20 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 18:54:24 | Grep                 | pattern='Gap Area|formatGapTitle' in src/utils/pdfExport.ts |
+| 2026-03-02 18:54:27 | Bash                 | grep -n "interface BlindSpot\|type BlindSpot\|export.*BlindSpot" /Users/baltmac/Projects/a... |
+| 2026-03-02 18:54:27 | Read                 | src/types/assessment.ts |
+| 2026-03-02 18:54:29 | Read                 | src/types/assessment.ts |
+| 2026-03-02 18:54:52 | Task                 | Read Gap Area and blind spot generation code |
+| 2026-03-02 18:56:19 | Glob                 | **/pdfExport.ts |
+| 2026-03-02 18:56:21 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 18:56:58 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 18:57:03 | Grep                 | pattern='acceptable use policy|incident response plan|How frequently|Do employees have' in src/data/questions |
+| 2026-03-02 18:57:05 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-02 18:57:06 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-02 18:57:06 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-02 18:57:07 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-02 18:57:07 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-02 18:57:07 | Read                 | src/data/questions/innovator-questions.ts |
+| 2026-03-02 18:57:08 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-02 18:57:08 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-02 18:57:19 | Task                 | Find specific question text in banks |
+| 2026-03-02 18:58:05 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:00:14 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:05:17 | TodoWrite            | in_progress: Fix formatGapTitle() — add missing patterns + safety net in pdfExport.ts |
+| 2026-03-02 19:05:52 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:06:09 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:06:32 | TodoWrite            | in_progress: Fix Page 1 risk bars bottom overlap (startY 236→230) |
+| 2026-03-02 19:06:43 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:06:47 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:06:57 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:07:03 | TodoWrite            | in_progress: Improve Recommended Actions page break logic |
+| 2026-03-02 19:07:07 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:07:15 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-02 19:07:29 | TodoWrite            | in_progress: Fix BlindSpotsList.tsx — primaryLocation → industry |
+| 2026-03-02 19:07:32 | Read                 | src/components/dashboard/BlindSpotsList.tsx |
+| 2026-03-02 19:07:41 | TodoWrite            | in_progress: Commit all fixes locally |
+| 2026-03-02 19:07:53 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-02 19:07:56 | Bash                 | git diff --stat && git log --oneline -3 |
+| 2026-03-02 19:08:12 | Bash                 | git add src/utils/pdfExport.ts docs/CURRENT-SESSION.md && git commit -m "$(cat <<'EOF' Fix... |
+| 2026-03-02 19:08:19 | TodoWrite            | in_progress: (none) |
+| 2026-03-02 19:08:29 | Bash                 | echo " ## Session 22/23 continued — PDF fixes committed (486e582, 2026-03-02)  ### Committ... |
+| 2026-03-03 09:02:08 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline origin/main..HEAD |
+| 2026-03-03 09:10:23 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-03 09:10:38 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -5 && echo "---" && git... |
+| 2026-03-03 09:10:47 | Bash                 | ~/bin/gh auth setup-git 2>&1 && git push origin main 2>&1 |
+| 2026-03-03 09:14:08 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" npm run tauri build 2>&1 |
+| 2026-03-03 16:33:41 | Bash                 | grep -n "Generated\|orgName\|industry\|orgSize\|primaryLocation\|maturityLevel\|profile\."... |
+| 2026-03-03 16:33:46 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:34:19 | Bash                 | grep -n "generateProPDF" /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts... |
+| 2026-03-03 16:34:21 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:34:28 | Bash                 | grep -n "function drawRiskBars\|barHeight\|barSpacing\|startY\|rowH" /Users/baltmac/Projec... |
+| 2026-03-03 16:34:30 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:38:04 | Bash                 | grep -n "drawRiskBars" /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-03 16:38:20 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:38:39 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:38:43 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:38:54 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-03 16:39:07 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-03 16:40:47 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" npm run tauri build 2>&1 |
+| 2026-03-03 19:06:24 | Write                | ~/.claude/projects/-Users-baltmac/memory/ai-governance-concepts.md |
+| 2026-03-03 19:06:33 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-03 19:06:39 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-03 19:13:04 | Write                | ~/.claude/projects/-Users-baltmac/memory/roi-framework.md |
+| 2026-03-03 19:13:22 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-03 19:13:29 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 09:25:48 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-04 09:27:32 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add src/utils/pdfExport.ts && git com... |
+| 2026-03-04 09:27:43 | Bash                 | git push origin main 2>&1 |
+| 2026-03-04 09:28:23 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-04 09:29:07 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -5 && echo "---" && git... |
+| 2026-03-04 09:29:12 | Bash                 | git log --oneline origin/main..HEAD 2>/dev/null || echo "cannot compare" |
+| 2026-03-04 10:11:30 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -type f -name "*.tsx" | sort |
+| 2026-03-04 10:11:32 | Bash                 | ls -la /Users/baltmac/Projects/ai-governance-tool/src/ | head -30 |
+| 2026-03-04 10:11:36 | Task                 | List component files for screen mapping |
+| 2026-03-04 10:14:42 | Write                | ~/.claude/projects/-Users-baltmac/memory/ui-design-system.md |
+| 2026-03-04 10:14:44 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:14:50 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:14:55 | Task                 | Save UI/UX design decisions to memory |
+| 2026-03-04 10:15:13 | TodoWrite            | in_progress: Phase 1: Design tokens — index.css + tailwind.config.js |
+| 2026-03-04 10:15:17 | Read                 | src/index.css |
+| 2026-03-04 10:15:20 | Read                 | index.html |
+| 2026-03-04 10:15:20 | Read                 | src/components/LoadingScreen.tsx |
+| 2026-03-04 10:15:22 | Glob                 | tailwind.config* |
+| 2026-03-04 10:16:37 | Edit                 | src/index.css |
+| 2026-03-04 10:16:42 | TodoWrite            | in_progress: Phase 2: Loading screen — index.html + LoadingScreen.tsx |
+| 2026-03-04 10:17:06 | Write                | src/components/LoadingScreen.tsx |
+| 2026-03-04 10:17:19 | Edit                 | index.html |
+| 2026-03-04 10:17:33 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 10:17:43 | Bash                 | git add src/index.css src/components/LoadingScreen.tsx index.html && git commit -m "$(cat ... |
+| 2026-03-04 10:17:46 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 10:18:37 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git push 2>&1 |
+| 2026-03-04 10:18:59 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-04 10:19:09 | Read                 | ~/.claude/projects/-Users-baltmac/memory/ui-design-system.md |
+| 2026-03-04 10:19:13 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/ui-design-system.md |
+| 2026-03-04 10:19:16 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/ui-design-system.md |
+| 2026-03-04 10:19:19 | Task                 | Update memory with Phase 5 progress |
+| 2026-03-04 10:19:50 | Read                 | ~/.claude/projects/-Users-baltmac/memory/ui-design-system.md |
+| 2026-03-04 10:19:53 | Glob                 | **/AppLayout.tsx |
+| 2026-03-04 10:19:54 | Glob                 | **/ProgressStepper.tsx |
+| 2026-03-04 10:19:54 | Glob                 | **/WelcomePage.tsx |
+| 2026-03-04 10:19:56 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-04 10:19:57 | Read                 | src/components/layout/ProgressStepper.tsx |
+| 2026-03-04 10:19:57 | Read                 | src/components/wizard/WelcomePage.tsx |
+| 2026-03-04 10:24:08 | Read                 | src/index.css |
+| 2026-03-04 10:24:15 | Glob                 | src/index.css |
+| 2026-03-04 10:24:15 | Glob                 | tailwind.config* |
+| 2026-03-04 10:24:19 | Glob                 | *.css |
+| 2026-03-04 10:24:20 | Glob                 | *.config.* |
+| 2026-03-04 10:24:25 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.css" 2>/dev/null | head -20 |
+| 2026-03-04 10:24:28 | Read                 | src/index.css |
+| 2026-03-04 10:29:44 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 10:29:55 | TodoWrite            | in_progress: Update MEMORY.md — add logo + unique name to Things Not Yet Built |
+| 2026-03-04 10:30:22 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:30:36 | Grep                 | pattern='Things Not Yet Built' in /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:30:51 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:31:01 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 10:31:19 | TodoWrite            | in_progress: Edit AppLayout.tsx — dark-base header/footer, conditional dark/light main layout |
+| 2026-03-04 10:32:24 | Write                | src/components/layout/AppLayout.tsx |
+| 2026-03-04 10:32:33 | TodoWrite            | in_progress: Edit ProgressStepper.tsx — design system colors + subtle bridge element |
+| 2026-03-04 10:32:49 | Write                | src/components/layout/ProgressStepper.tsx |
+| 2026-03-04 10:33:30 | TodoWrite            | in_progress: Edit WelcomePage.tsx — dark hero, radial gradient, grid overlay, dark cards |
+| 2026-03-04 10:33:49 | Write                | src/components/wizard/WelcomePage.tsx |
+| 2026-03-04 10:33:56 | TodoWrite            | in_progress: Run TypeScript check to verify no errors |
+| 2026-03-04 10:34:22 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 10:34:27 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 10:45:46 | Glob                 | **/LoadingScreen.tsx |
+| 2026-03-04 10:45:46 | Glob                 | **/App.tsx |
+| 2026-03-04 10:45:50 | Read                 | src/components/LoadingScreen.tsx |
+| 2026-03-04 10:45:50 | Read                 | src/App.tsx |
+| 2026-03-04 10:46:09 | Glob                 | **/db.ts |
+| 2026-03-04 10:46:11 | Read                 | src/services/db.ts |
+| 2026-03-04 10:54:12 | Read                 | src/services/contentService.ts |
+| 2026-03-04 10:55:24 | Glob                 | tauri.conf.json |
+| 2026-03-04 10:55:29 | Bash                 | grep -i "identifier\|bundle\|productName" /Users/baltmac/Projects/ai-governance-tool/src-t... |
+| 2026-03-04 10:56:02 | Bash                 | find ~/Library/Application\ Support/com.baltaguilar-tech.ai-governance-tool -name "*.db" 2... |
+| 2026-03-04 10:56:22 | Edit                 | src/services/db.ts |
+| 2026-03-04 10:56:28 | Bash                 | rm "/Users/baltmac/Library/Application Support/com.baltaguilar-tech.ai-governance-tool/gov... |
+| 2026-03-04 11:02:51 | Bash                 | ls -la "/Users/baltmac/Library/Application Support/com.baltaguilar-tech.ai-governance-tool... |
+| 2026-03-04 11:08:36 | Write                | ~/.claude/plans/reflective-seeking-trinket.md |
+| 2026-03-04 11:09:05 | ExitPlanMode         | {'plan': "# Plan: Fix React Strict Mode Race Condition in App.tsx\n\n## Context\... |
+| 2026-03-04 11:09:25 | Edit                 | src/App.tsx |
+| 2026-03-04 11:18:56 | TodoWrite            | in_progress: Commit all Phase 3+4 work + bug fixes to git |
+| 2026-03-04 11:19:02 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status && git diff --stat HEAD |
+| 2026-03-04 11:19:23 | Bash                 | git add src/App.tsx src/components/layout/AppLayout.tsx src/components/layout/ProgressStep... |
+| 2026-03-04 11:19:30 | Bash                 | ~/bin/gh auth setup-git 2>/dev/null; git push |
+| 2026-03-04 11:19:35 | TodoWrite            | in_progress: Update MEMORY.md with cleanup notes + session progress |
+| 2026-03-04 11:19:55 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 11:20:05 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 11:20:12 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-04 11:20:15 | Task                 | Update MEMORY.md session progress and dev cleanup notes |
+| 2026-03-04 11:20:46 | TodoWrite            | in_progress: Assess Phase 5 file sizes and decide session continuity |
+| 2026-03-04 11:21:01 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/wizard/ProfileStep.tsx /Us... |
+| 2026-03-04 11:21:11 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 11:22:44 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-04 11:22:44 | Read                 | src/components/wizard/ProfileStep.tsx |
+| 2026-03-04 11:28:11 | TodoWrite            | in_progress: Read assessmentStore to understand structure before adding goToStep |
+| 2026-03-04 11:28:16 | Glob                 | **/assessmentStore.ts |
+| 2026-03-04 11:28:19 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-04 11:30:15 | TodoWrite            | in_progress: Update ProgressStepper — dark bg, clickable steps (back only) |
+| 2026-03-04 11:30:34 | Write                | src/components/layout/ProgressStepper.tsx |
+| 2026-03-04 11:31:00 | TodoWrite            | in_progress: Update ProfileStep — design tokens + sticky nav |
+| 2026-03-04 11:32:00 | Write                | src/components/wizard/ProfileStep.tsx |
+| 2026-03-04 11:32:12 | TodoWrite            | in_progress: Update DimensionStep — design tokens + sticky nav |
+| 2026-03-04 11:32:34 | Write                | src/components/wizard/DimensionStep.tsx |
+| 2026-03-04 11:32:59 | TodoWrite            | in_progress: Update AppLayout — settings click-away on main content |
+| 2026-03-04 11:33:04 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-04 11:33:10 | TodoWrite            | in_progress: TypeScript check + commit + push |
+| 2026-03-04 11:37:30 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 11:37:48 | Bash                 | git add src/components/layout/AppLayout.tsx src/components/layout/ProgressStepper.tsx src/... |
+| 2026-03-04 11:37:55 | Bash                 | ~/bin/gh auth setup-git 2>/dev/null; git push |
+| 2026-03-04 11:37:58 | TodoWrite            | in_progress: (none) |
+| 2026-03-04 11:53:23 | Glob                 | **/pdf*.ts |
+| 2026-03-04 11:53:23 | Glob                 | **/*.ts |
+| 2026-03-04 11:53:29 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts /Users/baltmac/Pro... |
+| 2026-03-04 11:53:47 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:53:47 | Read                 | src/utils/executiveSummary.ts |
+| 2026-03-04 11:55:45 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:55:49 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:55:53 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:56:47 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:56:55 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:03 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:10 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:18 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:25 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:31 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 11:57:42 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 11:58:52 | Bash                 | echo "- [x] PDF improvements: exec summary font 8.5→9.5, paraGap 6→3, lineH 5→5.5; orphane... |
+| 2026-03-04 12:01:45 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:01:45 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:01:57 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:02:02 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:02:11 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 12:05:16 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:05:21 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-04 12:05:30 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-04 12:07:38 | Bash                 | tail -60 /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md |
+| 2026-03-04 12:07:47 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && ~/bin/gh log --oneline -15 2>/dev/null ||... |
+| 2026-03-04 12:07:50 | Bash                 | git status |
+| 2026-03-04 12:07:54 | Read                 | docs/remote-content-plan.md |
+| 2026-03-04 12:10:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git diff --stat |

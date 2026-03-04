@@ -209,12 +209,12 @@ function drawExecSummaryText(
 ): number {
   const textW = pageWidth - margin * 2;
   let y = startY;
-  const lineH = 5;
-  const paraGap = 6;
+  const lineH = 5.5;
+  const paraGap = 3;
   const bodyColor: [number, number, number] = darkMode ? [155, 179, 200] : [51, 78, 104];
 
   for (const para of [para1, para2, para3]) {
-    doc.setFontSize(8.5);
+    doc.setFontSize(9.5);
     doc.setTextColor(...bodyColor);
     const lines = doc.splitTextToSize(pdfText(para), textW);
     doc.text(lines, margin, y);
@@ -580,37 +580,46 @@ export async function generateProPDF(
 
     // Action blocks below table — one per blind spot, full text, readable
     let actionY = (doc as any).lastAutoTable.finalY + 8;
-    doc.setFontSize(9);
-    doc.setTextColor(16, 42, 67);
-    doc.text('Recommended Actions', margin, actionY);
-    actionY += 5;
+    // Prevent orphaned heading: ensure at least 60mm remain for heading + first item
+    if (actionY > pageHeight - 60) {
+      doc.addPage();
+      actionY = 20;
+    }
+    // Header band — matches dimension section style
+    const raBandH = 18;
+    doc.setFillColor(16, 42, 67);
+    doc.rect(0, actionY, pageWidth, raBandH, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(255, 255, 255);
+    doc.text('Recommended Actions', margin, actionY + 12);
+    actionY += raBandH + 4;
 
     for (let i = 0; i < blindSpots.length; i++) {
       const bs = blindSpots[i];
       const textW = pageWidth - margin * 2;
 
       // Pre-calculate line counts so we can do a single accurate page-break check
-      doc.setFontSize(8);
+      doc.setFontSize(9);
       const titleText = pdfText(`${i + 1}. ${formatGapTitle(bs.title)} (${bs.severity} - ${bs.score}/100)`);
       const titleLines = doc.splitTextToSize(titleText, textW);
-      doc.setFontSize(7.5);
+      doc.setFontSize(8.5);
       const actionLines = doc.splitTextToSize(pdfText(bs.immediateAction), textW);
-      const itemHeight = titleLines.length * 5 + actionLines.length * 4.5 + 10;
+      const itemHeight = titleLines.length * 5.5 + actionLines.length * 5 + 10;
 
       if (actionY + itemHeight > pageHeight - 18) {
         doc.addPage();
         actionY = 20;
       }
 
-      doc.setFontSize(8);
+      doc.setFontSize(9);
       doc.setTextColor(185, 28, 28);
       doc.text(titleLines, margin, actionY);
-      actionY += titleLines.length * 5;
+      actionY += titleLines.length * 5.5;
 
-      doc.setFontSize(7.5);
+      doc.setFontSize(8.5);
       doc.setTextColor(120, 80, 0);
       doc.text(actionLines, margin, actionY);
-      actionY += actionLines.length * 4.5 + 6;
+      actionY += actionLines.length * 5 + 2;
     }
   }
 
@@ -677,10 +686,10 @@ export async function generateProPDF(
         headStyles: {
           fillColor: [30, 58, 95],
           textColor: [255, 255, 255],
-          fontSize: 8,
+          fontSize: 9,
           fontStyle: 'bold',
         },
-        bodyStyles: { fontSize: 8, textColor: [60, 85, 110] },
+        bodyStyles: { fontSize: 9, textColor: [60, 85, 110] },
         columnStyles: {
           0: { cellWidth: 18, halign: 'center' },
           1: { cellWidth: pageWidth - margin * 2 - 18 },
@@ -708,7 +717,7 @@ export async function generateProPDF(
           startY: yPos,
           body: [[`Action: ${pdfText(action)}`]],
           bodyStyles: {
-            fontSize: 7,
+            fontSize: 8,
             textColor: [120, 80, 0],
             fillColor: [255, 251, 235],
             cellPadding: { top: 2.5, right: 4, bottom: 2.5, left: 4 },
@@ -733,7 +742,7 @@ export async function generateProPDF(
             startY: yPos,
             body: [[`${pdfText(regContext.citation)}: ${pdfText(regContext.action)}`]],
             bodyStyles: {
-              fontSize: 7,
+              fontSize: 8,
               textColor: [30, 39, 97],
               fillColor: [202, 220, 252],
               cellPadding: { top: 2.5, right: 4, bottom: 2.5, left: 4 },
