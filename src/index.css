@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* Midnight Executive color palette */
+/* ── Color System ────────────────────────────────────────────────────── */
 @theme {
+  /* Legacy navy scale — kept for backward compat with existing classes */
   --color-navy-50: #f0f4f8;
   --color-navy-100: #d9e2ec;
   --color-navy-200: #bcccdc;
@@ -13,6 +14,46 @@
   --color-navy-800: #243b53;
   --color-navy-900: #102a43;
   --color-navy-950: #0a1929;
+
+  /* ── Design System v2 ───────────────────────────────────────────────── */
+
+  /* Dark hero surfaces */
+  --color-dark-base: #02093A;
+  --color-dark-surface: #0D1B4B;
+
+  /* Accent palette */
+  --color-accent-blue: #2B5CFF;
+  --color-accent-blue-dark: #1A44CC;
+  --color-accent-green: #00C48C;
+  --color-accent-cyan: #0FFFA9;
+  --color-accent-red: #C50000;
+  --color-accent-orange: #FF6B2B;
+  --color-accent-gold: #FFCE20;
+
+  /* Light content surfaces */
+  --color-light-bg: #F8FAFF;
+  --color-light-text: #111111;
+  --color-light-muted: #555555;
+}
+
+/* ── CSS custom properties (for inline styles + non-Tailwind use) ─────── */
+:root {
+  --dark-base: #02093A;
+  --dark-surface: #0D1B4B;
+  --dark-border: rgba(255, 255, 255, 0.08);
+  --accent-blue: #2B5CFF;
+  --accent-blue-dark: #1A44CC;
+  --accent-green: #00C48C;
+  --accent-cyan: #0FFFA9;
+  --accent-red: #C50000;
+  --accent-orange: #FF6B2B;
+  --accent-gold: #FFCE20;
+  --light-bg: #F8FAFF;
+  --light-text: #111111;
+  --light-muted: #555555;
+  /* Card shadows */
+  --shadow-card-light: 0 2px 16px rgba(0, 0, 0, 0.08);
+  --shadow-card-dark: 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 html, body, #root {
@@ -23,11 +64,12 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--color-navy-50);
-  color: var(--color-navy-900);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--light-bg);
+  color: var(--light-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Scrollbar styling */
@@ -35,12 +77,12 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-navy-100);
+  background: var(--dark-surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-navy-400);
+  background: var(--accent-blue-dark);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-navy-500);
+  background: var(--accent-blue);
 }
