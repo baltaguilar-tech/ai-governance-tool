@@ -9,7 +9,7 @@
 ## Tier 1 — Security & Data Integrity
 > Fix before adding more beta testers. These are silent data-loss or security-exposure risks.
 
-### P1-1 · Scope file system permissions
+### P1-1 · Scope file system permissions ✅ CONFIRMED COMPLETE
 | | |
 |---|---|
 | **File** | `src-tauri/capabilities/default.json` |
@@ -17,10 +17,11 @@
 | **How** | Replace `$HOME/**` with Tauri's scoped `$APPDATA/ai-governance-tool/**`. Audit all other permission grants in the file for over-breadth |
 | **Why** | A compromised CDN response or future XSS could write arbitrary files anywhere on the user's machine. This is the broadest blast-radius security issue in the codebase |
 | **LOE** | XS — 15–30 min |
+| **Status** | Verified session 32 — all paths already scoped to `$APPDATA/ai-governance-tool/**` |
 
 ---
 
-### P1-2 · Fix SQL injection in `markMilestoneFired`
+### P1-2 · Fix SQL injection in `markMilestoneFired` ✅ CONFIRMED COMPLETE
 | | |
 |---|---|
 | **File** | `src/services/db.ts` |
@@ -28,6 +29,7 @@
 | **How** | Validate `days` against a strict whitelist (`[1, 3, 7, 30]`) before using it in the query string. Alternatively, restructure to avoid dynamic column names entirely |
 | **Why** | Structural SQL injection vulnerability. Currently triggered only by app logic, but it's an unacceptable pattern that breaks under any attacker-influenced code path |
 | **LOE** | S — 1 hour |
+| **Status** | Verified session 32 — whitelist `[30, 60, 90]` + early return already in place (db.ts:588–592). TypeScript signature also constrains to `30 \| 60 \| 90`. |
 
 ---
 
@@ -53,7 +55,7 @@
 
 ---
 
-### P1-5 · Validate CDN content before storing
+### P1-5 · Validate CDN content before storing ✅ CONFIRMED COMPLETE
 | | |
 |---|---|
 | **File** | `src/services/contentService.ts` |
@@ -61,6 +63,7 @@
 | **How** | (1) Validate `entry.url` starts with the known R2 base URL before fetching. (2) Reject responses over a size limit (e.g. 500 KB). (3) Validate required JSON fields and value types before writing to SQLite cache |
 | **Why** | A compromised CDN or MITM attack can inject arbitrary content into the app's regulatory guidance cache. Users would see attacker-controlled "compliance guidance" with no indication anything is wrong |
 | **LOE** | S — 1–2 hours |
+| **Status** | Verified session 32 — all three controls in place: CDN domain check (line 108), 500 KB size limit (line 115), `isValidIndustryContent()` schema validation (line 120). |
 
 ---
 
