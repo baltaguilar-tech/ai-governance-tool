@@ -165,3 +165,75 @@ energy-utilities, healthcare, financial-services, technology, manufacturing, gov
 **Commits**: not yet pushed — awaiting user go-ahead.
 
 **Next**: Tier 2 (P2-1 through P2-5) — Scoring & Assessment Accuracy fixes.
+
+## Session 28 — 2026-03-04
+
+**Focus**: Tier 2 — Scoring & Assessment Accuracy (all 5 items complete)
+
+**Work done**:
+- P2-5 · experimenter-questions.ts — Fixed airisks-e-3 option values from 100,35,65,0 → 100,65,35,0. Used Python byte-level surgery (Edit tool introduced curly quotes; git revert + Python value-only swap was the fix). Audited all 4 banks: builder ✓ clean, innovator ✓ values correct (ascending display order is UX inconsistency, not scoring bug), achiever ✓ clean.
+- P2-3 · recommendations.ts — Renamed _licenseTier → licenseTier. Wrapped all 9 paid recommendations in if (licenseTier === 'professional'). Added answered !== false guard to all 11 score-conditional checks (free + paid) so unanswered dimensions (score=0) don't fire spurious recommendations.
+- P2-4 · assessmentStore.ts — Replaced hardcoded prefix map + magic number 10 in canProceed() with getQuestionsForProfile() actual question count. Added DimensionKey to imports.
+- P2-2 · dimensions.ts + pdfExport.ts — Added 46-line weight rationale comment block above DIMENSIONS array. Added methodology disclaimer line to Free PDF footer and multi-line disclaimer to Pro PDF recommendations page.
+- P2-1 · types/assessment.ts + scoring.ts + ResultsDashboard.tsx + DimensionRadar.tsx + pdfExport.ts + recommendations.ts — Added answered:boolean to DimensionScore. calculateDimensionScore returns answered:false,score:0 for zero-answer dims. calculateOverallRisk re-normalizes weights across answered dims. identifyMaturityGaps skips unanswered. ResultsDashboard: gray bar + "Not assessed" badge + "Based on X of 6 dimensions" footnote. DimensionRadar: filter to answered only, subtitle updates. pdfExport: drawRiskBars shows gray N/A bar, both dim tables show "Not assessed"/—, Pro PDF per-dim pages render placeholder with skipped question list.
+
+**TypeScript**: tsc -b tsconfig.app.json --noEmit — clean, no errors.
+
+**Commits**: 9bf97ac pushed to origin/main. All clean.
+
+**Next**: Tier 3 — from docs/project-plan.md
+
+## Session 29 — 2026-03-05
+
+**Focus**: Tier 3 — P3-1, P3-2, P3-3 (all 3 items complete)
+
+**Work done**:
+- P3-3 · ResultsDashboard.tsx — Export button loading state (was already in local diff from prior session). isExportingFree + isExportingPro state; buttons show "Generating..." and disable during PDF creation.
+- P3-2 · assessmentStore.ts + ResultsDashboard.tsx + pdfExport.ts — Added completedAt:string|null to store; set to ISO timestamp in calculateResults(), cleared in resetAssessment(). Dashboard header uses stored timestamp. Both PDF cover pages now say "Assessment completed [date]" using stored timestamp (not new Date()).
+- P3-1 · types/assessment.ts — Added unansweredQuestions:{id,text}[] to DimensionScore interface.
+- P3-1 · scoring.ts — calculateDimensionScore() now tracks all questions with no response into unansweredQuestions (in both answered and unanswered dimension cases).
+- P3-1 · pdfExport.ts Free PDF — Added Page 4 "Open Assessment Items" (Option C copy). Groups unanswered questions by dimension; each question gets a bordered box with "Mitigation Notes:" dotted line. Page only renders if at least one gap exists.
+- P3-1 · pdfExport.ts Pro PDF — "Not assessed" dimension placeholder replaced with per-question bordered Mitigation Notes boxes (with page-break handling). Partially-answered dimensions now get an appended "Open Assessment Items" mini-section after their Q&A content.
+
+**TypeScript**: tsc -b tsconfig.app.json --noEmit — clean, no errors.
+
+**Commits**: d1fb45b pushed to origin/main. All clean.
+
+**Next**: Tier 4 — P4-1 (EU AI Act questions), P4-2 ($67.4B stat fix), P4-3 (deep link crash). Then Pre-Go-Live gate items.
+
+## Session 30 — P4-1 (EU AI Act questions) — 2026-03-05
+
+**Goal**: Add 3 EU-jurisdiction-gated questions to aiSpecificRisks dimension across all 4 profile banks.
+
+**Changes (commit 411f466)**:
+- experimenter-questions.ts: airisks-e-11/12/13 (EU AI Act awareness, Annex III recognition, human override)
+- builder-questions.ts: risk-b-11/12/13 (Annex III mapping, vendor conformity docs, written oversight procedures)
+- innovator-questions.ts: airisk-i-11/12/13 (classification review, conformity assessment, enforced human oversight)
+- achiever-questions.ts: airisk-a-11/12/13 (classification in governance gates, audit-ready conformity, tested/logged oversight)
+
+**TypeScript**: tsc -b tsconfig.app.json --noEmit — clean, no errors.
+
+**Note**: jurisdictions: ['eu'] field already wired in Question type + index.ts filtering.
+
+**Next**: P4-2 already done (2d7b6a4). P4-3 (deep link crash). Then Pre-Go-Live gate items.
+
+## Session 32 — Phase 5 Wizard UI (ProfileStep + DimensionStep) — 2026-03-05
+
+**Goal**: Visual/UX redesign of ProfileStep.tsx and DimensionStep.tsx — zero logic/store changes.
+
+**ProfileStep changes**:
+- Two section headers: "About Your Organization" (fields 1–5) + "Your AI Program" (fields 6–10)
+- Required badge chips on Org Name, Industry, Organization Size (replaced red asterisks)
+- Optional note under Section 2 header
+
+**DimensionStep changes**:
+- Lucide icon (w-7 h-7 text-accent-blue) left of dimension h2 via DIMENSION_ICONS map
+- 10 numbered dot progress track (green=answered, blue=first unanswered, white=unanswered); clicking scrolls to question-{i}
+- Full pill button answer options with indicator dot inside (filled/bordered)
+- Secondary progress text preserved below dots
+
+**TypeScript**: tsc -b tsconfig.app.json --noEmit — clean, no errors.
+
+**Decisions logged**: decisions.md updated with Phase 5 UI design decisions.
+
+**Status**: Code complete, not yet committed. Awaiting user approval.

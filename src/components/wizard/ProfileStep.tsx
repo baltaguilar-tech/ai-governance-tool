@@ -19,6 +19,22 @@ const PRIMARY_LOCATION_COUNTRIES = [
   'Brazil', 'Mexico',
 ];
 
+function SectionHeader({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`text-xs font-semibold uppercase tracking-widest text-light-muted border-b border-navy-100 pb-2 mb-6 ${className ?? ''}`}>
+      {children}
+    </div>
+  );
+}
+
+function RequiredBadge() {
+  return (
+    <span className="ml-2 text-xs font-medium text-accent-blue bg-blue-50 rounded px-1.5 py-0.5">
+      Required
+    </span>
+  );
+}
+
 export function ProfileStep() {
   const { profile, updateProfile, nextStep, prevStep, canProceed } = useAssessmentStore();
 
@@ -37,10 +53,13 @@ export function ProfileStep() {
       </p>
 
       <div className="space-y-6">
+        {/* ── Section 1: About Your Organization ── */}
+        <SectionHeader>About Your Organization</SectionHeader>
+
         {/* Organization Name */}
         <div>
           <label className="block text-sm font-medium text-light-text mb-1">
-            Organization Name <span className="text-accent-red">*</span>
+            Organization Name <RequiredBadge />
           </label>
           <input
             type="text"
@@ -54,7 +73,7 @@ export function ProfileStep() {
         {/* Industry */}
         <div>
           <label className="block text-sm font-medium text-light-text mb-1">
-            Industry <span className="text-accent-red">*</span>
+            Industry <RequiredBadge />
           </label>
           <select
             value={profile.industry || ''}
@@ -73,7 +92,7 @@ export function ProfileStep() {
         {/* Company Size */}
         <div>
           <label className="block text-sm font-medium text-light-text mb-1">
-            Organization Size <span className="text-accent-red">*</span>
+            Organization Size <RequiredBadge />
           </label>
           <div className="grid grid-cols-2 gap-3">
             {Object.values(CompanySize).map((size) => (
@@ -146,6 +165,12 @@ export function ProfileStep() {
             />
           )}
         </div>
+
+        {/* ── Section 2: Your AI Program ── */}
+        <SectionHeader className="mt-10">Your AI Program</SectionHeader>
+        <p className="text-xs text-light-muted -mt-4 mb-2">
+          Optional — these fields improve your personalized recommendations.
+        </p>
 
         {/* Operating Regions */}
         <div>

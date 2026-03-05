@@ -106,3 +106,54 @@ Append new decisions here as they're made. Format: date, decision, alternatives 
 **Pro tier:** Full dimension breakdown, all blind spots, customized playbooks, full vendor questionnaire, 5-dimension ROI dashboard, full PDF/DOCX, assessment history
 
 **Rationale:** Let users get full value from the assessment (reduces friction, increases conversion). Monetize on the actionable outputs they need to share with leadership/auditors.
+
+---
+
+## Future Ideas (Not Scheduled)
+
+### Regulatory Intelligence Agent — Architecture Notes (2026-03-05)
+
+**Status:** Not scheduled — do NOT build before first revenue. Architecture evaluated and logged for post-launch revisit.
+
+**Problem:** Regulatory landscape (EU AI Act, GDPR, CCPA, ISO 42001, etc.) evolves continuously. Users need current information to stay compliant.
+
+**Data Acquisition Options (Evaluated):**
+1. **Direct crawl** — fragile (layout changes), legal gray area (terms-of-service violation risk), rate-limit risk — NOT recommended
+2. **Curated human review** — reliable but doesn't scale, requires ongoing user labor
+3. **LLM-assisted hybrid (RECOMMENDED)** — subscribe to RSS/email from governing bodies (e.g., EU portal, NIST updates) → run summaries through Claude → push structured JSON to R2 CDN + update manifest.json
+
+**Content Delivery:** LLM output slots into existing R2 CDN infrastructure + `manifest.json` pattern (low friction). Remote content fetch on app launch already wired for industry-specific questions; same pattern handles regulatory updates.
+
+**UX for Users with Completed Assessments (Unsolved):**
+- **Option A:** "Re-assess affected dimensions" prompt when user opens an old assessment
+- **Option B:** Notification badge on assessment history entry showing "new regulations apply"
+- **Option C:** Separate "What's New in AI Governance" feed in app sidebar
+
+**Monetization:** Live regulatory updates as Pro-tier-only feature; Free tier gets static content from the assessment timestamp.
+
+**Recommended Cadence:**
+- Monthly for regulatory changes (threshold updates, new guidance)
+- Weekly for enforcement announcements (penalties, case studies)
+
+**Decision:** Do NOT build before first revenue. Architecture is logged; revisit post-launch with first-year learnings.
+
+---
+
+## 2026-03-05 — Phase 5 Wizard UI Design (ProfileStep + DimensionStep)
+
+**Decision:** Visual/UX redesign of ProfileStep.tsx and DimensionStep.tsx. Zero logic, scoring, or store changes.
+
+### ProfileStep
+- Two labeled sections: "About Your Organization" (fields 1–5) and "Your AI Program" (fields 6–10)
+- Section header style: `text-xs font-semibold uppercase tracking-widest text-light-muted border-b border-navy-100 pb-2 mb-6`. First section `mt-0`, second `mt-10`
+- Required badge chip (not asterisk) on Org Name, Industry, Organization Size only. Style: `ml-2 text-xs font-medium text-accent-blue bg-blue-50 rounded px-1.5 py-0.5`
+- Section 2 note directly under header: "Optional — these fields improve your personalized recommendations."
+
+### DimensionStep
+- **Icon header:** Lucide icon (w-7 h-7 text-accent-blue) left of dimension label. Map: shadowAI=EyeOff, vendorRisk=Link2, dataGovernance=Database, securityCompliance=ShieldCheck, aiSpecificRisks=Zap, roiTracking=TrendingUp
+- **Progress track:** 10 numbered dots. Answered=bg-accent-green/white text, current(first unanswered)=bg-accent-blue/white text, unanswered=bg-white/border-navy-200/muted text. Clicking dot scrolls to `id="question-{i}"`. Secondary text below: `{n} of {m} answered · answer at least {x} to continue`
+- **Answer options:** Full pill buttons (full-width). Selected: `bg-accent-blue/10 border-accent-blue text-accent-blue font-medium`. Indicator dot inside (filled circle selected, bordered circle unselected) via `flex items-start gap-3`
+- **canContinue threshold:** 50% (`Math.ceil(questions.length / 2)`) — intentional, do not change
+- **WelcomeStep:** Off-limits, deferred to future session
+
+**Status:** Implemented session 32 (2026-03-05). tsc clean. Not yet committed.

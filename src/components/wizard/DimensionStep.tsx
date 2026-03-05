@@ -1,7 +1,17 @@
+import { EyeOff, Link2, Database, ShieldCheck, Zap, TrendingUp } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { DimensionKey, MaturityLevel, OrganizationProfile } from '@/types/assessment';
 import { DIMENSION_MAP } from '@/data/dimensions';
 import { getQuestionsForProfile } from '@/data/questions/index';
+
+const DIMENSION_ICONS: Record<DimensionKey, React.ElementType> = {
+  shadowAI:           EyeOff,
+  vendorRisk:         Link2,
+  dataGovernance:     Database,
+  securityCompliance: ShieldCheck,
+  aiSpecificRisks:    Zap,
+  roiTracking:        TrendingUp,
+};
 
 interface DimensionStepProps {
   dimensionKey: DimensionKey;
@@ -10,6 +20,7 @@ interface DimensionStepProps {
 export function DimensionStep({ dimensionKey }: DimensionStepProps) {
   const { responses, setResponse, nextStep, prevStep, profile } = useAssessmentStore();
   const dimension = DIMENSION_MAP[dimensionKey];
+  const Icon = DIMENSION_ICONS[dimensionKey];
   const allQuestions = getQuestionsForProfile(
     (profile as OrganizationProfile).aiMaturityLevel ?? MaturityLevel.Experimenter,
     (profile as OrganizationProfile).operatingRegions ?? []
@@ -21,6 +32,10 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
   ).length;
 
   const canContinue = answeredCount >= Math.ceil(questions.length / 2);
+
+  const firstUnansweredIndex = questions.findIndex(
+    (q) => !responses.some((r) => r.questionId === q.id)
+  );
 
   return (
     <div>
@@ -34,15 +49,40 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
             Weight: {dimension.weight * 100}%
           </span>
         </div>
-        <h2 className="text-2xl font-bold text-light-text mb-2">{dimension.label}</h2>
+        <div className="flex items-center gap-2 mb-2">
+          <Icon className="w-7 h-7 text-accent-blue" />
+          <h2 className="text-2xl font-bold text-light-text">{dimension.label}</h2>
+        </div>
         <p className="text-light-muted text-sm">{dimension.description}</p>
-        <div className="mt-3 text-xs text-light-muted">
-          {answeredCount}/{questions.length} questions answered
-          {answeredCount < Math.ceil(questions.length / 2) && (
-            <span className="text-accent-orange ml-2">
-              (answer at least {Math.ceil(questions.length / 2)} to continue)
-            </span>
-          )}
+
+        {/* Progress dots */}
+        <div className="mt-4">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {questions.map((q, i) => {
+              const isAnswered = responses.some((r) => r.questionId === q.id);
+              const isCurrent = !isAnswered && i === firstUnansweredIndex;
+              return (
+                <button
+                  key={q.id}
+                  onClick={() =>
+                    document.getElementById('question-' + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
+                    isAnswered
+                      ? 'bg-accent-green text-white'
+                      : isCurrent
+                      ? 'bg-accent-blue text-white'
+                      : 'bg-white border border-navy-200 text-light-muted'
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              );
+            })}
+          </div>
+          <div className="text-xs text-light-muted mt-2">
+            {answeredCount} of {questions.length} answered · answer at least {Math.ceil(questions.length / 2)} to continue
+          </div>
         </div>
       </div>
 
@@ -55,6 +95,7 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
           return (
             <div
               key={question.id}
+              id={'question-' + idx}
               className={`bg-white rounded-xl border p-5 transition-all ${
                 isAnswered
                   ? 'border-accent-green/40 shadow-[0_2px_16px_rgba(0,0,0,0.08)]'
@@ -62,7 +103,7 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
               }`}
             >
               {/* Question header */}
-              <div className="flex items-start gap-3 mb-2">
+              <div className="flex items-start gap-3 mb-3">
                 <span className="text-xs font-semibold text-light-muted bg-navy-100 rounded-full w-6 h-6 flex items-center justify-center shrink-0 mt-0.5">
                   {idx + 1}
                 </span>
@@ -76,7 +117,7 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
                 </div>
               </div>
 
-              {/* Options */}
+              {/* Options — full pill buttons */}
               <div className="ml-9 space-y-2">
                 {question.options?.map((option, optionIndex) => {
                   const selectedIndex = currentResponse !== undefined
@@ -87,22 +128,20 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
                     <button
                       key={`${question.id}-${optionIndex}`}
                       onClick={() => setResponse(question.id, option.value)}
-                      className={`w-full text-left px-4 py-2.5 rounded-lg border text-sm transition-all ${
+                      className={`w-full text-left px-4 py-3 rounded-lg border text-sm transition-colors ${
                         isSelected
-                          ? 'border-accent-blue bg-accent-blue/8 text-accent-blue font-medium'
-                          : 'border-navy-200 bg-navy-50 text-light-text hover:border-navy-300 hover:bg-white'
+                          ? 'bg-accent-blue/10 border-accent-blue text-accent-blue font-medium'
+                          : 'bg-white border-navy-200 text-light-text hover:border-accent-blue/50'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-start gap-3">
                         <div
-                          className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                            isSelected ? 'border-accent-blue' : 'border-navy-300'
+                          className={`w-3 h-3 rounded-full flex-shrink-0 mt-0.5 ${
+                            isSelected
+                              ? 'bg-accent-blue'
+                              : 'border-2 border-navy-300'
                           }`}
-                        >
-                          {isSelected && (
-                            <div className="w-2 h-2 rounded-full bg-accent-blue" />
-                          )}
-                        </div>
+                        />
                         {option.label}
                       </div>
                     </button>
