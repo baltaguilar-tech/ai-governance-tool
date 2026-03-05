@@ -34,8 +34,8 @@ export function WelcomePage() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-dark-surface rounded-xl p-4 border border-white/8">
-            <div className="text-2xl font-bold text-accent-red">$67.4B</div>
-            <div className="text-xs text-white/60 mt-1">Lost to AI hallucinations (2024)</div>
+            <div className="text-2xl font-bold text-accent-red">47%</div>
+            <div className="text-xs text-white/60 mt-1">Enterprise decisions influenced by AI hallucinations (Deloitte, 2024)</div>
           </div>
           <div className="bg-dark-surface rounded-xl p-4 border border-white/8">
             <div className="text-2xl font-bold text-accent-orange">3-5</div>

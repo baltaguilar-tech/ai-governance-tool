@@ -88,7 +88,7 @@ function getFinancialRiskNote(riskLevel: RiskLevel, score: number): string {
     case 'CRITICAL':
       return `Your score of ${score}/100 places you in the Critical risk tier. Organizations at this level face an average AI-related incident cost of $4.4M (IBM Cost of a Data Breach 2024) and potential EU AI Act penalties up to €35M or 7% of worldwide turnover. The recommendations below are sequenced to reduce your highest-exposure risks first.`;
     case 'HIGH':
-      return `Your score of ${score}/100 indicates material governance gaps. The $67.4B in AI hallucination losses recorded in 2024 disproportionately affects organizations without detection and validation controls. Addressing the high-priority items below within 30 days will substantially reduce your exposure window.`;
+      return `Your score of ${score}/100 indicates material governance gaps. Deloitte's 2024 research found that 47% of enterprise AI users made at least one major business decision based on hallucinated content — a risk that disproportionately affects organizations without detection and validation controls. Addressing the high-priority items below within 30 days will substantially reduce your exposure window.`;
     case 'MEDIUM':
       return `Your score of ${score}/100 reflects meaningful progress with addressable gaps. Only 12% of organizations reach "Achiever" governance status — the recommendations below show the specific steps to close the distance. Structured attention on your top two weak dimensions will have the greatest ROI.`;
     case 'LOW':
