@@ -23,7 +23,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: https://asset.localhost; connect-src 'self' https://api.github.com https://*.workers.dev"
+      "csp": "default-src 'self' blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: https://asset.localhost; connect-src 'self' https://api.github.com https://pub-18fdaa9defa54790ad7c5afe3df9ff2d.r2.dev https://*.workers.dev"
     }
   },
   "bundle": {

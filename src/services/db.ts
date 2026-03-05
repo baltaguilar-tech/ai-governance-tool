@@ -14,6 +14,7 @@ import type {
 } from '../types/assessment';
 
 const DB_PATH = 'sqlite:governance-draft.db';
+const CURRENT_SCHEMA_VERSION = 1;
 let _db: Database | null = null;
 
 function isTauriContext(): boolean {
@@ -148,7 +149,7 @@ export async function saveDraft(
     const db = await getDb();
     await db.execute(
       `INSERT OR REPLACE INTO draft_assessment (id, profile, responses, step, schemaVersion, savedAt)
-       VALUES (1, ?, ?, ?, 1, ?)`,
+       VALUES (1, ?, ?, ?, ${CURRENT_SCHEMA_VERSION}, ?)`,
       [
         JSON.stringify(profile),
         JSON.stringify(responses),
@@ -177,9 +178,10 @@ export async function loadDraft(): Promise<DraftData | null> {
     );
     if (!rows || rows.length === 0) return null;
     const row = rows[0];
-    // Guard: if schemaVersion is missing or not 1, return null to force fresh start
-    if (row.schemaVersion !== 1) {
-      console.warn('[db] Draft schema version mismatch; discarding stale data');
+    // Guard: reject drafts from future schema versions (written by a newer build)
+    // and from version 0 / missing (pre-dating schema versioning).
+    if (row.schemaVersion !== CURRENT_SCHEMA_VERSION) {
+      console.warn(`[db] Draft schema version ${row.schemaVersion} !== expected ${CURRENT_SCHEMA_VERSION}; discarding stale data`);
       return null;
     }
     return {
