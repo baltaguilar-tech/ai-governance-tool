@@ -81,7 +81,11 @@ function App() {
             // Pre-fills the license key input in LicensePanel (Settings → License Key)
             const keyMatch = url.match(/[?&]key=([^&]+)/);
             if (keyMatch?.[1]) {
-              useAssessmentStore.getState().setPendingLicenseKey(decodeURIComponent(keyMatch[1]));
+              try {
+                useAssessmentStore.getState().setPendingLicenseKey(decodeURIComponent(keyMatch[1]));
+              } catch {
+                console.warn('Deep link: failed to decode license key param, ignoring.');
+              }
             }
           }
         }
