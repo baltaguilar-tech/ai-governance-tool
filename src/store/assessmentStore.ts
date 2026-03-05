@@ -185,10 +185,12 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   hydrateDraft: async () => {
     const draft: DraftData | null = await loadDraft();
     if (!draft) return;
+    // Guard: only restore a step we still recognise; fall back to 'welcome' if stale
+    const safeStep: WizardStep = STEP_ORDER.includes(draft.step) ? draft.step : 'welcome';
     set({
       profile: draft.profile,
       responses: draft.responses,
-      currentStep: draft.step,
+      currentStep: safeStep,
     });
   },
 
