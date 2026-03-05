@@ -29,6 +29,7 @@ interface AssessmentStore {
   riskScore: RiskScore | null;
   blindSpots: BlindSpot[];
   recommendations: Recommendation[];
+  completedAt: string | null;
 
   // License
   licenseTier: LicenseTier;
@@ -65,6 +66,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   riskScore: null,
   blindSpots: [],
   recommendations: [],
+  completedAt: null,
   // TODO: replace DEV fallback with real license check from src/services/license.ts
   // When Keygen is configured: call getLicenseState() on app start, set tier from tierFromState()
   licenseTier: (import.meta.env.DEV ? 'professional' : 'free') as LicenseTier,
@@ -158,7 +160,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
       profile as OrganizationProfile,
       get().licenseTier
     );
-    set({ dimensionScores, riskScore, blindSpots, recommendations });
+    set({ dimensionScores, riskScore, blindSpots, recommendations, completedAt: new Date().toISOString() });
   },
 
   resetAssessment: () => {
@@ -170,6 +172,7 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
       riskScore: null,
       blindSpots: [],
       recommendations: [],
+      completedAt: null,
     });
     clearDraft().catch(() => {});
   },

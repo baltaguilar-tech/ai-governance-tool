@@ -76,6 +76,11 @@ export function calculateDimensionScore(
     }
   }
 
+  // Collect questions that received no response for PDF gap reporting
+  const unansweredQuestions = dimensionQuestions
+    .filter((q) => responses.find((r) => r.questionId === q.id) === undefined)
+    .map((q) => ({ id: q.id, text: q.text }));
+
   // If no questions were answered, mark as unanswered — exclude from scoring and display.
   if (answeredCount === 0) {
     return {
@@ -84,6 +89,7 @@ export function calculateDimensionScore(
       riskLevel: getRiskLevel(0),
       questionScores: [],
       answered: false,
+      unansweredQuestions,
     };
   }
 
@@ -97,6 +103,7 @@ export function calculateDimensionScore(
     riskLevel: getRiskLevel(governanceScore),
     questionScores,
     answered: true,
+    unansweredQuestions,
   };
 }
 

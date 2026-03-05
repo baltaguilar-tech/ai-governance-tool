@@ -146,6 +146,9 @@ export interface DimensionScore {
   /** True if at least one question in this dimension was answered. When false,
    * score is 0 and should be excluded from display and overall score calculation. */
   answered: boolean;
+  /** Questions in this dimension that received no response. Used to populate
+   * "Open Assessment Items" in the PDF export so users can investigate gaps offline. */
+  unansweredQuestions: { id: string; text: string }[];
 }
 
 export interface RiskScore {

@@ -18,12 +18,14 @@ import { TrackProgress } from '@/components/dashboard/TrackProgress';
 let _emailModalDismissed = false;
 
 export function ResultsDashboard() {
-  const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier, pendingDeepLinkTab, setPendingDeepLinkTab } =
+  const { riskScore, dimensionScores, blindSpots, recommendations, responses, profile, resetAssessment, licenseTier, pendingDeepLinkTab, setPendingDeepLinkTab, completedAt } =
     useAssessmentStore();
 
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'results' | 'progress'>('results');
   const [currentAssessmentId, setCurrentAssessmentId] = useState<number>(-1);
+  const [isExportingFree, setIsExportingFree] = useState(false);
+  const [isExportingPro, setIsExportingPro] = useState(false);
 
   // Consume deep link navigation intent — switch to Track Progress tab when aigov://track opens
   useEffect(() => {
@@ -119,7 +121,7 @@ export function ResultsDashboard() {
               Assessment Results: {profile.organizationName}
             </h2>
             <p className="text-navy-600">
-              Completed on {new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
+              Completed on {completedAt ? new Date(completedAt).toLocaleDateString('en-US', { dateStyle: 'long' }) : new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
             </p>
           </div>
           {import.meta.env.DEV && (
@@ -321,8 +323,10 @@ export function ResultsDashboard() {
         <div className="flex gap-3">
           {/* Free PDF summary — always available */}
           <button
+            disabled={isExportingFree}
             onClick={() => {
-              if (!riskScore) return;
+              if (!riskScore || isExportingFree) return;
+              setIsExportingFree(true);
               const orgName = profile.organizationName || 'Organization';
               generateFreePDF(
                 dimensionScores,
@@ -331,49 +335,67 @@ export function ResultsDashboard() {
                 riskScore.achieverScore,
                 orgName,
                 blindSpots,
-                profile as import('@/types/assessment').OrganizationProfile
+                profile as import('@/types/assessment').OrganizationProfile,
+                completedAt
               ).catch((err) => {
                 console.error('PDF export failed:', err);
+              }).finally(() => {
+                setIsExportingFree(false);
               });
             }}
-            className="px-6 py-2.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
+            className={`px-6 py-2.5 rounded-lg font-medium transition-colors ${
+              isExportingFree
+                ? 'bg-blue-400 text-white cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
           >
-            Export PDF Summary
+            {isExportingFree ? 'Generating...' : 'Export PDF Summary'}
           </button>
 
           {/* Pro full report — active for pro, locked for free */}
           {licenseTier === 'professional' ? (
             <button
+              disabled={isExportingPro}
               onClick={async () => {
-                if (!riskScore) return;
-                const orgName = profile.organizationName || 'Organization';
-                const [spendItems, adoptionSnapshots, mitigationItems] = await Promise.all([
-                  getSpendItems(),
-                  getAdoptionSnapshots(),
-                  getMitigationItems(),
-                ]);
-                const adoptionSnapshot = adoptionSnapshots.length > 0
-                  ? adoptionSnapshots[adoptionSnapshots.length - 1]
-                  : null;
-                generateProPDF(
-                  dimensionScores,
-                  riskScore.overallRisk,
-                  riskScore.riskLevel,
-                  riskScore.achieverScore,
-                  orgName,
-                  blindSpots,
-                  recommendations,
-                  responses,
-                  getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
-                  profile as import('@/types/assessment').OrganizationProfile,
-                  { spendItems, adoptionSnapshot, mitigationItems }
-                ).catch((err) => {
+                if (!riskScore || isExportingPro) return;
+                setIsExportingPro(true);
+                try {
+                  const orgName = profile.organizationName || 'Organization';
+                  const [spendItems, adoptionSnapshots, mitigationItems] = await Promise.all([
+                    getSpendItems(),
+                    getAdoptionSnapshots(),
+                    getMitigationItems(),
+                  ]);
+                  const adoptionSnapshot = adoptionSnapshots.length > 0
+                    ? adoptionSnapshots[adoptionSnapshots.length - 1]
+                    : null;
+                  await generateProPDF(
+                    dimensionScores,
+                    riskScore.overallRisk,
+                    riskScore.riskLevel,
+                    riskScore.achieverScore,
+                    orgName,
+                    blindSpots,
+                    recommendations,
+                    responses,
+                    getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
+                    profile as import('@/types/assessment').OrganizationProfile,
+                    { spendItems, adoptionSnapshot, mitigationItems },
+                    completedAt
+                  );
+                } catch (err) {
                   console.error('PDF export failed:', err);
-                });
+                } finally {
+                  setIsExportingPro(false);
+                }
               }}
-              className="px-6 py-2.5 rounded-lg bg-navy-900 text-white font-medium hover:bg-navy-800 transition-colors"
+              className={`px-6 py-2.5 rounded-lg font-medium transition-colors ${
+                isExportingPro
+                  ? 'bg-navy-600 text-white cursor-not-allowed'
+                  : 'bg-navy-900 text-white hover:bg-navy-800'
+              }`}
             >
-              Export Full PDF Report
+              {isExportingPro ? 'Generating...' : 'Export Full PDF Report'}
             </button>
           ) : (
             <div className="relative group">
