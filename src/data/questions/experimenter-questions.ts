@@ -666,6 +666,48 @@ export const EXPERIMENTER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Structured monitoring process, even if lightweight', value: 0 },
     ],
   },
+  {
+    id: 'airisks-e-11',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Have you heard of the EU AI Act, and do you know if it could apply to your organization?',
+    helpText: 'The EU AI Act became law in 2024 and begins phased enforcement in 2025–2026. It applies to any organization that places AI systems on the EU market or uses them to affect EU residents — including non-EU companies.',
+    type: 'radio',
+    options: [
+      { label: 'Never heard of it', value: 100 },
+      { label: 'Heard of it but unsure if it applies to us', value: 65 },
+      { label: 'Aware it likely applies, haven\'t reviewed it yet', value: 35 },
+      { label: 'Reviewed applicability and have a basic understanding', value: 0 },
+    ],
+  },
+  {
+    id: 'airisks-e-12',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Do you know if any AI tools your organization uses might qualify as \'high-risk\' under the EU AI Act (e.g., used in HR, credit decisions, or safety-critical processes)?',
+    helpText: 'The EU AI Act\'s Annex III lists high-risk AI categories: employment decisions, credit scoring, critical infrastructure, education, law enforcement, and more. High-risk systems face strict compliance requirements.',
+    type: 'radio',
+    options: [
+      { label: 'No idea — we haven\'t looked', value: 100 },
+      { label: 'Aware of the concept but haven\'t checked our tools', value: 65 },
+      { label: 'Informally checked — don\'t think we have high-risk systems', value: 35 },
+      { label: 'Reviewed our AI tools against Annex III categories', value: 0 },
+    ],
+  },
+  {
+    id: 'airisks-e-13',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Do employees know they can question, override, or escalate AI-assisted decisions that affect people?',
+    helpText: 'The EU AI Act requires meaningful human oversight for high-risk AI. At the Experimenter stage, even a basic shared understanding that "humans are in charge, not the AI" is a meaningful first step.',
+    type: 'radio',
+    options: [
+      { label: 'No — employees treat AI outputs as final', value: 100 },
+      { label: 'Implicit expectation, never explicitly stated', value: 65 },
+      { label: 'Communicated informally in some teams', value: 35 },
+      { label: 'Explicitly communicated: humans make final decisions, AI assists', value: 0 },
+    ],
+  },
 
   // --- ROI Tracking (10) ---
   {

@@ -670,6 +670,48 @@ export const BUILDER_QUESTIONS: AssessmentQuestion[] = [
       { label: 'Comprehensive IP and copyright policy covering all AI-generated content in use', value: 0 },
     ],
   },
+  {
+    id: 'risk-b-11',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Have you mapped your AI systems against EU AI Act Annex III high-risk categories (e.g., employment, credit, critical infrastructure)?',
+    helpText: 'Annex III lists the AI use cases the EU considers high-risk. If your organization uses AI in any of these areas — even via a third-party tool — you may face registration, testing, and documentation obligations under the Act.',
+    type: 'radio',
+    options: [
+      { label: 'No mapping done — unaware of Annex III categories', value: 100 },
+      { label: 'Aware of the categories but haven\'t reviewed our systems', value: 65 },
+      { label: 'Informal review done for some systems', value: 35 },
+      { label: 'Formal mapping completed across all AI systems in use', value: 0 },
+    ],
+  },
+  {
+    id: 'risk-b-12',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Can your AI vendors provide documentation supporting EU AI Act conformity assessment for any high-risk systems they supply?',
+    helpText: 'High-risk AI systems under the EU AI Act require conformity assessments — documented evidence of risk management, testing, and transparency. Vendors should be able to provide technical documentation and EU declarations of conformity.',
+    type: 'radio',
+    options: [
+      { label: 'Haven\'t asked vendors about this', value: 100 },
+      { label: 'Asked informally — vendors weren\'t able to provide it', value: 65 },
+      { label: 'Some vendors have partial documentation available', value: 35 },
+      { label: 'Vendors for high-risk systems have provided conformity documentation', value: 0 },
+    ],
+  },
+  {
+    id: 'risk-b-13',
+    dimension: 'aiSpecificRisks',
+    jurisdictions: ['eu'],
+    text: 'Do your AI use policies include written procedures for human review and escalation of AI-assisted decisions?',
+    helpText: 'The EU AI Act requires that high-risk AI systems allow human oversight — meaning humans must be able to understand, monitor, and override AI decisions. Written procedures are the baseline evidence of this.',
+    type: 'radio',
+    options: [
+      { label: 'No written procedures — handled ad hoc', value: 100 },
+      { label: 'Human review expected but not documented', value: 65 },
+      { label: 'Procedures documented for some teams or use cases', value: 35 },
+      { label: 'Written human review and escalation procedures covering all AI-assisted decisions', value: 0 },
+    ],
+  },
 
   // --- ROI Tracking (10) ---
   {
