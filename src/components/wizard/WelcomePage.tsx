@@ -17,13 +17,10 @@ export function WelcomePage() {
       }}
     >
       <div className="max-w-2xl mx-auto text-center">
-        {/* Hero icon — placeholder until logo is ready */}
         <div className="mb-8">
-          <div className="w-20 h-20 bg-dark-surface rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/10">
-            <span className="text-3xl font-bold text-white">AI</span>
-          </div>
+          <img src="/assets/alphapi-logo.png" alt="AlphaPi" className="w-24 h-24 object-contain mx-auto mb-6" />
           <h1 className="text-3xl font-bold text-white mb-3">
-            AI Governance & ROI Assessment
+            AlphaPi
           </h1>
           <p className="text-lg text-white/70">
             Discover your organization's AI governance maturity, identify critical blind spots,

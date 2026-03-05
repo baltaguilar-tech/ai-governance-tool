@@ -42,13 +42,10 @@ export function AppLayout({ children }: AppLayoutProps) {
             >
               <HamburgerIcon />
             </button>
-            {/* Logo placeholder — replace when brand mark is ready */}
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-bold text-sm">
-              AI
-            </div>
+            <img src="/assets/alphapi-logo.png" alt="AlphaPi" className="w-8 h-8 object-contain" />
             <div>
-              <h1 className="text-lg font-semibold leading-tight">AI Governance & ROI</h1>
-              <p className="text-xs text-white/50">Assessment Tool v0.1.0</p>
+              <h1 className="text-lg font-semibold leading-tight">AlphaPi</h1>
+              <p className="text-xs text-white/50">AI Governance & ROI v0.1.0</p>
             </div>
           </div>
           <div className="text-xs text-white/40">
@@ -86,7 +83,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 
           {/* Footer — matches header chrome */}
           <footer className="bg-dark-base text-white/40 text-xs text-center py-3 flex-shrink-0">
-            &copy; 2026 baltaguilar-tech &middot; Assessment data is stored locally and never transmitted
+            &copy; 2026 AlphaPi &middot; Assessment data is stored locally and never transmitted
           </footer>
         </div>
       </div>

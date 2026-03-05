@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "AI Governance Tool",
+  "productName": "AlphaPi",
   "version": "0.1.0",
   "identifier": "com.baltaguilar-tech.ai-governance-tool",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "AI Governance & ROI Assessment Tool",
+        "title": "AlphaPi",
         "width": 1280,
         "height": 860,
         "minWidth": 960,
