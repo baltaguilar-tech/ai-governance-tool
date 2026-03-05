@@ -42,7 +42,7 @@ export function AppLayout({ children }: AppLayoutProps) {
             >
               <HamburgerIcon />
             </button>
-            <img src="/assets/alphapi-logo.png" alt="AlphaPi" className="w-8 h-8 object-contain" />
+            <img src="/assets/alphapi-icon.png" alt="AlphaPi" className="w-8 h-8 object-contain" />
             <div>
               <h1 className="text-lg font-semibold leading-tight">AlphaPi</h1>
               <p className="text-xs text-white/50">AI Governance & ROI v0.1.0</p>
