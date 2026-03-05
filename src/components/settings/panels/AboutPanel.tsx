@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import { LegalModal, type LegalDocType } from '@/components/legal/LegalModal';
+
 export function AboutPanel() {
+  const [legalModal, setLegalModal] = useState<LegalDocType | null>(null);
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -34,21 +39,23 @@ export function AboutPanel() {
         <div className="flex gap-3">
           <button
             type="button"
-            disabled
-            title="Coming soon"
-            className="text-sm text-blue-400 cursor-not-allowed underline underline-offset-2 decoration-dotted"
+            onClick={() => setLegalModal('privacy')}
+            className="text-sm text-blue-600 underline underline-offset-2 hover:text-blue-800 transition-colors"
           >
             Privacy Policy
           </button>
           <button
             type="button"
-            disabled
-            title="Coming soon"
-            className="text-sm text-blue-400 cursor-not-allowed underline underline-offset-2 decoration-dotted"
+            onClick={() => setLegalModal('terms')}
+            className="text-sm text-blue-600 underline underline-offset-2 hover:text-blue-800 transition-colors"
           >
             Terms of Service
           </button>
         </div>
+
+        {legalModal && (
+          <LegalModal type={legalModal} onClose={() => setLegalModal(null)} />
+        )}
       </div>
 
       <hr className="border-gray-200" />

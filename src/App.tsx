@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Store } from '@tauri-apps/plugin-store';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { WelcomePage } from '@/components/wizard/WelcomePage';
 import { ProfileStep } from '@/components/wizard/ProfileStep';
@@ -6,6 +7,7 @@ import { DimensionStep } from '@/components/wizard/DimensionStep';
 import { ResultsDashboard } from '@/components/dashboard/ResultsDashboard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { LoadingScreen } from '@/components/LoadingScreen';
+import { FirstRunGate } from '@/components/legal/FirstRunGate';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
 import { initContentService } from '@/services/contentService';
@@ -16,6 +18,7 @@ import type { DimensionKey } from '@/types/assessment';
 function App() {
   const { currentStep, hydrateDraft } = useAssessmentStore();
   const [isInitializing, setIsInitializing] = useState(true);
+  const [legalAccepted, setLegalAccepted] = useState(true); // assume accepted until store says otherwise
 
   // ── Staged loading progress ───────────────────────────────────────────────
   // Progress advances through three natural checkpoints in the init sequence:
@@ -48,6 +51,15 @@ function App() {
 
         set(85, 'Almost ready\u2026');
         await checkDueReminders();
+
+        // Check whether the user has accepted the legal terms
+        try {
+          const store = await Store.load('settings.json');
+          const accepted = await store.get<boolean>('legalAccepted');
+          if (aliveRef.current) setLegalAccepted(accepted === true);
+        } catch {
+          // If store read fails, leave legalAccepted=true so users aren't stuck
+        }
 
         set(100, 'Ready');
         // Brief pause at 100% so users can see the bar complete before it disappears
@@ -96,9 +108,13 @@ function App() {
     return () => { unlisten?.(); };
   }, []);
 
-  // All hooks declared — conditional return is now safe
+  // All hooks declared — conditional returns are now safe
   if (isInitializing) {
     return <LoadingScreen progress={initProgress} message={initMessage} />;
+  }
+
+  if (!legalAccepted) {
+    return <FirstRunGate onAccept={() => setLegalAccepted(true)} />;
   }
 
   const renderStep = () => {
