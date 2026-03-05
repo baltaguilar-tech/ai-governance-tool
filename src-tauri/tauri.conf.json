@@ -46,6 +46,12 @@
       "desktop": {
         "schemes": ["aigov"]
       }
+    },
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDMxMEVFRTk1NEYzM0U2NTgKUldSWTVqTlBsZTRPTVI2Q3IwZkF4QkRSUWlacXE1bVljY2NCNFBuUklET2F0ZEdmbSsrSmFobUwK",
+      "endpoints": [
+        "https://github.com/baltaguilar-tech/ai-governance-tool/releases/latest/download/latest.json"
+      ]
     }
   }
 }

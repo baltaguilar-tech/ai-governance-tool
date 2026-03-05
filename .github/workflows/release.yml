@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+# Builds signed macOS binaries (arm64 + x86_64), creates a GitHub Release,
+# and publishes latest.json for the in-app auto-updater.
+#
+# Required GitHub Secrets:
+#   TAURI_SIGNING_PRIVATE_KEY        — from `npx tauri signer generate`
+#   TAURI_SIGNING_PRIVATE_KEY_PASSWORD — empty string if key has no password
+#
+# Future secrets (GL-3 / GL-4 — after Apple Developer account):
+#   APPLE_CERTIFICATE               — base64-encoded .p12
+#   APPLE_CERTIFICATE_PASSWORD      — .p12 password
+#   APPLE_SIGNING_IDENTITY          — e.g. "Developer ID Application: ..."
+#   APPLE_ID                        — Apple ID email
+#   APPLE_PASSWORD                  — app-specific password
+#   APPLE_TEAM_ID                   — 10-char team ID
+
+jobs:
+  build-macos:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            runner: macos-latest
+          - target: x86_64-apple-darwin
+            runner: macos-13
+
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Build and publish release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          # Apple signing — uncomment after GL-3 is complete
+          # APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          # APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          # APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          # APPLE_ID: ${{ secrets.APPLE_ID }}
+          # APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          # APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'AlphaPi ${{ github.ref_name }}'
+          releaseBody: |
+            See [CHANGELOG](https://github.com/baltaguilar-tech/ai-governance-tool/blob/main/CHANGELOG.md) for details.
+          releaseDraft: true
+          prerelease: false
+          args: --target ${{ matrix.target }}
+          updaterJsonPreferNsis: false
+          updaterJsonKeepUniversal: false
