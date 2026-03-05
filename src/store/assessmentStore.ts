@@ -67,9 +67,9 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
   blindSpots: [],
   recommendations: [],
   completedAt: null,
-  // TODO: replace DEV fallback with real license check from src/services/license.ts
+  // TODO (GL-2): wire real license check from src/services/license.ts
   // When Keygen is configured: call getLicenseState() on app start, set tier from tierFromState()
-  licenseTier: (import.meta.env.DEV ? 'professional' : 'free') as LicenseTier,
+  licenseTier: 'free' as LicenseTier,
   pendingDeepLinkTab: null,
   setPendingDeepLinkTab: (tab) => set({ pendingDeepLinkTab: tab }),
   pendingLicenseKey: null,

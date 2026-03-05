@@ -69,14 +69,6 @@ export function ResultsDashboard() {
 
   if (!riskScore) return null;
 
-  const handleToggleTier = () => {
-    const store = useAssessmentStore.getState();
-    const newTier = store.licenseTier === 'free' ? 'professional' : 'free';
-    useAssessmentStore.setState({ licenseTier: newTier });
-    // Recalculate so recommendations reflect the new tier
-    store.calculateResults();
-  };
-
   return (
     <div>
       {/* Tab navigation */}
@@ -124,18 +116,6 @@ export function ResultsDashboard() {
               Completed on {completedAt ? new Date(completedAt).toLocaleDateString('en-US', { dateStyle: 'long' }) : new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
             </p>
           </div>
-          {import.meta.env.DEV && (
-            <button
-              onClick={handleToggleTier}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                licenseTier === 'professional'
-                  ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
-                  : 'bg-navy-100 text-navy-600 border border-navy-300'
-              }`}
-            >
-              {licenseTier === 'professional' ? 'PRO Active' : 'FREE Tier'} (click to toggle)
-            </button>
-          )}
         </div>
       </div>
 
