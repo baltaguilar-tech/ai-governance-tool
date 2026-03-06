@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { parseSpendAmount } from '@/utils/parseSpendAmount';
+import { Store } from '@tauri-apps/plugin-store';
+import { generateTemplatedSummary } from '@/utils/execSummary';
+import type { ExecSummaryData } from '@/utils/execSummary';
 import {
   BarChart, Bar, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -1170,6 +1173,173 @@ function ProgressCharts({ assessments, adoptionSnapshots }: ProgressChartsProps)
   );
 }
 
+// ─── Executive Summary Card ───────────────────────────────────────────────────
+
+function ExecSummaryCard() {
+  const { profile, riskScore, dimensionScores, blindSpots, licenseTier, completedAt } =
+    useAssessmentStore();
+  const [summary, setSummary] = useState<ExecSummaryData | null>(null);
+  const [apiKey, setApiKey] = useState<string>('');
+  const storeRef = useRef<Store | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const store = await Store.load('settings.json');
+        storeRef.current = store;
+        const key = await store.get<string>('anthropicApiKey');
+        if (!cancelled) setApiKey(key ?? '');
+      } catch {
+        // settings store unavailable — continue without key
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!riskScore || !profile.organizationName) return;
+    const data = generateTemplatedSummary(
+      profile as Parameters<typeof generateTemplatedSummary>[0],
+      riskScore,
+      dimensionScores,
+      blindSpots,
+      licenseTier,
+      completedAt ?? new Date().toISOString()
+    );
+    setSummary(data);
+  }, [profile, riskScore, dimensionScores, blindSpots, licenseTier, completedAt]);
+
+  if (!summary) return null;
+
+  const formattedDate = completedAt
+    ? new Date(completedAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : '';
+
+  return (
+    <div className="mb-8 rounded-xl border border-navy-200 bg-white shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="bg-[#1E2761] px-6 py-4 flex items-center justify-between">
+        <div>
+          <h2 className="text-base font-bold text-white">Executive Summary</h2>
+          {formattedDate && (
+            <p className="text-xs text-white/60 mt-0.5">Assessment completed {formattedDate}</p>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs px-2.5 py-1 rounded-full bg-white/15 text-white/80 font-medium">
+            {summary.maturityLevel}
+          </span>
+          <span
+            className={`text-xs px-2.5 py-1 rounded-full font-semibold ${
+              summary.riskLevel === 'CRITICAL'
+                ? 'bg-red-500/90 text-white'
+                : summary.riskLevel === 'HIGH'
+                ? 'bg-orange-400/90 text-white'
+                : summary.riskLevel === 'MEDIUM'
+                ? 'bg-yellow-400/90 text-navy-900'
+                : 'bg-green-400/90 text-navy-900'
+            }`}
+          >
+            {summary.overallScore}/100 — {summary.riskLevel}
+          </span>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="divide-y divide-gray-100">
+        {/* Section 1 */}
+        <div className="px-6 py-5">
+          <h3 className="text-sm font-bold text-navy-900 mb-2">
+            {summary.section1.heading}
+          </h3>
+          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+            {summary.section1.body
+              .replace(/\*\*(.*?)\*\*/g, '$1')}
+          </p>
+        </div>
+
+        {/* Section 2 */}
+        <div className="px-6 py-5">
+          <h3 className="text-sm font-bold text-navy-900 mb-2">
+            {summary.section2.heading}
+          </h3>
+          {summary.section2Gaps.length > 0 ? (
+            <div className="space-y-4">
+              {summary.section2Gaps.map((gap) => (
+                <div key={gap.dimension} className="border-l-4 border-red-400 pl-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm font-semibold text-navy-900">{gap.dimension}</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 font-medium">
+                      {gap.score}/100
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600 leading-relaxed">{gap.insight}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-600 leading-relaxed">{summary.section2.body}</p>
+          )}
+
+          {summary.regulatoryExposure && (
+            <div className="mt-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+              <p className="text-xs font-semibold text-amber-800 mb-1">Regulatory Exposure</p>
+              <p className="text-xs text-amber-700 leading-relaxed">{summary.regulatoryExposure}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Section 3 */}
+        <div className="px-6 py-5">
+          <h3 className="text-sm font-bold text-navy-900 mb-2">
+            {summary.section3.heading}
+          </h3>
+          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+            {summary.section3.body.replace(/\*\*(.*?)\*\*/g, '$1')}
+          </p>
+        </div>
+
+        {/* Upgrade / API key CTA */}
+        <div
+          className={`px-6 py-4 ${
+            licenseTier === 'free'
+              ? 'bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-blue-100'
+              : 'bg-gray-50'
+          }`}
+        >
+          {licenseTier === 'free' ? (
+            <p className="text-xs text-blue-800 leading-relaxed">
+              <span className="font-semibold">Upgrade to Pro</span> — {summary.upgradePrompt}
+            </p>
+          ) : apiKey ? (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                disabled
+                className="px-4 py-2 rounded-lg bg-[#1E2761]/30 text-white/60 text-xs font-medium cursor-not-allowed"
+                title="AI generation coming in a future update"
+              >
+                Generate AI Summary
+              </button>
+              <p className="text-xs text-gray-500">AI-generated summary coming soon.</p>
+            </div>
+          ) : (
+            <p className="text-xs text-gray-600 leading-relaxed">
+              <span className="font-semibold text-navy-900">Unlock AI-generated summary</span> —{' '}
+              {summary.upgradePrompt}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function TrackProgress({ assessmentId, currentScore, dimensionScores }: Props) {
@@ -1231,6 +1401,8 @@ export function TrackProgress({ assessmentId, currentScore, dimensionScores }: P
           Monitor your governance actions, AI spend, and ROI over time.
         </p>
       </div>
+
+      <ExecSummaryCard />
 
       {assessments.length >= 2 && (
         <DeltaBanner
