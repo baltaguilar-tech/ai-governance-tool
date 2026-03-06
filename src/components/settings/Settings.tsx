@@ -93,14 +93,14 @@ const NAV_ITEMS: NavItem[] = [
   { section: 'data',          label: 'My Data',        icon: <ClipboardIcon /> },
 ];
 
-function renderPanel(section: SettingsSection) {
+function renderPanel(section: SettingsSection, onClose: () => void) {
   switch (section) {
     case 'license':       return <LicensePanel />;
     case 'email':         return <EmailPanel />;
     case 'notifications': return <NotificationsPanel />;
     case 'updates':       return <UpdatesPanel />;
     case 'about':         return <AboutPanel />;
-    case 'data':          return <DataPanel />;
+    case 'data':          return <DataPanel onClose={onClose} />;
   }
 }
 
@@ -159,7 +159,7 @@ export function Settings({ isOpen, onClose }: SettingsProps) {
 
       {/* Content panel */}
       <div className="w-96 bg-white border-r border-gray-200 h-full overflow-y-auto">
-        {renderPanel(activeSection)}
+        {renderPanel(activeSection, onClose)}
       </div>
     </div>
   );

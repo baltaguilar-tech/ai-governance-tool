@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import { Store } from '@tauri-apps/plugin-store';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { resetAllData } from '@/services/db';
 import type { OrganizationProfile } from '@/types/assessment';
 
 interface FieldProps {
@@ -27,8 +30,31 @@ function hasProfileData(profile: Partial<OrganizationProfile>): boolean {
   return !!(profile.organizationName && profile.organizationName.trim().length > 0);
 }
 
-export function DataPanel() {
+interface DataPanelProps {
+  onClose: () => void;
+}
+
+export function DataPanel({ onClose }: DataPanelProps) {
   const profile = useAssessmentStore((s) => s.profile);
+  const resetAssessment = useAssessmentStore((s) => s.resetAssessment);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
+
+  async function handleReset() {
+    setIsResetting(true);
+    try {
+      await resetAllData();
+      const store = await Store.load('settings.json');
+      await store.set('legalAccepted', false);
+      await store.save();
+      resetAssessment();
+      onClose();
+    } catch (err) {
+      console.error('[DataPanel] resetAllData failed:', err);
+      setIsResetting(false);
+      setShowConfirm(false);
+    }
+  }
 
   return (
     <div className="p-6 space-y-6">
@@ -128,6 +154,52 @@ export function DataPanel() {
           </p>
         </div>
       )}
+
+      {/* Reset All Data */}
+      <hr className="border-gray-200" />
+      <div>
+        <SectionHeading>Reset</SectionHeading>
+        {!showConfirm ? (
+          <div className="space-y-2">
+            <p className="text-sm text-gray-500">
+              Permanently delete all assessment data, spend history, ROI snapshots, and saved progress.
+            </p>
+            <button
+              type="button"
+              onClick={() => setShowConfirm(true)}
+              className="w-full py-2 px-3 rounded-lg border border-red-200 text-red-600 text-sm font-medium hover:bg-red-50 transition-colors"
+            >
+              Delete All Data
+            </button>
+          </div>
+        ) : (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-4 space-y-3">
+            <p className="text-sm font-semibold text-red-800">Are you sure?</p>
+            <p className="text-xs text-red-700">
+              This will permanently delete all assessment data, spend items, ROI history, and saved progress.
+              This cannot be undone.
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setShowConfirm(false)}
+                disabled={isResetting}
+                className="flex-1 py-2 px-3 rounded-lg border border-gray-300 text-gray-700 text-sm font-medium hover:bg-white transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                disabled={isResetting}
+                className="flex-1 py-2 px-3 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50"
+              >
+                {isResetting ? 'Deleting…' : 'Yes, Delete All'}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -650,3 +650,19 @@ export async function getAllCachedByPrefix(
     return [];
   }
 }
+
+/**
+ * Deletes all user-generated data from the local database.
+ * Called by the "Reset All Data" action in Settings → My Data.
+ * Does NOT clear the CDN content cache (content_cache) — that is not user data.
+ */
+export async function resetAllData(): Promise<void> {
+  const db = await getDb();
+  await db.execute('DELETE FROM mitigation_items');
+  await db.execute('DELETE FROM completed_assessments');
+  await db.execute('DELETE FROM adoption_snapshots');
+  await db.execute('DELETE FROM spend_items');
+  await db.execute('DELETE FROM email_prefs');
+  await db.execute('DELETE FROM notification_schedule');
+  await db.execute('DELETE FROM draft_assessment');
+}
