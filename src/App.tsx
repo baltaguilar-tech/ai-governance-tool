@@ -11,12 +11,13 @@ import { FirstRunGate } from '@/components/legal/FirstRunGate';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { initDatabase } from '@/services/db';
 import { initContentService } from '@/services/contentService';
+import { getLicenseState, tierFromState } from '@/services/license';
 import { checkDueReminders } from '@/utils/notifications';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import type { DimensionKey } from '@/types/assessment';
 
 function App() {
-  const { currentStep, hydrateDraft } = useAssessmentStore();
+  const { currentStep, hydrateDraft, setLicenseTier } = useAssessmentStore();
   const [isInitializing, setIsInitializing] = useState(true);
   const [legalAccepted, setLegalAccepted] = useState(true); // assume accepted until store says otherwise
 
@@ -60,6 +61,12 @@ function App() {
         } catch {
           // If store read fails, leave legalAccepted=true so users aren't stuck
         }
+
+        // Restore license tier from store (e.g. beta tester key persisted from last session)
+        try {
+          const licenseState = await getLicenseState();
+          if (aliveRef.current) setLicenseTier(tierFromState(licenseState));
+        } catch { /* ignore — default free tier stands */ }
 
         set(100, 'Ready');
         // Brief pause at 100% so users can see the bar complete before it disappears

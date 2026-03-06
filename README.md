@@ -1,5 +1,8 @@
 > [!NOTE]
-> **Pre-launch** — Core functionality is complete. Pending macOS code signing (Apple Developer account) and Keygen.sh license key setup before public distribution.
+> **Pre-launch beta** — Core functionality is complete. This build is unsigned (macOS Gatekeeper warning expected). See [TESTER-GUIDE.md](TESTER-GUIDE.md) for installation instructions.
+
+> [!WARNING]
+> **Beta testers:** Do not purchase a license key — use `BETA-TESTER-2026` to activate Pro features during testing.
 
 ---
 
@@ -133,6 +136,19 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 - No automated tests (unit/integration tests not yet written)
 - macOS builds are unsigned until GL-3 is complete (users will see Gatekeeper warning)
 - Keygen.sh license validation not yet active (license UI is present but activation is disabled pending account setup)
+
+---
+
+## For Beta Testers
+
+If you received a `.dmg` file from the AlphaPi team, see **[TESTER-GUIDE.md](TESTER-GUIDE.md)** — it has everything you need: installation steps, what to test, and how to send feedback.
+
+**Quick summary:**
+1. Mount the `.dmg` and double-click `Install AlphaPi.command`
+2. Click **Open** if macOS asks for confirmation — this is expected for unsigned builds
+3. The app installs to `/Applications` and launches automatically
+4. To test Pro features: **Settings → License Key** → enter `BETA-TESTER-2026` → **Activate Key**
+5. Send feedback to **balt.aguilar@outlook.com** with subject: *AlphaPi Beta Feedback*
 
 ---
 

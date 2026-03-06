@@ -36,6 +36,7 @@
  * ─────────────────────────────────────────────────────────────────
  */
 
+import { Store } from '@tauri-apps/plugin-store';
 import type { LicenseTier } from '@/types/assessment';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
@@ -69,6 +70,17 @@ const UNCONFIGURED_STATE: LicenseState = {
   message: 'Licensing not yet configured.',
 };
 
+/** Beta tester bypass — removed when Keygen goes live. */
+const TESTER_KEY = 'BETA-TESTER-2026';
+const TESTER_STATE: LicenseState = {
+  status: 'active',
+  tier: 'professional',
+  key: TESTER_KEY,
+  expiresAt: null,
+  isValid: true,
+  message: 'Beta tester access — Professional tier active.',
+};
+
 // ─── Stub implementations ───────────────────────────────────────────────────
 // Each function has a TODO marking the exact invoke() call to swap in.
 
@@ -81,6 +93,11 @@ const UNCONFIGURED_STATE: LicenseState = {
  *   return raw ? mapRawToState(raw) : { status: 'no_license', tier: 'free', key: null, expiresAt: null, isValid: false, message: 'No license key entered.' };
  */
 export async function getLicenseState(): Promise<LicenseState> {
+  try {
+    const store = await Store.load('settings.json');
+    const saved = await store.get<string>('licenseKey');
+    if (saved === TESTER_KEY) return TESTER_STATE;
+  } catch { /* ignore — treat as no license */ }
   return UNCONFIGURED_STATE;
 }
 
@@ -95,7 +112,15 @@ export async function getLicenseState(): Promise<LicenseState> {
  *   await invoke('plugin:keygen|activate');
  *   return getLicenseState();
  */
-export async function activateLicense(_key: string): Promise<LicenseState> {
+export async function activateLicense(key: string): Promise<LicenseState> {
+  if (key.trim().toUpperCase() === TESTER_KEY) {
+    try {
+      const store = await Store.load('settings.json');
+      await store.set('licenseKey', TESTER_KEY);
+      await store.save();
+    } catch { /* ignore — tier still set in memory */ }
+    return TESTER_STATE;
+  }
   return UNCONFIGURED_STATE;
 }
 

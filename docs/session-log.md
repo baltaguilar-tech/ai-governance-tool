@@ -269,3 +269,21 @@ energy-utilities, healthcare, financial-services, technology, manufacturing, gov
 2. Reset All Data button in Settings/My Data (30 min)
 3. Build unsigned .app + tester handoff document (30 min)
 4. Exec Summary: API key Settings panel + consent flow design (45 min)
+
+## 2026-03-06 (session 36) — Knowledge synthesis + expectedAISpend feature design
+
+**What changed:**
+- Created `docs/exec-summary-knowledge-base.md` — 18 LinkedIn posts + 13 infographics synthesized via Claude Cowork; structured for Executive Summary prompt design and runtime context injection
+- Established citation policy: synthesis informs reasoning, not citations. No LinkedIn URLs in output. Date reference (2026-03-06) if citation ever needed.
+- Designed expectedAISpend → ROI Tracking feature (not yet built — see SESSION-37-RECOVERY.md for full spec)
+
+**Design decisions (permanent):**
+- expectedAISpend: parse free-text string to number (best-effort); pre-populate SpendTracker as editable line item
+- ROI Tracking DimensionStep: show declared spend as context banner above questions
+- TrackProgress SpendTracker: show declared vs. tracked monthly comparison callout
+- [x] SSH key setup (github_alphapi ed25519) — origin switched to SSH, 3 pending commits pushed (2026-03-06)
+- [x] Beta tester bypass: BETA-TESTER-2026 key activates Pro tier, persists via tauri-plugin-store (2026-03-06)
+- [x] LicensePanel Activate button wired + loading/error states (2026-03-06)
+- [x] App.tsx: getLicenseState() called on init, tier restored from store (2026-03-06)
+- [x] Install AlphaPi.command installer script + TESTER-GUIDE.md created (2026-03-06)
+- [x] README updated with beta tester section + NOTE banners (2026-03-06)

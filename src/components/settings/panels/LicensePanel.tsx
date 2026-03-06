@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { activateLicense } from '@/services/license';
 import type { LicenseTier } from '@/types/assessment';
 
 function LicenseBadge({ tier }: { tier: LicenseTier }) {
@@ -21,9 +22,31 @@ function LicenseBadge({ tier }: { tier: LicenseTier }) {
 
 export function LicensePanel() {
   const licenseTier = useAssessmentStore((s) => s.licenseTier);
+  const setLicenseTier = useAssessmentStore((s) => s.setLicenseTier);
   const pendingLicenseKey = useAssessmentStore((s) => s.pendingLicenseKey);
   const setPendingLicenseKey = useAssessmentStore((s) => s.setPendingLicenseKey);
   const [keyInput, setKeyInput] = useState('');
+  const [isActivating, setIsActivating] = useState(false);
+  const [activationMessage, setActivationMessage] = useState<{ text: string; ok: boolean } | null>(null);
+
+  async function handleActivate() {
+    if (!keyInput.trim()) return;
+    setIsActivating(true);
+    setActivationMessage(null);
+    try {
+      const result = await activateLicense(keyInput.trim());
+      if (result.isValid) {
+        setLicenseTier(result.tier);
+        setActivationMessage({ text: result.message, ok: true });
+      } else {
+        setActivationMessage({ text: 'Key not recognised. Check for typos and try again.', ok: false });
+      }
+    } catch {
+      setActivationMessage({ text: 'Activation failed. Please try again.', ok: false });
+    } finally {
+      setIsActivating(false);
+    }
+  }
 
   // Pre-fill key input when arriving via aigov://activate?key=XXXX deep link
   useEffect(() => {
@@ -65,11 +88,11 @@ export function LicensePanel() {
         <div className="flex gap-2">
           <button
             type="button"
-            disabled
-            title="Licensing coming soon"
-            className="flex-1 py-2 px-3 rounded-lg bg-gray-100 text-gray-400 text-sm font-medium cursor-not-allowed border border-gray-200"
+            onClick={handleActivate}
+            disabled={isActivating || !keyInput.trim()}
+            className="flex-1 py-2 px-3 rounded-lg bg-blue-600 text-white text-sm font-medium border border-blue-600 hover:bg-blue-700 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-colors"
           >
-            Activate Key
+            {isActivating ? 'Activating…' : 'Activate Key'}
           </button>
           <button
             type="button"
@@ -80,6 +103,11 @@ export function LicensePanel() {
             Scan QR Code
           </button>
         </div>
+        {activationMessage && (
+          <p className={`text-xs ${activationMessage.ok ? 'text-green-600' : 'text-red-600'}`}>
+            {activationMessage.text}
+          </p>
+        )}
         <p className="text-xs text-gray-400">
           QR activation: scan the code with your phone — your license will activate automatically on this device.
         </p>
