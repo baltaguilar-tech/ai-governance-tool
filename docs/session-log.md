@@ -289,3 +289,31 @@ energy-utilities, healthcare, financial-services, technology, manufacturing, gov
 - [x] README updated with beta tester section + NOTE banners (2026-03-06)
 - [x] BT-5: expectedAISpend feature — parseSpendAmount utility, ROI Tracking banner, SpendTracker pre-population + comparison callout (2026-03-06)
 - [x] BT-6: Reset All Data button in Settings → My Data — confirmation dialog, deletes 7 SQLite tables, clears legalAccepted, resets Zustand store, closes Settings (2026-03-06)
+
+## 2026-03-06 — Session 38
+
+**BT-7**: Tauri production build clean. Artifacts: AlphaPi.app + AlphaPi_0.1.0_aarch64.dmg confirmed at bundle output path.
+
+**BT-8**: Executive Summary scaffolded.
+- New: `src/components/settings/panels/AccountPanel.tsx` — Anthropic API key input, store to settings.json, format validation, show/hide toggle, consent notice.
+- Updated: `src/components/settings/Settings.tsx` — Account nav item (first position), AccountPanel wired.
+- New: `src/utils/execSummary.ts` — `generateTemplatedSummary()` produces three board-framed sections. Maturity-level narratives, per-dimension KB insights, regulatory exposure from operating regions, ROI gap benchmarks, upgrade/API-key CTAs.
+- Updated: `src/components/dashboard/TrackProgress.tsx` — `ExecSummaryCard` at top of page. Self-contained: reads assessmentStore + tauri-plugin-store for API key. Free = templated + upgrade CTA. Pro+key = disabled "Generate AI Summary" button (future). Pro, no key = configuration prompt.
+
+All pushed: origin/main = 1adc590.
+
+## 2026-03-06 — Session 39
+
+**PDF Executive Summary page** (pdfExport.ts — 716dd92):
+- Replaced old analytical exec summary paragraphs (generateExecutiveSummary / drawExecSummaryText) with new board-framed 3-section layout
+- Added parseBoldSegments() + drawRichText() — word-by-word inline bold renderer, wraps across bold/normal boundaries
+- Added drawExecSummaryPage() — navy header, section labels (blue/red/green), gap strips, amber regulatory callout, upgrade CTA box
+- Free PDF: page order now Cover → Exec Summary → Assessment Results → Gaps
+- Pro PDF: page order now Cover → Exec Summary → Assessment Results + Blind Spots → Dimensions → Recommendations
+- Removed deriveJurisdiction() and executiveSummary.ts import (orphan file left for session 40 cleanup)
+
+**P4-2**: $67.4B stat confirmed not in production code — no change needed.
+**P4-3**: decodeURIComponent already wrapped in try/catch at App.tsx:103-106 — no change needed.
+
+**README updated**: PDF export bullet, Executive Summary feature entry, Account panel + Reset All Data in Phase 2.
+

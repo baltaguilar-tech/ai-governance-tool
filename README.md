@@ -26,7 +26,8 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 - **Personalized recommendations** — Immediate actions + 90-day playbooks + vendor questionnaires
 - **ROI framework** — Financial + operational + innovation + customer + strategic value against direct + hidden + opportunity + risk costs
 - **Draft persistence** — Auto-saves to local SQLite, no account required, no cloud
-- **PDF export** — Free 1-page summary + Pro full report with implementation roadmap
+- **Executive Summary** — Board-framed 3-section summary (How governed / Exposure / ROI) in every PDF export; Pro + Anthropic API key unlocks AI-generated version (future)
+- **PDF export** — Free multi-page summary (cover + exec summary + scores + gaps) + Pro full report with dimension detail, recommendations, and implementation roadmap
 - **Auto-updater** — In-app update check and install via GitHub Releases (cryptographically signed)
 - **Privacy-first** — All data stays on device; no telemetry, no cloud sync
 
@@ -107,12 +108,15 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 - [x] Freemium gates (blind spots, recommendations, PDF depth, history)
 
 ### Phase 2: Settings, Licensing & Security ✅ DONE
-- [x] Settings page (License Key, Email, Notifications, Updates, About, My Data panels)
+- [x] Settings page (Account, License Key, Email, Notifications, Updates, About, My Data panels)
+- [x] Account panel: Anthropic API key input (stored locally, format-validated, show/hide toggle)
 - [x] Keygen.sh license service pre-wired (activation UI ready; awaiting Keygen account keys)
 - [x] Notification reminders (30/60/90 day, tauri-plugin-notification)
 - [x] Deep link handler (`aigov://activate`, `aigov://track`)
 - [x] Security hardening (CSP, source map disabled in prod, SQLite schema version check)
 - [x] Privacy Policy + Terms of Service (in-app modal + first-run acceptance gate)
+- [x] Reset All Data (wipes SQLite + store, returns to Welcome)
+- [x] Executive Summary card in Track Progress (board-framed, templated, tier-gated)
 
 ### Phase 3: Distribution ✅ MOSTLY DONE
 - [x] GitHub Actions CI/CD release workflow (triggers on `v*` tags, matrix: arm64 + x86_64)
