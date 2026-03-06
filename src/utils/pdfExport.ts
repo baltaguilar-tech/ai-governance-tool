@@ -80,6 +80,7 @@ function formatGapTitle(questionText: string): string {
  * plain hyphens. Space-padded dashes (" — ") become a comma-space to preserve flow.
  */
 function pdfText(text: string): string {
+  if (!text) return '';
   return text.replace(/ [—–] /g, ', ').replace(/[—–]/g, '-');
 }
 
@@ -349,7 +350,7 @@ function drawExecSummaryPage(
       doc.text(gap.dimension, margin + 4, y + 0.5);
       doc.setFont('helvetica', 'normal');
       const sc = gap.score;
-      const scoreColor: [number, number, number] = sc < 50 ? [185, 28, 28] : sc < 70 ? [180, 83, 9] : [21, 128, 61];
+      const scoreColor: [number, number, number] = sc < 40 ? [185, 28, 28] : sc < 70 ? [180, 83, 9] : [21, 128, 61];
       doc.setTextColor(...scoreColor);
       doc.text(`${sc}/100`, pageWidth - margin - 4, y + 0.5, { align: 'right' });
       y += 9;
@@ -377,12 +378,10 @@ function drawExecSummaryPage(
   }
 
   // ── Section 3: Where is the ROI? ────────────────────────────────────────────
-  if (y < pageHeight - 50) {
-    if (y > pageHeight - 65) { doc.addPage(); y = margin; }
-    sectionLabel('WHERE IS THE ROI?', 5, 150, 105);
-    y = drawRichText(doc, data.section3.body, margin, y, textW, 8.5, 5, 3, bodyColor);
-    y += 5;
-  }
+  if (y > pageHeight - 50) { doc.addPage(); y = margin; }
+  sectionLabel('WHERE IS THE ROI?', 5, 150, 105);
+  y = drawRichText(doc, data.section3.body, margin, y, textW, 8.5, 5, 3, bodyColor);
+  y += 5;
 
   // ── Upgrade / API key prompt ─────────────────────────────────────────────────
   const promptLines = doc.splitTextToSize(pdfText(data.upgradePrompt), textW - 10);
@@ -672,6 +671,7 @@ export async function generateProPDF(
   const margin = 15;
 
   const addFooter = (label = '') => {
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     doc.setTextColor(155, 179, 200);
     doc.text(
@@ -904,7 +904,7 @@ export async function generateProPDF(
     }
   }
 
-  addFooter('Executive Summary');
+  addFooter('Assessment Results');
 
   // ============================================================
   // PAGES 3+: ONE SECTION PER DIMENSION (all questions + answers)
@@ -1336,7 +1336,7 @@ export async function generateProPDF(
       const snap = trackingData.adoptionSnapshot;
       const aiUsers = Math.round((snap.headcount * snap.adoptionRate) / 100);
       const annualValue = aiUsers * snap.hoursSavedPerUser * 52 * snap.blendedHourlyRate;
-      const monthlySpend = trackingData.spendItems.reduce((s, i) => s + i.monthlyEquivalent, 0);
+      const monthlySpend = trackingData.spendItems.reduce((s, i) => s + (i.monthlyEquivalent || 0), 0);
       const annualCost = monthlySpend * 12;
       const netRoi = annualValue - annualCost;
       const roiPct = annualCost > 0 ? Math.round((netRoi / annualCost) * 100) : null;
