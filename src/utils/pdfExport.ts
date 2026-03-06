@@ -1,9 +1,9 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { RiskLevel, DimensionScore, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, Region, SpendItem, AdoptionSnapshot, MitigationItem } from '@/types/assessment';
+import { RiskLevel, DimensionScore, DimensionKey, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, RiskScore, SpendItem, AdoptionSnapshot, MitigationItem } from '@/types/assessment';
 import { DIMENSION_MAP, DIMENSIONS } from '@/data/dimensions';
 import { getRiskColor, getImmediateAction } from './scoring';
-import { generateExecutiveSummary } from './executiveSummary';
+import { generateTemplatedSummary, ExecSummaryData } from './execSummary';
 import { getIndustryContext, industryToCdnKey } from '@/services/contentService';
 
 // ── Save helper ──────────────────────────────────────────────────────────────
@@ -108,14 +108,6 @@ const DIM_SHORT: Record<string, string> = {
   roiTracking: 'ROI',
 };
 
-function deriveJurisdiction(regions: Region[]) {
-  if (regions.includes(Region.Europe)) return 'eu' as const;
-  if (regions.includes(Region.NorthAmerica)) return 'us' as const;
-  if (regions.includes(Region.AsiaPacific)) return 'ap' as const;
-  if (regions.includes(Region.LatinAmerica)) return 'latam' as const;
-  if (regions.includes(Region.MiddleEast)) return 'mea' as const;
-  return 'all' as const;
-}
 
 function drawRiskBars(
   doc: jsPDF,
@@ -203,30 +195,206 @@ function drawMaturityScale(
   });
 }
 
-function drawExecSummaryText(
-  doc: jsPDF,
-  para1: string,
-  para2: string,
-  para3: string,
-  startY: number,
-  pageWidth: number,
-  margin: number,
-  darkMode = false
-): number {
-  const textW = pageWidth - margin * 2;
-  let y = startY;
-  const lineH = 5.5;
-  const paraGap = 3;
-  const bodyColor: [number, number, number] = darkMode ? [155, 179, 200] : [51, 78, 104];
+// ── Inline-bold text helpers ──────────────────────────────────────────────────
 
-  for (const para of [para1, para2, para3]) {
-    doc.setFontSize(9.5);
-    doc.setTextColor(...bodyColor);
-    const lines = doc.splitTextToSize(pdfText(para), textW);
-    doc.text(lines, margin, y);
-    y += lines.length * lineH + paraGap;
+/** Splits a single line into alternating normal/bold segments by **markers**. */
+function parseBoldSegments(line: string): Array<{ text: string; bold: boolean }> {
+  const parts = line.split(/\*\*(.*?)\*\*/s);
+  return parts
+    .filter((p) => p.length > 0)
+    .map((p, i) => ({ text: p, bold: i % 2 === 1 }));
+}
+
+/**
+ * Renders prose with inline **bold** markers.
+ * Word-wraps across bold/normal boundaries. Returns Y after last line.
+ */
+function drawRichText(
+  doc: jsPDF,
+  rawText: string,
+  x: number,
+  startY: number,
+  maxWidth: number,
+  fontSize: number,
+  lineH: number,
+  paraGap: number,
+  color: [number, number, number]
+): number {
+  doc.setFontSize(fontSize);
+  doc.setTextColor(...color);
+  let y = startY;
+
+  for (const paragraph of rawText.split(/\n\n/)) {
+    if (!paragraph.trim()) continue;
+
+    // Flatten paragraph into a word queue, preserving explicit \n as BREAK tokens
+    const wordQueue: Array<{ word: string; bold: boolean }> = [];
+    const subLines = paragraph.split('\n');
+    for (let li = 0; li < subLines.length; li++) {
+      if (li > 0) wordQueue.push({ word: '\n', bold: false });
+      for (const seg of parseBoldSegments(subLines[li])) {
+        for (const w of seg.text.split(' ')) {
+          if (w) wordQueue.push({ word: w, bold: seg.bold });
+        }
+      }
+    }
+
+    // Lay out words onto wrapped lines
+    let lineItems: Array<{ word: string; bold: boolean }> = [];
+    let lineW = 0;
+
+    const renderLine = () => {
+      if (lineItems.length === 0) return;
+      let cx = x;
+      for (const item of lineItems) {
+        doc.setFont('helvetica', item.bold ? 'bold' : 'normal');
+        doc.text(item.word, cx, y);
+        cx += doc.getTextWidth(item.word + ' ');
+      }
+      doc.setFont('helvetica', 'normal');
+      y += lineH;
+      lineItems = [];
+      lineW = 0;
+    };
+
+    for (const { word, bold } of wordQueue) {
+      if (word === '\n') { renderLine(); continue; }
+      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      const ww = doc.getTextWidth(word + ' ');
+      if (lineW + ww > maxWidth && lineItems.length > 0) renderLine();
+      lineItems.push({ word, bold });
+      lineW += ww;
+    }
+    renderLine();
+    y += paraGap;
   }
+
+  doc.setFont('helvetica', 'normal');
   return y;
+}
+
+/**
+ * Renders the board-framed Executive Summary page (must be called after doc.addPage()).
+ * Three sections: How governed / Exposure / ROI — plus regulatory callout and upgrade prompt.
+ */
+function drawExecSummaryPage(
+  doc: jsPDF,
+  data: ExecSummaryData,
+  pageWidth: number,
+  pageHeight: number,
+  margin: number
+): void {
+  const textW = pageWidth - margin * 2;
+  const bodyColor: [number, number, number] = [51, 78, 104];
+
+  // ── Header ──────────────────────────────────────────────────────────────────
+  doc.setFillColor(16, 42, 67);
+  doc.rect(0, 0, pageWidth, 26, 'F');
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(13);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Executive Summary', margin, 17);
+  doc.setFontSize(7.5);
+  doc.setTextColor(202, 220, 252);
+  doc.text(data.maturityLevel + ' Stage', pageWidth - margin, 17, { align: 'right' });
+
+  let y = 33;
+
+  // ── Section label helper ─────────────────────────────────────────────────────
+  const sectionLabel = (label: string, r: number, g: number, b: number) => {
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(r, g, b);
+    doc.text(label, margin, y);
+    doc.setFont('helvetica', 'normal');
+    y += 3;
+    doc.setDrawColor(200, 215, 235);
+    doc.setLineWidth(0.2);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+  };
+
+  // ── Section 1: How is AI governed? ──────────────────────────────────────────
+  sectionLabel('HOW IS AI GOVERNED?', 37, 99, 235);
+  y = drawRichText(doc, data.section1.body, margin, y, textW, 8.5, 5, 3, bodyColor);
+  y += 5;
+
+  // ── Section 2: What is the exposure? ────────────────────────────────────────
+  if (y > pageHeight - 80) { doc.addPage(); y = margin; }
+  sectionLabel('WHAT IS THE EXPOSURE?', 185, 28, 28);
+
+  if (data.section2Gaps.length === 0) {
+    const noGapLines = doc.splitTextToSize(
+      'Assessment results indicate strong governance posture across all assessed dimensions.',
+      textW
+    );
+    doc.setFontSize(8.5);
+    doc.setTextColor(...bodyColor);
+    doc.text(noGapLines, margin, y);
+    y += noGapLines.length * 5 + 3;
+  } else {
+    const introText = `Assessment identified ${data.section2Gaps.length} governance dimension${data.section2Gaps.length > 1 ? 's' : ''} requiring immediate attention:`;
+    const introLines = doc.splitTextToSize(pdfText(introText), textW);
+    doc.setFontSize(8.5);
+    doc.setTextColor(...bodyColor);
+    doc.text(introLines, margin, y);
+    y += introLines.length * 5 + 3;
+
+    for (const gap of data.section2Gaps) {
+      doc.setFillColor(249, 250, 251);
+      doc.roundedRect(margin, y - 3.5, textW, 8, 1.5, 1.5, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(51, 78, 104);
+      doc.text(gap.dimension, margin + 4, y + 0.5);
+      doc.setFont('helvetica', 'normal');
+      const sc = gap.score;
+      const scoreColor: [number, number, number] = sc < 50 ? [185, 28, 28] : sc < 70 ? [180, 83, 9] : [21, 128, 61];
+      doc.setTextColor(...scoreColor);
+      doc.text(`${sc}/100`, pageWidth - margin - 4, y + 0.5, { align: 'right' });
+      y += 9;
+    }
+    y += 2;
+  }
+
+  // Regulatory callout (amber box)
+  if (data.regulatoryExposure && y < pageHeight - 45) {
+    const regLines = doc.splitTextToSize(pdfText(data.regulatoryExposure), textW - 10);
+    const boxH = Math.max(regLines.length * 4.5 + 12, 18);
+    doc.setFillColor(255, 251, 235);
+    doc.setDrawColor(251, 191, 36);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(margin, y, textW, boxH, 2, 2, 'FD');
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(146, 64, 14);
+    doc.text('REGULATORY EXPOSURE', margin + 5, y + 5);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(92, 45, 5);
+    doc.text(regLines, margin + 5, y + 10);
+    y += boxH + 5;
+  }
+
+  // ── Section 3: Where is the ROI? ────────────────────────────────────────────
+  if (y < pageHeight - 50) {
+    if (y > pageHeight - 65) { doc.addPage(); y = margin; }
+    sectionLabel('WHERE IS THE ROI?', 5, 150, 105);
+    y = drawRichText(doc, data.section3.body, margin, y, textW, 8.5, 5, 3, bodyColor);
+    y += 5;
+  }
+
+  // ── Upgrade / API key prompt ─────────────────────────────────────────────────
+  const promptLines = doc.splitTextToSize(pdfText(data.upgradePrompt), textW - 10);
+  const promptBoxH = Math.max(promptLines.length * 4.5 + 12, 18);
+  if (y + promptBoxH > pageHeight - 12) { doc.addPage(); y = margin; }
+  doc.setFillColor(240, 244, 248);
+  doc.setDrawColor(180, 200, 220);
+  doc.setLineWidth(0.2);
+  doc.roundedRect(margin, y, textW, promptBoxH, 2, 2, 'FD');
+  doc.setFontSize(7.5);
+  doc.setTextColor(98, 125, 152);
+  doc.text(promptLines, margin + 5, y + 7);
 }
 
 export async function generateFreePDF(
@@ -288,30 +456,36 @@ export async function generateFreePDF(
   drawRiskBars(doc, dimensionScores, 20, 178, pageWidth - 40);
   drawMaturityScale(doc, profile.aiMaturityLevel ?? MaturityLevel.Experimenter, 20, 250, pageWidth - 40);
 
-  // ===== PAGE 2: EXEC SUMMARY + DIMENSION TABLE + BLIND SPOTS =====
+  // ===== PAGE 2: EXECUTIVE SUMMARY =====
+  doc.addPage();
+
+  const freeRiskScore: RiskScore = {
+    dimensions: {} as Record<DimensionKey, number>,
+    overallRisk: overallScore,
+    riskLevel,
+    achieverScore,
+    currentMaturity: profile.aiMaturityLevel ?? MaturityLevel.Experimenter,
+    targetMaturity: MaturityLevel.Achiever,
+    maturityGap: [],
+  };
+  const freeExecData = generateTemplatedSummary(
+    profile, freeRiskScore, dimensionScores, [], 'free',
+    completedAt ?? new Date().toISOString()
+  );
+  drawExecSummaryPage(doc, freeExecData, pageWidth, doc.internal.pageSize.getHeight(), 20);
+
+  // ===== PAGE 3: ASSESSMENT RESULTS =====
   doc.addPage();
 
   doc.setFillColor(16, 42, 67);
   doc.rect(0, 0, pageWidth, 30, 'F');
   doc.setFontSize(16);
   doc.setTextColor(255, 255, 255);
-  doc.text('Executive Summary', 20, 20);
+  doc.text('Assessment Results', 20, 20);
 
-  const jurisdiction = deriveJurisdiction(profile.operatingRegions ?? []);
-  const { para1, para2, para3 } = generateExecutiveSummary({
-    profile,
-    overallScore,
-    riskLevel,
-    dimensionScores,
-    jurisdiction,
-  });
-  let execY = drawExecSummaryText(doc, para1, para2, para3, 38, pageWidth, 20);
-
-  // Dimension scores table on page 2
-  execY += 4;
   doc.setFontSize(11);
   doc.setTextColor(16, 42, 67);
-  doc.text('Dimension Scores', 20, execY);
+  doc.text('Dimension Scores', 20, 38);
 
   const tableData = dimensionScores.map((ds) => [
     DIMENSION_MAP[ds.key]?.label || ds.key,
@@ -321,7 +495,7 @@ export async function generateFreePDF(
   ]);
 
   autoTable(doc, {
-    startY: execY + 4,
+    startY: 42,
     head: [['Dimension', 'Score', 'Risk Level', 'Weight']],
     body: tableData,
     headStyles: { fillColor: [16, 42, 67], textColor: [255, 255, 255], fontSize: 9 },
@@ -597,7 +771,28 @@ export async function generateProPDF(
   addFooter();
 
   // ============================================================
-  // PAGE 2: EXECUTIVE SUMMARY — Narrative + Scores + Blind Spots
+  // PAGE 2: EXECUTIVE SUMMARY
+  // ============================================================
+  doc.addPage();
+
+  const proRiskScore: RiskScore = {
+    dimensions: {} as Record<DimensionKey, number>,
+    overallRisk: overallScore,
+    riskLevel,
+    achieverScore,
+    currentMaturity: profile.aiMaturityLevel ?? MaturityLevel.Experimenter,
+    targetMaturity: MaturityLevel.Achiever,
+    maturityGap: [],
+  };
+  const proExecData = generateTemplatedSummary(
+    profile, proRiskScore, dimensionScores, [], 'professional',
+    completedAt ?? new Date().toISOString()
+  );
+  drawExecSummaryPage(doc, proExecData, pageWidth, pageHeight, margin);
+  addFooter();
+
+  // ============================================================
+  // PAGE 3: ASSESSMENT RESULTS — Scores + Blind Spots
   // ============================================================
   doc.addPage();
 
@@ -605,20 +800,7 @@ export async function generateProPDF(
   doc.rect(0, 0, pageWidth, 26, 'F');
   doc.setFontSize(13);
   doc.setTextColor(255, 255, 255);
-  doc.text('Executive Summary', margin, 17);
-
-  // Narrative paragraphs
-  const proJurisdiction = deriveJurisdiction(profile.operatingRegions ?? []);
-  const proSummary = generateExecutiveSummary({
-    profile,
-    overallScore,
-    riskLevel,
-    dimensionScores,
-    jurisdiction: proJurisdiction,
-  });
-  let proExecY = drawExecSummaryText(doc, proSummary.para1, proSummary.para2, proSummary.para3, 32, pageWidth, margin);
-
-  proExecY += 4;
+  doc.text('Assessment Results', margin, 17);
 
   const scoreTableData = dimensionScores.map((ds) => [
     DIMENSION_MAP[ds.key]?.label || ds.key,
@@ -628,7 +810,7 @@ export async function generateProPDF(
   ]);
 
   autoTable(doc, {
-    startY: proExecY,
+    startY: 32,
     head: [['Dimension', 'Weight', 'Score', 'Risk Level']],
     body: scoreTableData,
     headStyles: { fillColor: [16, 42, 67], textColor: [255, 255, 255], fontSize: 9 },
