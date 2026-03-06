@@ -317,3 +317,13 @@ All pushed: origin/main = 1adc590.
 
 **README updated**: PDF export bullet, Executive Summary feature entry, Account panel + Reset All Data in Phase 2.
 
+
+## Session 40 — 2026-03-06
+- P4-1 (EU AI Act questions): confirmed already complete across all 4 banks (e-11/12/13, risk-b-11/12/13, airisk-i/a-11/12/13)
+- Fixed Pro PDF footer label: 'Executive Summary' → 'Assessment Results'
+- Deleted orphan src/utils/executiveSummary.ts
+- Scoring engine audit: fully dynamic, no hardcoded counts, 13-question aiSpecificRisks works correctly
+- PDF adversarial review: fixed P-002 (pdfText null), P-003 (Section 3 overflow), P-004 (addFooter font), P-006 (color thresholds), P-007 (ROI NaN)
+- Question bank review: no blocking bugs. EU AI Act content accurate. 5-option vs 4-option pattern noted as deferred.
+- BT-8 confirmed done (session 38). BT-7 (unsigned .app) confirmed NOT done — session 41 priority.
+- Commit: 1a2cf18
