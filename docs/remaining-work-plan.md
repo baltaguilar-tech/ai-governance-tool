@@ -87,10 +87,10 @@ Legal Entity (LLC/Corp)
 | **BT-2** | Install AlphaPi.command — DMG installer script | ✅ Done |
 | **BT-3** | TESTER-GUIDE.md — step-by-step guide + feedback template | ✅ Done |
 | **BT-4** | README For Beta Testers section + NOTE banners | ✅ Done |
-| **BT-5** | expectedAISpend → ROI Tracking feature | ⏳ Session 37 in progress |
-| **BT-6** | Reset All Data button in Settings | ⏳ Session 37 in progress |
-| **BT-7** | Unsigned .app build for tester | ⏳ Session 37 in progress |
-| **BT-8** | Executive Summary API key settings panel + consent flow | ⏳ Session 37 in progress |
+| **BT-5** | expectedAISpend → ROI Tracking feature | ✅ Done (session 37, commit 6d106c4) |
+| **BT-6** | Reset All Data button in Settings | ✅ Done (session 37, commit fcb6c96) |
+| **BT-7** | Unsigned .app build for tester | ⏳ Session 41 (confirmed NOT done — no commit) |
+| **BT-8** | Executive Summary API key settings panel + consent flow | ✅ Done (session 38, commit 1adc590) |
 
 ---
 
@@ -112,6 +112,19 @@ Legal Entity (LLC/Corp)
 | **DI-2** | GitHub repo → private | XS | ⏳ Blocked on company registration |
 | **DI-3** | Windows build pipeline (NSIS + MSI) | L — 4–8 hrs | ⏳ Blocked on EV cert |
 | **DI-4** | Windows code signing | M — 2–3 hrs | ⏳ Blocked on EV cert |
+
+---
+
+## Priority 5B — PDF Bug Backlog (Medium severity, deferred session 40)
+
+| # | Bug | Location | Status |
+|---|---|---|---|
+| **PDF-1** | `section2Gaps` items not null-guarded (`.dimension`, `.score`) | `drawExecSummaryPage()` | ⏳ Session 41 |
+| **PDF-2** | Unclosed `**` bold marker leaves raw `**` in PDF output | `parseBoldSegments()` | ⏳ Session 41 |
+| **PDF-3** | Dimension score not clamped 0–100 before bar/text rendering | Multiple render sites | ⏳ Session 41 |
+| **PDF-4** | Question bank option pattern inconsistency: Experimenter/Builder use 4-option (100,65,35,0); Innovator/Achiever use 5-option (100,75,50,25,0) | All 4 bank files | ⏳ Needs decision |
+
+*PDF-4 requires user decision: standardize to 4-option or 5-option before fixing.*
 
 ---
 
@@ -150,4 +163,4 @@ Legal Entity (LLC/Corp)
 ---
 
 *See also: `docs/decisions.md` | `docs/windows-plan.md`*
-*Last updated: 2026-03-06 (session 37)*
+*Last updated: 2026-03-06 (session 40 — BT-7 confirmed pending, BT-8 confirmed done, PDF-1–4 added)*
