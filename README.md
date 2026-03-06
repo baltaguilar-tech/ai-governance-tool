@@ -1,9 +1,9 @@
-[!WARNING]
-**Work in Progress** — This project is under active development. Features, APIs, and documentation are incomplete and subject to change without notice. Not ready for production use until Phase 2 is complete.
+> [!NOTE]
+> **Pre-launch** — Core functionality is complete. Pending macOS code signing (Apple Developer account) and Keygen.sh license key setup before public distribution.
 
 ---
 
-# AI Governance & ROI Assessment Tool
+# AlphaPi — AI Governance & ROI Assessment Tool
 
 > **Know your AI risk. Prove your AI value. Before regulators ask.**
 
@@ -15,7 +15,7 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 
 ## Features
 
-- **9-step guided wizard** — Welcome → Org Profile (maturity level + regions) → 6 Assessment Dimensions → Results → Export
+- **9-step guided wizard** — Welcome → Org Profile → 6 Assessment Dimensions → Results → Export
 - **240 calibrated assessment questions** — 60 questions per maturity profile (Experimenter, Builder, Innovator, Achiever), dynamically selected based on org profile
 - **6 governance dimensions** — Shadow AI (25%), Vendor Risk (25%), Data Governance (20%), Security & Compliance (15%), AI-Specific Risks (10%), ROI Tracking (5%)
 - **Jurisdiction-aware** — Questions and recommendations adapt to EU, UK, US, APAC, LatAm, MEA; covers EU AI Act, GDPR, CCPA, ISO 42001, NIST AI RMF
@@ -24,7 +24,8 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 - **ROI framework** — Financial + operational + innovation + customer + strategic value against direct + hidden + opportunity + risk costs
 - **Draft persistence** — Auto-saves to local SQLite, no account required, no cloud
 - **PDF export** — Free 1-page summary + Pro full report with implementation roadmap
-- **React error boundaries** — Graceful error handling and recovery
+- **Auto-updater** — In-app update check and install via GitHub Releases (cryptographically signed)
+- **Privacy-first** — All data stays on device; no telemetry, no cloud sync
 
 ---
 
@@ -76,20 +77,23 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 
 Built as a native desktop application — no cloud dependency, no data leaves your machine.
 
-- **Desktop shell:** [Tauri v2](https://tauri.app/) (Rust backend, no-electron overhead)
+- **Desktop shell:** [Tauri v2](https://tauri.app/) (Rust backend, no-Electron overhead)
 - **Frontend:** React 19 + TypeScript + Vite
 - **Styling:** Tailwind CSS v4
 - **Charts:** Recharts
 - **State:** Zustand
-- **Local database:** SQLite (tauri-plugin-sql) with auto-save
+- **Local database:** SQLite (`tauri-plugin-sql`) with auto-save
+- **Settings/store:** `tauri-plugin-store` (notifications, legal acceptance, license)
 - **Export:** jsPDF (PDF), docx.js (DOCX)
-- **Updates:** Tauri updater + custom HTTP content sync
+- **Updates:** `tauri-plugin-updater` + GitHub Releases (ed25519 signed)
+- **Licensing:** Keygen.sh via `tauri-plugin-keygen` (pending activation)
+- **Deep links:** `aigov://` scheme (QR license activation, progress reminders)
 
 ---
 
 ## Project Status
 
-### Phase 1: App Completeness ✓ DONE
+### Phase 1: App Completeness ✅ DONE
 - [x] Full 9-step wizard UI (all steps rendered and wired)
 - [x] 240 questions across 4 maturity profiles (all defined, scored, jurisdiction-aware)
 - [x] Weighted scoring engine with dimension breakdown and blind spots
@@ -99,23 +103,36 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 - [x] React error boundaries (global + per-step graceful recovery)
 - [x] Freemium gates (blind spots, recommendations, PDF depth, history)
 
-### Phase 2: Monetization — IN PROGRESS
-- [ ] Keygen.sh licensing integration (feature entitlements, offline grace period)
-- [ ] Settings page (profile edit, export history, license management)
-- [ ] Spend tracker UI (link assessments to AI spend data)
-- [ ] Pro tier unlock flow (landing page, pricing, payment link)
+### Phase 2: Settings, Licensing & Security ✅ DONE
+- [x] Settings page (License Key, Email, Notifications, Updates, About, My Data panels)
+- [x] Keygen.sh license service pre-wired (activation UI ready; awaiting Keygen account keys)
+- [x] Notification reminders (30/60/90 day, tauri-plugin-notification)
+- [x] Deep link handler (`aigov://activate`, `aigov://track`)
+- [x] Security hardening (CSP, source map disabled in prod, SQLite schema version check)
+- [x] Privacy Policy + Terms of Service (in-app modal + first-run acceptance gate)
 
-### Phase 3: Distribution — PENDING
-- [ ] GitHub Actions CI/CD (build on release tags)
-- [ ] macOS code signing + notarization (Apple Developer account)
-- [ ] GitHub Releases auto-updater (tauri-plugin-updater wiring)
-- [ ] Windows + Linux build validation
+### Phase 3: Distribution ✅ MOSTLY DONE
+- [x] GitHub Actions CI/CD release workflow (triggers on `v*` tags, matrix: arm64 + x86_64)
+- [x] Auto-updater wired end-to-end (`tauri-plugin-updater`, ed25519 signed, GitHub Releases endpoint)
+- [x] Tauri signing keypair generated; `TAURI_SIGNING_PRIVATE_KEY` added to GitHub Secrets
+- [ ] macOS code signing — **blocked on Apple Developer account + D-U-N-S number**
+- [ ] macOS notarization — **blocked on Apple Developer account + D-U-N-S number**
+- [ ] Windows build (NSIS + MSI) — **blocked on EV code signing cert**
+
+### Remaining Pre-Launch Gates
+| Item | Blocked on |
+|------|-----------|
+| GL-2: Keygen license activation | Keygen.sh account setup |
+| GL-3: macOS code signing | Apple Developer Organization account |
+| GL-4: macOS notarization | Apple Developer + D-U-N-S number |
+| GL-5: Payment processor | Company registration + payment provider decision |
+| DI-1: CrabNebula CDN | GL-3 signing |
+| DI-3/4: Windows build + signing | EV code signing cert |
 
 ### Known Limitations
 - No automated tests (unit/integration tests not yet written)
-- No privacy policy or terms of service
-- macOS notarization not yet configured
-- Keygen.sh licensing not yet active (currently hardcoded to 'professional' tier in dev)
+- macOS builds are unsigned until GL-3 is complete (users will see Gatekeeper warning)
+- Keygen.sh license validation not yet active (license UI is present but activation is disabled pending account setup)
 
 ---
 
@@ -136,7 +153,7 @@ npm install
 npm run tauri dev
 ```
 
-The app will open in a dev window with hot-reload enabled.
+The app opens in a dev window with hot-reload and DevTools enabled.
 
 ### Build for Production
 
@@ -146,13 +163,31 @@ npm run tauri build
 
 Output is in `src-tauri/target/release/bundle/`.
 
+### Publishing a Release
+
+Push a version tag to trigger the CI/CD release workflow:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+GitHub Actions builds signed macOS binaries (arm64 + x86_64), creates a GitHub Release (draft), and publishes `latest.json` for the in-app auto-updater. Review and publish the draft release on GitHub when ready.
+
+**Required GitHub Secrets** (already configured):
+- `TAURI_SIGNING_PRIVATE_KEY` — Tauri updater ed25519 private key
+- `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` — empty string
+
+**Future secrets** (add when Apple Developer account is ready):
+- `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID`
+
 ---
 
 ## License
 
 Copyright 2026 baltaguilar-tech. All rights reserved.
 
-Proprietary software. Unauthorized copying, redistribution, or commercial use is prohibited without explicit permission.
+Proprietary software. Unauthorized copying, redistribution, or commercial use is prohibited without explicit written permission.
 
 ---
 
