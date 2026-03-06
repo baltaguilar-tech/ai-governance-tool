@@ -33,7 +33,7 @@
 
 ---
 
-### P1-3 · Fix `operatingRegions` silently wiping all responses
+### P1-3 · Fix `operatingRegions` silently wiping all responses ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/store/assessmentStore.ts` — `updateProfile()` |
@@ -41,10 +41,11 @@
 | **How** | Replace reference equality with value comparison: `JSON.stringify(updates.operatingRegions) !== JSON.stringify(state.profile.operatingRegions)` |
 | **Why** | Any user who updates their profile after completing dimension questions loses all their work with no warning and no recovery. Silent data loss on a data-collection product is a credibility killer |
 | **LOE** | XS — 20 min |
+| **Status** | Fixed session 35 — JSON.stringify comparison in place. |
 
 ---
 
-### P1-4 · Fix TrackProgress ROI snapshot corruption
+### P1-4 · Fix TrackProgress ROI snapshot corruption ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/components/dashboard/TrackProgress.tsx` + `src/services/db.ts` |
@@ -52,6 +53,7 @@
 | **How** | Store `costAtSnapshot` in the snapshot DB record when a snapshot is saved. Use that stored value — not live data — when calculating and displaying historical ROI |
 | **Why** | The entire value proposition of Track Progress is historical accuracy. If costs change, every prior data point shows wrong ROI. The chart becomes meaningless — and misleading to users making financial decisions |
 | **LOE** | M — 2–3 hours (schema migration + snapshot write + calculation fix + chart update) |
+| **Status** | Fixed session 35 — costAtSnapshot stored at snapshot time, used for all historical ROI calculations. |
 
 ---
 
@@ -70,7 +72,7 @@
 ## Tier 2 — Scoring & Assessment Accuracy
 > Core product reliability. Fix before increasing user volume or enabling paid exports.
 
-### P2-1 · Eliminate fabricated score for unanswered dimensions
+### P2-1 · Eliminate fabricated score for unanswered dimensions ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/utils/scoring.ts` + `src/components/dashboard/ResultsDashboard.tsx` + PDF generator |
@@ -78,10 +80,11 @@
 | **How** | Return `null` for unanswered dimensions. Show "Not assessed" in the UI (results dashboard + radar chart). Exclude from overall score calculation entirely. Update PDF to reflect "Not assessed" label rather than a fabricated number |
 | **Why** | Showing 50 as a real score for a dimension the user never answered corrupts the assessment's credibility. Enterprise buyers reviewing outputs will notice immediately |
 | **LOE** | M — 2–3 hours (scoring.ts + dashboard UI + PDF output) |
+| **Status** | Complete session 32 — DimensionScore.answered:boolean; unanswered dims score=0, excluded from overall; "Not assessed" badge in UI + radar; PDF placeholder page per unanswered dim. |
 
 ---
 
-### P2-2 · Document or adjust dimension scoring weights
+### P2-2 · Document or adjust dimension scoring weights ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/data/dimensions.ts` |
@@ -89,10 +92,11 @@
 | **How** | (1) Add a prominent comment block in `dimensions.ts` explaining the weighting rationale. (2) Evaluate whether current weights align with EU AI Act risk priorities (which emphasize high-risk system oversight more than vendor risk). (3) Add a disclaimer to the PDF that weights reflect general governance priorities and can be discussed with advisors |
 | **Why** | Domain experts and enterprise buyers will challenge indefensible scoring immediately. A governance tool that can't explain its own methodology damages trust at the exact moment users are evaluating a purchase |
 | **LOE** | M — 2 hours (decision + documentation + PDF disclaimer) |
+| **Status** | Complete session 32 — 46-line rationale comment in dimensions.ts; methodology disclaimer in Free PDF footer + Pro PDF recommendations page. |
 
 ---
 
-### P2-3 · Wire `licenseTier` into `generateRecommendations`
+### P2-3 · Wire `licenseTier` into `generateRecommendations` ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/utils/recommendations.ts` |
@@ -100,10 +104,11 @@
 | **How** | Add tier-check conditionals: paid recommendations are only appended when `licenseTier === 'professional'`. Structure is already in place — the parameter just needs to be used |
 | **Why** | Free users receive Professional-tier recommendations content. When LB-2 (Keygen) is activated, this will expose a broken experience — free users will see recommendations they can't act on and paid users won't see differentiation. Fix the wiring now so activation just works |
 | **LOE** | S — 1 hour |
+| **Status** | Complete session 32 — licenseTier fully wired; all paid recs gated on 'professional'; score-conditional free recs gated on answered !== false. |
 
 ---
 
-### P2-4 · Fix `canProceed()` fragile prefix matching
+### P2-4 · Fix `canProceed()` fragile prefix matching ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/store/assessmentStore.ts` — `canProceed()` |
@@ -111,10 +116,11 @@
 | **How** | Count actual questions for the current dimension by calling `getQuestionsForProfile()` and matching against real question IDs from the question bank |
 | **Why** | Maintainability and correctness. A future question bank edit could cause the Continue button to behave incorrectly with no error and no easy debugging path |
 | **LOE** | S — 1–2 hours |
+| **Status** | Complete session 32 — canProceed() uses getQuestionsForProfile(); no prefix map or magic numbers. |
 
 ---
 
-### P2-5 · Fix `airisks-e-3` option value ordering
+### P2-5 · Fix `airisks-e-3` option value ordering ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/data/questions/experimenter-questions.ts` |
@@ -122,13 +128,14 @@
 | **How** | Reorder to 100, 65, 35, 0. Verify no other questions in the other three profile banks have the same ordering issue |
 | **Why** | This question scores differently from every other question in the assessment. A user selecting "Sometimes" gets a lower score than "Rarely" — the inverse of intent |
 | **LOE** | XS — 15–30 min (including audit of all 4 question banks) |
+| **Status** | Complete session 32 — values fixed to 100,65,35,0. Innovator bank has ascending display order (UX inconsistency, not scoring bug, deferred). |
 
 ---
 
 ## Tier 3 — PDF Output
 > Highest user-facing value. These changes directly improve what users take away from the assessment.
 
-### P3-1 · Add unanswered questions to PDF as "Gaps to Address"
+### P3-1 · Add unanswered questions to PDF as "Gaps to Address" ✅ COMPLETE
 | | |
 |---|---|
 | **Files** | `src/utils/scoring.ts` + PDF generator (`src/utils/pdf/`) |
@@ -136,10 +143,11 @@
 | **How** | (1) In `calculateResults()`, track answered vs. unanswered questions per dimension. (2) In the PDF, add a "Questions to Investigate" section per dimension containing: question text + blank "Mitigation Notes" field. (3) Frame as "Consider investigating:" not as failures |
 | **Why** | Transforms a product limitation into a consulting deliverable. Users can print the PDF, bring it to their AI governance committee, and fill in the gaps collaboratively. Directly increases the PDF's perceived value |
 | **LOE** | L — 4–6 hours (scoring changes + PDF section design + layout) |
+| **Status** | Complete session 32 — unansweredQuestions tracked per dimension; Free PDF "Open Assessment Items" page (if gaps exist); Pro PDF bordered boxes with page-break handling. |
 
 ---
 
-### P3-2 · Fix assessment completion date
+### P3-2 · Fix assessment completion date ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/components/dashboard/ResultsDashboard.tsx` + `src/store/assessmentStore.ts` |
@@ -147,10 +155,11 @@
 | **How** | Store a `completedAt` timestamp in the store when `calculateResults()` is called. Pass it through to the dashboard display and the PDF generator |
 | **Why** | Users comparing assessments over time need accurate dates. Every past assessment currently shows today's date, making the history feature misleading |
 | **LOE** | S — 1 hour |
+| **Status** | Complete session 32 — completedAt:string|null stored in assessmentStore; set in calculateResults(); used in dashboard header and both PDF cover pages. |
 
 ---
 
-### P3-3 · Add loading state to PDF export button
+### P3-3 · Add loading state to PDF export button ✅ COMPLETE
 | | |
 |---|---|
 | **File** | `src/components/dashboard/ResultsDashboard.tsx` |
@@ -158,6 +167,7 @@
 | **How** | Add `isExporting` state. Disable the button and show "Generating..." during PDF creation |
 | **Why** | PDF generation takes 2–5 seconds. Without feedback, users click multiple times and generate duplicate files. Standard UX expectation |
 | **LOE** | XS — 30 min |
+| **Status** | Complete session 32 — isExportingFree + isExportingPro state; buttons disabled + "Generating..." during PDF creation. |
 
 ---
 
@@ -226,4 +236,4 @@
 
 ---
 
-*Last updated: 2026-03-04 | Review source: `docs/code-review.md`*
+*Last updated: 2026-03-06 (session 37) | Tiers 1–3 fully complete | Tier 4 open | Review source: `docs/code-review.md`*

@@ -72,9 +72,25 @@ Legal Entity (LLC/Corp)
 | **GL-2** | Wire Keygen license validation (LB-2) | `src/services/license.ts`, assessmentStore | L — 4–6 hrs | ⏳ Blocked on Keygen keys |
 | **GL-3** | macOS code signing (LB-3) | `src-tauri/tauri.conf.json`, CI | M — 2–4 hrs | ⏳ Blocked on Apple Dev |
 | **GL-4** | macOS notarization | `src-tauri/tauri.conf.json`, CI | M — 2–3 hrs | ⏳ Blocked on Apple Dev + D-U-N-S |
+| **GL-8** | Beta tester bypass (BETA-TESTER-2026 key) | `src/services/license.ts`, LicensePanel, App.tsx | — | ✅ Done (session 37) |
 | **GL-5** | Payment processor integration (LB-4) | `src/services/payment.ts`, Settings UI | M — 3–5 hrs | ⏳ Blocked on payment decision |
 | **GL-6** | Auto-updater restoration | `src-tauri/tauri.conf.json`, `src/services/updater.ts` | M — 2–3 hrs | ✅ Done (session 35) |
 | **GL-7** | Privacy policy + terms of service | Static pages or in-app modal | S — 1–2 hrs | ✅ Done (session 35) |
+
+---
+
+## Priority 3B — Beta Tester Readiness (session 37)
+
+| # | Item | Status |
+|---|---|---|
+| **BT-1** | SSH key setup (github_alphapi ed25519), remote switched to SSH | ✅ Done |
+| **BT-2** | Install AlphaPi.command — DMG installer script | ✅ Done |
+| **BT-3** | TESTER-GUIDE.md — step-by-step guide + feedback template | ✅ Done |
+| **BT-4** | README For Beta Testers section + NOTE banners | ✅ Done |
+| **BT-5** | expectedAISpend → ROI Tracking feature | ⏳ Session 37 in progress |
+| **BT-6** | Reset All Data button in Settings | ⏳ Session 37 in progress |
+| **BT-7** | Unsigned .app build for tester | ⏳ Session 37 in progress |
+| **BT-8** | Executive Summary API key settings panel + consent flow | ⏳ Session 37 in progress |
 
 ---
 
@@ -134,4 +150,4 @@ Legal Entity (LLC/Corp)
 ---
 
 *See also: `docs/decisions.md` | `docs/windows-plan.md`*
-*Last updated: 2026-03-05 (session 35)*
+*Last updated: 2026-03-06 (session 37)*
