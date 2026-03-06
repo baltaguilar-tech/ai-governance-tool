@@ -1,6 +1,6 @@
-# Session 32 Coding — Phase 5 Wizard UI (ProfileStep + DimensionStep)
+# Session 36 — SSH Keys, Reset Data, Tester Build, Executive Summary
 
-We're continuing the AI Governance Tool project (Tauri v2 + React + TypeScript).
+We're continuing the AlphaPi AI Governance Tool project (Tauri v2 + React + TypeScript).
 Project directory: ~/Projects/ai-governance-tool/
 
 ## Model usage rule (PERMANENT)
@@ -8,133 +8,89 @@ Use **Haiku** for ALL low-level work: file reads, exploration, grep/glob searche
 Use **Sonnet** only for code generation and multi-file edits.
 
 ## Before doing anything else
-1. `git status` — confirm no unexpected changes
-2. Read last 10 lines of `docs/session-log.md`
-3. Read `src/components/wizard/ProfileStep.tsx` (full)
-4. Read `src/components/wizard/DimensionStep.tsx` (full)
+1. `git log --oneline -5` — confirm local state
+2. `git status` — confirm no unexpected changes
+3. Read last 10 lines of `docs/session-log.md`
 
 ## Git state at session start
-- origin/main = d1fb45b (Tier 3)
-- Local: 3 commits ahead (b3a1017 P4-3, 2d7b6a4 P4-2, 411f466 P4-1) — NOT pushed
-- Do NOT push until user says so
-
-## Session goal
-Redesign ProfileStep.tsx and DimensionStep.tsx (visual/UX only — NO logic, scoring, or store changes).
+- origin/main = 78f0a84
+- Local main = 68f97aa (README update) — 1 commit ahead, NOT yet pushed
+- Pending push requires SSH auth (item 1 below)
 
 ---
 
-## Change 1 — ProfileStep.tsx: Section Headers + Required Badges
+## Item 1 — SSH Key Setup (10 min) — DO FIRST
+Permanent fix for git push auth. No more PAT tokens.
 
-### Two labeled sections (same scroll, no sub-steps)
+```bash
+# Step 1 — Generate key (run in Terminal)
+ssh-keygen -t ed25519 -C "baltaguilar-tech" -f ~/.ssh/github_alphapi
+# Press Enter twice (no passphrase)
 
-**Section 1 header: "About Your Organization"**
-Fields (in order): Org Name, Industry, Organization Size, Annual Revenue, Primary Location
-
-**Section 2 header: "Your AI Program"**
-Note directly under header: `"Optional — these fields improve your personalized recommendations."`
-Fields (in order): Operating Regions, AI Maturity Level, AI Use Cases, Deployment Timeline, Expected Annual AI Spend
-
-### Section header style
+# Step 2 — Show public key to add to GitHub
+cat ~/.ssh/github_alphapi.pub
 ```
-text-xs font-semibold uppercase tracking-widest text-light-muted
-border-b border-navy-100 pb-2 mb-6 mt-10
-```
-First section (About Your Organization): mt-0, not mt-10.
 
-### Required badge style
-Small inline chip next to the field label text (not an asterisk):
-```tsx
-<span className="ml-2 text-xs font-medium text-accent-blue bg-blue-50 rounded px-1.5 py-0.5">Required</span>
-```
-Apply to: Org Name, Industry, Organization Size only.
+Then: github.com → Settings → SSH and GPG keys → New SSH key → paste pub key → title "AlphaPi MacBook"
 
-### DO NOT change
-- Field logic, validation, canProceed() — zero behavior changes
-- Sticky nav buttons
-- Any store or type references
-- Field order within each section
+```bash
+# Step 3 — Switch remote to SSH and push
+cd ~/Projects/ai-governance-tool
+git remote set-url origin git@github.com:baltaguilar-tech/ai-governance-tool.git
+git push
+# Should push 68f97aa (README) cleanly
+```
 
 ---
 
-## Change 2 — DimensionStep.tsx: Three visual upgrades
-
-### 2a. Dimension header — Lucide icon per dimension
-
-Add a Lucide icon left of the dimension label. Icon map (exact DimensionKey values):
-
-```typescript
-import { EyeOff, Link2, Database, ShieldCheck, Zap, TrendingUp } from 'lucide-react';
-
-const DIMENSION_ICONS: Record<DimensionKey, React.ElementType> = {
-  shadowAI:            EyeOff,
-  vendorRisk:          Link2,
-  dataGovernance:      Database,
-  securityCompliance:  ShieldCheck,
-  aiSpecificRisks:     Zap,
-  roiTracking:         TrendingUp,
-};
-```
-
-Icon display: w-7 h-7, color text-accent-blue, rendered left of the dimension label on one line (flex items-center gap-2).
-Keep: weight % badge, description text — unchanged below.
-
-### 2b. Progress track — 10 numbered dots (replaces text-only count)
-
-Replace the text "X/Y questions answered..." with a dot row + secondary text below.
-
-**Dot states:**
-- **Answered**: bg-accent-green text-white — filled green circle, shows number
-- **Current** (first unanswered question): bg-accent-blue text-white — filled blue circle, shows number
-- **Unanswered**: bg-white border border-navy-200 text-light-muted — empty circle, shows number
-
-Each dot: `w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold cursor-pointer`
-
-Clicking a dot scrolls to that question card:
-- Add `id={"question-" + index}` to each question card div
-- onClick: `document.getElementById("question-" + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' })`
-
-Keep secondary text below the dot row (text-xs text-light-muted):
-`"5 of 10 answered · answer at least 5 to continue"`
-
-### 2c. Answer options — Full pill buttons (replaces radio dot)
-
-Replace the radio-dot + text pattern with full-width pill rows.
-
-**Default state:**
-```
-bg-white border border-navy-200 rounded-lg px-4 py-3 w-full text-left cursor-pointer
-hover:border-accent-blue/50 transition-colors
-```
-
-**Selected state:**
-```
-bg-accent-blue/10 border-accent-blue text-accent-blue font-medium
-```
-
-Add indicator dot on the left inside each pill (flex items-start gap-3):
-- Selected: `w-3 h-3 rounded-full bg-accent-blue flex-shrink-0 mt-0.5`
-- Unselected: `w-3 h-3 rounded-full border-2 border-navy-300 flex-shrink-0 mt-0.5`
-
-Preserve: same onClick handler, same option values, same vertical stacking. No changes to question card layout.
-
-### DO NOT change
-- canContinue threshold (Math.ceil(questions.length / 2)) — intentional
-- Question text, IDs, dimensions, scoring values
-- Sticky nav buttons
-- Any store references or props
+## Item 2 — Reset All Data Button (30 min)
+Add a "Reset All Data" button to Settings → My Data panel.
+- Purpose: lets non-developer testers wipe all assessment data without needing the terminal
+- Behavior: clears SQLite database (assessments) + resets legalAccepted in settings.json
+- UX: confirmation dialog before action ("This will permanently delete all assessment data.")
+- After reset: app reloads (or redirects to Welcome step)
+- Key files: `src/components/settings/panels/MyDataPanel.tsx`, `src/services/db.ts`
 
 ---
 
-## After coding
+## Item 3 — Unsigned .app Build for Tester (30 min)
+Build an unsigned .app for the friend/developer tester (Mac only).
+- Run: `npm run tauri build` (unsigned)
+- Output: `src-tauri/target/release/bundle/macos/*.dmg`
+- Create tester handoff doc with Gatekeeper bypass instructions
+- Gatekeeper bypass: right-click → Open (first time) OR System Settings → Privacy & Security → Open Anyway
+
+---
+
+## Item 4 — Executive Summary Feature Design (45 min)
+Design + begin implementation of AI-personalized Executive Summary.
+
+**Architecture decided (session 35):**
+- BYOK model: user provides their own Anthropic API key (Option A)
+- API key stored in tauri-plugin-store
+- Direct device → Anthropic API call (no intermediary)
+- Pro feature with 2-3 sentence free teaser as upgrade hook
+- One-time internet connection disclosed upfront (consent flow)
+- Privacy Policy update needed: adds exception to offline-first policy
+
+**Where it appears:**
+1. Results Dashboard — below overall score
+2. Free PDF summary — teaser paragraph + "Upgrade for full narrative"
+3. Pro PDF full report — full Executive Summary section
+
+**Session 36 scope:** API key settings panel + consent flow design. Actual generation code in later session.
+
+---
+
+## After each item
 1. Run tsc: `/Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.app.json --noEmit`
-2. Fix any errors before proceeding
-3. Report results — do NOT commit until user approves
-4. Append to docs/session-log.md (Haiku subagent, single Bash echo, no Read/Edit)
-5. Ask user before pushing
+2. Fix errors before moving on
+3. Commit each item separately
+4. Append to docs/session-log.md (Haiku subagent, single Bash echo)
+5. Ask before pushing each commit
 
-## Key env / design facts
+## Key env facts
 - Tailwind v4 (no tailwind.config.js — theme defined in src/index.css)
-- lucide-react already installed (v0.564.0) — do NOT install anything new
-- Target window: 800px+
-- WelcomeStep: off-limits this session
-- Pre-wiring intentional (do not treat as bugs): LB-1 testing mode, LB-2 Keygen, LB-3 signing, LB-4 payment
+- lucide-react installed (v0.564.0)
+- Anthropic SDK: NOT installed yet (add in Item 4 if needed)
+- Node: `/Users/baltmac/.nvm/versions/node/v24.13.1/bin/node`

@@ -157,3 +157,23 @@ Append new decisions here as they're made. Format: date, decision, alternatives 
 - **WelcomeStep:** Off-limits, deferred to future session
 
 **Status:** Implemented session 32 (2026-03-05). tsc clean. Not yet committed.
+
+---
+
+## Executive Summary — AI-Generated (Session 35, 2026-03-05)
+
+**Decision:** Build AI-generated personalized executive summary as a Pro feature with free teaser.
+
+**API key model:** BYOK (user enters their own Anthropic API key in Settings). Key stored in tauri-plugin-store. Direct device→Anthropic call — no proxy for launch. Proxy (Cloudflare Worker) added later for enterprise tier.
+
+**Personalization:** Summary uses org profile + per-dimension scores + actual question responses + jurisdiction context + governance framework knowledge (user-supplied research). Generic responses are not acceptable.
+
+**Placement:** Results dashboard (new section) + PDF export (new page) + DOCX export.
+
+**Freemium gate:** Free = first 2-3 sentences visible, rest blurred/truncated, upgrade CTA. Pro = full summary.
+
+**Consent:** One-time modal before first generation — discloses Anthropic API call. Stored in settings.json so not repeated.
+
+**Privacy Policy:** Add paragraph disclosing Anthropic API call as the single exception to offline-first data policy.
+
+**Cost to operator:** $0 at launch (user pays Anthropic directly via their own key).

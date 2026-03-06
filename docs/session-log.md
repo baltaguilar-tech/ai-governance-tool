@@ -237,3 +237,35 @@ energy-utilities, healthcare, financial-services, technology, manufacturing, gov
 **Decisions logged**: decisions.md updated with Phase 5 UI design decisions.
 
 **Status**: Code complete, not yet committed. Awaiting user approval.
+
+## Session 35 — 2026-03-05
+
+### Completed
+- GL-7: Privacy Policy + ToS modal + first-run acceptance gate (c26dfb0)
+- GL-6: Auto-updater restored end-to-end — tauri-plugin-updater, ed25519 keypair, GitHub Releases endpoint, UpdatesPanel UI, release.yml CI/CD workflow (8bc9d37)
+- fix: AlphaPi icon in FirstRunGate (78f0a84)
+- docs: README updated — AlphaPi branding, accurate phase status, release workflow docs (68f97aa)
+- GitHub Secrets added: TAURI_SIGNING_PRIVATE_KEY + TAURI_SIGNING_PRIVATE_KEY_PASSWORD
+
+### Pending push
+- README commit (68f97aa) — blocked on git auth; SSH key setup is session 36 item 1
+
+### Decisions made
+- Git auth: switch to SSH keys next session (permanent fix — no more token dance)
+- External tester: Mac developer (friend), UX + bug finding, needs unsigned .app + Reset button
+- Reset All Data: visible button in Settings → My Data, no terminal required
+- Executive Summary feature (future, post-tester):
+  - BYOK (user brings Anthropic API key) for launch; proxy option later for enterprise
+  - API key stored in tauri-plugin-store locally
+  - Personalized per assessment: scores, profile, actual responses, jurisdiction
+  - Free tier: teaser (first 2-3 sentences) → Pro upgrade hook
+  - Pro tier: full summary in Results dashboard + PDF + DOCX
+  - Consent modal before generation (one-time, stored)
+  - Privacy Policy update needed: disclose Anthropic API call as the one offline exception
+  - Research user is collecting: AI governance industry frameworks/models (inform prompt, not copy)
+
+### Session 36 agenda (confirmed)
+1. SSH key setup (10 min) — permanent git auth
+2. Reset All Data button in Settings/My Data (30 min)
+3. Build unsigned .app + tester handoff document (30 min)
+4. Exec Summary: API key Settings panel + consent flow design (45 min)
