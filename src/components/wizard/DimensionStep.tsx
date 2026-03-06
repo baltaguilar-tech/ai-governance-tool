@@ -55,6 +55,16 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
         </div>
         <p className="text-light-muted text-sm">{dimension.description}</p>
 
+        {/* Declared AI spend banner — ROI Tracking dimension only */}
+        {dimensionKey === 'roiTracking' && (profile as OrganizationProfile).expectedAISpend && (
+          <div className="mt-3 flex items-center gap-2 px-4 py-2.5 bg-accent-blue/10 border-l-4 border-accent-blue rounded-r-lg">
+            <span className="text-xs text-light-muted shrink-0">Declared AI spend:</span>
+            <span className="text-xs font-semibold text-accent-blue">
+              {(profile as OrganizationProfile).expectedAISpend}
+            </span>
+          </div>
+        )}
+
         {/* Progress dots */}
         <div className="mt-4">
           <div className="flex items-center gap-1.5 flex-wrap">

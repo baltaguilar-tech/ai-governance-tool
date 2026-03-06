@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useAssessmentStore } from '@/store/assessmentStore';
+import { parseSpendAmount } from '@/utils/parseSpendAmount';
 import {
   BarChart, Bar, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -13,6 +15,7 @@ import type {
   SpendCostType,
   AdoptionSnapshot,
   CompletedAssessmentSnapshot,
+  OrganizationProfile,
 } from '@/types/assessment';
 import {
   getMitigationItems,
@@ -521,6 +524,8 @@ function MitigationTracker({ assessmentId }: MitigationTrackerProps) {
 // ─── Section 3: Spend Tracker ─────────────────────────────────────────────────
 
 function SpendTracker() {
+  const profile = useAssessmentStore((s) => s.profile);
+  const declaredBudget = parseSpendAmount((profile as OrganizationProfile).expectedAISpend ?? '');
   const [spendItems, setSpendItems] = useState<SpendItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -534,6 +539,19 @@ function SpendTracker() {
     (async () => {
       try {
         const data = await getSpendItems();
+        // Pre-populate from org profile declared spend (mount-only, only when tracker is empty)
+        if (data.length === 0 && declaredBudget !== null) {
+          await addSpendItem({
+            name: 'Declared AI Budget (from profile)',
+            costType: 'annual_license',
+            amount: declaredBudget,
+            prorateMonths: 12,
+            monthlyEquivalent: declaredBudget / 12,
+          });
+          const refreshed = await getSpendItems();
+          setSpendItems(refreshed);
+          return; // finally still runs
+        }
         setSpendItems(data);
       } catch (err) {
         console.error('[TrackProgress] getSpendItems failed:', err);
@@ -541,6 +559,8 @@ function SpendTracker() {
         setLoading(false);
       }
     })();
+  // Mount-only — declaredBudget captured at first render, pre-population is a one-time action
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const rawAmount = parseFloat(amount) || 0;
@@ -666,6 +686,22 @@ function SpendTracker() {
               </tr>
             </tfoot>
           </table>
+        </div>
+      )}
+
+      {/* Declared vs. tracked comparison — shown when profile budget is parseable and items exist */}
+      {declaredBudget !== null && spendItems.length > 0 && (
+        <div className="mb-4 px-4 py-3 bg-accent-blue/5 border border-accent-blue/20 rounded-lg">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-navy-500">Declared annual budget</span>
+            <span className="text-xs font-semibold text-navy-800">{formatCurrency(declaredBudget)}</span>
+          </div>
+          <div className="flex items-center justify-between mt-1">
+            <span className="text-xs text-navy-400">Currently tracking</span>
+            <span className="text-xs font-medium text-navy-700">
+              {formatCurrency(totalMonthly)}/mo ({formatCurrency(totalMonthly * 12)}/yr)
+            </span>
+          </div>
         </div>
       )}
 

@@ -287,3 +287,4 @@ energy-utilities, healthcare, financial-services, technology, manufacturing, gov
 - [x] App.tsx: getLicenseState() called on init, tier restored from store (2026-03-06)
 - [x] Install AlphaPi.command installer script + TESTER-GUIDE.md created (2026-03-06)
 - [x] README updated with beta tester section + NOTE banners (2026-03-06)
+- [x] BT-5: expectedAISpend feature — parseSpendAmount utility, ROI Tracking banner, SpendTracker pre-population + comparison callout (2026-03-06)
