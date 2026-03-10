@@ -164,6 +164,36 @@ Download the latest `.dmg` from [GitHub Releases](https://github.com/baltaguilar
 
 ---
 
+## Launching the App
+
+### After installation via DMG (recommended)
+
+Run `Install AlphaPi.command` from the mounted DMG — it installs to `/Applications`, strips the Gatekeeper quarantine flag automatically, and launches the app.
+
+### If you dragged the app manually (or it won't open)
+
+macOS Gatekeeper blocks unsigned apps launched by double-click. Run this once in Terminal:
+
+```bash
+xattr -cr /Applications/AlphaPi.app && open /Applications/AlphaPi.app
+```
+
+### Blank screen on launch?
+
+If the app header shows but the main content is blank, stale SQLite lock files from a previous session may be blocking startup. Run:
+
+```bash
+pkill -f "AlphaPi"
+rm -f ~/Library/Application\ Support/com.baltaguilar-tech.ai-governance-tool/*.db \
+      ~/Library/Application\ Support/com.baltaguilar-tech.ai-governance-tool/*.db-shm \
+      ~/Library/Application\ Support/com.baltaguilar-tech.ai-governance-tool/*.db-wal
+open /Applications/AlphaPi.app
+```
+
+The app recreates a fresh database on next launch.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -182,6 +212,20 @@ npm run tauri dev
 ```
 
 The app opens in a dev window with hot-reload and DevTools enabled.
+
+### Testing Free vs Pro Features (Dev Toggle)
+
+The app includes a built-in tier override for testing freemium gates without a license key.
+
+1. Launch the app (dev or production build)
+2. Open **Settings → License Key**
+3. Scroll to the bottom of the panel
+4. Under **⚠️ Dev Testing Mode**, click **Free** or **Professional** to switch tiers instantly
+5. Navigate to the Results Dashboard to see gated features respond
+
+This override is session-only (resets on restart) and has no side effects. It must be removed from `src/components/settings/panels/LicensePanel.tsx` (lines ~154–187) before the production launch.
+
+**Beta testers** (using the installed app, not dev mode): use license key `BETA-TESTER-2026` in Settings → License Key → Activate Key instead.
 
 ### Build for Production
 
