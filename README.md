@@ -19,7 +19,7 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 ## Features
 
 - **9-step guided wizard** — Welcome → Org Profile → 6 Assessment Dimensions → Results → Export
-- **240 calibrated assessment questions** — 60 questions per maturity profile (Experimenter, Builder, Innovator, Achiever), dynamically selected based on org profile
+- **252 calibrated assessment questions** — 63 questions per maturity profile (Experimenter, Builder, Innovator, Achiever), dynamically selected based on org profile
 - **6 governance dimensions** — Shadow AI (25%), Vendor Risk (25%), Data Governance (20%), Security & Compliance (15%), AI-Specific Risks (10%), ROI Tracking (5%)
 - **Jurisdiction-aware** — Questions and recommendations adapt to EU, UK, US, APAC, LatAm, MEA; covers EU AI Act, GDPR, CCPA, ISO 42001, NIST AI RMF
 - **Weighted risk scoring** — Overall governance score + per-dimension scores + blind spots ranked by severity
@@ -37,7 +37,7 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 
 | Feature | Free | Pro |
 |---------|------|-----|
-| Full 240-question assessment | ✓ | ✓ |
+| Full 252-question assessment | ✓ | ✓ |
 | Overall risk score | ✓ | ✓ |
 | Top 3 blind spots | ✓ | ✓ |
 | Generic recommendations | ✓ | ✓ |
@@ -99,13 +99,14 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 
 ### Phase 1: App Completeness ✅ DONE
 - [x] Full 9-step wizard UI (all steps rendered and wired)
-- [x] 240 questions across 4 maturity profiles (all defined, scored, jurisdiction-aware)
+- [x] 252 questions across 4 maturity profiles (63 per profile, all defined, scored, jurisdiction-aware)
 - [x] Weighted scoring engine with dimension breakdown and blind spots
 - [x] Recommendation engine (rules-based, free/pro gated)
 - [x] SQLite draft persistence (auto-save, no account required)
-- [x] PDF export (free summary + pro full report with roadmap)
+- [x] PDF export (free summary + pro full report with roadmap + executive summary in both)
 - [x] React error boundaries (global + per-step graceful recovery)
 - [x] Freemium gates (blind spots, recommendations, PDF depth, history)
+- [x] PDF adversarial review — 5 bugs fixed (null guards, font bleed, overflow, color thresholds, ROI NaN)
 
 ### Phase 2: Settings, Licensing & Security ✅ DONE
 - [x] Settings page (Account, License Key, Email, Notifications, Updates, About, My Data panels)
@@ -126,6 +127,13 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 - [ ] macOS notarization — **blocked on Apple Developer account + D-U-N-S number**
 - [ ] Windows build (NSIS + MSI) — **blocked on EV code signing cert**
 
+### Phase 4: Question Quality & Coverage ✅ DONE
+- [x] 38 question improvements across all 4 maturity profiles (clarity, calibration, option wording)
+- [x] US regulatory coverage added (CCPA, NIST AI RMF, state privacy laws) across all profiles
+- [x] Non-EU/UK jurisdiction gaps filled (APAC, LatAm, MEA coverage)
+- [x] EU AI Act questions verified — 12 total (3 per profile), accurate and correctly tagged
+- [x] Scoring engine audit — fully dynamic, no hardcoded question counts
+
 ### Remaining Pre-Launch Gates
 | Item | Blocked on |
 |------|-----------|
@@ -145,7 +153,7 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 
 ## For Beta Testers
 
-If you received a `.dmg` file from the AlphaPi team, see **[TESTER-GUIDE.md](TESTER-GUIDE.md)** — it has everything you need: installation steps, what to test, and how to send feedback.
+Download the latest `.dmg` from [GitHub Releases](https://github.com/baltaguilar-tech/ai-governance-tool/releases) or request a copy from the AlphaPi team. See **[TESTER-GUIDE.md](TESTER-GUIDE.md)** for full installation steps, what to test, and how to send feedback.
 
 **Quick summary:**
 1. Mount the `.dmg` and double-click `Install AlphaPi.command`

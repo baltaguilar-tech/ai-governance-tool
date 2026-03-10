@@ -137,14 +137,15 @@ function drawRiskBars(
     doc.text(label, x, y + barH * 0.75);
 
     if (ds.answered) {
-      const fillW = Math.max(1, (ds.score / 100) * barW);
+      const clampedScore = Math.max(0, Math.min(100, ds.score));
+      const fillW = Math.max(1, (clampedScore / 100) * barW);
       doc.setFillColor(darkMode ? 30 : 208, darkMode ? 55 : 220, darkMode ? 90 : 240);
       doc.roundedRect(x + labelW, y, barW, barH, 1, 1, 'F');
       doc.setFillColor(getRiskColor(ds.riskLevel));
       doc.roundedRect(x + labelW, y, fillW, barH, 1, 1, 'F');
       doc.setFontSize(6.5);
       doc.setTextColor(darkMode ? 155 : 98, darkMode ? 179 : 125, darkMode ? 200 : 152);
-      doc.text(`${ds.score}`, x + labelW + barW + 2, y + barH * 0.75);
+      doc.text(`${clampedScore}`, x + labelW + barW + 2, y + barH * 0.75);
     } else {
       doc.setFillColor(darkMode ? 45 : 220, darkMode ? 45 : 220, darkMode ? 45 : 220);
       doc.roundedRect(x + labelW, y, barW, barH, 1, 1, 'F');
@@ -200,7 +201,10 @@ function drawMaturityScale(
 
 /** Splits a single line into alternating normal/bold segments by **markers**. */
 function parseBoldSegments(line: string): Array<{ text: string; bold: boolean }> {
-  const parts = line.split(/\*\*(.*?)\*\*/s);
+  const markerCount = (line.match(/\*\*/g) ?? []).length;
+  // Odd count means one unmatched marker — strip the last one to avoid raw ** in output
+  const cleaned = markerCount % 2 !== 0 ? line.replace(/^([\s\S]*)\*\*/, '$1') : line;
+  const parts = cleaned.split(/\*\*(.*?)\*\*/s);
   return parts
     .filter((p) => p.length > 0)
     .map((p, i) => ({ text: p, bold: i % 2 === 1 }));
@@ -342,6 +346,7 @@ function drawExecSummaryPage(
     y += introLines.length * 5 + 3;
 
     for (const gap of data.section2Gaps) {
+      if (!gap?.dimension || gap.score === undefined) continue;
       doc.setFillColor(249, 250, 251);
       doc.roundedRect(margin, y - 3.5, textW, 8, 1.5, 1.5, 'F');
       doc.setFont('helvetica', 'bold');

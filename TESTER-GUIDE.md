@@ -11,15 +11,15 @@ Thank you for helping test AlphaPi before launch. This guide covers installation
 - About 5 minutes to install and 20–30 minutes to run through the assessment
 
 **What this is:**
-AlphaPi is a desktop app that guides your organization through an AI governance and ROI assessment. It asks 60 questions across 6 risk areas, scores your maturity, and produces a personalized report with recommended actions.
+AlphaPi is a desktop app that guides your organization through an AI governance and ROI assessment. It asks 63 questions across 6 risk areas, scores your maturity, and produces a personalized report with recommended actions.
 
 ---
 
 ## Installation
 
-### Step 1 — Open the disk image
+### Step 1 — Download and open the disk image
 
-Double-click the `.dmg` file you received. A new window opens showing two items:
+Download the `.dmg` from [GitHub Releases](https://github.com/baltaguilar-tech/ai-governance-tool/releases) (or use the file sent to you directly). Double-click the `.dmg` to mount it. A new window opens showing two items:
 - `AlphaPi.app`
 - `Install AlphaPi.command`
 
@@ -38,7 +38,9 @@ The installer will:
 
 AlphaPi will open. You will be asked to accept the Terms of Service and Privacy Policy before starting.
 
-> **Note:** Because this is an unsigned beta build, macOS may show a warning. The installer handles this automatically. If you ever launch the app directly from your Applications folder and see a security warning, go to **System Settings → Privacy & Security** and click **Open Anyway**.
+> **Note:** Because this is an unsigned beta build, macOS may show a security warning. The installer handles this automatically via `xattr -cr`. If you ever launch the app directly from your Applications folder and see a warning:
+> - **macOS 12–13:** Right-click the app icon → **Open** → click **Open** in the dialog
+> - **macOS 14+ (Sonoma/Sequoia):** Go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**
 
 ---
 
@@ -50,7 +52,7 @@ Run through the full assessment as a Free user:
 
 1. Accept the legal terms
 2. Complete the **Org Profile** (fill in all fields, including Expected AI Spend)
-3. Complete all **6 assessment dimensions** (10 questions each) — you can answer quickly, accuracy isn't the goal here
+3. Complete all **6 assessment dimensions** (10 questions each, except AI-Specific Risks which has 13) — you can answer quickly, accuracy isn't the goal here
 4. Reach the **Results Dashboard**
 5. Try to export a **PDF** — you should get a 1-page summary
 6. Check the **Track Progress** tab
