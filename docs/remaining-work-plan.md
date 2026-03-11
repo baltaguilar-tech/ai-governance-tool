@@ -164,3 +164,38 @@ Legal Entity (LLC/Corp)
 
 *See also: `docs/decisions.md` | `docs/windows-plan.md`*
 *Last updated: 2026-03-06 (session 40 — BT-7 confirmed pending, BT-8 confirmed done, PDF-1–4 added)*
+
+---
+
+## Priority Tier 7 — Executive Summary Personalization & AI Generation (Session 43+)
+
+| Item | Description | LOE | Blocked On | Status |
+|---|---|---|---|---|
+| **ES-1** | Industry personalization — Phase 1 (6 industries) | M — 6–8 hrs | Nothing | NEXT (session 44) |
+| **ES-2** | Industry personalization — Phase 2 (remaining 8 industries) | M — 5–6 hrs | ES-1 complete | Backlog |
+| **ES-3** | AI-generated exec summary (Anthropic API, Pro tier) | L — 8–12 hrs | ES-1 complete | Backlog |
+| **ES-4** | PDF exec summary redesign (visual overhaul, board-facing) | M — 6–10 hrs | ES-1 complete | Backlog |
+| **ES-5** | "Share your score" social card in Results dashboard | S — 2–3 hrs dev | Nothing | Backlog |
+
+### ES-1 Architecture (session 44 build target)
+- New file: `src/utils/industryContent.ts` — exports INDUSTRY_INTRO, INDUSTRY_REGULATORY, INDUSTRY_GAP_INSIGHTS
+- Updated: `src/utils/execSummary.ts` — consumes industryContent.ts, wires profile.industry
+- Level 1 (Free): INDUSTRY_INTRO colors Section 1 opening + regulatory callout
+- Level 2 (Pro): INDUSTRY_INTRO + INDUSTRY_GAP_INSIGHTS shape all three sections, gap insights are industry-specific when available
+- First 6 industries: Healthcare, Financial Services, Technology, Manufacturing, Government, Legal Services
+- Remaining 8 industries (Retail, Education, Energy, Telecom, Media, Real Estate, Nonprofit, Other) fall back to generic content until ES-2
+- Fallback: if industry not in content map, use existing generic DIMENSION_INSIGHTS — no regression
+
+### ES-3 Architecture Notes (future session)
+- Pro tier + Anthropic API key entered in Settings → Account
+- Calls Claude API with org profile + dimension scores + governance-synthesis.md context
+- Returns bespoke narrative tailored to org name, industry, region, score pattern
+- Replaces templated copy when API key present; falls back to templated if no key or API error
+- UI: "Generating your AI Executive Summary..." loading state in Results dashboard
+
+### ES-4 PDF Redesign Goals (future session)
+- Summary card at top: overall score gauge/ring + maturity badge + industry + region
+- Three board question sections with stronger visual hierarchy (not just colored label)
+- AlphaPi brand palette: Navy #1E2761, Ice Blue #CADCFC, Risk Red #C00000, Warning #FFC107, Success #4CAF50
+- Board-facing: visually engaging, not text-heavy. Executive should be able to scan in 30 seconds.
+- Fix footer branding: currently reads "AI Governance & ROI Assessment Tool | baltaguilar-tech" — change to "AlphaPi"

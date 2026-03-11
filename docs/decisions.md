@@ -177,3 +177,48 @@ Append new decisions here as they're made. Format: date, decision, alternatives 
 **Privacy Policy:** Add paragraph disclosing Anthropic API call as the single exception to offline-first data policy.
 
 **Cost to operator:** $0 at launch (user pays Anthropic directly via their own key).
+
+---
+
+## Session 43 Decisions (2026-03-11)
+
+### Executive Summary Personalization Architecture
+
+**Decision**: Implement industry + region personalization in `generateTemplatedSummary()` using a new `src/utils/industryContent.ts` file rather than expanding `execSummary.ts`.
+
+**Rationale**: execSummary.ts already at 317 lines. Industry content map will add ~300–400 lines. Splitting keeps the generator logic clean and the content maintainable as more industries are added over time.
+
+**Level 1 (Free)**: Industry colors Section 1 opening sentence and regulatory callout language. Generic dimension insights unchanged.
+
+**Level 2 (Pro)**: Industry + worst gap combination triggers industry-specific dimension insights in Section 2. All three sections shaped by industry context.
+
+**First pass industries** (session 44): Healthcare, Financial Services, Technology, Manufacturing, Government, Legal Services.
+
+**Remaining industries** (session ES-2): Retail & E-Commerce, Education, Energy & Utilities, Telecommunications, Media & Entertainment, Real Estate, Nonprofit, Other — fall back to generic content until ES-2 is complete.
+
+**Fallback rule**: If `profile.industry` not in content map, existing DIMENSION_INSIGHTS used unchanged. No regression in output quality for unimplemented industries.
+
+### PDF Executive Summary — Redesign Deferred
+
+**Decision**: PDF exec summary visual redesign (ES-4) deferred until ES-1 (industry personalization) is complete. Visual design should reflect the finalized content structure, not the current template.
+
+**Redesign scope confirmed**: summary card with score gauge, maturity badge, industry/region context, stronger visual hierarchy for the three board question sections, AlphaPi branding in footer.
+
+### Session Sequencing (sessions 44+)
+
+Confirmed order:
+1. Session 44: PNG workflow protocol discussion → decision → industry personalization start (ES-1)
+2. Session 45+: Continue ES-1 if incomplete, then ES-3 (AI-generated exec summary)
+3. Later: ES-4 (PDF redesign) after ES-1 content is finalized
+
+### Workflow Protocol PNG — Pending Decision
+
+A workflow protocol document (PNG) was shared session 43 covering: Plan Node Default, Subagent Strategy, Self-Improvement Loop, Verification Before Done, Demand Elegance, Autonomous Bug Fixing, Task Management, and Core Principles. Saved to memory at: `~/.claude/projects/-Users-baltmac/memory/pending-workflow-protocol.md`. Decision on adoption deferred to Session 44 — Claude will produce a pros/cons/impact analysis at the start of that session.
+
+### GTM Plan — Created
+
+Full go-to-market plan saved to `docs/gtm-plan.md`. Phase 6 (GTM) added to remaining-work-plan.md. No build work scheduled until business gates clear (trademark, company registration, Apple Dev, payment processor).
+
+### Governance Synthesis — Ingested
+
+2026-03-11 governance synthesis saved to `docs/governance-synthesis.md`. Primary knowledge base for executive summary copy, GTM narrative, and website dimension descriptions. Citation policy: synthesize into confident copy — no inline citations, no direct quotes. Source acknowledgment in internal docs only.
