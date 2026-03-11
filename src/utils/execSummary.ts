@@ -15,6 +15,11 @@ import type {
   LicenseTier,
   Region,
 } from '@/types/assessment';
+import {
+  INDUSTRY_INTRO,
+  INDUSTRY_REGULATORY,
+  INDUSTRY_GAP_INSIGHTS,
+} from './industryContent';
 
 // ─── Output Types ─────────────────────────────────────────────────────────────
 
@@ -162,8 +167,10 @@ export function generateTemplatedSummary(
   // ── Section 1: "How is AI governed?" ──────────────────────────────────────
 
   const maturityNarrative = MATURITY_NARRATIVES[maturity] ?? MATURITY_NARRATIVES['Experimenter'];
+  const industryIntro = profile.industry ? INDUSTRY_INTRO[profile.industry] : undefined;
 
   let s1Body =
+    (industryIntro ? `${industryIntro}\n\n` : '') +
     `${orgName} is currently operating at the **${maturity}** stage of AI governance maturity.\n\n` +
     maturityNarrative +
     `\n\nOverall governance score: **${overallScore}/100** — ${riskLevel} risk profile.`;
@@ -186,13 +193,18 @@ export function generateTemplatedSummary(
     .filter((d) => d.answered)
     .sort((a, b) => a.score - b.score); // ascending = worst first
 
+  const industryGapMap =
+    licenseTier === 'professional' && profile.industry
+      ? INDUSTRY_GAP_INSIGHTS[profile.industry]
+      : undefined;
+
   const gaps: ExecSummaryGap[] = answeredDims
     .filter((d) => d.score < 70)
     .slice(0, 3)
     .map((d) => ({
       dimension: DIMENSION_LABELS[d.key],
       score: Math.round(d.score),
-      insight: DIMENSION_INSIGHTS[d.key],
+      insight: industryGapMap?.[d.key] ?? DIMENSION_INSIGHTS[d.key],
     }));
 
   let s2Body = '';
@@ -220,6 +232,10 @@ export function generateTemplatedSummary(
     const regs = REGION_REGULATORY_MAP[r];
     if (regs) regulations.push(...regs);
   });
+  if (profile.industry) {
+    const industryRegs = INDUSTRY_REGULATORY[profile.industry];
+    if (industryRegs) regulations.push(...industryRegs);
+  }
   const uniqueRegs = [...new Set(regulations)];
 
   let regulatoryExposure = '';

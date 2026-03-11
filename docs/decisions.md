@@ -211,9 +211,21 @@ Confirmed order:
 2. Session 45+: Continue ES-1 if incomplete, then ES-3 (AI-generated exec summary)
 3. Later: ES-4 (PDF redesign) after ES-1 content is finalized
 
-### Workflow Protocol PNG — Pending Decision
+### Workflow Protocol — Adoption Decision (2026-03-11, Session 44)
 
-A workflow protocol document (PNG) was shared session 43 covering: Plan Node Default, Subagent Strategy, Self-Improvement Loop, Verification Before Done, Demand Elegance, Autonomous Bug Fixing, Task Management, and Core Principles. Saved to memory at: `~/.claude/projects/-Users-baltmac/memory/pending-workflow-protocol.md`. Decision on adoption deferred to Session 44 — Claude will produce a pros/cons/impact analysis at the start of that session.
+**Decision**: Adopt 5 of 6 workflow items (item 4 already in practice). User retains all decision authority; Claude is the technical resource providing options, input, and recommendations.
+
+| Item | Adopted | Adaptation |
+|------|---------|------------|
+| 1. Plan Node Default | Yes | Clarifying questions = the spec; formal plan mode for architecture/new feature builds only |
+| 2. Subagent Strategy | Yes | More aggressive — all exploration/research/file discovery goes to subagents |
+| 3. Self-Improvement Loop | Yes | Maps to `docs/lessons-learned.md` (not `tasks/lessons.md`) |
+| 4. Verification Before Done | Already in practice | No change needed |
+| 5. Demand Elegance (Balanced) | Yes | As-is — "skip for simple obvious fixes" caveat preserved |
+| 6. Autonomous Bug Fixing | Yes | As-is — fix build/tsc errors without asking for hand-holding |
+
+**Task management**: maps to existing `CURRENT-SESSION.md` (no new `tasks/todo.md` file).
+**Core principles** (Simplicity First / No Laziness / Minimal Impact): already in spirit, now explicit.
 
 ### GTM Plan — Created
 
