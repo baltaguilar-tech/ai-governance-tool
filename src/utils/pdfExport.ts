@@ -82,7 +82,7 @@ function formatGapTitle(questionText: string): string {
  */
 function pdfText(text: string): string {
   if (!text) return '';
-  return text.replace(/ [—–] /g, ', ').replace(/[—–]/g, '-');
+  return text.replace(/ [—–] /g, ', ').replace(/[—–]/g, '-').replace(/→/g, '>');
 }
 
 function getFinancialRiskNote(riskLevel: RiskLevel, score: number): string {
@@ -391,7 +391,7 @@ function drawExecSummaryPage(
 
   // ── Upgrade / API key prompt ─────────────────────────────────────────────────
   const promptLines = doc.splitTextToSize(pdfText(data.upgradePrompt), textW - 10);
-  const promptBoxH = Math.max(promptLines.length * 4.5 + 12, 18);
+  const promptBoxH = Math.max(promptLines.length * 3.2 + 10, 16);
   if (y + promptBoxH > pageHeight - 12) { doc.addPage(); y = margin; }
   doc.setFillColor(240, 244, 248);
   doc.setDrawColor(180, 200, 220);
@@ -451,11 +451,10 @@ export async function generateFreePDF(
 
   doc.setTextColor(16, 42, 67);
   doc.setFontSize(12);
-  doc.text(`Risk Level: ${riskLevel}`, 80, 145);
-  doc.text(`Achiever Score: ${achieverScore}/100`, 80, 155);
+  doc.text(`Risk Level: ${riskLevel}`, 80, 150);
   doc.setFontSize(9);
   doc.setTextColor(98, 125, 152);
-  doc.text('Higher score = stronger governance (0-100 scale)', 80, 165);
+  doc.text('Higher score = stronger governance (0-100 scale)', 80, 160);
 
   // ===== PAGE 1 GRAPHS =====
   drawRiskBars(doc, dimensionScores, 20, 178, pageWidth - 40);
@@ -853,7 +852,7 @@ export async function generateProPDF(
   doc.setFontSize(9);
   doc.setTextColor(155, 179, 200);
   doc.text(
-    `Risk Level: ${riskLevel}   |   Achiever Score: ${achieverScore}/100`,
+    `Risk Level: ${riskLevel}`,
     pageWidth / 2,
     228,
     { align: 'center' }
@@ -962,13 +961,9 @@ export async function generateProPDF(
       },
     });
 
-    // Action blocks below table — one per blind spot, full text, readable
-    let actionY = (doc as any).lastAutoTable.finalY + 8;
-    // Prevent orphaned heading: ensure at least 60mm remain for heading + first item
-    if (actionY > pageHeight - 60) {
-      doc.addPage();
-      actionY = 20;
-    }
+    // Action blocks — always start on a fresh page for readability
+    doc.addPage();
+    let actionY = 20;
     // Header band — matches dimension section style
     const raBandH = 18;
     doc.setFillColor(16, 42, 67);

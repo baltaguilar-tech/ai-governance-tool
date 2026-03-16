@@ -23,10 +23,6 @@ export function AchieverProgress({ score, currentMaturity, targetMaturity }: Ach
         AI Achiever Progress
       </h3>
 
-      {/* Score */}
-      <div className="text-3xl font-bold text-navy-900 mb-1">{score}/100</div>
-      <p className="text-xs text-navy-500 mb-4">Achiever readiness score</p>
-
       {/* Progress bar with stage markers */}
       <div className="relative mb-8">
         <div className="h-3 bg-navy-100 rounded-full overflow-hidden">

@@ -27,7 +27,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const isDark = DARK_STEPS.has(currentStep);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col">
       {/* Header — deep navy chrome, full width */}
       <header className="bg-dark-base text-white px-6 py-4 shadow-lg flex-shrink-0">
         <div className="flex items-center justify-between w-full">
