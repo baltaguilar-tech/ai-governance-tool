@@ -1,9 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { parseSpendAmount } from '@/utils/parseSpendAmount';
-import { Store } from '@tauri-apps/plugin-store';
 import { generateTemplatedSummary } from '@/utils/execSummary';
-import type { ExecSummaryData } from '@/utils/execSummary';
+import type { ExecSummaryData, AiNarrativeData } from '@/utils/execSummary';
+import {
+  buildAiSummaryPrompt,
+  callAnthropicApi,
+  getAiSummaryConsent,
+  setAiSummaryConsent,
+  loadAnthropicApiKey,
+  type AiModelKey,
+} from '@/services/aiSummary';
+import { saveAiSummary, getAiSummary } from '@/services/db';
 import {
   BarChart, Bar, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -1175,28 +1183,143 @@ function ProgressCharts({ assessments, adoptionSnapshots }: ProgressChartsProps)
 
 // ─── Executive Summary Card ───────────────────────────────────────────────────
 
-function ExecSummaryCard() {
+// ─── Consent Modal ────────────────────────────────────────────────────────────
+
+interface ConsentModalProps {
+  onAccept: () => void;
+  onDecline: () => void;
+}
+
+function ConsentModal({ onAccept, onDecline }: ConsentModalProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <div className="bg-[#1E2761] px-6 py-4">
+          <h2 className="text-base font-bold text-white">AI Summary — Data Disclosure</h2>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <p className="text-sm text-gray-700 leading-relaxed">
+            Generating an AI summary sends your assessment data — including organization profile,
+            dimension scores, and specific governance gaps — to{' '}
+            <span className="font-semibold">Anthropic's API</span> using your API key.
+          </p>
+          <ul className="text-sm text-gray-600 space-y-2">
+            <li className="flex gap-2">
+              <span className="text-amber-500 font-bold shrink-0">•</span>
+              Your assessment data leaves this device and is processed by Anthropic's servers.
+            </li>
+            <li className="flex gap-2">
+              <span className="text-amber-500 font-bold shrink-0">•</span>
+              AlphaPi does not store or transmit your data — the call goes directly from your
+              device to Anthropic's API.
+            </li>
+            <li className="flex gap-2">
+              <span className="text-amber-500 font-bold shrink-0">•</span>
+              Anthropic's data handling policies apply. Review them at anthropic.com/privacy
+              before proceeding.
+            </li>
+          </ul>
+          <p className="text-xs text-gray-500">
+            This consent is stored locally. You will not be asked again for this device.
+          </p>
+        </div>
+        <div className="px-6 pb-5 flex gap-3 justify-end">
+          <button
+            type="button"
+            onClick={onDecline}
+            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 font-medium"
+          >
+            No thanks
+          </button>
+          <button
+            type="button"
+            onClick={onAccept}
+            className="px-5 py-2 rounded-lg bg-[#1E2761] text-white text-sm font-semibold hover:bg-[#161e4f] transition-colors"
+          >
+            I understand — Generate
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── AI Narrative Display ─────────────────────────────────────────────────────
+
+function renderNarrativeParagraph(text: string) {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return (
+    <p className="text-sm text-gray-700 leading-relaxed">
+      {parts.map((part, i) =>
+        i % 2 === 1 ? <strong key={i} className="font-semibold text-navy-900">{part}</strong> : part
+      )}
+    </p>
+  );
+}
+
+function AiNarrativeTeaser({ text }: { text: string }) {
+  const sentences = text.split(/(?<=[.!?])\s+/);
+  const preview = sentences.slice(0, 2).join(' ');
+  const rest = sentences.slice(2).join(' ');
+  return (
+    <div>
+      {renderNarrativeParagraph(preview)}
+      {rest && (
+        <div className="relative mt-2">
+          <p className="text-sm text-gray-700 leading-relaxed blur-sm select-none" aria-hidden="true">
+            {rest.replace(/\*\*(.*?)\*\*/g, '$1')}
+          </p>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="bg-white/90 backdrop-blur-sm text-xs text-navy-700 font-semibold px-3 py-1.5 rounded-full border border-navy-200 shadow-sm">
+              Upgrade to Pro to read full analysis
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── ExecSummaryCard ──────────────────────────────────────────────────────────
+
+interface ExecSummaryCardProps {
+  assessmentId: number;
+}
+
+function ExecSummaryCard({ assessmentId }: ExecSummaryCardProps) {
   const { profile, riskScore, dimensionScores, blindSpots, licenseTier, completedAt } =
     useAssessmentStore();
   const [summary, setSummary] = useState<ExecSummaryData | null>(null);
   const [apiKey, setApiKey] = useState<string>('');
-  const storeRef = useRef<Store | null>(null);
+  const [aiNarrative, setAiNarrative] = useState<AiNarrativeData | null>(null);
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState<string | null>(null);
+  const [showConsent, setShowConsent] = useState(false);
+  const [selectedModel, setSelectedModel] = useState<AiModelKey>('haiku');
 
+  // Load API key and cached AI summary on mount / assessmentId change
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      try {
-        const store = await Store.load('settings.json');
-        storeRef.current = store;
-        const key = await store.get<string>('anthropicApiKey');
-        if (!cancelled) setApiKey(key ?? '');
-      } catch {
-        // settings store unavailable — continue without key
+      const key = await loadAnthropicApiKey();
+      if (!cancelled) setApiKey(key);
+
+      if (assessmentId !== -1) {
+        const cached = await getAiSummary(assessmentId);
+        if (!cancelled && cached) {
+          setAiNarrative({
+            opening: cached.summaryText.split('\n---\n')[0] ?? cached.summaryText,
+            closing: cached.summaryText.split('\n---\n')[1] ?? '',
+            model: cached.model,
+            generatedAt: cached.generatedAt,
+          });
+        }
       }
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [assessmentId]);
 
+  // Build templated summary
   useEffect(() => {
     if (!riskScore || !profile.organizationName) return;
     const data = generateTemplatedSummary(
@@ -1210,133 +1333,246 @@ function ExecSummaryCard() {
     setSummary(data);
   }, [profile, riskScore, dimensionScores, blindSpots, licenseTier, completedAt]);
 
+  async function handleGenerate() {
+    const hasConsent = await getAiSummaryConsent();
+    if (!hasConsent) {
+      setShowConsent(true);
+      return;
+    }
+    await runGeneration();
+  }
+
+  async function handleConsentAccept() {
+    setShowConsent(false);
+    await setAiSummaryConsent();
+    await runGeneration();
+  }
+
+  async function runGeneration() {
+    if (!riskScore || !profile.organizationName) return;
+    setGenerating(true);
+    setGenError(null);
+    try {
+      const userPrompt = buildAiSummaryPrompt({
+        profile: profile as Parameters<typeof buildAiSummaryPrompt>[0]['profile'],
+        overallScore: Math.round(riskScore.overallRisk),
+        riskLevel: riskScore.riskLevel,
+        maturityTier: riskScore.currentMaturity,
+        dimensionScores,
+        blindSpots,
+      });
+      const result = await callAnthropicApi(apiKey, selectedModel, userPrompt);
+      const narrative: AiNarrativeData = {
+        opening: result.opening,
+        closing: result.closing,
+        model: result.model,
+        generatedAt: new Date().toISOString(),
+      };
+      setAiNarrative(narrative);
+      if (assessmentId !== -1) {
+        await saveAiSummary(
+          assessmentId,
+          userPrompt,
+          `${result.opening}\n---\n${result.closing}`,
+          result.model
+        );
+      }
+    } catch (err) {
+      setGenError(err instanceof Error ? err.message : 'Generation failed. Please try again.');
+    } finally {
+      setGenerating(false);
+    }
+  }
+
   if (!summary) return null;
+
+  const isPro = licenseTier === 'professional';
+  const hasApiKey = apiKey.length > 0;
+  const generatedDate = aiNarrative?.generatedAt
+    ? new Date(aiNarrative.generatedAt).toLocaleDateString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric',
+      })
+    : null;
 
   const formattedDate = completedAt
     ? new Date(completedAt).toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
+        month: 'long', day: 'numeric', year: 'numeric',
       })
     : '';
 
   return (
-    <div className="mb-8 rounded-xl border border-navy-200 bg-white shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="bg-[#1E2761] px-6 py-4 flex items-center justify-between">
-        <div>
-          <h2 className="text-base font-bold text-white">Executive Summary</h2>
-          {formattedDate && (
-            <p className="text-xs text-white/60 mt-0.5">Assessment completed {formattedDate}</p>
+    <>
+      {showConsent && (
+        <ConsentModal
+          onAccept={handleConsentAccept}
+          onDecline={() => setShowConsent(false)}
+        />
+      )}
+
+      <div className="mb-8 rounded-xl border border-navy-200 bg-white shadow-sm overflow-hidden">
+        {/* Header */}
+        <div className="bg-[#1E2761] px-6 py-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-bold text-white">Executive Summary</h2>
+            {formattedDate && (
+              <p className="text-xs text-white/60 mt-0.5">Assessment completed {formattedDate}</p>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-white/15 text-white/80 font-medium">
+              {summary.maturityLevel}
+            </span>
+            <span
+              className={`text-xs px-2.5 py-1 rounded-full font-semibold ${
+                summary.riskLevel === 'CRITICAL'
+                  ? 'bg-red-500/90 text-white'
+                  : summary.riskLevel === 'HIGH'
+                  ? 'bg-orange-400/90 text-white'
+                  : summary.riskLevel === 'MEDIUM'
+                  ? 'bg-yellow-400/90 text-navy-900'
+                  : 'bg-green-400/90 text-navy-900'
+              }`}
+            >
+              {summary.overallScore}/100 — {summary.riskLevel}
+            </span>
+          </div>
+        </div>
+
+        <div className="divide-y divide-gray-100">
+          {/* AI Opening Narrative */}
+          {aiNarrative?.opening && (
+            <div className="px-6 py-5 bg-gradient-to-r from-indigo-50/60 to-blue-50/40 border-b border-indigo-100">
+              <p className="text-xs font-semibold text-indigo-600 mb-2 uppercase tracking-wide">
+                AI Governance Analysis
+              </p>
+              {isPro
+                ? renderNarrativeParagraph(aiNarrative.opening)
+                : <AiNarrativeTeaser text={aiNarrative.opening} />
+              }
+            </div>
           )}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs px-2.5 py-1 rounded-full bg-white/15 text-white/80 font-medium">
-            {summary.maturityLevel}
-          </span>
-          <span
-            className={`text-xs px-2.5 py-1 rounded-full font-semibold ${
-              summary.riskLevel === 'CRITICAL'
-                ? 'bg-red-500/90 text-white'
-                : summary.riskLevel === 'HIGH'
-                ? 'bg-orange-400/90 text-white'
-                : summary.riskLevel === 'MEDIUM'
-                ? 'bg-yellow-400/90 text-navy-900'
-                : 'bg-green-400/90 text-navy-900'
-            }`}
-          >
-            {summary.overallScore}/100 — {summary.riskLevel}
-          </span>
-        </div>
-      </div>
 
-      {/* Body */}
-      <div className="divide-y divide-gray-100">
-        {/* Section 1 */}
-        <div className="px-6 py-5">
-          <h3 className="text-sm font-bold text-navy-900 mb-2">
-            {summary.section1.heading}
-          </h3>
-          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-            {summary.section1.body
-              .replace(/\*\*(.*?)\*\*/g, '$1')}
-          </p>
-        </div>
+          {/* Section 1 */}
+          <div className="px-6 py-5">
+            <h3 className="text-sm font-bold text-navy-900 mb-2">{summary.section1.heading}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+              {summary.section1.body.replace(/\*\*(.*?)\*\*/g, '$1')}
+            </p>
+          </div>
 
-        {/* Section 2 */}
-        <div className="px-6 py-5">
-          <h3 className="text-sm font-bold text-navy-900 mb-2">
-            {summary.section2.heading}
-          </h3>
-          {summary.section2Gaps.length > 0 ? (
-            <div className="space-y-4">
-              {summary.section2Gaps.map((gap) => (
-                <div key={gap.dimension} className="border-l-4 border-red-400 pl-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-semibold text-navy-900">{gap.dimension}</span>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 font-medium">
-                      {gap.score}/100
-                    </span>
+          {/* Section 2 */}
+          <div className="px-6 py-5">
+            <h3 className="text-sm font-bold text-navy-900 mb-2">{summary.section2.heading}</h3>
+            {summary.section2Gaps.length > 0 ? (
+              <div className="space-y-4">
+                {summary.section2Gaps.map((gap) => (
+                  <div key={gap.dimension} className="border-l-4 border-red-400 pl-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm font-semibold text-navy-900">{gap.dimension}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 font-medium">
+                        {gap.score}/100
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed">{gap.insight}</p>
                   </div>
-                  <p className="text-xs text-gray-600 leading-relaxed">{gap.insight}</p>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-600 leading-relaxed">{summary.section2.body}</p>
+            )}
+            {summary.regulatoryExposure && (
+              <div className="mt-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+                <p className="text-xs font-semibold text-amber-800 mb-1">Regulatory Exposure</p>
+                <p className="text-xs text-amber-700 leading-relaxed">{summary.regulatoryExposure}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Section 3 */}
+          <div className="px-6 py-5">
+            <h3 className="text-sm font-bold text-navy-900 mb-2">{summary.section3.heading}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+              {summary.section3.body.replace(/\*\*(.*?)\*\*/g, '$1')}
+            </p>
+          </div>
+
+          {/* AI Closing Narrative (Pro only) */}
+          {isPro && aiNarrative?.closing && (
+            <div className="px-6 py-5 bg-gradient-to-r from-indigo-50/60 to-blue-50/40 border-t border-indigo-100">
+              <p className="text-xs font-semibold text-indigo-600 mb-2 uppercase tracking-wide">
+                Path Forward
+              </p>
+              {renderNarrativeParagraph(aiNarrative.closing)}
+              {generatedDate && (
+                <p className="text-xs text-gray-400 mt-3">
+                  Generated {generatedDate} · {aiNarrative.model.includes('haiku') ? 'Claude Haiku' : 'Claude Sonnet'}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* CTA panel */}
+          <div className={`px-6 py-4 ${isPro ? 'bg-gray-50' : 'bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-blue-100'}`}>
+            {!isPro ? (
+              <p className="text-xs text-blue-800 leading-relaxed">
+                <span className="font-semibold">Upgrade to Pro</span> — {summary.upgradePrompt}
+              </p>
+            ) : !hasApiKey ? (
+              <p className="text-xs text-gray-600 leading-relaxed">
+                <span className="font-semibold text-navy-900">Unlock AI-generated summary</span> —{' '}
+                Add your Anthropic API key in{' '}
+                <span className="font-medium text-navy-700">Settings → Account</span> to generate a
+                bespoke narrative calibrated to {summary.orgName}'s specific governance profile.
+              </p>
+            ) : (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 flex-wrap">
+                  {/* Model selector */}
+                  <div className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white overflow-hidden text-xs">
+                    {(['haiku', 'sonnet'] as AiModelKey[]).map((m) => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => setSelectedModel(m)}
+                        className={`px-3 py-1.5 font-medium transition-colors ${
+                          selectedModel === m
+                            ? 'bg-[#1E2761] text-white'
+                            : 'text-gray-600 hover:bg-gray-50'
+                        }`}
+                      >
+                        {m === 'haiku' ? 'Haiku (faster)' : 'Sonnet (deeper)'}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Generate / Regenerate button */}
+                  <button
+                    type="button"
+                    onClick={handleGenerate}
+                    disabled={generating}
+                    className="px-4 py-1.5 rounded-lg bg-[#1E2761] text-white text-xs font-semibold hover:bg-[#161e4f] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {generating
+                      ? 'Generating…'
+                      : aiNarrative
+                      ? 'Regenerate'
+                      : 'Generate AI Summary'}
+                  </button>
+
+                  {generatedDate && !generating && (
+                    <span className="text-xs text-gray-400">Last generated {generatedDate}</span>
+                  )}
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm text-gray-600 leading-relaxed">{summary.section2.body}</p>
-          )}
 
-          {summary.regulatoryExposure && (
-            <div className="mt-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
-              <p className="text-xs font-semibold text-amber-800 mb-1">Regulatory Exposure</p>
-              <p className="text-xs text-amber-700 leading-relaxed">{summary.regulatoryExposure}</p>
-            </div>
-          )}
-        </div>
-
-        {/* Section 3 */}
-        <div className="px-6 py-5">
-          <h3 className="text-sm font-bold text-navy-900 mb-2">
-            {summary.section3.heading}
-          </h3>
-          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-            {summary.section3.body.replace(/\*\*(.*?)\*\*/g, '$1')}
-          </p>
-        </div>
-
-        {/* Upgrade / API key CTA */}
-        <div
-          className={`px-6 py-4 ${
-            licenseTier === 'free'
-              ? 'bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-blue-100'
-              : 'bg-gray-50'
-          }`}
-        >
-          {licenseTier === 'free' ? (
-            <p className="text-xs text-blue-800 leading-relaxed">
-              <span className="font-semibold">Upgrade to Pro</span> — {summary.upgradePrompt}
-            </p>
-          ) : apiKey ? (
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                disabled
-                className="px-4 py-2 rounded-lg bg-[#1E2761]/30 text-white/60 text-xs font-medium cursor-not-allowed"
-                title="AI generation coming in a future update"
-              >
-                Generate AI Summary
-              </button>
-              <p className="text-xs text-gray-500">AI-generated summary coming soon.</p>
-            </div>
-          ) : (
-            <p className="text-xs text-gray-600 leading-relaxed">
-              <span className="font-semibold text-navy-900">Unlock AI-generated summary</span> —{' '}
-              {summary.upgradePrompt}
-            </p>
-          )}
+                {genError && (
+                  <p className="text-xs text-red-600">{genError}</p>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -1402,7 +1638,7 @@ export function TrackProgress({ assessmentId, currentScore, dimensionScores }: P
         </p>
       </div>
 
-      <ExecSummaryCard />
+      <ExecSummaryCard assessmentId={assessmentId} />
 
       {assessments.length >= 2 && (
         <DeltaBanner

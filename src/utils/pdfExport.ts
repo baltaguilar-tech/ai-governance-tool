@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { RiskLevel, DimensionScore, DimensionKey, BlindSpot, Recommendation, QuestionResponse, AssessmentQuestion, OrganizationProfile, MaturityLevel, RiskScore, SpendItem, AdoptionSnapshot, MitigationItem } from '@/types/assessment';
+import type { AiNarrativeData } from '@/utils/execSummary';
 import { DIMENSION_MAP, DIMENSIONS } from '@/data/dimensions';
 import { getRiskColor, getImmediateAction } from './scoring';
 import { generateTemplatedSummary, ExecSummaryData } from './execSummary';
@@ -653,6 +654,93 @@ export async function generateFreePDF(
   await savePdf(doc, defaultName);
 }
 
+// ─── AI Narrative Page ────────────────────────────────────────────────────────
+
+/**
+ * Renders the "Executive AI Narrative" page in the Pro PDF.
+ * Called after addPage() — page is already current when this function runs.
+ */
+function drawAiNarrativePage(
+  doc: jsPDF,
+  narrative: AiNarrativeData,
+  orgName: string
+): void {
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - margin * 2;
+  let y = margin;
+
+  // Header bar
+  doc.setFillColor(30, 39, 97); // Navy #1E2761
+  doc.rect(0, 0, pageWidth, 28, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Executive AI Narrative', margin, 17);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(180, 190, 220);
+  doc.text(orgName, pageWidth - margin, 17, { align: 'right' });
+
+  y = 36;
+
+  // Label
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(99, 102, 241); // Indigo
+  doc.text('AI GOVERNANCE ANALYSIS', margin, y);
+  y += 6;
+
+  // Opening narrative
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(40, 40, 60);
+  const openingClean = pdfText(narrative.opening.replace(/\*\*(.*?)\*\*/g, '$1'));
+  const openingLines = doc.splitTextToSize(openingClean, contentWidth);
+  doc.text(openingLines, margin, y);
+  y += openingLines.length * 5 + 10;
+
+  if (y > pageHeight - 60) { doc.addPage(); y = margin; }
+
+  // Separator rule
+  doc.setDrawColor(200, 210, 230);
+  doc.line(margin, y, pageWidth - margin, y);
+  y += 8;
+
+  // Closing label
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(99, 102, 241);
+  doc.text('PATH FORWARD', margin, y);
+  y += 6;
+
+  // Closing narrative
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(40, 40, 60);
+  if (narrative.closing) {
+    const closingClean = pdfText(narrative.closing.replace(/\*\*(.*?)\*\*/g, '$1'));
+    const closingLines = doc.splitTextToSize(closingClean, contentWidth);
+    doc.text(closingLines, margin, y);
+    y += closingLines.length * 5 + 12;
+  }
+
+  // Footer attribution
+  const modelLabel = narrative.model.includes('haiku') ? 'Claude Haiku' : 'Claude Sonnet';
+  const genDate = new Date(narrative.generatedAt).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  });
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(7);
+  doc.setTextColor(150, 160, 180);
+  doc.text(
+    `Generated ${genDate} using ${modelLabel} · Assessment data processed via Anthropic API`,
+    margin,
+    pageHeight - 14
+  );
+}
+
 // ============================================================
 // PRO REPORT: Full assessment with selected answers + all recs
 // ============================================================
@@ -668,7 +756,8 @@ export async function generateProPDF(
   questions: AssessmentQuestion[],
   profile: OrganizationProfile,
   trackingData?: { spendItems: SpendItem[]; adoptionSnapshot: AdoptionSnapshot | null; mitigationItems: MitigationItem[] },
-  completedAt?: string | null
+  completedAt?: string | null,
+  aiNarrative?: AiNarrativeData | null
 ): Promise<void> {
   const doc = new jsPDF({ format: 'a4' });
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -795,6 +884,15 @@ export async function generateProPDF(
   );
   drawExecSummaryPage(doc, proExecData, pageWidth, pageHeight, margin);
   addFooter();
+
+  // ============================================================
+  // PAGE 2b: EXECUTIVE AI NARRATIVE (if AI summary was generated)
+  // ============================================================
+  if (aiNarrative) {
+    doc.addPage();
+    drawAiNarrativePage(doc, aiNarrative, orgName);
+    addFooter('Executive AI Narrative');
+  }
 
   // ============================================================
   // PAGE 3: ASSESSMENT RESULTS — Scores + Blind Spots

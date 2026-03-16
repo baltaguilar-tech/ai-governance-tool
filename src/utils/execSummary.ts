@@ -28,6 +28,15 @@ export interface ExecSummarySection {
   body: string;
 }
 
+// AI-generated narrative sections (opening + closing).
+// Stored alongside the templated summary; displayed as bookends around the structured sections.
+export interface AiNarrativeData {
+  opening: string;
+  closing: string;
+  model: string;
+  generatedAt: string;
+}
+
 export interface ExecSummaryGap {
   dimension: string;
   score: number;

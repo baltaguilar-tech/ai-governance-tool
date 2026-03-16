@@ -134,6 +134,16 @@ export async function initDatabase(): Promise<void> {
         fetched_at INTEGER NOT NULL
       )
     `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS ai_summaries (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        assessment_id  INTEGER NOT NULL UNIQUE,
+        prompt_text    TEXT    NOT NULL,
+        summary_text   TEXT    NOT NULL,
+        model          TEXT    NOT NULL,
+        generated_at   TEXT    NOT NULL
+      )
+    `);
   } catch (err) {
     console.error('[db] initDatabase failed:', err);
   }
@@ -651,6 +661,53 @@ export async function getAllCachedByPrefix(
   }
 }
 
+// ─── AI Summaries ─────────────────────────────────────────────────────────────
+
+export interface AiSummaryRecord {
+  promptText: string;
+  summaryText: string;
+  model: string;
+  generatedAt: string;
+}
+
+export async function saveAiSummary(
+  assessmentId: number,
+  promptText: string,
+  summaryText: string,
+  model: string
+): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT OR REPLACE INTO ai_summaries (assessment_id, prompt_text, summary_text, model, generated_at)
+       VALUES (?, ?, ?, ?, ?)`,
+      [assessmentId, promptText, summaryText, model, new Date().toISOString()]
+    );
+  } catch (err) {
+    console.error('[db] saveAiSummary failed:', err);
+  }
+}
+
+export async function getAiSummary(assessmentId: number): Promise<AiSummaryRecord | null> {
+  if (!isTauriContext()) return null;
+  try {
+    const db = await getDb();
+    const rows = await db.select<{
+      prompt_text: string; summary_text: string; model: string; generated_at: string;
+    }[]>(
+      'SELECT prompt_text, summary_text, model, generated_at FROM ai_summaries WHERE assessment_id = ?',
+      [assessmentId]
+    );
+    if (!rows || rows.length === 0) return null;
+    const r = rows[0];
+    return { promptText: r.prompt_text, summaryText: r.summary_text, model: r.model, generatedAt: r.generated_at };
+  } catch (err) {
+    console.error('[db] getAiSummary failed:', err);
+    return null;
+  }
+}
+
 /**
  * Deletes all user-generated data from the local database.
  * Called by the "Reset All Data" action in Settings → My Data.
@@ -659,6 +716,7 @@ export async function getAllCachedByPrefix(
 export async function resetAllData(): Promise<void> {
   const db = await getDb();
   await db.execute('DELETE FROM mitigation_items');
+  await db.execute('DELETE FROM ai_summaries');
   await db.execute('DELETE FROM completed_assessments');
   await db.execute('DELETE FROM adoption_snapshots');
   await db.execute('DELETE FROM spend_items');
