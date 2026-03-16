@@ -73,9 +73,26 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: 'AlphaPi ${{ github.ref_name }}'
           releaseBody: |
-            See [CHANGELOG](https://github.com/baltaguilar-tech/ai-governance-tool/blob/main/CHANGELOG.md) for details.
-          releaseDraft: true
-          prerelease: false
+            **This is a private beta build for invited testers.**
+
+            See [TESTER-GUIDE.md](https://github.com/baltaguilar-tech/ai-governance-tool/blob/main/TESTER-GUIDE.md) for full installation and testing instructions.
+
+            **What's in this build**
+            - Complete 6-dimension AI governance assessment (up to 63 questions per profile)
+            - Free and Professional tiers (use Testing Mode in Settings to switch)
+            - Full PDF export with per-question action items (Pro)
+            - Track Progress & ROI dashboard with charts and PDF export (Pro)
+            - ROI Model Builder — 6-step financial model with 3-scenario results (Pro)
+            - AI-generated Executive Summary via your Anthropic API key (Pro)
+            - Industry-specific regulatory guidance for Energy & Utilities
+            - Settings: License, Email, Notifications, Updates, My Data
+
+            **Known limitations in this beta**
+            - App is unsigned (macOS will show a security warning — follow the install script instructions)
+            - License purchase not yet available — use `BETA-TESTER-2026` to access Pro
+            - DOCX export coming in a future release
+          releaseDraft: false
+          prerelease: true
           args: --target ${{ matrix.target }}
           updaterJsonPreferNsis: false
           updaterJsonKeepUniversal: false
