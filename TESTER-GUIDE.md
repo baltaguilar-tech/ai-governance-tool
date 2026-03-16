@@ -84,6 +84,27 @@ Now re-run the assessment (or use your existing results) and check:
 5. Accept the one-time consent notice
 6. You should see a Claude-generated narrative appear within 10–20 seconds
 7. Try switching the model (Haiku vs. Sonnet) and regenerating
+8. After generating, export the **Full PDF Report** from the Results tab — the PDF should include an **Executive AI Narrative** page near the front with the opening and closing paragraphs you just generated
+
+### Test 4 — ROI Model Builder (Pro)
+
+The ROI Model Builder is a 6-step wizard that calculates the financial return on your AI investment.
+
+1. Go to **Track Progress**, scroll to the **ROI Model Builder** section (near the bottom)
+2. Click **Build ROI Model**
+3. **Step 0 — Task Baseline:** Add 1–2 tasks (e.g., "Email drafting" — 30 min before, 8 min after, 60% of workforce). Click Next.
+4. **Step 1 — Efficiency:** Review the pre-filled headcount from your org profile. Adjust adoption % and blended hourly rate if desired. Click Next.
+5. **Step 2 — Revenue:** Enter your annual revenue and estimated AI uplift %. Click Next.
+6. **Step 3 — Risk Mitigation:** Select 1–2 risk categories, enter an exposure amount and probability. Click Next.
+7. **Step 4 — Hidden Costs:** Review the 5 TCO categories and adjust as needed. Click Next.
+8. **Step 5 — Results:** You should see a benefit breakdown, total cost, 3-scenario cards (Conservative / Expected / Optimistic), and a qualitative summary. Click **Save Model**.
+9. Close the wizard and verify the saved model appears when you reopen the ROI Model Builder.
+
+### Test 5 — Data reset
+
+1. Go to **Settings → My Data**
+2. Click **Delete All Data**
+3. Confirm — the app should return to the welcome screen with no saved assessment data
 
 ---
 
@@ -96,8 +117,9 @@ These are known limitations in the beta — not bugs:
 | Real license key purchase | Not available yet — use `BETA-TESTER-2026` |
 | Auto-updater | Wired but no signed release yet |
 | QR code license activation | UI present, coming in a future release |
-| DOCX export | Planned for launch |
+| DOCX export | Planned for a future release |
 | AI Executive Summary | Works — requires your own Anthropic API key (see Test 3) |
+| Dev tier toggle in Settings → License | Intentional — allows switching Free/Pro during testing. Will be removed before public launch. |
 
 ---
 
