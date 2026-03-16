@@ -75,6 +75,16 @@ Now re-run the assessment (or use your existing results) and check:
 - Full PDF export (multi-page, with all dimensions and action plan)
 - Assessment history in Track Progress
 
+### Test 3 — AI-generated Executive Summary (Pro + API key required)
+
+1. Go to **Settings → Account**
+2. Enter a valid Anthropic API key (starts with `sk-ant-api03-`) and click **Save**
+3. Go to **Track Progress**
+4. Scroll to the **Executive Summary** card and click **Generate AI Summary**
+5. Accept the one-time consent notice
+6. You should see a Claude-generated narrative appear within 10–20 seconds
+7. Try switching the model (Haiku vs. Sonnet) and regenerating
+
 ---
 
 ## Things That Are Intentionally Disabled
@@ -87,6 +97,7 @@ These are known limitations in the beta — not bugs:
 | Auto-updater | Wired but no signed release yet |
 | QR code license activation | UI present, coming in a future release |
 | DOCX export | Planned for launch |
+| AI Executive Summary | Works — requires your own Anthropic API key (see Test 3) |
 
 ---
 

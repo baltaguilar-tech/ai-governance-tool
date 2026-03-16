@@ -430,3 +430,112 @@ UI/UX design review — see Phase 5 notes in MEMORY.md
 Resume prompt (copy exactly):
 "We're continuing Phase 5 UI redesign. Phases 1+2 are done (commit 89b894c). Today we do Phase 3 (AppLayout.tsx + ProgressStepper.tsx — deep navy chrome) and Phase 4 (WelcomePage.tsx — dark hero). Read ui-design-system.md in memory first, then read those 3 files before starting any work. Ask questions before touching code."
 - [x] PDF improvements: exec summary font 8.5→9.5, paraGap 6→3, lineH 5→5.5; orphaned 'Recommended Actions' heading fixed (page-break guard <60mm); blind spot title/action fonts +1pt; dimension Q table head/body 8→9; action/reg note cells 7→8
+
+## Session 38 — 2026-03-06
+
+### Completed
+- [x] BT-7: Tauri production build confirmed clean — AlphaPi.app + AlphaPi_0.1.0_aarch64.dmg at src-tauri/target/release/bundle/
+- [x] BT-8: Executive Summary feature scaffolded (commit 1adc590)
+  - AccountPanel.tsx: Anthropic API key storage in settings.json via tauri-plugin-store
+  - Settings.tsx: 'account' section added as first nav item
+  - execSummary.ts: generateTemplatedSummary() — 3-section templated generator (no API calls)
+  - TrackProgress.tsx: ExecSummaryCard at top of page — shows templated summary, upgrade CTA, AI key config prompt
+
+### Deferred to Session 39
+- PDF Exec Summary page integration
+- P4-1: EU AI Act questions across all 4 profile banks
+- P4-2: $67.4B stat fix in WelcomeStep
+- P4-3: decodeURIComponent crash fix
+- AI generation logic (Claude API call) — requires separate scoping session
+
+### Git State
+- origin/main: 1adc590 (BT-8 commit)
+- Clean — nothing uncommitted
+
+---
+# Session 41 — 2026-03-06
+
+## Completed
+- [x] macOS minimum version confirmed: NOT set in tauri.conf.json or Cargo.toml. Tauri v2 default = 10.13 (Intel) / 11.0 (ARM). TESTER-GUIDE keeps Monterey (12+) as intentional conservative support floor.
+- [x] MEMORY.md updated: macOS min version, Gatekeeper bypass instructions, DMG path corrected (bundle/dmg/ not bundle/macos/)
+- [x] Build: `npm run tauri build` — CLEAN, exit 0. Artifacts: AlphaPi.app + AlphaPi_0.1.0_aarch64.dmg
+- [x] README: 3x question count 240→252, 63/profile. Phase 4 block added. Phase 1 PDF+exec summary updated. Beta Testers → GitHub Releases.
+- [x] TESTER-GUIDE: 60→63 questions. Step 1 → GitHub Releases download. Gatekeeper note split macOS 12-13 vs 14+. AI-Specific Risks 13q noted in Test 1.
+- [x] PDF-1: null guard on section2Gaps loop (`if (!gap?.dimension || gap.score === undefined) continue`)
+- [x] PDF-2: parseBoldSegments — strip unbalanced `**` marker (odd count = unclosed bold → raw ** in output)
+- [x] PDF-3: score clamped 0–100 at bar render (`clampedScore = Math.max(0, Math.min(100, ds.score))`)
+- [x] DMG verification: manually dragged to Applications → Gatekeeper silently blocked (expected, unsigned build). Fix: `xattr -cr /Applications/AlphaPi.app && open /Applications/AlphaPi.app`
+
+## Pending (not yet committed)
+- [ ] Commit + push all changes (README, TESTER-GUIDE, pdfExport.ts)
+- [ ] User app design feedback — pending
+- [ ] SESSION-42-RECOVERY.md
+- [ ] remaining-work-plan.md update
+
+## Notes
+- PDF-4 (4 vs 5 option banks): user confirmed 4-option. Deferred to future session.
+- BT-7 build: arm64 only locally; CI/CD handles arm64 + x86_64 matrix for GitHub Releases.
+
+## Session 41 — Wrap-up
+
+### Completed
+- [x] BT-7: Production build ran cleanly (`AlphaPi_0.1.0_aarch64.dmg` produced)
+- [x] README.md: Updated question counts (240→252), added Phase 4 block, updated Beta Testers section
+- [x] TESTER-GUIDE.md: Updated question count (60→63), added GitHub Releases download link, split macOS 12–13 vs 14+ Gatekeeper instructions, noted AI-Specific Risks = 13 questions
+- [x] pdfExport.ts PDF-1: Null guard on section2Gaps loop (skip malformed gaps)
+- [x] pdfExport.ts PDF-2: parseBoldSegments handles unbalanced `**` markers (strip trailing unmatched marker)
+- [x] pdfExport.ts PDF-3: Score clamped to 0–100 at bar render (clampedScore)
+- [x] MEMORY.md: Added macOS minimum version + Gatekeeper bypass notes; corrected DMG path
+
+### Not Committed
+- README.md, TESTER-GUIDE.md, pdfExport.ts changes — pending commit
+
+### Known Issue
+- User dragged .app manually (skipped Install script) → Gatekeeper silently blocked launch
+- Fix provided: `xattr -cr /Applications/AlphaPi.app && open /Applications/AlphaPi.app`
+- Launch not yet confirmed by user
+
+### Session 42 Priority
+- "One button" installation experience (single command)
+- Free/Pro visibility fix in GitHub Releases and/or in-app UI
+- Dev toggle in Settings to switch Free ↔ Pro without license key
+- Commit session 41 changes (README, TESTER-GUIDE, pdfExport.ts)
+
+## Session 42 — In Progress (2026-03-10)
+
+### Completed
+- [x] SESSION-42-RECOVERY.md created
+- [x] MEMORY.md updated: session status 40→41, BT-7 removed from "not yet built", PDF-1/2/3 removed, dev toggle added to "not yet built"
+- [x] LicensePanel.tsx: Added Dev Testing Mode toggle (Free ↔ Professional) at bottom of Settings → License Key. Calls setLicenseTier() directly. No key required. Session-only (resets on restart). Labeled ⚠️ remove before launch.
+- [x] TypeScript check: clean (no errors)
+- [x] Production build: AlphaPi_0.1.0_aarch64.dmg — exit code 0
+
+### Still Pending (session 42)
+- [ ] Commit all uncommitted changes: README.md, TESTER-GUIDE.md, pdfExport.ts (session 41) + LicensePanel.tsx (session 42)
+- [ ] Push to origin/main
+- [ ] Verify app launch via xattr fix (user has not confirmed)
+- [x] ES-3 AI exec summary complete (849793b) — 6 files, tsc clean, build clean. Test pending.
+
+## Session 46 (2026-03-16) — ES-3 Testing + Bug Fixes
+
+### Commits
+- dad3c38 — Fix scroll layout, PDF formatting, and remove confusing Achiever Score display
+
+### Bugs Fixed
+- [x] AppLayout `min-h-screen` → `h-screen` — ProgressStepper now stays pinned on scroll
+- [x] PDF: Recommended Actions always starts on a new page (`doc.addPage()` forced)
+- [x] PDF: upgradePrompt box dead space fixed (line height 4.5→3.2mm); `→` normalized to `>` in `pdfText()`
+- [x] Removed Achiever Score number from UI (AchieverProgress card), free PDF cover, and Pro PDF cover — two different scores on one graphic was confusing; maturity stage bar retained
+
+### ES-3 Testing Status
+- Consent modal: NOT yet confirmed working — user started new assessment and did not see it
+- Root cause investigation: API key may not have been loaded (async), or dev Pro toggle not active before loading Track Progress
+- All ES-3 source code confirmed committed (849793b) — no missing files
+- Known pending: generateProPDF aiNarrative wiring still needs to be confirmed/fixed
+
+### Next Session (47) Agenda
+1. ES-3 re-test after scroll fix (dev server now properly scrolls inside main, not full page)
+2. ROI Model Builder — user has research to share as text
+   - Extends existing ROI infrastructure (roiTracking dimension, ROI Calculator, spend_items, adoption_snapshots)
+   - Guided field entry, 1–3 ROI models per org, lives on Track Progress page
+   - Read user's research first, ask clarifying questions before building

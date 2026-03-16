@@ -50,3 +50,12 @@ docs/## *
 *.copilot
 .copilot/
 .github/copilot*
+
+# Session recovery / internal Claude session docs
+docs/SESSION-*-RECOVERY.md
+docs/CURRENT-SESSION.md
+docs/tool-diary.md
+
+# Accidentally placed source research files in project root
+*.rtf
+~$*

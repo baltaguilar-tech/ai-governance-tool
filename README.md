@@ -26,7 +26,7 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 - **Personalized recommendations** — Immediate actions + 90-day playbooks + vendor questionnaires
 - **ROI framework** — Financial + operational + innovation + customer + strategic value against direct + hidden + opportunity + risk costs
 - **Draft persistence** — Auto-saves to local SQLite, no account required, no cloud
-- **Executive Summary** — Board-framed 3-section summary (How governed / Exposure / ROI) in every PDF export; Pro + Anthropic API key unlocks AI-generated version (future)
+- **Executive Summary** — Board-framed 3-section summary (How governed / Exposure / ROI) in every PDF export; Pro + Anthropic API key unlocks AI-generated narrative (Claude Haiku/Sonnet, one-time consent)
 - **PDF export** — Free multi-page summary (cover + exec summary + scores + gaps) + Pro full report with dimension detail, recommendations, and implementation roadmap
 - **Auto-updater** — In-app update check and install via GitHub Releases (cryptographically signed)
 - **Privacy-first** — All data stays on device; no telemetry, no cloud sync
@@ -118,6 +118,7 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 - [x] Privacy Policy + Terms of Service (in-app modal + first-run acceptance gate)
 - [x] Reset All Data (wipes SQLite + store, returns to Welcome)
 - [x] Executive Summary card in Track Progress (board-framed, templated, tier-gated)
+- [x] AI-generated Executive Summary (ES-3) — Claude API via Rust/reqwest command, consent modal, Haiku/Sonnet model selector, Pro-gated
 
 ### Phase 3: Distribution ✅ MOSTLY DONE
 - [x] GitHub Actions CI/CD release workflow (triggers on `v*` tags, matrix: arm64 + x86_64)

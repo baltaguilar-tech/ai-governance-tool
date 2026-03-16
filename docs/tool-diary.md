@@ -2762,3 +2762,887 @@
 | 2026-03-05 21:07:33 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
 | 2026-03-05 21:07:37 | Read                 | docs/NEXT-SESSION-PROMPT.md |
 | 2026-03-05 21:08:07 | Write                | docs/NEXT-SESSION-PROMPT.md |
+| 2026-03-05 21:08:26 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/decisions.md docs/remaining-work-plan.md ... |
+| 2026-03-05 21:08:50 | Bash                 | cd ~/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' docs: session 35 end-of-s... |
+| 2026-03-05 21:08:57 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline -6 |
+| 2026-03-05 21:16:44 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-05 21:17:51 | Write                | docs/SESSION-36-RECOVERY.md |
+| 2026-03-05 21:18:00 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/SESSION-36-RECOVERY.md && git commit -m "... |
+| 2026-03-06 08:36:08 | ToolSearch           | {'query': 'select:Read', 'max_results': 1} |
+| 2026-03-06 08:36:10 | Read                 | docs/SESSION-36-RECOVERY.md |
+| 2026-03-06 10:16:11 | ToolSearch           | {'query': 'select:Glob', 'max_results': 1} |
+| 2026-03-06 10:16:37 | Glob                 | **/AlphaPi_AI_Governance_Synthesis.md |
+| 2026-03-06 10:16:37 | Glob                 | **/AlphaPi_AI_Governance_Synthesis.md |
+| 2026-03-06 10:16:38 | Glob                 | **/AlphaPi_AI_Governance_Synthesis.md |
+| 2026-03-06 10:21:00 | Glob                 | **/* |
+| 2026-03-06 10:21:03 | Read                 | ~/Desktop/synthesis/AlphaPi_AI_Governance_Synthesis.md |
+| 2026-03-06 10:21:07 | ToolSearch           | {'query': 'select:Bash', 'max_results': 1} |
+| 2026-03-06 10:21:14 | Bash                 | cp "/Users/baltmac/Desktop/synthesis/AlphaPi_AI_Governance_Synthesis.md" "/Users/baltmac/P... |
+| 2026-03-06 10:27:41 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-06 10:27:45 | Read                 | src/types/assessment.ts |
+| 2026-03-06 10:27:46 | Glob                 | **/*.tsx |
+| 2026-03-06 10:27:53 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-06 10:27:53 | Glob                 | **/*roi* |
+| 2026-03-06 10:28:00 | Glob                 | **/*.tsx |
+| 2026-03-06 10:28:02 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 10:28:06 | ToolSearch           | {'query': 'select:Grep', 'max_results': 1} |
+| 2026-03-06 10:28:09 | Grep                 | pattern='expectedAISpend' in src |
+| 2026-03-06 10:28:09 | Grep                 | pattern='expectedAISpend' in src |
+| 2026-03-06 10:28:18 | Grep                 | pattern='expectedAISpend|spendItems|SpendItem|AI Spend|baseline' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 10:32:05 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-06 10:32:05 | Read                 | docs/session-log.md |
+| 2026-03-06 10:32:30 | Bash                 | echo " ## 2026-03-06 (session 36) — Knowledge synthesis + expectedAISpend feature design  ... |
+| 2026-03-06 10:33:32 | Write                | docs/SESSION-37-RECOVERY.md |
+| 2026-03-06 10:33:38 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:33:40 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:33:54 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:33:57 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:34:02 | Grep                 | pattern='Current project status|Things Not Yet Built|NEXT \\(session|exec-summary' in /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:34:04 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:34:06 | ToolSearch           | {'query': 'select:Edit', 'max_results': 1} |
+| 2026-03-06 10:34:13 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:34:24 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 10:39:31 | Edit                 | docs/SESSION-37-RECOVERY.md |
+| 2026-03-06 10:39:59 | ToolSearch           | {'query': 'select:Read', 'max_results': 1} |
+| 2026-03-06 10:40:03 | Read                 | docs/SESSION-37-RECOVERY.md |
+| 2026-03-06 10:42:35 | ToolSearch           | {'query': 'select:Bash', 'max_results': 1} |
+| 2026-03-06 10:42:45 | Bash                 | ls ~/.ssh/ 2>/dev/null || echo "No .ssh directory" |
+| 2026-03-06 10:42:49 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline -5 && echo "---" && git status |
+| 2026-03-06 10:43:00 | Bash                 | ssh-keygen -t ed25519 -C "baltaguilar-tech" -f ~/.ssh/github_alphapi -N "" |
+| 2026-03-06 10:43:02 | Bash                 | cat ~/.ssh/github_alphapi.pub |
+| 2026-03-06 10:43:09 | Bash                 | cat > ~/.ssh/config << 'EOF' Host github.com   HostName github.com   User git   IdentityFi... |
+| 2026-03-06 10:46:28 | Bash                 | ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null && echo "done" |
+| 2026-03-06 10:46:35 | Bash                 | cd ~/Projects/ai-governance-tool && git remote set-url origin git@github.com:baltaguilar-t... |
+| 2026-03-06 10:46:41 | Bash                 | cd ~/Projects/ai-governance-tool && git push |
+| 2026-03-06 10:46:47 | Read                 | README.md |
+| 2026-03-06 10:55:37 | Read                 | src/services/license.ts |
+| 2026-03-06 10:55:52 | ToolSearch           | {'query': 'select:Grep,Glob', 'max_results': 2} |
+| 2026-03-06 10:55:59 | Grep                 | pattern='getLicenseState|licenseTier|activateLicense|licenseStore|plugin:store"' in src |
+| 2026-03-06 10:56:02 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-06 10:56:03 | Grep                 | pattern='licenseTier|getLicenseState|activateLicense' in src/store/assessmentStore.ts |
+| 2026-03-06 10:56:18 | Grep                 | pattern='load\\(|Store\\(|tauri-plugin-store|@tauri-apps/plugin-store' in src |
+| 2026-03-06 10:56:24 | Read                 | src/App.tsx |
+| 2026-03-06 10:56:40 | Read                 | src/App.tsx |
+| 2026-03-06 10:56:51 | ToolSearch           | {'query': 'select:Edit,Write', 'max_results': 2} |
+| 2026-03-06 10:56:58 | Edit                 | src/services/license.ts |
+| 2026-03-06 10:57:07 | Edit                 | src/services/license.ts |
+| 2026-03-06 10:57:13 | Edit                 | src/services/license.ts |
+| 2026-03-06 10:57:19 | Edit                 | src/services/license.ts |
+| 2026-03-06 10:57:24 | Edit                 | src/App.tsx |
+| 2026-03-06 10:57:28 | Edit                 | src/App.tsx |
+| 2026-03-06 10:57:36 | Edit                 | src/App.tsx |
+| 2026-03-06 10:57:44 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-06 10:57:56 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-06 10:58:06 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-06 10:58:14 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-06 10:58:25 | Write                | Install AlphaPi.command |
+| 2026-03-06 10:58:50 | Bash                 | chmod +x "/Users/baltmac/Projects/ai-governance-tool/Install AlphaPi.command" |
+| 2026-03-06 10:59:18 | Write                | TESTER-GUIDE.md |
+| 2026-03-06 10:59:27 | Edit                 | README.md |
+| 2026-03-06 10:59:35 | Edit                 | README.md |
+| 2026-03-06 10:59:42 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-06 10:59:50 | Bash                 | cd ~/Projects/ai-governance-tool && git diff --stat && echo "---" && git status |
+| 2026-03-06 11:00:07 | Bash                 | echo "- [x] SSH key setup (github_alphapi ed25519) — origin switched to SSH, 3 pending com... |
+| 2026-03-06 11:00:19 | Bash                 | cd ~/Projects/ai-governance-tool && git add README.md TESTER-GUIDE.md "Install AlphaPi.com... |
+| 2026-03-06 11:01:50 | Bash                 | git config --global user.name "Balt Aguilar" && git config --global user.email "balt.aguil... |
+| 2026-03-06 11:02:06 | Bash                 | cd ~/Projects/ai-governance-tool && git commit --amend --reset-author --no-edit 2>&1 |
+| 2026-03-06 11:07:05 | Bash                 | cd ~/Projects/ai-governance-tool && git push 2>&1 |
+| 2026-03-06 11:07:11 | Read                 | docs/project-plan.md |
+| 2026-03-06 11:07:11 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:07:50 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:01 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:07 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:14 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:25 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:32 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:38 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:44 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:48 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:08:58 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:09:04 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:09:10 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:09:16 | Edit                 | docs/project-plan.md |
+| 2026-03-06 11:09:27 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:09:36 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:09:40 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:09:51 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/project-plan.md docs/remaining-work-plan.... |
+| 2026-03-06 11:26:08 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-06 11:26:08 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:26:09 | Read                 | src/types/assessment.ts |
+| 2026-03-06 11:26:46 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:26:49 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:28:13 | Write                | src/utils/parseSpendAmount.ts |
+| 2026-03-06 11:28:26 | Edit                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-06 11:28:42 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:28:47 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:28:54 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:29:09 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:29:16 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:29:21 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:29:30 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 11:29:38 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-06 11:29:43 | Bash                 | echo "- [x] BT-5: expectedAISpend feature — parseSpendAmount utility, ROI Tracking banner,... |
+| 2026-03-06 11:29:59 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/utils/parseSpendAmount.ts src/components/w... |
+| 2026-03-06 11:30:31 | Read                 | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-06 11:30:33 | Grep                 | pattern='export async function|export function|DROP TABLE|DELETE FROM|resetAssessment|resetDraft' in src/services/db.ts |
+| 2026-03-06 11:31:13 | Grep                 | pattern='resetAssessment|setStep|setCurrentStep|showSettings|isSettingsOpen' in src/store/assessmentStore.ts |
+| 2026-03-06 11:31:13 | Grep                 | pattern='Settings|showSettings|isSettingsOpen' in src/App.tsx |
+| 2026-03-06 11:31:18 | Grep                 | pattern='Settings|showSettings' in src/components/layout/AppLayout.tsx |
+| 2026-03-06 11:31:18 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-06 11:31:35 | Grep                 | pattern='DataPanel|onClose' in src/components/settings/Settings.tsx |
+| 2026-03-06 11:31:59 | Read                 | src/services/db.ts |
+| 2026-03-06 11:32:14 | Read                 | src/services/db.ts |
+| 2026-03-06 11:32:40 | Read                 | src/services/db.ts |
+| 2026-03-06 11:33:07 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts << 'EOF'  /**  * Dele... |
+| 2026-03-06 11:33:13 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:17 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:25 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:32 | Grep                 | pattern='renderPanel' in src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:37 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:41 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 11:33:54 | Read                 | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-06 11:34:05 | Read                 | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-06 11:34:13 | Read                 | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-06 11:34:33 | Write                | src/components/settings/panels/DataPanel.tsx |
+| 2026-03-06 11:34:41 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-06 11:35:30 | Bash                 | echo "- [x] BT-6: Reset All Data button in Settings → My Data — confirmation dialog, delet... |
+| 2026-03-06 11:41:27 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 11:41:28 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:43:37 | ToolSearch           | {'query': 'select:Read,Bash,Write,Edit', 'max_results': 5} |
+| 2026-03-06 11:43:42 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:43:42 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 11:44:51 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:44:56 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 11:45:12 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 11:45:23 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 11:45:32 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 11:46:35 | Write                | docs/SESSION-38-RECOVERY.md |
+| 2026-03-06 11:48:18 | ToolSearch           | {'query': 'select:Read', 'max_results': 1} |
+| 2026-03-06 11:48:20 | Read                 | docs/SESSION-38-RECOVERY.md |
+| 2026-03-06 12:00:13 | ToolSearch           | {'query': 'select:Bash', 'max_results': 1} |
+| 2026-03-06 12:00:19 | Bash                 | cd ~/Projects/ai-governance-tool && git status && echo "---" && git log --oneline -5 |
+| 2026-03-06 12:01:51 | Bash                 | cd ~/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$... |
+| 2026-03-06 12:03:37 | Read                 | /private/tmp/claude-501/-Users-baltmac/tasks/ba44ukp61.output |
+| 2026-03-06 12:09:47 | ToolSearch           | {'query': 'select:Glob', 'max_results': 1} |
+| 2026-03-06 12:09:51 | Read                 | docs/exec-summary-knowledge-base.md |
+| 2026-03-06 12:09:51 | Glob                 | AlphaPi*.md |
+| 2026-03-06 12:09:55 | Read                 | ~/Desktop/Synthesis/AlphaPi_AI_Governance_Synthesis.md |
+| 2026-03-06 12:16:16 | ToolSearch           | {'query': 'select:Agent,TodoWrite', 'max_results': 2} |
+| 2026-03-06 12:16:23 | TodoWrite            | in_progress: Code recon: read AccountPanel, TrackProgress, assessmentStore, scoring |
+| 2026-03-06 12:16:35 | Bash                 | ls -la /Users/baltmac/Projects/ 2>&1 | head -20 |
+| 2026-03-06 12:16:38 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -type f -name "*.tsx" -o -name "*.ts" ... |
+| 2026-03-06 12:16:39 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -type f -name "*Account*" |
+| 2026-03-06 12:16:41 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src/components/settings -type f |
+| 2026-03-06 12:16:43 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-06 12:16:43 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:16:43 | Read                 | src/utils/scoring.ts |
+| 2026-03-06 12:16:49 | Read                 | ~/.claude/projects/-Users-baltmac/dfb52411-ad60-4c34-a9ce-d95884b39f90/tool-results/toolu_01BqPsEaEhtuAVEEfo2brLfD.txt |
+| 2026-03-06 12:16:50 | Read                 | src/components/settings/panels/EmailPanel.tsx |
+| 2026-03-06 12:16:50 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-06 12:16:53 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/dfb52411-ad60-4c34-a9ce-d95884b39f90/... |
+| 2026-03-06 12:16:54 | Bash                 | head -300 /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackProgres... |
+| 2026-03-06 12:16:56 | Bash                 | head -200 /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-06 12:16:58 | Bash                 | grep -n "LicenseTier\|CompletedAssessmentSnapshot\|EmailPrefs\|export type" /Users/baltmac... |
+| 2026-03-06 12:17:00 | Bash                 | sed -n '228,310p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-06 12:17:01 | Bash                 | head -100 /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-06 12:17:03 | Bash                 | grep -r "tauri-plugin-store\|Store\|localStorage" /Users/baltmac/Projects/ai-governance-to... |
+| 2026-03-06 12:17:05 | Bash                 | grep -A 20 "Store" /Users/baltmac/Projects/ai-governance-tool/src/App.tsx | head -40 |
+| 2026-03-06 12:17:06 | Read                 | src/components/settings/panels/NotificationsPanel.tsx |
+| 2026-03-06 12:17:08 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackProgress.ts... |
+| 2026-03-06 12:17:10 | Bash                 | sed -n '950,1050p' /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/Tra... |
+| 2026-03-06 12:17:57 | Agent                | {'description': 'Code recon for BT-8', 'prompt': 'Read these 4 files in full and... |
+| 2026-03-06 12:18:32 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:18:32 | Read                 | src/components/settings/panels/EmailPanel.tsx |
+| 2026-03-06 12:18:32 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:19:05 | Agent                | {'description': 'Read Settings and EmailPanel', 'prompt': 'Read these 3 files in... |
+| 2026-03-06 12:20:36 | ToolSearch           | {'query': 'select:Write,Edit', 'max_results': 2} |
+| 2026-03-06 12:20:43 | TodoWrite            | in_progress: API key field in Settings → Account panel |
+| 2026-03-06 12:21:19 | Write                | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-06 12:21:30 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:21:38 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:21:48 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:21:55 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:22:02 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-06 12:22:11 | TodoWrite            | in_progress: Build execSummary.ts — templated generator utility |
+| 2026-03-06 12:23:27 | Write                | src/utils/execSummary.ts |
+| 2026-03-06 12:23:34 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:23:49 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:05 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:08 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:13 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:42 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:51 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-06 12:24:58 | TodoWrite            | in_progress: Commit BT-8 to GitHub + update session docs |
+| 2026-03-06 12:25:10 | Bash                 | cd ~/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$... |
+| 2026-03-06 12:25:22 | Bash                 | export PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" && cd ~/Projects/ai-gov... |
+| 2026-03-06 12:25:39 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/components/settings/Settings.tsx src/compo... |
+| 2026-03-06 12:25:46 | Bash                 | cd ~/Projects/ai-governance-tool && git push origin main 2>&1 |
+| 2026-03-06 12:26:43 | ToolSearch           | {'query': 'select:Bash,Write,Read', 'max_results': 5} |
+| 2026-03-06 12:26:47 | Bash                 | ls /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md /Users/baltmac/Proje... |
+| 2026-03-06 12:26:59 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-06 12:27:08 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/session-log.md << 'EOF'  ## 2026-03... |
+| 2026-03-06 12:27:51 | Write                | docs/SESSION-39-RECOVERY.md |
+| 2026-03-06 12:27:57 | Agent                | {'description': 'Update session docs and memory', 'prompt': 'You are a documenta... |
+| 2026-03-06 12:28:04 | TodoWrite            | in_progress: (none) |
+| 2026-03-06 12:31:05 | ToolSearch           | {'query': 'select:Read', 'max_results': 1} |
+| 2026-03-06 12:31:07 | Read                 | docs/SESSION-39-RECOVERY.md |
+| 2026-03-06 12:34:15 | ToolSearch           | {'query': 'select:Glob,Grep', 'max_results': 2} |
+| 2026-03-06 12:34:19 | Glob                 | **/pdfExport* |
+| 2026-03-06 12:34:21 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:34:30 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:34:31 | Glob                 | **/executiveSummary* |
+| 2026-03-06 12:34:31 | Glob                 | **/execSummary* |
+| 2026-03-06 12:34:37 | Read                 | src/utils/executiveSummary.ts |
+| 2026-03-06 12:34:38 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:34:46 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:35:24 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:35:28 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:35:31 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:38:47 | Read                 | src/utils/execSummary.ts |
+| 2026-03-06 12:38:48 | Grep                 | pattern='generateExecutiveSummary|drawExecSummaryText' in src |
+| 2026-03-06 12:39:12 | Grep                 | pattern='interface RiskScore|type RiskScore|BlindSpot' in src/types |
+| 2026-03-06 12:39:13 | Grep                 | pattern='generateFreePDF|generateProPDF' in src |
+| 2026-03-06 12:39:16 | Read                 | src/types/assessment.ts |
+| 2026-03-06 12:39:17 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-06 12:43:48 | ToolSearch           | {'query': 'select:TodoWrite,Edit', 'max_results': 2} |
+| 2026-03-06 12:44:55 | TodoWrite            | in_progress: (none) |
+| 2026-03-06 12:45:01 | TodoWrite            | in_progress: Update imports in pdfExport.ts (add RiskScore/DimensionKey/LicenseTier, swap executiveSummary → execSummary) |
+| 2026-03-06 12:45:14 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:45:32 | TodoWrite            | in_progress: Remove deriveJurisdiction and drawExecSummaryText, add parseBoldSegments + drawRichText + drawExecSummaryPage |
+| 2026-03-06 12:45:37 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:46:25 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:46:35 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:46:35 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:46:43 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:47:26 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:47:43 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:50:29 | TodoWrite            | in_progress: TypeScript check and commit |
+| 2026-03-06 12:50:31 | ToolSearch           | {'query': 'select:Bash', 'max_results': 1} |
+| 2026-03-06 12:50:35 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v... |
+| 2026-03-06 12:50:39 | Bash                 | cd ~/Projects/ai-governance-tool && PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$... |
+| 2026-03-06 12:50:41 | Bash                 | ls ~/Projects/ai-governance-tool/ |
+| 2026-03-06 12:50:52 | Bash                 | PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$PATH" npx --prefix /Users/baltmac/Pr... |
+| 2026-03-06 12:50:59 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node /Users/baltmac/Projects/ai-governance-... |
+| 2026-03-06 12:51:06 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 12:51:11 | Bash                 | /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node /Users/baltmac/Projects/ai-governance-... |
+| 2026-03-06 12:51:14 | Bash                 | git add src/utils/pdfExport.ts && git status |
+| 2026-03-06 12:51:23 | Bash                 | GIT_DIR=/Users/baltmac/Projects/ai-governance-tool/.git GIT_WORK_TREE=/Users/baltmac/Proje... |
+| 2026-03-06 12:51:29 | TodoWrite            | in_progress: (none) |
+| 2026-03-06 12:53:31 | Grep                 | pattern='67\\.4|67,4' in src |
+| 2026-03-06 12:53:31 | Grep                 | pattern='decodeURIComponent|aigov://' in src |
+| 2026-03-06 12:53:41 | Glob                 | **/WelcomeStep* |
+| 2026-03-06 12:53:44 | Glob                 | **/*Welcome* |
+| 2026-03-06 12:53:47 | Grep                 | pattern='67|hallucination|billion|loss' in src/components/wizard/WelcomePage.tsx |
+| 2026-03-06 12:53:48 | Read                 | src/App.tsx |
+| 2026-03-06 12:53:59 | Grep                 | pattern='67\\.|losses|hallucination.*loss|loss.*hallucination' in src |
+| 2026-03-06 12:54:01 | Grep                 | pattern='67' in src |
+| 2026-03-06 12:54:15 | Bash                 | grep -r "67\.4\|hallucination.*billion\|billion.*hallucination" /Users/baltmac/Projects/ai... |
+| 2026-03-06 12:54:25 | Read                 | README.md |
+| 2026-03-06 12:54:53 | TodoWrite            | in_progress: Update README.md (PDF export + Executive Summary + Account panel) |
+| 2026-03-06 12:55:02 | Edit                 | README.md |
+| 2026-03-06 12:55:13 | Edit                 | README.md |
+| 2026-03-06 12:55:20 | TodoWrite            | in_progress: Write SESSION-40-RECOVERY.md |
+| 2026-03-06 12:56:11 | Write                | docs/SESSION-40-RECOVERY.md |
+| 2026-03-06 12:56:18 | TodoWrite            | in_progress: Update MEMORY.md session state |
+| 2026-03-06 12:56:40 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 12:56:54 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 12:57:14 | Bash                 | echo " ## 2026-03-06 — Session 39  **PDF Executive Summary page** (pdfExport.ts — 716dd92)... |
+| 2026-03-06 12:57:19 | TodoWrite            | in_progress: Commit and push to GitHub |
+| 2026-03-06 12:57:26 | Bash                 | git -C /Users/baltmac/Projects/ai-governance-tool add README.md docs/SESSION-40-RECOVERY.m... |
+| 2026-03-06 12:57:36 | Bash                 | git -C /Users/baltmac/Projects/ai-governance-tool add docs/SESSION-38-RECOVERY.md docs/SES... |
+| 2026-03-06 12:57:43 | Bash                 | git -C /Users/baltmac/Projects/ai-governance-tool push origin main 2>&1 |
+| 2026-03-06 12:57:47 | TodoWrite            | in_progress: (none) |
+| 2026-03-06 12:59:26 | ToolSearch           | {'query': 'select:Read', 'max_results': 1} |
+| 2026-03-06 12:59:28 | Read                 | docs/SESSION-40-RECOVERY.md |
+| 2026-03-06 12:59:32 | ToolSearch           | {'query': 'select:Grep', 'max_results': 1} |
+| 2026-03-06 12:59:36 | Grep                 | pattern='airisks-e-\\d+' in src/data/questions |
+| 2026-03-06 12:59:41 | Grep                 | pattern='airisks-[bia]-\\d+' in src/data/questions |
+| 2026-03-06 12:59:41 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-06 12:59:45 | Grep                 | pattern='airisks-[bia]-1[0-9]|EU AI Act|jurisdictions.*eu' in src/data/questions |
+| 2026-03-06 12:59:48 | Grep                 | pattern='airisks-(b|i|a)-\\d+' in src/data/questions |
+| 2026-03-06 12:59:48 | Grep                 | pattern='airisks-(b|i|a)-\\d+' in src/data/questions |
+| 2026-03-06 12:59:49 | Grep                 | pattern='airisks-(b|i|a)-\\d+' in src/data/questions |
+| 2026-03-06 12:59:52 | Grep                 | pattern="id: 'airisks" in src/data/questions |
+| 2026-03-06 12:59:57 | Grep                 | pattern='aiSpecificRisks' in src/data/questions |
+| 2026-03-06 12:59:57 | Grep                 | pattern='aiSpecificRisks' in src/data/questions |
+| 2026-03-06 13:00:03 | Grep                 | pattern="id: '.*'" in src/data/questions/builder-questions.ts |
+| 2026-03-06 13:00:04 | Grep                 | pattern='jurisdictions.*eu' in src/data/questions/innovator-questions.ts |
+| 2026-03-06 13:02:23 | ToolSearch           | {'query': 'select:Agent,Bash', 'max_results': 2} |
+| 2026-03-06 13:02:38 | Grep                 | pattern='addFooter' in src/utils/pdfExport.ts |
+| 2026-03-06 13:02:38 | Read                 | src/utils/scoring.ts |
+| 2026-03-06 13:02:38 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-06 13:02:39 | Read                 | src/data/questions/index.ts |
+| 2026-03-06 13:02:39 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-06 13:02:40 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-06 13:02:41 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-06 13:02:41 | Read                 | src/data/questions/innovator-questions.ts |
+| 2026-03-06 13:02:41 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-06 13:02:44 | Grep                 | pattern="id:\\s*'(shadow|vendor|data|security|airisks|roi)-[a-z]-\\d+'" in src/data/questions |
+| 2026-03-06 13:02:47 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -c "id: 'airisks-e-" src/data/questi... |
+| 2026-03-06 13:02:49 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -c "id: 'airisks-b-" src/data/questi... |
+| 2026-03-06 13:02:50 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -c "id: 'airisks-i-" src/data/questi... |
+| 2026-03-06 13:02:51 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -c "id: 'airisks-a-" src/data/questi... |
+| 2026-03-06 13:02:58 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && for file in src/data/questions/{experimen... |
+| 2026-03-06 13:03:00 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== scoring.ts ===" && grep -n "10\... |
+| 2026-03-06 13:03:00 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== DimensionStep.tsx ===" && grep ... |
+| 2026-03-06 13:03:01 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== questions/index.ts ===" && grep... |
+| 2026-03-06 13:03:01 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== assessmentStore.ts ===" && grep... |
+| 2026-03-06 13:03:02 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== Checking canProceed logic in as... |
+| 2026-03-06 13:03:03 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== Checking canContinue logic in D... |
+| 2026-03-06 13:03:06 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== EXPERIMENTER BANK ===" && grep ... |
+| 2026-03-06 13:03:08 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== BUILDER BANK ===" && grep "dime... |
+| 2026-03-06 13:03:10 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== INNOVATOR BANK ===" && grep "di... |
+| 2026-03-06 13:03:11 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== ACHIEVER BANK ===" && grep "dim... |
+| 2026-03-06 13:03:16 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== EU AI Act airisks IDs ===" && g... |
+| 2026-03-06 13:03:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== Just check which numbers exist ... |
+| 2026-03-06 13:03:21 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && for bank in experimenter builder innovato... |
+| 2026-03-06 13:03:23 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && echo "=== Builder airisks (using correct ... |
+| 2026-03-06 13:03:23 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-06 13:03:26 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -n "id: 'airisks-b-" src/data/questi... |
+| 2026-03-06 13:03:29 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && grep -B 2 "dimension: 'aiSpecificRisks'" ... |
+| 2026-03-06 13:03:34 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && for bank in experimenter builder innovato... |
+| 2026-03-06 13:04:02 | Agent                | {'description': 'Audit scoring/canProceed for hardcoded counts', 'prompt': 'Audi... |
+| 2026-03-06 13:04:08 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:04:12 | ToolSearch           | {'query': 'select:Edit', 'max_results': 1} |
+| 2026-03-06 13:04:18 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:04:19 | Bash                 | rm /Users/baltmac/Projects/ai-governance-tool/src/utils/executiveSummary.ts |
+| 2026-03-06 13:06:50 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 13:07:17 | Read                 | src/types/assessment.ts |
+| 2026-03-06 13:07:17 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:17 | Read                 | src/utils/scoring.ts |
+| 2026-03-06 13:07:20 | Read                 | ~/.claude/projects/-Users-baltmac/3def6170-cd92-45f5-9065-302e44204e72/tool-results/toolu_01WbTuZGik3xChf393bVvSF1.txt |
+| 2026-03-06 13:07:22 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-06 13:07:23 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:24 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:24 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:25 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:26 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:26 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:28 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:28 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:07:31 | Bash                 | grep -n "generateFreePDF\|generateProPDF" /Users/baltmac/Projects/ai-governance-tool/src/u... |
+| 2026-03-06 13:07:32 | Bash                 | grep -n "drawExecSummaryPage\|parseBoldSegments\|drawRichText" /Users/baltmac/Projects/ai-... |
+| 2026-03-06 13:08:29 | Agent                | {'description': 'Deep adversarial review of pdfExport.ts', 'prompt': 'You are do... |
+| 2026-03-06 13:11:25 | ToolSearch           | {'query': 'select:TodoWrite', 'max_results': 1} |
+| 2026-03-06 13:11:34 | TodoWrite            | in_progress: Check BT-7/BT-8 status |
+| 2026-03-06 13:11:39 | Grep                 | pattern='BYOK|apiKey|anthropic|executiveSummary|ApiKey|ExecSummary' in src |
+| 2026-03-06 13:11:44 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline -15 |
+| 2026-03-06 13:11:56 | TodoWrite            | in_progress: Fix P-001: Font state not reset in drawRichText |
+| 2026-03-06 13:11:59 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:12:02 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:12:38 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:12:39 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:13:07 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:13:08 | Grep                 | pattern='getRiskLevel|RiskLevel\\.(Low|Medium|High|Critical)|score >= [0-9]' in src/utils/scoring.ts |
+| 2026-03-06 13:13:50 | Grep                 | pattern='upgradePrompt' in src/utils/execSummary.ts |
+| 2026-03-06 13:14:17 | TodoWrite            | in_progress: Fix P-002: pdfText null guard + P-004: addFooter font reset + P-006: color thresholds |
+| 2026-03-06 13:14:21 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:14:25 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:14:31 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:14:36 | TodoWrite            | in_progress: Fix P-003: Section 3 silently skipped on overflow |
+| 2026-03-06 13:14:42 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:14:47 | TodoWrite            | in_progress: Fix P-007: NaN% in ROI section from undefined monthlyEquivalent |
+| 2026-03-06 13:14:51 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 13:14:56 | TodoWrite            | in_progress: Run adversarial pass on 4 question banks (structural + content) |
+| 2026-03-06 13:15:22 | Read                 | src/types/assessment.ts |
+| 2026-03-06 13:15:23 | Read                 | src/data/questions/experimenter-questions.ts |
+| 2026-03-06 13:15:23 | Read                 | src/data/questions/builder-questions.ts |
+| 2026-03-06 13:15:23 | Read                 | src/data/questions/achiever-questions.ts |
+| 2026-03-06 13:15:23 | Read                 | src/data/questions/innovator-questions.ts |
+| 2026-03-06 13:15:26 | Read                 | ~/.claude/projects/-Users-baltmac/3def6170-cd92-45f5-9065-302e44204e72/tool-results/toolu_01RN8D8d5DJbt8P4F11yEwJS.txt |
+| 2026-03-06 13:15:26 | Read                 | ~/.claude/projects/-Users-baltmac/3def6170-cd92-45f5-9065-302e44204e72/tool-results/toolu_01FawydW9T4TEhwJMheNLu5r.txt |
+| 2026-03-06 13:15:28 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builder-questions.ts |
+| 2026-03-06 13:15:28 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innovator-questions.ts |
+| 2026-03-06 13:15:29 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever-questions.ts |
+| 2026-03-06 13:15:34 | Bash                 | grep -h "id: '" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experimenter... |
+| 2026-03-06 13:15:36 | Bash                 | for file in experimenter builder innovator achiever; do echo "=== $file ==="; grep -c "id:... |
+| 2026-03-06 13:15:40 | Bash                 | for file in experimenter builder innovator achiever; do echo "=== $file ==="; for dim in s... |
+| 2026-03-06 13:15:42 | Bash                 | cat /Users/baltmac/.claude/projects/-Users-baltmac/3def6170-cd92-45f5-9065-302e44204e72/to... |
+| 2026-03-06 13:15:45 | Bash                 | cat /Users/baltmac/.claude/projects/-Users-baltmac/3def6170-cd92-45f5-9065-302e44204e72/to... |
+| 2026-03-06 13:15:49 | Bash                 | for file in experimenter builder innovator achiever; do   echo "=== $file ==="   grep -o "... |
+| 2026-03-06 13:15:54 | Bash                 | grep -n "options: \[" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innova... |
+| 2026-03-06 13:15:55 | Bash                 | grep -n "options: \[" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiev... |
+| 2026-03-06 13:15:58 | Bash                 | awk '/options: \[/{flag=1; count=0} flag{if(/\{ label:/) count++; if(/\],$/){print count; ... |
+| 2026-03-06 13:16:00 | Bash                 | awk '/options: \[/{flag=1; count=0} flag{if(/\{ label:/) count++; if(/\],$/){print count; ... |
+| 2026-03-06 13:16:03 | Bash                 | awk '/options: \[/{flag=1; count=0} flag{if(/\{ label:/) count++; if(/\],$/){print count; ... |
+| 2026-03-06 13:16:05 | Bash                 | awk '/options: \[/{flag=1; count=0} flag{if(/\{ label:/) count++; if(/\],$/){print count; ... |
+| 2026-03-06 13:16:07 | Bash                 | grep -A 2 "id: 'airisks-e-1[1-3]'" /Users/baltmac/Projects/ai-governance-tool/src/data/que... |
+| 2026-03-06 13:16:10 | Bash                 | for file in experimenter builder innovator achiever; do echo "=== $file ==="; grep "id: 'a... |
+| 2026-03-06 13:16:12 | Bash                 | grep "id: 'airisks" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builder-... |
+| 2026-03-06 13:16:12 | Bash                 | grep "id: 'airisks" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innovato... |
+| 2026-03-06 13:16:12 | Bash                 | grep "id: 'airisks" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiever... |
+| 2026-03-06 13:16:15 | Bash                 | for file in experimenter builder innovator achiever; do   echo "=== $file ===";   grep "id... |
+| 2026-03-06 13:16:17 | Bash                 | grep -A 20 "id: 'airisks-e-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/questi... |
+| 2026-03-06 13:16:17 | Bash                 | grep -A 20 "id: 'risk-b-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/questions... |
+| 2026-03-06 13:16:17 | Bash                 | grep -A 20 "id: 'airisk-i-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/questio... |
+| 2026-03-06 13:16:17 | Bash                 | grep -A 20 "id: 'airisk-a-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/questio... |
+| 2026-03-06 13:16:19 | Bash                 | grep -A 20 "id: 'airisks-e-13'" /Users/baltmac/Projects/ai-governance-tool/src/data/questi... |
+| 2026-03-06 13:16:20 | Bash                 | grep -A 20 "id: 'risk-b-13'" /Users/baltmac/Projects/ai-governance-tool/src/data/questions... |
+| 2026-03-06 13:16:20 | Bash                 | grep -A 20 "id: 'airisk-i-13'" /Users/baltmac/Projects/ai-governance-tool/src/data/questio... |
+| 2026-03-06 13:16:20 | Bash                 | grep -A 20 "id: 'airisk-a-13'" /Users/baltmac/Projects/ai-governance-tool/src/data/questio... |
+| 2026-03-06 13:16:24 | Bash                 | for file in experimenter builder innovator achiever; do   echo "=== $file - Questions with... |
+| 2026-03-06 13:16:28 | Bash                 | for file in experimenter builder innovator achiever; do   echo "=== $file - Invalid dimens... |
+| 2026-03-06 13:16:33 | Bash                 | for file in experimenter builder innovator achiever; do   echo "=== $file - Questions miss... |
+| 2026-03-06 13:16:34 | Bash                 | grep -A 6 "id: 'shadow-e-1'" /Users/baltmac/Projects/ai-governance-tool/src/data/questions... |
+| 2026-03-06 13:16:36 | Bash                 | grep -B 5 -A 15 "id: 'airisk-i-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/qu... |
+| 2026-03-06 13:16:37 | Bash                 | grep -B 5 -A 20 "id: 'airisk-a-11'" /Users/baltmac/Projects/ai-governance-tool/src/data/qu... |
+| 2026-03-06 13:16:40 | Bash                 | sed -n '/id: .airisk-i-11./,/^  },$/p' /Users/baltmac/Projects/ai-governance-tool/src/data... |
+| 2026-03-06 13:16:43 | Bash                 | sed -n '/id: .airisk-i-11./,/weight:/p' /Users/baltmac/Projects/ai-governance-tool/src/dat... |
+| 2026-03-06 13:16:46 | Bash                 | sed -n '/id: .airisk-a-1.\{0,2\},/,/weight:/p' /Users/baltmac/Projects/ai-governance-tool/... |
+| 2026-03-06 13:16:48 | Bash                 | grep "id: 'airisk-a-" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achiev... |
+| 2026-03-06 13:16:51 | Bash                 | sed -n '/id: .airisk-a-1.,/,/weight:/p' /Users/baltmac/Projects/ai-governance-tool/src/dat... |
+| 2026-03-06 13:16:53 | Bash                 | grep -B 20 "weight:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/achieve... |
+| 2026-03-06 13:16:55 | Bash                 | grep -c "weight:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/innovator-... |
+| 2026-03-06 13:16:57 | Bash                 | grep -c "weight:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/experiment... |
+| 2026-03-06 13:17:00 | Bash                 | sed -n '/id: .risk-b-11./,/type: .radio./p' /Users/baltmac/Projects/ai-governance-tool/src... |
+| 2026-03-06 13:17:04 | Bash                 | for bank in experimenter builder innovator achiever; do   ids=$(grep "jurisdictions: \['eu... |
+| 2026-03-06 13:17:06 | Bash                 | grep -B 3 "id: 'vendor-b-10'" /Users/baltmac/Projects/ai-governance-tool/src/data/question... |
+| 2026-03-06 13:17:09 | Bash                 | sed -n '/id: .vendor-b-10./,/type: .radio./p' /Users/baltmac/Projects/ai-governance-tool/s... |
+| 2026-03-06 13:17:11 | Bash                 | grep "jurisdictions:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/builde... |
+| 2026-03-06 13:17:15 | Bash                 | grep -B 5 "jurisdictions:" /Users/baltmac/Projects/ai-governance-tool/src/data/questions/b... |
+| 2026-03-06 13:17:50 | Bash                 | awk '/id: .vendor-b-10./ {p=1} p {print} /^  },/ && p {exit}' /Users/baltmac/Projects/ai-g... |
+| 2026-03-06 13:17:53 | Bash                 | awk '/id: .data-b-6./ {p=1} p {print} /^  },/ && p {exit}' /Users/baltmac/Projects/ai-gove... |
+| 2026-03-06 13:17:54 | Bash                 | awk '/id: .security-b-8./ {p=1} p {print} /^  },/ && p {exit}' /Users/baltmac/Projects/ai-... |
+| 2026-03-06 13:18:33 | Agent                | {'description': 'Question bank adversarial review — structural + content', 'prom... |
+| 2026-03-06 13:18:58 | TodoWrite            | in_progress: Commit all fixes |
+| 2026-03-06 13:19:26 | Bash                 | cd ~/Projects/ai-governance-tool && git diff --stat |
+| 2026-03-06 13:19:38 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/utils/pdfExport.ts src/utils/executiveSumm... |
+| 2026-03-06 13:19:43 | TodoWrite            | in_progress: Prepare SESSION-41-RECOVERY.md |
+| 2026-03-06 13:19:46 | ToolSearch           | {'query': 'select:Write', 'max_results': 1} |
+| 2026-03-06 13:20:26 | Write                | docs/SESSION-41-RECOVERY.md |
+| 2026-03-06 14:05:08 | Bash                 | echo "" >> ~/Projects/ai-governance-tool/docs/session-log.md && echo "## Session 40 — 2026... |
+| 2026-03-06 14:05:30 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/SESSION-41-RECOVERY.md docs/session-log.m... |
+| 2026-03-06 14:05:37 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-06 14:05:44 | TodoWrite            | in_progress: (none) |
+| 2026-03-06 14:08:00 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:08:29 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:08:47 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:09:32 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:09:47 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:09:52 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:10:07 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:10:11 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 14:10:14 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 14:10:19 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 14:10:24 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-06 14:10:35 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 14:10:40 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-06 14:10:51 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/remaining-work-plan.md && git commit -m "... |
+| 2026-03-06 14:14:30 | Bash                 | cd ~/Projects/ai-governance-tool && git status && echo "---" && git log --oneline -5 && ec... |
+| 2026-03-06 14:15:50 | Read                 | README.md |
+| 2026-03-06 14:18:07 | Read                 | docs/SESSION-41-RECOVERY.md |
+| 2026-03-06 14:19:37 | Write                | docs/SESSION-41-RECOVERY.md |
+| 2026-03-06 14:20:07 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/SESSION-41-RECOVERY.md && git commit -m "... |
+| 2026-03-06 14:21:06 | ToolSearch           | {'query': 'select:Read', 'max_results': 5} |
+| 2026-03-06 14:21:08 | Read                 | docs/SESSION-41-RECOVERY.md |
+| 2026-03-06 15:57:07 | Read                 | README.md |
+| 2026-03-06 15:57:07 | Read                 | TESTER-GUIDE.md |
+| 2026-03-06 15:59:08 | ToolSearch           | {'query': 'select:Bash,Glob', 'max_results': 5} |
+| 2026-03-06 15:59:11 | Read                 | src-tauri/tauri.conf.json |
+| 2026-03-06 15:59:25 | Read                 | src-tauri/Cargo.toml |
+| 2026-03-06 15:59:46 | ToolSearch           | {'query': 'select:Edit,Write,TodoWrite', 'max_results': 5} |
+| 2026-03-06 15:59:54 | TodoWrite            | in_progress: Save macOS minimum version finding to MEMORY.md |
+| 2026-03-06 16:00:08 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 16:00:13 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 16:00:22 | TodoWrite            | in_progress: Start production build in background |
+| 2026-03-06 16:00:31 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH=/Users/baltmac/.nvm/versions/node/v2... |
+| 2026-03-06 16:00:36 | TodoWrite            | in_progress: Update README.md (question counts, Phase 4, exec summary, beta testers section) |
+| 2026-03-06 16:00:44 | Edit                 | README.md |
+| 2026-03-06 16:00:49 | Edit                 | README.md |
+| 2026-03-06 16:00:54 | Edit                 | README.md |
+| 2026-03-06 16:01:02 | Edit                 | README.md |
+| 2026-03-06 16:01:11 | Edit                 | README.md |
+| 2026-03-06 16:01:18 | Edit                 | README.md |
+| 2026-03-06 16:01:24 | TodoWrite            | in_progress: Update TESTER-GUIDE.md (question counts, Gatekeeper macOS 14+, GitHub Releases) |
+| 2026-03-06 16:01:29 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-06 16:01:35 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-06 16:01:43 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-06 16:01:55 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-06 16:02:03 | TodoWrite            | in_progress: Fix PDF-1/2/3 medium bugs in pdfExport.ts |
+| 2026-03-06 16:02:10 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:02:19 | ToolSearch           | {'query': 'select:Grep', 'max_results': 5} |
+| 2026-03-06 16:02:33 | Grep                 | pattern='parseBoldSegments|section2Gaps|\\.dimension|\\.score' in src/utils/pdfExport.ts |
+| 2026-03-06 16:02:55 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:02:56 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:02:56 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:03:33 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:03:48 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:04:05 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-06 16:04:45 | Bash                 | tail -50 /private/tmp/claude-501/-Users-baltmac/tasks/brauv43bp.output 2>/dev/null || echo... |
+| 2026-03-06 16:05:08 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-06 16:05:28 | TodoWrite            | in_progress: Verify build output: .dmg mounts, installer runs, app launches |
+| 2026-03-06 16:26:15 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  --- # ... |
+| 2026-03-10 16:17:23 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-10 16:17:39 | Write                | docs/SESSION-42-RECOVERY.md |
+| 2026-03-10 16:17:44 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:17:51 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:17:58 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:18:01 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:18:11 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:20:03 | Bash                 | ls -la ~/Projects/ai-governance-tool/ 2>&1 | head -20 |
+| 2026-03-10 16:20:06 | Bash                 | find ~/Projects/ai-governance-tool/src -name "LicensePanel.tsx" -o -name "license.ts" -o -... |
+| 2026-03-10 16:20:08 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-10 16:20:08 | Read                 | src/services/license.ts |
+| 2026-03-10 16:20:10 | Grep                 | pattern='isPro|tier|professional' in src |
+| 2026-03-10 16:20:19 | Agent                | {'description': 'Explore license/tier gate code', 'prompt': 'Read these files an... |
+| 2026-03-10 16:20:27 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-10 16:20:27 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-10 16:20:28 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-10 16:20:41 | Agent                | {'description': 'Read license panel and results dashboard', 'prompt': 'Read thes... |
+| 2026-03-10 16:21:00 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-10 16:21:15 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-10 16:21:20 | Read                 | README.md |
+| 2026-03-10 16:22:57 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-03-10 16:23:40 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && PATH=/Users/baltmac/.nvm/versions/node/v2... |
+| 2026-03-10 16:25:23 | Bash                 | tail -20 /private/tmp/claude-501/-Users-baltmac/tasks/becvchjhx.output |
+| 2026-03-10 16:27:45 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Ses... |
+| 2026-03-10 16:27:50 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:27:57 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:28:03 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:28:07 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:28:11 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:28:18 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-10 16:28:43 | Write                | docs/SESSION-42-RECOVERY.md |
+| 2026-03-10 16:29:56 | Read                 | docs/SESSION-42-RECOVERY.md |
+| 2026-03-10 16:30:11 | Bash                 | cd ~/Projects/ai-governance-tool && git status && git diff --stat HEAD |
+| 2026-03-10 16:30:29 | Bash                 | cd ~/Projects/ai-governance-tool && git add README.md TESTER-GUIDE.md src/utils/pdfExport.... |
+| 2026-03-10 16:30:42 | Bash                 | cd ~/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' Add dev tier toggle; fix ... |
+| 2026-03-10 16:30:50 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-10 16:37:24 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-10 16:37:56 | Bash                 | grep -n "overflow\|scroll\|max-h\|h-\[" ~/Projects/ai-governance-tool/src/components/setti... |
+| 2026-03-10 16:38:01 | Glob                 | src/components/settings/*.tsx |
+| 2026-03-10 16:38:05 | Glob                 | src/components/settings/**/*.tsx |
+| 2026-03-10 16:38:10 | Glob                 | src/**/Settings*.tsx |
+| 2026-03-10 16:38:14 | Bash                 | find ~/Projects/ai-governance-tool/src -name "*.tsx" | xargs grep -l -i "settings" 2>/dev/... |
+| 2026-03-10 16:38:18 | Bash                 | grep -n "overflow\|scroll\|max-h\|h-\[" ~/Projects/ai-governance-tool/src/components/setti... |
+| 2026-03-10 16:38:22 | Bash                 | grep -n "overflow\|scroll\|max-h\|h-\[" ~/Projects/ai-governance-tool/src/components/setti... |
+| 2026-03-10 16:38:26 | Bash                 | grep -n "overflow\|scroll\|max-h\|h-full\|flex-1\|min-h" ~/Projects/ai-governance-tool/src... |
+| 2026-03-10 16:38:43 | Bash                 | ls -la ~/Projects/ai-governance-tool/src-tauri/target/release/bundle/dmg/ |
+| 2026-03-10 16:43:21 | Bash                 | ls /Applications/ | grep -i "governance\|alphapi\|alpha" |
+| 2026-03-10 16:44:12 | Read                 | README.md |
+| 2026-03-10 16:44:42 | Read                 | README.md |
+| 2026-03-10 16:45:21 | Edit                 | README.md |
+| 2026-03-10 16:45:29 | Edit                 | README.md |
+| 2026-03-10 16:45:34 | Read                 | README.md |
+| 2026-03-10 16:45:41 | Agent                | {'description': 'Update README with launch + Free/Pro toggle docs', 'prompt': 'U... |
+| 2026-03-10 16:47:57 | Bash                 | cd ~/Projects/ai-governance-tool && git add README.md && git commit -m "$(cat <<'EOF' Add ... |
+| 2026-03-10 16:52:34 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-10 16:52:35 | Read                 | README.md |
+| 2026-03-10 16:52:40 | Read                 | docs/decisions.md |
+| 2026-03-10 16:56:00 | Agent                | {'description': 'Plan webpage, how-to docs, and marketing for AlphaPi', 'prompt'... |
+| 2026-03-10 16:57:53 | Bash                 | cat > ~/Projects/ai-governance-tool/docs/gtm-plan.md << 'ENDOFFILE' # AlphaPi — Go-to-Mark... |
+| 2026-03-10 17:02:27 | Write                | ~/.claude/projects/-Users-baltmac/memory/pending-workflow-protocol.md |
+| 2026-03-10 17:02:30 | Agent                | {'description': 'Save workflow protocol to memory for later discussion', 'prompt... |
+| 2026-03-11 09:22:57 | Read                 | docs/governance-synthesis.md |
+| 2026-03-11 09:23:04 | Bash                 | find ~/Projects/ai-governance-tool/src -name "execSummary.ts" -o -name "executiveSummary.t... |
+| 2026-03-11 09:23:09 | Read                 | src/utils/execSummary.ts |
+| 2026-03-11 09:23:41 | Bash                 | grep -n "exec\|Executive\|section1\|section2\|section3\|Board\|board\|How is AI\|exposure\... |
+| 2026-03-11 16:50:17 | Bash                 | grep -n "industry\|Industry\|Healthcare\|Finance\|Retail\|Manufacturing\|Education\|Legal\... |
+| 2026-03-11 16:50:23 | Bash                 | find ~/Projects/ai-governance-tool/src -name "*.ts" -o -name "*.tsx" | xargs grep -l "indu... |
+| 2026-03-11 16:50:28 | Bash                 | grep -n "industry\|Industry" ~/Projects/ai-governance-tool/src/types/assessment.ts | head ... |
+| 2026-03-11 16:50:37 | Bash                 | sed -n '7,40p' ~/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-11 16:50:44 | Bash                 | grep -n "drawExecSummary\|addExecSummary\|Executive Summary\|section1\|section2\|section3\... |
+| 2026-03-11 16:50:48 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-11 17:01:00 | Bash                 | cd ~/Projects/ai-governance-tool && git status |
+| 2026-03-11 17:02:44 | Read                 | docs/remaining-work-plan.md |
+| 2026-03-11 17:02:45 | Read                 | docs/decisions.md |
+| 2026-03-11 17:03:11 | Edit                 | docs/remaining-work-plan.md |
+| 2026-03-11 17:03:34 | Edit                 | docs/decisions.md |
+| 2026-03-11 17:03:39 | Agent                | {'description': 'Update remaining-work-plan and decisions.md with session 43 dec... |
+| 2026-03-11 17:05:42 | Write                | docs/SESSION-43-RECOVERY.md |
+| 2026-03-11 17:06:07 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-11 17:06:15 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-11 17:06:25 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/governance-synthesis.md docs/gtm-plan.md ... |
+| 2026-03-11 17:06:38 | Bash                 | cd ~/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' Add governance synthesis,... |
+| 2026-03-11 17:07:20 | Read                 | docs/SESSION-43-RECOVERY.md |
+| 2026-03-11 17:09:29 | Bash                 | cd ~/Projects/ai-governance-tool && git status && git log --oneline -3 |
+| 2026-03-11 17:13:38 | Read                 | docs/decisions.md |
+| 2026-03-11 17:13:55 | Edit                 | docs/decisions.md |
+| 2026-03-11 17:14:05 | Write                | docs/lessons-learned.md |
+| 2026-03-11 17:14:10 | Read                 | src/utils/execSummary.ts |
+| 2026-03-11 17:14:11 | Bash                 | grep -n "Industry\|industry" /Users/baltmac/Projects/ai-governance-tool/src/types/assessme... |
+| 2026-03-11 17:14:21 | Bash                 | sed -n '7,30p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-11 17:15:33 | Write                | src/utils/industryContent.ts |
+| 2026-03-11 17:15:40 | Edit                 | src/utils/execSummary.ts |
+| 2026-03-11 17:15:49 | Edit                 | src/utils/execSummary.ts |
+| 2026-03-11 17:15:56 | Edit                 | src/utils/execSummary.ts |
+| 2026-03-11 17:16:03 | Edit                 | src/utils/execSummary.ts |
+| 2026-03-11 17:16:11 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-11 17:16:17 | Bash                 | cd ~/Projects/ai-governance-tool && PATH=/Users/baltmac/.nvm/versions/node/v24.13.1/bin:$P... |
+| 2026-03-11 17:16:29 | Bash                 | export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac/.nvm/versions/node/v24.13.1/bin:... |
+| 2026-03-11 17:16:36 | Bash                 | export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac/.nvm/versions/node/v24.13.1/bin:... |
+| 2026-03-11 17:16:41 | Bash                 | export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac/.nvm/versions/node/v24.13.1/bin:... |
+| 2026-03-11 17:16:48 | Bash                 | export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac/.nvm/versions/node/v24.13.1/bin:... |
+| 2026-03-11 17:16:53 | Bash                 | ls ~/Projects/ai-governance-tool/node_modules/.bin/tauri 2>/dev/null && echo "exists" |
+| 2026-03-11 17:17:00 | Bash                 | cd ~/Projects/ai-governance-tool && PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac/.nv... |
+| 2026-03-11 17:18:43 | Bash                 | cd ~/Projects/ai-governance-tool && env PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/baltmac... |
+| 2026-03-11 17:18:51 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/utils/industryContent.ts src/utils/execSum... |
+| 2026-03-11 17:19:02 | Bash                 | cd ~/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' Add industry personalizat... |
+| 2026-03-11 17:19:07 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-16 10:17:03 | Read                 | docs/CURRENT-SESSION.md |
+| 2026-03-16 10:17:49 | Write                | docs/SESSION-44-RECOVERY.md |
+| 2026-03-16 10:17:54 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 10:18:12 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 10:20:32 | Read                 | docs/SESSION-44-RECOVERY.md |
+| 2026-03-16 10:22:50 | Bash                 | ls "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governance Framework" 2>/dev/null ... |
+| 2026-03-16 10:22:58 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:03 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:12 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:15 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:22 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:27 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:30 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:34 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:23:37 | Bash                 | textutil -convert txt -stdout "/Users/baltmac/Projects/ai-governance-tool/AI Agent Governa... |
+| 2026-03-16 10:27:42 | Write                | docs/ai-agent-governance.md |
+| 2026-03-16 10:27:52 | Bash                 | ls /Users/baltmac/Projects/ai-governance-tool/docs/ | grep -i "govern\|knowledge" |
+| 2026-03-16 10:28:43 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/docs/ai-governance-knowledge-base.md /Use... |
+| 2026-03-16 10:28:58 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 10:29:11 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 10:43:19 | Write                | ~/.claude/projects/-Users-baltmac/memory/es3-decisions.md |
+| 2026-03-16 10:43:28 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 10:45:59 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/es3-decisions.md |
+| 2026-03-16 10:48:54 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/es3-decisions.md |
+| 2026-03-16 10:48:59 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/es3-decisions.md |
+| 2026-03-16 10:51:00 | Read                 | src/utils/execSummary.ts |
+| 2026-03-16 10:51:01 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-16 10:51:01 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 10:51:04 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool -name "TrackProgress.tsx" -o -name "db.ts"... |
+| 2026-03-16 10:51:06 | Read                 | src/services/db.ts |
+| 2026-03-16 10:51:07 | Read                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 10:51:07 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 10:53:19 | Agent                | {'description': 'Read ES-3 relevant source files', 'prompt': 'Read these files i... |
+| 2026-03-16 10:53:24 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src/utils/execSummary.ts |
+| 2026-03-16 10:53:33 | Bash                 | grep -n "ai_summary\|aiSummary\|assessments\|CREATE TABLE\|ALTER TABLE" /Users/baltmac/Pro... |
+| 2026-03-16 10:53:38 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "*.ts" | xargs grep -l "CREATE T... |
+| 2026-03-16 10:53:44 | Bash                 | grep -n "CREATE TABLE\|ALTER TABLE\|ai_summary\|aiSummary\|INSERT INTO\|SELECT\|assessment... |
+| 2026-03-16 11:01:05 | Bash                 | sed -n '93,125p' /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-16 11:01:11 | Bash                 | sed -n '340,430p' /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-16 11:01:16 | Bash                 | grep -n "anthropicApiKey\|apiKey\|api_key\|ANTHROPIC\|useStore\|tauri-plugin-store\|Store\... |
+| 2026-03-16 11:01:22 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/src -name "AccountPanel*" -o -name "accoun... |
+| 2026-03-16 11:01:27 | Bash                 | grep -n "anthropicApiKey\|apiKey\|Store\|load\|save\|consent" /Users/baltmac/Projects/ai-g... |
+| 2026-03-16 11:01:30 | Bash                 | grep -n "blindSpots\|bottom_quartile\|responses\|questions\|question\b" /Users/baltmac/Pro... |
+| 2026-03-16 11:01:33 | Bash                 | grep -n "BlindSpot\|QuestionResponse\b" /Users/baltmac/Projects/ai-governance-tool/src/typ... |
+| 2026-03-16 11:01:38 | Bash                 | sed -n '119,200p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-16 11:01:43 | Bash                 | grep -n "execSummary\|ExecSummary\|aiSummary\|AISummary\|apiKey\|anthropic\|consent\|blur\... |
+| 2026-03-16 11:03:09 | Bash                 | sed -n '1178,1345p' /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/Tr... |
+| 2026-03-16 11:21:02 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src-tauri/capabilities/default.json && echo... |
+| 2026-03-16 11:21:08 | Bash                 | grep -n "csp\|connect-src\|Content-Security\|anthropic\|allowlist" /Users/baltmac/Projects... |
+| 2026-03-16 11:25:04 | Bash                 | sed -n '1,80p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-16 11:25:10 | Bash                 | grep -n "^export async function\|^function\|addPage\|doc\.text\|new jsPDF\|ExecSummary\|ex... |
+| 2026-03-16 11:25:40 | Bash                 | grep -n "ExecSummaryCard\|assessmentId\|<ExecSummary" /Users/baltmac/Projects/ai-governanc... |
+| 2026-03-16 11:26:01 | Bash                 | grep -n "^export async function generate" /Users/baltmac/Projects/ai-governance-tool/src/u... |
+| 2026-03-16 11:26:10 | Bash                 | sed -n '659,690p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-16 11:26:25 | Read                 | src-tauri/tauri.conf.json |
+| 2026-03-16 11:26:34 | Edit                 | src-tauri/tauri.conf.json |
+| 2026-03-16 11:26:48 | Bash                 | grep -n "content_cache\|getDb\|isTauriContext\|export async\|export function\|initDatabase... |
+| 2026-03-16 11:26:56 | Bash                 | sed -n '125,160p' /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-16 11:27:01 | Bash                 | tail -20 /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-16 11:27:15 | Read                 | src/services/db.ts |
+| 2026-03-16 11:27:21 | Edit                 | src/services/db.ts |
+| 2026-03-16 11:27:32 | Edit                 | src/services/db.ts |
+| 2026-03-16 11:27:41 | Edit                 | src/services/db.ts |
+| 2026-03-16 11:28:37 | Write                | src/services/aiSummary.ts |
+| 2026-03-16 11:28:48 | Read                 | src/utils/execSummary.ts |
+| 2026-03-16 11:28:59 | Edit                 | src/utils/execSummary.ts |
+| 2026-03-16 11:29:17 | Bash                 | sed -n '1,15p' /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackPr... |
+| 2026-03-16 11:29:28 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:29:34 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:30:52 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:30:58 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:31:18 | Bash                 | grep -n "Store\b\|storeRef" /Users/baltmac/Projects/ai-governance-tool/src/components/dash... |
+| 2026-03-16 11:31:26 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:31:36 | Bash                 | sed -n '655,675p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-16 11:31:41 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 11:31:47 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 11:32:06 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 11:32:14 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 11:32:23 | Bash                 | grep -n "drawExecSummaryPage\|addPage.*exec\|exec.*addPage" /Users/baltmac/Projects/ai-gov... |
+| 2026-03-16 11:39:25 | Bash                 | sed -n '880,892p' /Users/baltmac/Projects/ai-governance-tool/src/utils/pdfExport.ts |
+| 2026-03-16 11:39:32 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 11:39:51 | Bash                 | grep -n "MaturityLevel\|organizationSize\|orgSize\|employeeCount\|size\b" /Users/baltmac/P... |
+| 2026-03-16 11:39:56 | Bash                 | sed -n '39,95p' /Users/baltmac/Projects/ai-governance-tool/src/types/assessment.ts |
+| 2026-03-16 11:40:01 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 11:40:07 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 11:40:12 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 11:40:17 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 11:40:21 | Bash                 | grep -n "useRef" /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/Track... |
+| 2026-03-16 11:40:27 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-03-16 11:42:28 | Bash                 | env PATH="/Users/baltmac/.nvm/versions/node/v24.13.1/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Us... |
+| 2026-03-16 11:42:32 | Bash                 | git add src-tauri/tauri.conf.json src/services/db.ts src/services/aiSummary.ts src/utils/e... |
+| 2026-03-16 11:42:44 | Bash                 | git add docs/ai-agent-governance.md && git commit -m "$(cat <<'EOF' Add ES-3: AI-generated... |
+| 2026-03-16 11:42:49 | Bash                 | echo "- [x] ES-3 AI exec summary complete (849793b) — 6 files, tsc clean, build clean. Tes... |
+| 2026-03-16 13:00:08 | Bash                 | cat > /Users/baltmac/Projects/ai-governance-tool/docs/SESSION-45-RECOVERY.md << 'EOF' # Se... |
+| 2026-03-16 13:00:26 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 13:00:34 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 13:00:38 | Agent                | {'description': 'End-of-session memory update', 'prompt': 'Update the project me... |
+| 2026-03-16 13:13:29 | Bash                 | echo " ## Late-Session Addition - Anthropic API key created and added to Settings → Accoun... |
+| 2026-03-16 13:13:42 | Bash                 | sed -i '' 's/ES-3 testing (Anthropic API key in Settings → Account)/ES-3 testing (Anthropi... |
+| 2026-03-16 13:14:14 | Read                 | docs/SESSION-45-RECOVERY.md |
+| 2026-03-16 13:27:03 | Bash                 | cd ~/Projects/ai-governance-tool && git status && git log --oneline -5 |
+| 2026-03-16 13:31:50 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "sticky\|fixed\|top-0\|z-" src/components/wiza... |
+| 2026-03-16 13:31:55 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "sticky\|fixed\|top-0\|progress\|step.*bar\|st... |
+| 2026-03-16 13:31:59 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "Organization Profile\|Shadow AI\|step.*nav\|... |
+| 2026-03-16 13:32:03 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "sticky\|fixed\|top-0\|z-" src/components/layo... |
+| 2026-03-16 13:32:06 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "ProgressStepper\|sticky\|overflow\|flex.*col\... |
+| 2026-03-16 13:32:11 | Bash                 | cd ~/Projects/ai-governance-tool && find src -name "App.tsx" | xargs grep -n "ProgressStep... |
+| 2026-03-16 13:32:14 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "sticky\|overflow\|flex\|ProgressStepper\|h-sc... |
+| 2026-03-16 13:32:24 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-16 13:32:39 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "Anthropic API key\|Add your Anthropic\|api.*k... |
+| 2026-03-16 13:32:42 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "Anthropic API key\|Add your Anthropic" src/ ... |
+| 2026-03-16 13:32:45 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:32:51 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:33:16 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:33:28 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "Recommended Actions\|RecommendedActions\|rec... |
+| 2026-03-16 13:33:32 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "Recommended Actions\|RecommendationsList\|pag... |
+| 2026-03-16 13:33:37 | Bash                 | cd ~/Projects/ai-governance-tool && wc -l src/components/dashboard/ResultsDashboard.tsx &&... |
+| 2026-03-16 13:33:40 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 13:33:44 | Read                 | src/components/dashboard/RecommendationsList.tsx |
+| 2026-03-16 13:33:57 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "Recommended Actions" src/ --include="*.tsx" ... |
+| 2026-03-16 13:34:06 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:34:52 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "apiKey\|hasApiKey\|ANTHROPIC\|anthropic" src/... |
+| 2026-03-16 13:34:56 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:35:42 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "ExecSummaryCard\|min-h\|min-height" src/compo... |
+| 2026-03-16 13:35:45 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:36:17 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "loadAnthropicApiKey" src/services/db.ts src/c... |
+| 2026-03-16 13:36:22 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "loadAnthropicApiKey\|ANTHROPIC_KEY\|anthropic... |
+| 2026-03-16 13:36:27 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "loadAnthropicApiKey" src/ --include="*.ts" -... |
+| 2026-03-16 13:36:30 | Read                 | src/services/aiSummary.ts |
+| 2026-03-16 13:36:35 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "anthropicApiKey\|ANTHROPIC\|anthropic" src/co... |
+| 2026-03-16 13:36:58 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "navy\|navy-700\|navy-900" tailwind.config.js ... |
+| 2026-03-16 13:37:06 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "navy" tailwind.config.ts 2>/dev/null | head -... |
+| 2026-03-16 13:37:22 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "navy" src/index.css | head -20 |
+| 2026-03-16 13:37:51 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:37:54 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 13:38:17 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "fully AI-written\|templated summary above\|i... |
+| 2026-03-16 13:38:22 | Read                 | src/utils/execSummary.ts |
+| 2026-03-16 13:39:17 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "upgradePrompt" src/ --include="*.ts" --inclu... |
+| 2026-03-16 13:39:24 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:39:55 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "function pdfText\|pdfText =" src/utils/pdfExp... |
+| 2026-03-16 13:39:59 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:40:36 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "^export function\|^function\|upgradePrompt" s... |
+| 2026-03-16 13:40:43 | ToolSearch           | {'query': 'select:TodoWrite', 'max_results': 1} |
+| 2026-03-16 13:40:49 | TodoWrite            | in_progress: Fix AppLayout min-h-screen → h-screen (sticky progress stepper) |
+| 2026-03-16 13:40:57 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-16 13:41:02 | TodoWrite            | in_progress: Fix PDF: Recommended Actions always starts on new page |
+| 2026-03-16 13:41:12 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:41:16 | TodoWrite            | in_progress: Fix PDF: upgradePrompt box dead space + arrow character overflow |
+| 2026-03-16 13:41:21 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:41:29 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:41:34 | TodoWrite            | in_progress: (none) |
+| 2026-03-16 13:41:44 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-16 13:47:14 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "Achiever Score\|achieverScore\|Overall.*Score... |
+| 2026-03-16 13:47:19 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:47:27 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "achieverScore\|achiever" src/utils/scoring.ts... |
+| 2026-03-16 13:47:30 | Read                 | src/utils/scoring.ts |
+| 2026-03-16 13:51:19 | Bash                 | cd ~/Projects/ai-governance-tool && grep -rn "achieverScore\|Achiever Score\|achiever_scor... |
+| 2026-03-16 13:51:29 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 13:51:32 | Bash                 | cd ~/Projects/ai-governance-tool && grep -n "AchieverProgress" src/components/dashboard/Re... |
+| 2026-03-16 13:51:36 | Bash                 | cd ~/Projects/ai-governance-tool && wc -l src/components/dashboard/AchieverProgress.tsx &&... |
+| 2026-03-16 13:51:52 | Read                 | src/components/dashboard/AchieverProgress.tsx |
+| 2026-03-16 13:52:04 | Edit                 | src/components/dashboard/AchieverProgress.tsx |
+| 2026-03-16 13:52:10 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:52:15 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:52:20 | Edit                 | src/utils/pdfExport.ts |
+| 2026-03-16 13:52:27 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-16 13:55:52 | Bash                 | cd ~/Projects/ai-governance-tool && git diff --stat |
+| 2026-03-16 13:56:16 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/components/dashboard/AchieverProgress.tsx ... |
+| 2026-03-16 13:56:47 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-16 13:58:10 | Bash                 | cat >> ~/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ## Session 46 (2026... |
+| 2026-03-16 13:58:14 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 13:58:18 | Bash                 | grep -n "Current project status\|NEXT SESSION\|NEXT (user" ~/.claude/projects/-Users-baltm... |
+| 2026-03-16 13:58:29 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 13:59:01 | Write                | docs/SESSION-46-RECOVERY.md |
+| 2026-03-16 13:59:50 | Read                 | docs/SESSION-46-RECOVERY.md |
+| 2026-03-16 14:20:35 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-16 14:20:43 | Read                 | src/App.tsx |
+| 2026-03-16 14:26:34 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-16 14:26:47 | Grep                 | pattern="currentStep.*:.*'|initialState" in src/store/assessmentStore.ts |
+| 2026-03-16 14:27:47 | Grep                 | pattern='return null|isLoading|isInitializing' in src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 14:27:56 | Grep                 | pattern='hydrateDraft|riskScore' in src/services/db.ts |
+| 2026-03-16 14:28:04 | Grep                 | pattern='hydrateDraft' in src/store/assessmentStore.ts |
+| 2026-03-16 14:28:22 | Grep                 | pattern='calculateResults' in src/store/assessmentStore.ts |
+| 2026-03-16 14:28:43 | Read                 | src/store/assessmentStore.ts |
+| 2026-03-16 14:28:52 | Edit                 | src/store/assessmentStore.ts |
+| 2026-03-16 14:30:05 | Glob                 | *.md |
+| 2026-03-16 14:30:19 | Write                | ~/.claude/projects/-Users-baltmac/memory/feedback-zustand-hydration.md |
+| 2026-03-16 14:30:24 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 14:30:31 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 14:47:25 | Read                 | src/services/aiSummary.ts |
+| 2026-03-16 14:47:37 | Bash                 | grep -r "plugin-http" /Users/baltmac/Projects/ai-governance-tool/src-tauri/Cargo.toml /Use... |
+| 2026-03-16 14:47:45 | Bash                 | grep -A5 "http" /Users/baltmac/Projects/ai-governance-tool/src-tauri/capabilities/default.... |
+| 2026-03-16 14:47:49 | Bash                 | grep -r "anthropic\|api\.anthropic" /Users/baltmac/Projects/ai-governance-tool/src-tauri/c... |
+| 2026-03-16 14:47:58 | Read                 | src-tauri/capabilities/default.json |
+| 2026-03-16 14:48:10 | Grep                 | pattern='plugin-http\\|tauri-apps/plugin-http' in src |
+| 2026-03-16 14:48:16 | Grep                 | pattern='fetch\\|http' in src/services/contentService.ts |
+| 2026-03-16 14:48:21 | Glob                 | src/services/contentService.ts |
+| 2026-03-16 14:48:28 | Grep                 | pattern='fetch\\b' in src/services |
+| 2026-03-16 14:48:35 | Read                 | src/services/contentService.ts |
+| 2026-03-16 14:48:42 | Grep                 | pattern='^import|fetch\\(' in src/services/contentService.ts |
+| 2026-03-16 14:49:01 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 14:49:11 | Edit                 | src-tauri/capabilities/default.json |
+| 2026-03-16 15:01:34 | Read                 | src/services/aiSummary.ts |
+| 2026-03-16 15:01:40 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:04:13 | Grep                 | pattern='loadAnthropicApiKey\\|callAnthropicApi\\|apiKey' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:19 | Grep                 | pattern='callAnthropicApi\\|loadAnthropicApiKey\\|generateSummary\\|apiKey' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:25 | Grep                 | pattern='callAnthropicApi' in src |
+| 2026-03-16 15:04:29 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:36 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:45 | Grep                 | pattern='const apiKey\\|apiKey =\\|hasApiKey\\|loadAnthropicApiKey' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:52 | Grep                 | pattern='apiKey' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:04:57 | Grep                 | pattern='setApiKey\\|loadAnthropicApiKey' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:05:09 | Grep                 | pattern='ExecSummaryCard\\|function ExecSummary\\|useEffect' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:05:15 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:05:32 | Grep                 | pattern='anthropicApiKey\\|Save Key\\|saveKey\\|store\\.set' in src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:05:39 | Glob                 | src/components/settings/**/*.tsx |
+| 2026-03-16 15:05:44 | Glob                 | **/*Account*.tsx |
+| 2026-03-16 15:05:52 | Grep                 | pattern='store\\.set\\|anthropic\\|apiKey' in src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:05:57 | Bash                 | grep -rn "anthropicApiKey\|AnthropicApi\|apiKey" /Users/baltmac/Projects/ai-governance-too... |
+| 2026-03-16 15:06:06 | Read                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:06:20 | Grep                 | pattern='isValidKeyFormat' in src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:06:36 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:07:54 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:24:11 | Read                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:24:34 | Edit                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:24:44 | Edit                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:24:54 | Edit                 | src/components/settings/panels/AccountPanel.tsx |
+| 2026-03-16 15:25:04 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:25:13 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:25:22 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:40:24 | Read                 | src-tauri/src/lib.rs |
+| 2026-03-16 15:40:33 | Read                 | src-tauri/Cargo.toml |
+| 2026-03-16 15:40:46 | Edit                 | src-tauri/Cargo.toml |
+| 2026-03-16 15:41:01 | Write                | src-tauri/src/lib.rs |
+| 2026-03-16 15:41:11 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:41:27 | Edit                 | src/services/aiSummary.ts |
+| 2026-03-16 15:44:22 | Bash                 | cd ~/Projects/ai-governance-tool && git diff --stat && git status --short |
+| 2026-03-16 15:44:57 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git add... |
+| 2026-03-16 15:45:06 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-16 15:45:55 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 15:46:11 | Write                | docs/SESSION-47-RECOVERY.md |
+| 2026-03-16 15:46:19 | Write                | ~/.claude/projects/-Users-baltmac/memory/feedback-tauri-http-plugin.md |
+| 2026-03-16 15:46:24 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 15:46:31 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 15:46:36 | Agent                | {'description': 'Write session 47 recovery doc and update memory', 'prompt': 'Wr... |
+| 2026-03-16 15:47:50 | Read                 | docs/SESSION-47-RECOVERY.md |
+| 2026-03-16 15:50:17 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 15:50:18 | Read                 | src/services/db.ts |
+| 2026-03-16 15:50:21 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/components/dashboard/TrackProgress.ts... |
+| 2026-03-16 15:50:25 | Bash                 | grep -n "ROI\|roi\|spend\|adoption\|calculator\|Calculator" /Users/baltmac/Projects/ai-gov... |
+| 2026-03-16 15:50:29 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:21:55 | Bash                 | cd ~/Projects/ai-governance-tool && git status && echo "---" && git log --oneline -5 |
+| 2026-03-16 16:21:58 | Read                 | README.md |
+| 2026-03-16 16:22:17 | Read                 | TESTER-GUIDE.md |
+| 2026-03-16 16:22:17 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/.gitignore |
+| 2026-03-16 16:22:46 | ToolSearch           | {'query': 'select:TodoWrite', 'max_results': 1} |
+| 2026-03-16 16:22:51 | TodoWrite            | in_progress: Update .gitignore (RTF files + session recovery docs) |
+| 2026-03-16 16:22:59 | Read                 | .gitignore |
+| 2026-03-16 16:23:04 | Edit                 | .gitignore |
+| 2026-03-16 16:23:10 | TodoWrite            | in_progress: Update README.md (ES-3 live, Phase 2 status) |
+| 2026-03-16 16:23:17 | Edit                 | README.md |
+| 2026-03-16 16:23:24 | Edit                 | README.md |
+| 2026-03-16 16:23:29 | TodoWrite            | in_progress: Update TESTER-GUIDE.md (add ES-3 to Pro test list) |
+| 2026-03-16 16:23:38 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-16 16:23:46 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-16 16:23:51 | TodoWrite            | in_progress: Commit and push all changes to GitHub |
+| 2026-03-16 16:23:56 | Bash                 | cd ~/Projects/ai-governance-tool && git status |
