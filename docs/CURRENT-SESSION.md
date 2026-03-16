@@ -539,3 +539,42 @@ Resume prompt (copy exactly):
    - Extends existing ROI infrastructure (roiTracking dimension, ROI Calculator, spend_items, adoption_snapshots)
    - Guided field entry, 1–3 ROI models per org, lives on Track Progress page
    - Read user's research first, ask clarifying questions before building
+
+---
+
+## Session 48 (2026-03-16)
+
+### Work Completed
+
+**Docs / GitHub sync:**
+- Updated README.md: removed "(future)" from ES-3 line, added ES-3 to Phase 2 checklist
+- Updated TESTER-GUIDE.md: added Test 3 for AI-generated executive summary
+- Updated .gitignore: excluded SESSION-*-RECOVERY.md, CURRENT-SESSION.md, tool-diary.md, *.rtf, ~$* files
+- Committed and pushed (3a42258)
+
+**ROI Model Builder (6298e5f):**
+- New file: `src/components/dashboard/RoiModelBuilder.tsx` (~480 lines)
+- 6-step wizard: Task Baseline → Efficiency → Revenue → Risk → Hidden Costs → Results
+- Pillar 1 (Efficiency): task-based before/after hours, headcount pre-filled from org size, adoption %, blended hourly rate, utilization curve (Year 1: 50%, Year 2: 80%, Year 3: 100%) with blue explanation card
+- Pillar 2 (Revenue): simple % uplift on annual revenue (V2 will add detailed attribution)
+- Pillar 3 (Risk): 5 pre-defined categories, exposure $, probability before/after; no utilization curve on risk (it's a constant expected-value delta)
+- Hidden Costs: 5-category TCO iceberg (data_prep, integration, training, retraining, risk_reserve) with benchmark hints
+- Results: gross benefit breakdown, TCO breakdown, 3-scenario cards (Conservative 0.6×/Realistic 1.0×/Optimistic 1.4×), dark navy qualitative summary, Save button
+- Pro gate: lock card shown to Free users
+- db.ts: added roi_tasks + roi_model tables, 5 new CRUD functions, resetAllData clears both tables
+- types/assessment.ts: RoiTask + RoiModelData interfaces
+- TrackProgress.tsx: imports and mounts RoiModelBuilder below existing ROI Calculator, pulls profile from store
+- Zero TypeScript errors
+
+### Session 48 Decisions
+
+1. **V1 features: COMPLETE** — All planned features are built. Remaining pre-launch items are business/infrastructure blockers (Keygen, code signing, payment processor), not code.
+2. **Two tiny pre-launch code fixes remain:** Pro PDF aiNarrative wiring (~15 min) + DEV toggle removal from LicensePanel (~5 min)
+3. **Regulatory Intelligence Feature → V2** — Deferred. Already in decisions.md. Confirmed: do not build before first revenue. V2 scope: RSS/webhook monitoring of regulatory bodies → Claude synthesis → R2 CDN delivery → ES citation engine → update surfacing UX for existing users.
+4. **ROI Model Builder V2 enhancements:** detailed revenue attribution (conversion rate × transaction value), multiple risk pillars (not just one), scenario slider (custom multipliers), payback period chart, model history snapshots
+5. **ROI V2 backlog:** TCO expansion to capture hidden costs in spend_items directly (currently separate section)
+
+### Git State
+- Branch: main
+- Last commit: 6298e5f — "Add ROI Model Builder — Pro-gated 6-step wizard on Track Progress tab"
+- Status: clean

@@ -234,3 +234,75 @@ Full go-to-market plan saved to `docs/gtm-plan.md`. Phase 6 (GTM) added to remai
 ### Governance Synthesis — Ingested
 
 2026-03-11 governance synthesis saved to `docs/governance-synthesis.md`. Primary knowledge base for executive summary copy, GTM narrative, and website dimension descriptions. Citation policy: synthesize into confident copy — no inline citations, no direct quotes. Source acknowledgment in internal docs only.
+
+---
+
+## Session 48 Decisions (2026-03-16)
+
+### V1 Feature Completeness Declaration
+
+**Decision: V1 feature set is COMPLETE as of session 48.**
+
+All planned features are built and working:
+- 252-question guided wizard (all 4 profiles × 6 dimensions)
+- Weighted scoring engine + blind spots + recommendations
+- SQLite persistence (draft + completed assessments + mitigation tracker + spend tracker + ROI model)
+- PDF export (free summary + Pro full report)
+- ES-3 AI-generated executive summary (Claude API via Rust/reqwest, consent modal, model selector)
+- ROI Calculator (quick estimate, snapshot history)
+- ROI Model Builder (3-pillar wizard, task baseline, TCO iceberg, 3-scenario results) — Pro-gated
+- Settings (Account, License, Email, Notifications, Updates, My Data)
+- Auto-updater wired (GitHub Releases, ed25519 signed)
+- Freemium gates (Free vs Pro throughout)
+
+**Remaining pre-launch items are NOT feature work — they are business/infrastructure blockers:**
+| Item | Blocked on |
+|------|-----------|
+| GL-2: Keygen license activation | Keygen.sh account |
+| GL-3/GL-4: Code signing + notarization | Apple Developer Organization + D-U-N-S |
+| GL-5: Payment processor | Company registration |
+| DI-1: CrabNebula CDN | GL-3 signing |
+| DI-2: Repo → private | Company registration |
+| DI-3/4: Windows | EV cert |
+
+**Two minor code items before shipping:**
+1. Pro PDF aiNarrative wiring (TrackProgress.tsx generateProPDF call sites don't pass aiNarrative)
+2. DEV toggle removal (LicensePanel.tsx lines ~154–187)
+
+---
+
+### Regulatory Intelligence Feature — V2 (Confirmed)
+
+**Decision: Do NOT build before first revenue. Confirmed V2.**
+
+**Feature description:** Automated monitoring of regulatory bodies (EU AI Act enforcement updates, GDPR guidance, CCPA amendments, NIST AI RMF revisions, ISO 42001 updates, FTC AI guidelines, etc.) → LLM synthesis (Claude) → delivery via R2 CDN JSON → ES citation engine with specific regulatory references, cost/fine data, and jurisdiction-specific guidance → update surfacing UX for users who've already completed assessments.
+
+**Why V2:**
+1. V1 isn't shipped yet — no revenue to fund ongoing LLM synthesis cost
+2. Requires always-on Cloudflare Worker (operational cost before customers exist)
+3. Complex UX problem: how to surface regulatory updates to users who've already closed their assessment
+4. Better to build with real feedback about which regulatory bodies matter most to actual customers
+5. Architecture already evaluated and documented (2026-03-05 decisions.md)
+
+**What V1 covers for regulatory:** Static jurisdiction-aware questions, EU AI Act penalty amounts ($35M / 7% turnover), GDPR/CCPA/NIST AI RMF content in question banks and recommendations. Sufficient for launch.
+
+**V2 regulatory scope (when ready):**
+- RSS/webhook monitoring: EU AI Act Official Journal, NIST, FTC, ICO, CNIL, EDPB, India DPDPA, Australia Privacy Act
+- Monitoring cadence: weekly automated check, monthly human review
+- Synthesis: Claude Haiku → structured JSON (regulation_name, jurisdiction, effective_date, key_requirements, penalty_structure, industry_impact)
+- Delivery: R2 CDN + manifest (existing pattern from remote-content-plan.md)
+- ES integration: "Regulatory Watch" section — cites specific provisions relevant to org's jurisdiction and industry
+- Update surfacing: in-app notification + re-run prompt for users who completed assessment before a major update
+
+---
+
+### ROI Model Builder — V2 Enhancements Backlog
+
+- Detailed revenue attribution: baseline conversion rate × post-AI rate × avg transaction value × volume
+- Multiple risk pillars (not just one category — allow 3–5 risk events)
+- Custom scenario multipliers (slider instead of fixed 0.6×/1.0×/1.4×)
+- Payback period calculation and chart
+- ROI model history snapshots (track model changes over time, not just adoption snapshots)
+- TCO: merge hidden costs into spend_items as a cost type (cleaner UX)
+- Monte Carlo simulation toggle (for $1M+ AI investments) — enterprise tier only
+- Industry benchmarks integration: show "your Pillar 1 ROI vs. industry median" for org's sector
