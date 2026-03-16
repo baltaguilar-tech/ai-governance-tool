@@ -306,3 +306,127 @@ All planned features are built and working:
 - TCO: merge hidden costs into spend_items as a cost type (cleaner UX)
 - Monte Carlo simulation toggle (for $1M+ AI investments) — enterprise tier only
 - Industry benchmarks integration: show "your Pillar 1 ROI vs. industry median" for org's sector
+
+---
+
+## Session 49 Decisions (2026-03-16)
+
+### Connectivity Architecture — Path A now, Path B planned
+
+**Decision: Build Path A (opt-in connectivity) for V1–V3. Plan for Path B (separate product) without building for it.**
+
+**Path A definition:** Core assessment engine stays 100% offline forever. Specific features that require network access (AI Summary via BYOK, future Discovery via admin APIs) are opt-in, explicitly triggered by the user. No always-on requirement.
+
+**Path B definition:** "AlphaPi Discover" or "AlphaPi Enterprise" as a separate connected SaaS module — different SKU, subscription pricing, different deployment model. Assessment product stays offline-first.
+
+**Why not build B now:** Zero customers, zero revenue, zero product-market feedback. The B split point will be obvious once real users show which features drive retention vs. require connected infrastructure. Building the seam prematurely wastes investment on guesses.
+
+**Natural B inflection point:** V3 Shadow Discovery. By then: first revenue, real customer feedback, established brand, known usage patterns. That's when "does Discovery belong in the desktop app or its own product?" becomes answerable.
+
+**Architectural constraints to preserve B optionality (enforce going forward):**
+1. All network calls stay in isolated service files (`aiSummary.ts`, future `discovery.ts`) — never inline in components
+2. Assessment engine, scoring, and question banks stay pure functions with no side effects — these become the shared library both products depend on
+3. Connectivity assumptions must never bleed into Zustand store — assessment state and connection state are separate concerns
+4. DB schema migrations stay additive only — both products can share schema if they ever sync
+
+---
+
+### AI Shadow Discovery — Confirmed V3
+
+**Decision: AI Shadow Discovery is a V3 feature. Do NOT build before V2 ships and first revenue is established.**
+
+**Feature description:** IT-admin-initiated scan that discovers AI tools in use across the organization via SaaS admin APIs, compares discovered inventory to what the user self-reported in the Shadow AI assessment dimension, and surfaces gaps ("You reported 5 unauthorized tools — we found 23") as recalibrated scores and a new Discovery section in the Pro PDF.
+
+**Why V3 (not V2):**
+- Requires Azure AD app registration onboarding — needs website, support docs, and DPA template that don't exist yet
+- No customers yet to validate which SaaS integrations matter most
+- Privacy/compliance architecture (GDPR DPA, data minimization, deletion, encryption) requires dedicated design session
+- No fingerprint database methodology finalized yet
+
+**V3 scope (when ready):**
+- **Discovery layer:** Microsoft 365 (Graph API — OAuth grants, user consent records, license type, last-used), Google Workspace (Admin SDK — third-party OAuth apps, user-level access), Okta (sign-in logs for AI tool authentications)
+- **Fingerprint database:** 50+ known AI tools + heuristic for unknown AI domains (study methodology from existing Shadow IT vendors — Netskope, Defender for Cloud Apps, etc.)
+- **Paid vs. free detection:** enterprise license = paid; OAuth scope patterns distinguish licensed vs. personal accounts
+- **Usage-type breakdown:** available only for tools with admin usage APIs (Copilot, ChatGPT Enterprise); all others report frequency + user attribution only. Full usage categorization (email gen / image gen / PPT / chat) deferred to V4 browser extension
+- **ROI integration:** license cost ÷ active users = true cost per licensed seat → feeds ROI Model Builder cost section automatically. Example: "Salesforce Einstein licensed to 200 users, only 34 active — $X wasted annually"
+- **Gap analysis engine:** compare discovered inventory vs. Shadow AI assessment responses → recalibrated dimension score + specific gap findings narrative
+- **Approval gate:** admin must explicitly confirm authorization and employee consent policy before scan executes
+- **GDPR compliance:** scan data stored locally only, "Purge Discovery Data" in My Data settings, Privacy Policy update (second exception after Anthropic API), DPA template for enterprise customers
+- **Rate limiting:** iterative chunked API calls (throttle-aware, resumable scan with progress indicator)
+
+**What V2 covers for Shadow AI:** Existing 60 Shadow AI questions + scoring engine. Sufficient for launch and V2.
+
+**No name assigned yet.** Name the agent when V3 planning begins.
+
+---
+
+### V2 Project Plan — Locked (2026-03-16)
+
+*Pre-condition: V1 shipped, first customers, Tier 0 infrastructure complete.*
+
+#### Tier 0 — Infrastructure Gates
+| Item | Est. | Blocked on |
+|---|---|---|
+| GL-2: Keygen license wiring | 4 hrs | Keygen.sh account |
+| GL-3/4: macOS code signing + notarization | 8 hrs | Apple Dev Org + D-U-N-S |
+| GL-5: Payment processor (Paddle / LemonSqueezy) | 6 hrs | Company registration |
+| DI-1: CrabNebula CDN | 3 hrs | GL-3 signing |
+| DI-2: Repo → private | 1 hr | Company registration |
+| DI-3/4: Windows build + EV signing | 12 hrs | EV cert |
+
+#### Tier 1 — High-Impact V2 Features
+| Feature | Est. | Notes |
+|---|---|---|
+| Regulatory Intelligence Agent | 25 hrs | Cloudflare Worker + Claude Haiku synthesis + R2 CDN + ES Regulatory Watch section + update surfacing UX. Pro only. |
+| DOCX export | 12 hrs | docx.js already in package.json. Pro feature. |
+
+#### Tier 2 — ROI Model Builder V2
+| Enhancement | Est. |
+|---|---|
+| Detailed revenue attribution | 4 hrs |
+| Multiple risk pillars (3–5 events) | 3 hrs |
+| Custom scenario multipliers (slider) | 2 hrs |
+| Payback period calculation + chart | 3 hrs |
+| ROI model history snapshots | 4 hrs |
+| TCO: merge hidden costs into spend_items | 3 hrs |
+| Industry benchmarks ("your ROI vs. sector median") | 10 hrs |
+| Monte Carlo simulation — Enterprise tier only | 8 hrs |
+
+#### Tier 3 — Content + Quality
+| Item | Est. | Notes |
+|---|---|---|
+| Exec summary remaining industries (ES-2) | 8 hrs | Retail, Education, Energy, Telco, Media, Real Estate, Nonprofit, Other |
+| Industry CDN content files (energy-utilities.json + 5 more) | 6 hrs | Remote content plan |
+| ES-4: PDF exec summary visual redesign | 6 hrs | Deferred session 43 |
+| Automated test suite (QC-2) | 12 hrs | Pre-enterprise gate |
+| Accessibility — ARIA roles (QC-1) | 8 hrs | Pre-enterprise/public sector gate |
+
+**V2 total: ~119 hrs feature work + ~34 hrs infrastructure = ~153 hrs**
+**Suggested sequencing:** Tier 0 → Regulatory Agent (compliance urgency = highest conversion driver) → DOCX → ROI V2 → Content/Quality
+
+#### V3 Backlog (not V2)
+- AI Shadow Discovery — SaaS edition (see above)
+- Scheduled automated scans
+- ChatGPT Enterprise / Copilot usage API integration (usage-type breakdown)
+
+#### V4 / Enterprise Backlog
+- Browser extension (usage categorization for any AI tool)
+- Endpoint agent
+- CASB integration (Netskope, Defender for Cloud Apps)
+- Multi-user / team assessments
+- White-label / reseller tier
+- Proxy-mode Anthropic API (removes BYOK — enables enterprise provisioning)
+
+---
+
+### Agent / Token Strategy — Codified (2026-03-16)
+
+**Decision: Prescribed model usage going forward.**
+
+| Model | Use for |
+|---|---|
+| **Haiku** | File exploration, content generation (question banks, regulatory summaries, industry copy), memory updates, research subagents, all "write N items of type X" tasks |
+| **Sonnet** | Complex multi-file code changes, architecture decisions, debugging, anything requiring context across 5+ files simultaneously |
+| **Parallel Haiku pattern** | When work is parallelizable — spawn N Haiku subagents simultaneously, each owning one independent unit (e.g., 8 industry exec summaries, 8 regulatory body monitors). Cheap tokens in parallel beats expensive tokens sequentially. |
+
+**Rule:** Default to Haiku. Escalate to Sonnet only when the task genuinely requires it. Never use Sonnet for research, exploration, or content generation that Haiku can handle.

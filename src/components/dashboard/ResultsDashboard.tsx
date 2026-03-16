@@ -8,7 +8,8 @@ import { AchieverProgress } from './AchieverProgress';
 import { generateFreePDF, generateProPDF } from '@/utils/pdfExport';
 import { getQuestionsForProfile } from '@/data/questions/index';
 import { MaturityLevel, type OrganizationProfile } from '@/types/assessment';
-import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems, initNotificationSchedule, getSpendItems, getAdoptionSnapshots, getMitigationItems } from '@/services/db';
+import { getEmailPrefs, saveCompletedAssessment, seedMitigationItems, initNotificationSchedule, getSpendItems, getAdoptionSnapshots, getMitigationItems, getAiSummary } from '@/services/db';
+import type { AiNarrativeData } from '@/utils/execSummary';
 import { requestNotificationPermission } from '@/utils/notifications';
 import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
 import { TrackProgress } from '@/components/dashboard/TrackProgress';
@@ -341,13 +342,22 @@ export function ResultsDashboard() {
                 setIsExportingPro(true);
                 try {
                   const orgName = profile.organizationName || 'Organization';
-                  const [spendItems, adoptionSnapshots, mitigationItems] = await Promise.all([
+                  const [spendItems, adoptionSnapshots, mitigationItems, aiSummaryRecord] = await Promise.all([
                     getSpendItems(),
                     getAdoptionSnapshots(),
                     getMitigationItems(),
+                    getAiSummary(currentAssessmentId),
                   ]);
                   const adoptionSnapshot = adoptionSnapshots.length > 0
                     ? adoptionSnapshots[adoptionSnapshots.length - 1]
+                    : null;
+                  const aiNarrative: AiNarrativeData | null = aiSummaryRecord
+                    ? {
+                        opening: aiSummaryRecord.summaryText.split('\n---\n')[0] ?? aiSummaryRecord.summaryText,
+                        closing: aiSummaryRecord.summaryText.split('\n---\n')[1] ?? '',
+                        model: aiSummaryRecord.model,
+                        generatedAt: aiSummaryRecord.generatedAt,
+                      }
                     : null;
                   await generateProPDF(
                     dimensionScores,
@@ -361,7 +371,8 @@ export function ResultsDashboard() {
                     getQuestionsForProfile(profile.aiMaturityLevel ?? MaturityLevel.Experimenter, profile.operatingRegions ?? []),
                     profile as import('@/types/assessment').OrganizationProfile,
                     { spendItems, adoptionSnapshot, mitigationItems },
-                    completedAt
+                    completedAt,
+                    aiNarrative
                   );
                 } catch (err) {
                   console.error('PDF export failed:', err);
