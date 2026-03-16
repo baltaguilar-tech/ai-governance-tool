@@ -151,6 +151,40 @@ export function LicensePanel() {
         </button>
       </div>
 
+      {/* ⚠️ DEV ONLY — remove before launch */}
+      <hr className="border-dashed border-amber-300" />
+      <div className="space-y-2">
+        <p className="text-xs font-semibold text-amber-600 uppercase tracking-wide">
+          ⚠️ Dev Testing Mode — remove before launch
+        </p>
+        <p className="text-xs text-gray-500">
+          Override tier without a license key. Use this to test Free vs Pro features during development.
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setLicenseTier('free')}
+            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+              licenseTier === 'free'
+                ? 'bg-gray-200 text-gray-800 border-gray-400 font-bold'
+                : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50'
+            }`}
+          >
+            Free
+          </button>
+          <button
+            type="button"
+            onClick={() => setLicenseTier('professional')}
+            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+              licenseTier === 'professional'
+                ? 'bg-blue-100 text-blue-800 border-blue-400 font-bold'
+                : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50'
+            }`}
+          >
+            Professional
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
