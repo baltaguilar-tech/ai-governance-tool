@@ -31,7 +31,7 @@ export function AccountPanel() {
   }, []);
 
   function isValidKeyFormat(key: string): boolean {
-    return key.startsWith('sk-ant-');
+    return key.startsWith('sk-ant-api03-') && key.length >= 95 && key.length <= 130;
   }
 
   function getKeyDisplayHint(): string {
@@ -127,7 +127,7 @@ export function AccountPanel() {
                 type={showKey ? 'text' : 'password'}
                 value={apiKey}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setApiKey(e.target.value);
+                  setApiKey(e.target.value.trim());
                   setSaveStatus('idle');
                 }}
                 placeholder="sk-ant-api03-..."
@@ -166,7 +166,8 @@ export function AccountPanel() {
             {hasFormatError && (
               <p className="text-xs text-red-600">
                 Invalid key format. Anthropic API keys begin with{' '}
-                <code className="font-mono bg-red-50 px-1 rounded">sk-ant-</code>.
+                <code className="font-mono bg-red-50 px-1 rounded">sk-ant-api03-</code>{' '}
+                and are ~108 characters. Spaces are auto-removed.
               </p>
             )}
 

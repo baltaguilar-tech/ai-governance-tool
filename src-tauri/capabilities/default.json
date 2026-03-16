@@ -52,6 +52,10 @@
     {
       "identifier": "http:default"
     },
+    {
+      "identifier": "http:allow-fetch",
+      "allow": [{ "url": "https://api.anthropic.com/**" }]
+    },
     "updater:default",
     "updater:allow-check",
     "updater:allow-download-and-install"

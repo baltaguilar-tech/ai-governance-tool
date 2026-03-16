@@ -9,6 +9,7 @@
  * only — never surfaced verbatim in product output.
  */
 
+import { invoke } from '@tauri-apps/api/core';
 import { Store } from '@tauri-apps/plugin-store';
 import { MaturityLevel } from '@/types/assessment';
 import type { OrganizationProfile, DimensionScore, BlindSpot } from '@/types/assessment';
@@ -231,29 +232,17 @@ export async function callAnthropicApi(
 ): Promise<AiSummaryResult> {
   const modelId = AI_MODELS[modelKey];
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: modelId,
-      max_tokens: 600,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: userPrompt }],
-    }),
+  // Use native Rust command to bypass CORS and header-stripping issues
+  // with the Tauri HTTP plugin's JS bridge.
+  const responseText = await invoke<string>('call_anthropic', {
+    apiKey,
+    model: modelId,
+    systemPrompt: SYSTEM_PROMPT,
+    userPrompt,
+    maxTokens: 600,
   });
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => '');
-    if (response.status === 401) throw new Error('Invalid API key. Check Settings → Account.');
-    if (response.status === 429) throw new Error('API rate limit reached. Please try again in a moment.');
-    throw new Error(`API error ${response.status}: ${body.slice(0, 120)}`);
-  }
-
-  const data = await response.json() as {
+  const data = JSON.parse(responseText) as {
     content: Array<{ type: string; text: string }>;
     model: string;
   };

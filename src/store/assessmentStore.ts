@@ -192,6 +192,10 @@ export const useAssessmentStore = create<AssessmentStore>((set, get) => ({
       responses: draft.responses,
       currentStep: safeStep,
     });
+    // If restoring to results, recalculate scores from persisted responses
+    if (safeStep === 'results') {
+      get().calculateResults();
+    }
   },
 
   canProceed: () => {
