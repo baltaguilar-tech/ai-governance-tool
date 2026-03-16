@@ -297,6 +297,30 @@ export interface NotificationSchedule {
   fired90: boolean;
 }
 
+// --- ROI Model Builder ---
+
+export interface RoiTask {
+  id: number;
+  name: string;
+  hoursBefore: number;   // hours/week per worker BEFORE AI
+  hoursAfter: number;    // hours/week per worker WITH AI
+  workforcePct: number;  // % of total workforce that performs this task
+}
+
+export interface RoiModelData {
+  headcount: number;
+  adoptionRate: number;          // 0–100
+  blendedHourlyRate: number;
+  utilizationYear: 1 | 2 | 3;   // drives the maturity curve factor
+  annualRevenue: number;
+  revenueUpliftPct: number;      // % of annual revenue attributable to AI
+  riskCategory: string;
+  riskExposure: number;          // max potential loss for the chosen risk event
+  riskProbBefore: number;        // 0–100, annual probability without AI
+  riskProbAfter: number;         // 0–100, annual probability with AI
+  hiddenCosts: Record<string, number>; // keyed by HIDDEN_COST_CATEGORIES keys
+}
+
 // --- License ---
 
 export type LicenseTier = 'free' | 'professional';

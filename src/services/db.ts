@@ -11,6 +11,8 @@ import type {
   CompletedAssessmentSnapshot,
   BlindSpot,
   NotificationSchedule,
+  RoiTask,
+  RoiModelData,
 } from '../types/assessment';
 
 const DB_PATH = 'sqlite:governance-draft.db';
@@ -142,6 +144,33 @@ export async function initDatabase(): Promise<void> {
         summary_text   TEXT    NOT NULL,
         model          TEXT    NOT NULL,
         generated_at   TEXT    NOT NULL
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS roi_tasks (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        name           TEXT    NOT NULL,
+        hours_before   REAL    NOT NULL,
+        hours_after    REAL    NOT NULL,
+        workforce_pct  REAL    NOT NULL,
+        created_at     TEXT    NOT NULL
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS roi_model (
+        id                    INTEGER PRIMARY KEY CHECK (id = 1),
+        headcount             INTEGER NOT NULL DEFAULT 0,
+        adoption_rate         REAL    NOT NULL DEFAULT 0,
+        blended_hourly_rate   REAL    NOT NULL DEFAULT 0,
+        utilization_year      INTEGER NOT NULL DEFAULT 1,
+        annual_revenue        REAL    NOT NULL DEFAULT 0,
+        revenue_uplift_pct    REAL    NOT NULL DEFAULT 0,
+        risk_category         TEXT    NOT NULL DEFAULT '',
+        risk_exposure         REAL    NOT NULL DEFAULT 0,
+        risk_prob_before      REAL    NOT NULL DEFAULT 0,
+        risk_prob_after       REAL    NOT NULL DEFAULT 0,
+        hidden_costs          TEXT    NOT NULL DEFAULT '{}',
+        saved_at              TEXT    NOT NULL
       )
     `);
   } catch (err) {
@@ -723,4 +752,104 @@ export async function resetAllData(): Promise<void> {
   await db.execute('DELETE FROM email_prefs');
   await db.execute('DELETE FROM notification_schedule');
   await db.execute('DELETE FROM draft_assessment');
+  await db.execute('DELETE FROM roi_tasks');
+  await db.execute('DELETE FROM roi_model');
+}
+
+// ─── ROI Model Builder ────────────────────────────────────────────────────────
+
+export async function getRoiTasks(): Promise<RoiTask[]> {
+  if (!isTauriContext()) return [];
+  try {
+    const db = await getDb();
+    const rows = await db.select<{
+      id: number; name: string; hours_before: number; hours_after: number; workforce_pct: number;
+    }[]>('SELECT id, name, hours_before, hours_after, workforce_pct FROM roi_tasks ORDER BY id ASC');
+    return rows.map(r => ({
+      id: r.id,
+      name: r.name,
+      hoursBefore: r.hours_before,
+      hoursAfter: r.hours_after,
+      workforcePct: r.workforce_pct,
+    }));
+  } catch (err) {
+    console.error('[db] getRoiTasks failed:', err);
+    return [];
+  }
+}
+
+export async function saveRoiTask(task: Omit<RoiTask, 'id'>): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      'INSERT INTO roi_tasks (name, hours_before, hours_after, workforce_pct, created_at) VALUES (?, ?, ?, ?, ?)',
+      [task.name, task.hoursBefore, task.hoursAfter, task.workforcePct, new Date().toISOString()]
+    );
+  } catch (err) {
+    console.error('[db] saveRoiTask failed:', err);
+  }
+}
+
+export async function deleteRoiTask(id: number): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute('DELETE FROM roi_tasks WHERE id = ?', [id]);
+  } catch (err) {
+    console.error('[db] deleteRoiTask failed:', err);
+  }
+}
+
+export async function getRoiModel(): Promise<RoiModelData | null> {
+  if (!isTauriContext()) return null;
+  try {
+    const db = await getDb();
+    const rows = await db.select<{
+      headcount: number; adoption_rate: number; blended_hourly_rate: number;
+      utilization_year: number; annual_revenue: number; revenue_uplift_pct: number;
+      risk_category: string; risk_exposure: number; risk_prob_before: number;
+      risk_prob_after: number; hidden_costs: string;
+    }[]>('SELECT * FROM roi_model WHERE id = 1');
+    if (!rows || rows.length === 0) return null;
+    const r = rows[0];
+    return {
+      headcount: r.headcount,
+      adoptionRate: r.adoption_rate,
+      blendedHourlyRate: r.blended_hourly_rate,
+      utilizationYear: (r.utilization_year as 1 | 2 | 3) ?? 1,
+      annualRevenue: r.annual_revenue,
+      revenueUpliftPct: r.revenue_uplift_pct,
+      riskCategory: r.risk_category,
+      riskExposure: r.risk_exposure,
+      riskProbBefore: r.risk_prob_before,
+      riskProbAfter: r.risk_prob_after,
+      hiddenCosts: JSON.parse(r.hidden_costs || '{}') as Record<string, number>,
+    };
+  } catch (err) {
+    console.error('[db] getRoiModel failed:', err);
+    return null;
+  }
+}
+
+export async function saveRoiModel(data: RoiModelData): Promise<void> {
+  if (!isTauriContext()) return;
+  try {
+    const db = await getDb();
+    await db.execute(
+      `INSERT OR REPLACE INTO roi_model
+         (id, headcount, adoption_rate, blended_hourly_rate, utilization_year,
+          annual_revenue, revenue_uplift_pct, risk_category, risk_exposure,
+          risk_prob_before, risk_prob_after, hidden_costs, saved_at)
+       VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        data.headcount, data.adoptionRate, data.blendedHourlyRate, data.utilizationYear,
+        data.annualRevenue, data.revenueUpliftPct, data.riskCategory, data.riskExposure,
+        data.riskProbBefore, data.riskProbAfter, JSON.stringify(data.hiddenCosts),
+        new Date().toISOString(),
+      ]
+    );
+  } catch (err) {
+    console.error('[db] saveRoiModel failed:', err);
+  }
 }

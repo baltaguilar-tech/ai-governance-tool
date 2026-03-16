@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { RoiModelBuilder } from './RoiModelBuilder';
 import { parseSpendAmount } from '@/utils/parseSpendAmount';
 import { generateTemplatedSummary } from '@/utils/execSummary';
 import type { ExecSummaryData, AiNarrativeData } from '@/utils/execSummary';
@@ -1579,6 +1580,7 @@ function ExecSummaryCard({ assessmentId }: ExecSummaryCardProps) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function TrackProgress({ assessmentId, currentScore, dimensionScores }: Props) {
+  const profile = useAssessmentStore((s) => s.profile);
   const [assessments, setAssessments] = useState<CompletedAssessmentSnapshot[]>([]);
   const [adoptionSnapshots, setAdoptionSnapshots] = useState<AdoptionSnapshot[]>([]);
   const [spendItems, setSpendItems] = useState<SpendItem[]>([]);
@@ -1659,6 +1661,10 @@ export function TrackProgress({ assessmentId, currentScore, dimensionScores }: P
       <hr className="border-navy-200 my-8" />
 
       <ROICalculator totalMonthlySpend={totalMonthlySpend} />
+
+      <hr className="border-navy-200 my-8" />
+
+      <RoiModelBuilder totalMonthlySpend={totalMonthlySpend} profile={profile} />
     </div>
   );
 }
