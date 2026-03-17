@@ -552,3 +552,69 @@ Answers locked from user review of Track A/B/C backlog:
 4. **Website**: Required pre-launch for landing page + PP/ToS. Full marketing site (Track C) is post-first-revenue. Needs dedicated planning session before build.
 5. **Landing page pre-launch**: Confirmed as launch blocker. Do alongside company registration and domain purchase. Minimum: headline, product description, pricing, PP/ToS, support email.
 6. **SEO via help content**: Confirmed. Dimension explainers + ROI prep guide written once, used in-app AND published as website resource pages. Same content, dual-purpose.
+
+---
+
+### V2 Sprint 1 — Regulatory Intelligence Agent: Locked Decisions (2026-03-17, session 51)
+
+All 5 clarifying questions answered and locked. Sprint 1 is fully specced.
+
+---
+
+#### Decision 1: Bill status — enacted only, proposed tracked silently
+
+**Locked:** Regulatory Watch surfaces **enacted law only** (`status: "enacted"`).
+
+Proposed/pending bills are fetched by the Worker and stored in R2 with `status: "proposed"` but are NOT surfaced in the in-app UI in Sprint 1. They live in R2 silently, ready for a future "Legislative Watch" sprint (Pro-only).
+
+**Rationale:** Bills change materially before passage (SB 1047 failed entirely). Surfacing proposed bills creates noise and potential misguidance. Enacted-only keeps the signal high.
+
+**R2 schema implication:** All regulation objects carry `"status": "enacted" | "proposed"`. Worker fetches both; app filters to `enacted` only for display and badge count.
+
+**Future sprint trigger:** When proposed bill tracking is added, the UI already has the data — just remove the filter.
+
+---
+
+#### Decision 2: Worker always writes manifest with fresh `last_checked` timestamp
+
+**Locked:** Worker writes to R2 on every cron run regardless of content changes.
+
+- Content files (`us-federal.json`, `ca-state.json`) updated only when content actually changed (hash comparison)
+- `manifest.json` updated every run with fresh `last_checked` timestamp
+- Provides a clear audit signal: "Worker ran successfully on [date]" vs "Worker has not run in X days"
+- App can display "Regulatory data last verified: [date]" with confidence
+- Supports regulatory compliance audits — verifiable that monitoring was active
+
+---
+
+#### Decision 3: Per-update acknowledge + audit log
+
+**Locked:** Each regulation card dismissed individually. Acknowledgment tracked in SQLite with timestamp.
+
+**SQLite schema addition to `regulatory_updates` table:**
+```sql
+acknowledged        INTEGER DEFAULT 0,   -- 0 = unread, 1 = acknowledged
+acknowledged_at     TEXT                 -- ISO8601 timestamp, null until read
+```
+
+**Audit implication:** This enables a **Regulatory Acknowledgment Log** in the Pro PDF report:
+> "User acknowledged: NIST AI RMF — March 10, 2026"
+> "User acknowledged: CA AB 2013 (enacted) — March 17, 2026"
+
+This is a genuine compliance differentiator — customers in regulated industries can demonstrate they actively monitored and acknowledged regulatory changes. Flag this in marketing copy.
+
+**Badge behavior:** Unread count shows only unacknowledged enacted regulations. Badge clears per card on click/dismiss.
+
+---
+
+#### Decision 4 & 5: Business entity — Delaware single-member LLC
+
+**Locked:** Delaware single-member LLC. Self-funded, sole founder.
+
+- No equity split documentation needed
+- Single-member LLC operating agreement (simple template)
+- Pass-through taxation (profits on personal return)
+- Easiest formation path: Stripe Atlas or DIY via Northwest Registered Agent
+- Convert to C-Corp only if VC funding becomes realistic (cross that bridge later)
+- D-U-N-S + Apple Dev Organization account work the same for LLC as C-Corp
+
