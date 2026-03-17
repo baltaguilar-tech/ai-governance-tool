@@ -241,11 +241,11 @@ Output is in `src-tauri/target/release/bundle/`.
 Push a version tag to trigger the CI/CD release workflow:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.9.1-beta
+git push origin v0.9.1-beta
 ```
 
-GitHub Actions builds signed macOS binaries (arm64 + x86_64), creates a GitHub Release (draft), and publishes `latest.json` for the in-app auto-updater. Review and publish the draft release on GitHub when ready.
+GitHub Actions builds macOS binaries (arm64 + x86_64), creates a GitHub Release (pre-release), and publishes `latest.json` for the in-app auto-updater. Builds are unsigned until Apple Developer account is configured (GL-3).
 
 **Required GitHub Secrets** (already configured):
 - `TAURI_SIGNING_PRIVATE_KEY` — Tauri updater ed25519 private key
