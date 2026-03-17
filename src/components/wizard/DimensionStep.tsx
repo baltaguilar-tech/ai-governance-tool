@@ -40,7 +40,7 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
   return (
     <div>
       {/* Dimension Header */}
-      <div className="mb-6">
+      <div className="mb-4">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-semibold uppercase tracking-wider text-accent-blue">
             {dimension.shortLabel}
@@ -64,35 +64,35 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
             </span>
           </div>
         )}
+      </div>
 
-        {/* Progress dots — sticky so they stay visible while scrolling through questions */}
-        <div className="sticky top-0 z-10 bg-light-bg -mx-6 px-6 pt-3 pb-3 mt-4 border-b border-navy-100">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            {questions.map((q, i) => {
-              const isAnswered = responses.some((r) => r.questionId === q.id);
-              const isCurrent = !isAnswered && i === firstUnansweredIndex;
-              return (
-                <button
-                  key={q.id}
-                  onClick={() =>
-                    document.getElementById('question-' + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                  }
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
-                    isAnswered
-                      ? 'bg-accent-green text-white'
-                      : isCurrent
-                      ? 'bg-accent-blue text-white'
-                      : 'bg-white border border-navy-200 text-light-muted'
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              );
-            })}
-          </div>
-          <div className="text-xs text-light-muted mt-2">
-            {answeredCount} of {questions.length} answered · answer at least {Math.ceil(questions.length / 2)} to continue
-          </div>
+      {/* Progress dots — sibling of header (not nested inside it) so sticky spans full scroll range */}
+      <div className="sticky top-0 z-10 bg-light-bg -mx-6 px-6 pt-3 pb-3 border-b border-navy-100 mb-4">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          {questions.map((q, i) => {
+            const isAnswered = responses.some((r) => r.questionId === q.id);
+            const isCurrent = !isAnswered && i === firstUnansweredIndex;
+            return (
+              <button
+                key={q.id}
+                onClick={() =>
+                  document.getElementById('question-' + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
+                  isAnswered
+                    ? 'bg-accent-green text-white'
+                    : isCurrent
+                    ? 'bg-accent-blue text-white'
+                    : 'bg-white border border-navy-200 text-light-muted'
+                }`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+        </div>
+        <div className="text-xs text-light-muted mt-2">
+          {answeredCount} of {questions.length} answered · answer at least {Math.ceil(questions.length / 2)} to continue
         </div>
       </div>
 
