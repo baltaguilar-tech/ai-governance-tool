@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ProgressStepper } from './ProgressStepper';
 import { Settings } from '../settings/Settings';
 import { useAssessmentStore } from '@/store/assessmentStore';
@@ -25,6 +25,12 @@ export function AppLayout({ children }: AppLayoutProps) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const { currentStep } = useAssessmentStore();
   const isDark = DARK_STEPS.has(currentStep);
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Reset scroll position to top whenever the wizard advances to a new step
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [currentStep]);
 
   return (
     <div className="h-screen flex flex-col">
@@ -71,7 +77,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 
           {/* Dark screens: children control their own layout and centering.
               Light screens: constrained wrapper with standard padding. */}
-          <main className={`flex-1 overflow-y-auto ${isDark ? 'bg-dark-base' : 'bg-light-bg'}`}>
+          <main ref={mainRef} className={`flex-1 overflow-y-auto ${isDark ? 'bg-dark-base' : 'bg-light-bg'}`}>
             {isDark ? (
               children
             ) : (

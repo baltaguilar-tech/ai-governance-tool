@@ -65,8 +65,8 @@ export function DimensionStep({ dimensionKey }: DimensionStepProps) {
           </div>
         )}
 
-        {/* Progress dots */}
-        <div className="mt-4">
+        {/* Progress dots — sticky so they stay visible while scrolling through questions */}
+        <div className="sticky top-0 z-10 bg-light-bg -mx-6 px-6 pt-3 pb-3 mt-4 border-b border-navy-100">
           <div className="flex items-center gap-1.5 flex-wrap">
             {questions.map((q, i) => {
               const isAnswered = responses.some((r) => r.questionId === q.id);
