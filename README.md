@@ -97,58 +97,51 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 
 ## Project Status
 
-### Phase 1: App Completeness ✅ DONE
-- [x] Full 9-step wizard UI (all steps rendered and wired)
-- [x] 252 questions across 4 maturity profiles (63 per profile, all defined, scored, jurisdiction-aware)
-- [x] Weighted scoring engine with dimension breakdown and blind spots
-- [x] Recommendation engine (rules-based, free/pro gated)
-- [x] SQLite draft persistence (auto-save, no account required)
-- [x] PDF export (free summary + pro full report with roadmap + executive summary in both)
-- [x] React error boundaries (global + per-step graceful recovery)
-- [x] Freemium gates (blind spots, recommendations, PDF depth, history)
-- [x] PDF adversarial review — 5 bugs fixed (null guards, font bleed, overflow, color thresholds, ROI NaN)
+*Last updated: 2026-03-16 (v0.9.1-beta). See [CHANGELOG.md](CHANGELOG.md) for full version history.*
 
-### Phase 2: Settings, Licensing & Security ✅ DONE
-- [x] Settings page (Account, License Key, Email, Notifications, Updates, About, My Data panels)
-- [x] Account panel: Anthropic API key input (stored locally, format-validated, show/hide toggle)
-- [x] Keygen.sh license service pre-wired (activation UI ready; awaiting Keygen account keys)
-- [x] Notification reminders (30/60/90 day, tauri-plugin-notification)
-- [x] Deep link handler (`aigov://activate`, `aigov://track`)
-- [x] Security hardening (CSP, source map disabled in prod, SQLite schema version check)
-- [x] Privacy Policy + Terms of Service (in-app modal + first-run acceptance gate)
-- [x] Reset All Data (wipes SQLite + store, returns to Welcome)
-- [x] Executive Summary card in Track Progress (board-framed, templated, tier-gated)
-- [x] AI-generated Executive Summary (ES-3) — Claude API via Rust/reqwest command, consent modal, Haiku/Sonnet model selector, Pro-gated
+### V1 Feature Set ✅ COMPLETE
 
-### Phase 3: Distribution ✅ MOSTLY DONE
-- [x] GitHub Actions CI/CD release workflow (triggers on `v*` tags, matrix: arm64 + x86_64)
-- [x] Auto-updater wired end-to-end (`tauri-plugin-updater`, ed25519 signed, GitHub Releases endpoint)
-- [x] Tauri signing keypair generated; `TAURI_SIGNING_PRIVATE_KEY` added to GitHub Secrets
-- [ ] macOS code signing — **blocked on Apple Developer account + D-U-N-S number**
-- [ ] macOS notarization — **blocked on Apple Developer account + D-U-N-S number**
-- [ ] Windows build (NSIS + MSI) — **blocked on EV code signing cert**
+All planned V1 features are built and shipping in v0.9.1-beta.
 
-### Phase 4: Question Quality & Coverage ✅ DONE
-- [x] 38 question improvements across all 4 maturity profiles (clarity, calibration, option wording)
-- [x] US regulatory coverage added (CCPA, NIST AI RMF, state privacy laws) across all profiles
-- [x] Non-EU/UK jurisdiction gaps filled (APAC, LatAm, MEA coverage)
-- [x] EU AI Act questions verified — 12 total (3 per profile), accurate and correctly tagged
-- [x] Scoring engine audit — fully dynamic, no hardcoded question counts
+| Area | Status |
+|------|--------|
+| 9-step guided wizard | ✅ Done |
+| 252 questions across 4 maturity profiles | ✅ Done |
+| Weighted scoring engine + blind spots + recommendations | ✅ Done |
+| SQLite draft + assessment history persistence | ✅ Done |
+| Free PDF export (cover + exec summary + scores + gaps) | ✅ Done |
+| Pro PDF export (full report + dimension detail + roadmap + AI narrative) | ✅ Done |
+| Freemium gates throughout | ✅ Done |
+| Settings (Account, License, Email, Notifications, Updates, My Data) | ✅ Done |
+| Track Progress (delta banner, charts, mitigation tracker, spend tracker) | ✅ Done |
+| ROI Calculator + ROI Model Builder (6-step, Pro-gated) | ✅ Done |
+| AI-generated Executive Summary (ES-3) — BYOK Anthropic API | ✅ Done |
+| Industry personalization in exec summary | ✅ Done |
+| Energy & Utilities remote regulatory content | ✅ Done |
+| GitHub Actions CI/CD (arm64 + x86_64) | ✅ Done |
+| Auto-updater (ed25519 signed, GitHub Releases) | ✅ Done |
+| Deep links (`aigov://activate`, `aigov://track`) | ✅ Done |
+| Privacy Policy + Terms of Service (first-run gate) | ✅ Done |
 
-### Remaining Pre-Launch Gates
+### Remaining Pre-Launch Gates (Business / Infrastructure)
+
+These are not code items — they are blocked on external business steps.
+
 | Item | Blocked on |
 |------|-----------|
 | GL-2: Keygen license activation | Keygen.sh account setup |
-| GL-3: macOS code signing | Apple Developer Organization account |
+| GL-3: macOS code signing | Apple Developer Organization + D-U-N-S number |
 | GL-4: macOS notarization | Apple Developer + D-U-N-S number |
-| GL-5: Payment processor | Company registration + payment provider decision |
+| GL-5: Payment processor | Company registration + Paddle/LemonSqueezy decision |
 | DI-1: CrabNebula CDN | GL-3 signing |
+| DI-2: Repo → private | Company registration |
 | DI-3/4: Windows build + signing | EV code signing cert |
 
-### Known Limitations
-- No automated tests (unit/integration tests not yet written)
-- macOS builds are unsigned until GL-3 is complete (users will see Gatekeeper warning)
-- Keygen.sh license validation not yet active (license UI is present but activation is disabled pending account setup)
+### Known Limitations (Beta)
+- macOS builds are unsigned — Gatekeeper warning expected (use `Install AlphaPi.command`)
+- License purchase not yet live — use `BETA-TESTER-2026` for Pro access
+- DOCX export planned for V2
+- No automated test suite yet (planned pre-enterprise)
 
 ---
 
