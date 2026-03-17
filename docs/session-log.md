@@ -335,3 +335,7 @@ All pushed: origin/main = 1adc590.
 - V2 Sprint 1 plan drafted: Regulatory Intelligence Agent architecture, Worker pipeline, R2 schema, in-app UX — pending 5 clarifying answers before locking to decisions.md
 - Business registration critical path documented: LLC vs C-Corp, Delaware, D-U-N-S timeline, Apple Dev unblocking sequence
 - Commits: e81f7a1, 243cd4b
+- CI: updated release.yml to Node 24 (FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true, node-version 20→24, wildcard filenames in release body) (8f7d2ef)
+- V2 Sprint 1 fully locked: enacted-only surfaced, proposed tracked silently in R2; Worker always writes manifest for audit trail; per-update acknowledge with timestamp → Regulatory Acknowledgment Log in Pro PDF; Delaware single-member LLC confirmed (c3797d6)
+- Help/website/support backlog locked: contextual tooltips + Help tab; ROI prep guide in-app + lead magnet; email support for V1; landing page confirmed as pre-launch blocker; SEO via shared help content confirmed (606bf9c)
+- SESSION-52-RECOVERY.md written, all docs committed and pushed

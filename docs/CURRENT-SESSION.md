@@ -623,3 +623,8 @@ Resume prompt (copy exactly):
 - Tag: v0.9.2-beta (live, both DMGs attached)
 - Status: clean
 - [x] Session 51 complete. v0.9.2-beta released. Sticky dots fixed (e81f7a1). V2 Sprint 1 plan drafted (pending 5 answers). Help/website backlog captured + locked. SESSION-52-RECOVERY.md written.
+- [x] CI Node 24 fix (8f7d2ef) — FORCE_JAVASCRIPT_ACTIONS_TO_NODE24, node 20→24, wildcard filenames
+- [x] V2 Sprint 1 all 5 decisions locked (c3797d6)
+- [x] Help/website/support backlog locked and committed (606bf9c)
+- [x] Board clear — all session 51 items complete
+- Session 51 COMPLETE. Starting fresh session 52.
