@@ -442,3 +442,11 @@ All planned features are built and working:
 **Why deferred:** Beta testers are technical enough for the current 5-step guide. Once Apple code signing is in place (post D-U-N-S + Apple Dev Org), macOS won't quarantine the app at all — the Terminal xattr step disappears entirely. At that point, the full polish pass (DMG background image, icon layout, auto-eject script) is worth building together as one unit.
 
 **Trigger:** Do this work alongside GL-3/GL-4 (macOS code signing). Not before.
+
+---
+
+### ROI Model Builder — Multi-Select Risk Categories (2026-03-17)
+
+**Decision: Shared probability inputs across combined exposure for V1. Per-category probability inputs deferred to V2.**
+
+Single `riskProbBefore/After` pair applies to the summed exposure of all selected categories. When user selects multiple categories, default exposures are summed and pre-filled. User can override the combined total. V2 "Multiple risk pillars" backlog item (3 hrs) will add per-category probability configuration.
