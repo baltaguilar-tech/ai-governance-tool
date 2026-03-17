@@ -1,6 +1,6 @@
 [package]
 name = "ai-governance-tool"
-version = "0.9.1"
+version = "0.9.2"
 description = "AI Governance & ROI Assessment Tool"
 authors = ["baltaguilar-tech"]
 license = "MIT"

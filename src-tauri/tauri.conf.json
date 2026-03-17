@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "AlphaPi",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "identifier": "com.baltaguilar-tech.ai-governance-tool",
   "build": {
     "frontendDist": "../dist",
