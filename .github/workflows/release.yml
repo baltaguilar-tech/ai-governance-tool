@@ -23,6 +23,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-macos:
     strategy:
@@ -43,7 +46,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install Rust stable
@@ -86,8 +89,8 @@ jobs:
 
             | Your Mac | File to download |
             |----------|-----------------|
-            | M1, M2, M3, M4 (any MacBook/iMac/Mac Mini from late 2020 onward) | `AlphaPi_0.9.1_aarch64.dmg` |
-            | Intel (older Mac, pre-2020) | `AlphaPi_0.9.1_x64.dmg` |
+            | M1, M2, M3, M4 (any MacBook/iMac/Mac Mini from late 2020 onward) | `AlphaPi_*_aarch64.dmg` |
+            | Intel (older Mac, pre-2020) | `AlphaPi_*_x64.dmg` |
 
             Not sure which you have? Click **Apple menu → About This Mac**. If it says "Apple M..." you have an M-series Mac. If it says "Intel Core" you have an Intel Mac.
 
