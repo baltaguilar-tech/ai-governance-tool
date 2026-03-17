@@ -430,3 +430,15 @@ All planned features are built and working:
 | **Parallel Haiku pattern** | When work is parallelizable — spawn N Haiku subagents simultaneously, each owning one independent unit (e.g., 8 industry exec summaries, 8 regulatory body monitors). Cheap tokens in parallel beats expensive tokens sequentially. |
 
 **Rule:** Default to Haiku. Escalate to Sonnet only when the task genuinely requires it. Never use Sonnet for research, exploration, or content generation that Haiku can handle.
+
+---
+
+### DMG Install Experience — Polish for V2 Pre-Launch (2026-03-17)
+
+**Decision: Defer custom DMG installer script until code signing is complete.**
+
+**What's deferred:** A post-processing CI step that unpacks the Tauri-built DMG, injects an `Install AlphaPi.command` script (copy app + xattr + launch + eject volume), and repacks. This gives users a "window auto-closes = install succeeded" signal.
+
+**Why deferred:** Beta testers are technical enough for the current 5-step guide. Once Apple code signing is in place (post D-U-N-S + Apple Dev Org), macOS won't quarantine the app at all — the Terminal xattr step disappears entirely. At that point, the full polish pass (DMG background image, icon layout, auto-eject script) is worth building together as one unit.
+
+**Trigger:** Do this work alongside GL-3/GL-4 (macOS code signing). Not before.

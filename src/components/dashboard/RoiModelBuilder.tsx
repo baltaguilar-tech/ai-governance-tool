@@ -109,17 +109,20 @@ function calculate(tasks: RoiTask[], model: RoiModelData, monthlySpend: number):
 
 // ─── Step Indicator ───────────────────────────────────────────────────────────
 
-function StepIndicator({ step }: { step: number }) {
+function StepIndicator({ step, onStepClick }: { step: number; onStepClick: (i: number) => void }) {
   return (
     <div className="flex items-center justify-between mb-6 overflow-x-auto pb-1">
       {STEP_LABELS.map((label, i) => (
         <div key={i} className="flex items-center shrink-0">
           <div className="flex flex-col items-center">
-            <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-colors ${
-              i < step  ? 'bg-[#1E2761] border-[#1E2761] text-white'
-              : i === step ? 'bg-white border-[#1E2761] text-[#1E2761]'
-              : 'bg-white border-navy-200 text-navy-400'
-            }`}>
+            <div
+              onClick={() => i < step && onStepClick(i)}
+              className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-colors ${
+                i < step  ? 'bg-[#1E2761] border-[#1E2761] text-white cursor-pointer hover:opacity-80'
+                : i === step ? 'bg-white border-[#1E2761] text-[#1E2761]'
+                : 'bg-white border-navy-200 text-navy-400'
+              }`}
+            >
               {i < step ? '✓' : i + 1}
             </div>
             <span className={`text-[10px] mt-1 font-medium text-center w-14 leading-tight ${
@@ -144,6 +147,7 @@ function TaskStep({ tasks, onRefresh }: { tasks: RoiTask[]; onRefresh: () => Pro
   const [workforcePct, setWorkforcePct] = useState('');
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState<number | null>(null);
+  const [showForm, setShowForm] = useState(false); // collapsed when tasks exist
 
   const canAdd =
     name.trim().length > 0 &&
@@ -163,6 +167,7 @@ function TaskStep({ tasks, onRefresh }: { tasks: RoiTask[]; onRefresh: () => Pro
     setName(''); setHoursBefore(''); setHoursAfter(''); setWorkforcePct('');
     await onRefresh();
     setAdding(false);
+    setShowForm(false);
   }
 
   async function handleDelete(id: number) {
@@ -208,8 +213,23 @@ function TaskStep({ tasks, onRefresh }: { tasks: RoiTask[]; onRefresh: () => Pro
         </div>
       )}
 
+      {tasks.length > 0 && !showForm && (
+        <button
+          onClick={() => setShowForm(true)}
+          className="w-full text-sm text-[#1E2761] font-medium border border-dashed border-navy-300 rounded-lg py-2.5 hover:bg-navy-50 transition-colors mb-4"
+        >
+          + Add another task
+        </button>
+      )}
+
+      {(tasks.length === 0 || showForm) && (
       <div className="bg-white rounded-lg border border-navy-200 p-4">
-        <p className="text-xs font-semibold text-navy-700 mb-3">Add a Task</p>
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-xs font-semibold text-navy-700">Add a Task</p>
+          {showForm && tasks.length > 0 && (
+            <button onClick={() => setShowForm(false)} className="text-xs text-navy-400 hover:text-navy-600">Cancel</button>
+          )}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
           <div className="sm:col-span-2">
             <label className={labelClass()}>Task name</label>
@@ -262,6 +282,7 @@ function TaskStep({ tasks, onRefresh }: { tasks: RoiTask[]; onRefresh: () => Pro
           {adding ? 'Adding...' : '+ Add Task'}
         </button>
       </div>
+      )}
 
       {tasks.length === 0 && (
         <p className="text-xs text-navy-400 mt-3 text-center italic">
@@ -435,22 +456,28 @@ function RevenueStep({ annualRevenue, setAnnualRevenue, revenueUpliftPct, setRev
 // ─── Step 3: Risk Mitigation ──────────────────────────────────────────────────
 
 interface RiskStepProps {
-  riskCategory: string; setRiskCategory: (v: string) => void;
+  riskCategories: string[]; setRiskCategories: (v: string[]) => void;
   riskExposure: string; setRiskExposure: (v: string) => void;
   riskProbBefore: string; setRiskProbBefore: (v: string) => void;
   riskProbAfter: string; setRiskProbAfter: (v: string) => void;
 }
 
-function RiskStep({ riskCategory, setRiskCategory, riskExposure, setRiskExposure, riskProbBefore, setRiskProbBefore, riskProbAfter, setRiskProbAfter }: RiskStepProps) {
+function RiskStep({ riskCategories, setRiskCategories, riskExposure, setRiskExposure, riskProbBefore, setRiskProbBefore, riskProbAfter, setRiskProbAfter }: RiskStepProps) {
   const exposure = parseFloat(riskExposure) || 0;
   const probBefore = parseFloat(riskProbBefore) || 0;
   const probAfter = parseFloat(riskProbAfter) || 0;
   const riskValue = exposure * Math.max(0, (probBefore - probAfter) / 100);
 
-  function handleCategoryChange(key: string) {
-    setRiskCategory(key);
-    const cat = RISK_CATEGORIES.find(c => c.key === key);
-    if (cat) setRiskExposure(String(cat.defaultExposure));
+  function handleCategoryToggle(key: string) {
+    const next = riskCategories.includes(key)
+      ? riskCategories.filter(k => k !== key)
+      : [...riskCategories, key];
+    setRiskCategories(next);
+    // Sum default exposures for all selected categories
+    const total = RISK_CATEGORIES
+      .filter(c => next.includes(c.key))
+      .reduce((sum, c) => sum + c.defaultExposure, 0);
+    setRiskExposure(String(total));
   }
 
   return (
@@ -458,39 +485,39 @@ function RiskStep({ riskCategory, setRiskCategory, riskExposure, setRiskExposure
       <div className="mb-4">
         <h3 className="font-semibold text-navy-900 text-sm">Risk Mitigation (Pillar 3)</h3>
         <p className="text-navy-500 text-xs mt-1">
-          AI governance reduces the probability and severity of risk events. Select your primary risk category.
-          Default exposure amounts are pre-filled from industry benchmarks — adjust to match your organization.
+          AI governance reduces the probability and severity of risk events. Select one or more risk categories.
+          Default exposure amounts are pre-filled from industry benchmarks and combined — adjust the total to match your organization.
         </p>
       </div>
       <div className="mb-4">
-        <label className={labelClass()}>Primary risk category</label>
+        <label className={labelClass()}>Risk categories (select all that apply)</label>
         <div className="space-y-2">
-          {RISK_CATEGORIES.map(cat => (
-            <label
-              key={cat.key}
-              className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                riskCategory === cat.key
-                  ? 'border-[#1E2761] bg-navy-50'
-                  : 'border-navy-200 bg-white hover:border-navy-300'
-              }`}
-            >
-              <input
-                type="radio"
-                name="risk_cat"
-                value={cat.key}
-                checked={riskCategory === cat.key}
-                onChange={() => handleCategoryChange(cat.key)}
-                className="accent-[#1E2761]"
-              />
-              <span className="text-sm text-navy-900">{cat.label}</span>
-            </label>
-          ))}
+          {RISK_CATEGORIES.map(cat => {
+            const selected = riskCategories.includes(cat.key);
+            return (
+              <label
+                key={cat.key}
+                className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                  selected ? 'border-[#1E2761] bg-navy-50' : 'border-navy-200 bg-white hover:border-navy-300'
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  value={cat.key}
+                  checked={selected}
+                  onChange={() => handleCategoryToggle(cat.key)}
+                  className="accent-[#1E2761]"
+                />
+                <span className="text-sm text-navy-900">{cat.label}</span>
+              </label>
+            );
+          })}
         </div>
       </div>
-      {riskCategory && (
+      {riskCategories.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           <div>
-            <label className={labelClass()}>Risk exposure ($)</label>
+            <label className={labelClass()}>Combined risk exposure ($)</label>
             <input
               type="number" min="0"
               className={inputClass()}
@@ -498,7 +525,7 @@ function RiskStep({ riskCategory, setRiskCategory, riskExposure, setRiskExposure
               onChange={e => setRiskExposure(e.target.value)}
               placeholder="e.g. 500000"
             />
-            <p className="text-xs text-navy-400 mt-1">Max potential loss if this risk event occurs.</p>
+            <p className="text-xs text-navy-400 mt-1">Combined max potential loss. Pre-filled from benchmarks — adjust to your org.</p>
           </div>
           <div>
             <label className={labelClass()}>Probability without AI (%/yr)</label>
@@ -531,10 +558,9 @@ function RiskStep({ riskCategory, setRiskCategory, riskExposure, setRiskExposure
           </p>
         </div>
       )}
-      {!riskCategory && (
+      {riskCategories.length === 0 && (
         <p className="text-xs text-navy-400 italic text-center">
-          Select a risk category above to enter your exposure inputs. You can skip this pillar — enter 0 values
-          and advance.
+          Select one or more risk categories above. You can skip this pillar and advance.
         </p>
       )}
     </div>
@@ -774,7 +800,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
   const [revenueUpliftPct, setRevenueUpliftPct] = useState('');
 
   // Step 3 — Risk
-  const [riskCategory, setRiskCategory] = useState('');
+  const [riskCategories, setRiskCategories] = useState<string[]>([]);
   const [riskExposure, setRiskExposure] = useState('');
   const [riskProbBefore, setRiskProbBefore] = useState('');
   const [riskProbAfter, setRiskProbAfter] = useState('');
@@ -795,7 +821,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
           setUtilizationYear(m.utilizationYear ?? 1);
           if (m.annualRevenue > 0) setAnnualRevenue(String(m.annualRevenue));
           if (m.revenueUpliftPct > 0) setRevenueUpliftPct(String(m.revenueUpliftPct));
-          setRiskCategory(m.riskCategory ?? '');
+          setRiskCategories(m.riskCategories ?? []);
           if (m.riskExposure > 0) setRiskExposure(String(m.riskExposure));
           if (m.riskProbBefore > 0) setRiskProbBefore(String(m.riskProbBefore));
           if (m.riskProbAfter > 0) setRiskProbAfter(String(m.riskProbAfter));
@@ -825,7 +851,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
         utilizationYear,
         annualRevenue: parseFloat(annualRevenue) || 0,
         revenueUpliftPct: parseFloat(revenueUpliftPct) || 0,
-        riskCategory,
+        riskCategories,
         riskExposure: parseFloat(riskExposure) || 0,
         riskProbBefore: parseFloat(riskProbBefore) || 0,
         riskProbAfter: parseFloat(riskProbAfter) || 0,
@@ -847,7 +873,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
     utilizationYear,
     annualRevenue: parseFloat(annualRevenue) || 0,
     revenueUpliftPct: parseFloat(revenueUpliftPct) || 0,
-    riskCategory,
+    riskCategories,
     riskExposure: parseFloat(riskExposure) || 0,
     riskProbBefore: parseFloat(riskProbBefore) || 0,
     riskProbAfter: parseFloat(riskProbAfter) || 0,
@@ -878,7 +904,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
       </div>
 
       <div className="bg-white rounded-xl border border-navy-200 p-5">
-        <StepIndicator step={step} />
+        <StepIndicator step={step} onStepClick={setStep} />
 
         <div className="min-h-[320px]">
           {step === 0 && <TaskStep tasks={tasks} onRefresh={refreshTasks} />}
@@ -898,7 +924,7 @@ export function RoiModelBuilder({ totalMonthlySpend, profile }: Props) {
           )}
           {step === 3 && (
             <RiskStep
-              riskCategory={riskCategory} setRiskCategory={setRiskCategory}
+              riskCategories={riskCategories} setRiskCategories={setRiskCategories}
               riskExposure={riskExposure} setRiskExposure={setRiskExposure}
               riskProbBefore={riskProbBefore} setRiskProbBefore={setRiskProbBefore}
               riskProbAfter={riskProbAfter} setRiskProbAfter={setRiskProbAfter}

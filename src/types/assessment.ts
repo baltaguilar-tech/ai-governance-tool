@@ -314,8 +314,8 @@ export interface RoiModelData {
   utilizationYear: 1 | 2 | 3;   // drives the maturity curve factor
   annualRevenue: number;
   revenueUpliftPct: number;      // % of annual revenue attributable to AI
-  riskCategory: string;
-  riskExposure: number;          // max potential loss for the chosen risk event
+  riskCategories: string[];      // one or more selected risk categories
+  riskExposure: number;          // combined max potential loss across selected categories
   riskProbBefore: number;        // 0–100, annual probability without AI
   riskProbAfter: number;         // 0–100, annual probability with AI
   hiddenCosts: Record<string, number>; // keyed by HIDDEN_COST_CATEGORIES keys

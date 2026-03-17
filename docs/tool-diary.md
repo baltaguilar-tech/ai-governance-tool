@@ -3646,3 +3646,186 @@
 | 2026-03-16 16:23:46 | Edit                 | TESTER-GUIDE.md |
 | 2026-03-16 16:23:51 | TodoWrite            | in_progress: Commit and push all changes to GitHub |
 | 2026-03-16 16:23:56 | Bash                 | cd ~/Projects/ai-governance-tool && git status |
+| 2026-03-16 16:24:08 | Bash                 | cd ~/Projects/ai-governance-tool && git add .gitignore README.md TESTER-GUIDE.md docs/CURR... |
+| 2026-03-16 16:24:17 | Bash                 | cd ~/Projects/ai-governance-tool && git commit -m "$(cat <<'EOF' Update docs, gitignore, a... |
+| 2026-03-16 16:24:21 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-16 16:24:27 | TodoWrite            | in_progress: Build ROI Model Builder (Pro-gated, 3 pillars, step-by-step wizard) |
+| 2026-03-16 16:24:44 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:24:44 | Read                 | src/services/db.ts |
+| 2026-03-16 16:24:49 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:24:52 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:24:57 | Bash                 | grep -n "isPro\|isProUser\|tier\|professional\|Professional" /Users/baltmac/Projects/ai-go... |
+| 2026-03-16 16:25:02 | Bash                 | grep -n "licenseTier\|useAssessmentStore" /Users/baltmac/Projects/ai-governance-tool/src/c... |
+| 2026-03-16 16:25:43 | Bash                 | grep -n "employeeCount\|OrganizationProfile" /Users/baltmac/Projects/ai-governance-tool/sr... |
+| 2026-03-16 16:25:52 | Read                 | src/types/assessment.ts |
+| 2026-03-16 16:26:00 | Bash                 | grep -n "CompanySize\|size.*enum\|employeeCount" /Users/baltmac/Projects/ai-governance-too... |
+| 2026-03-16 16:26:11 | Read                 | src/types/assessment.ts |
+| 2026-03-16 16:30:13 | Read                 | src/types/assessment.ts |
+| 2026-03-16 16:30:22 | Read                 | src/types/assessment.ts |
+| 2026-03-16 16:30:36 | Edit                 | src/types/assessment.ts |
+| 2026-03-16 16:30:46 | Read                 | src/services/db.ts |
+| 2026-03-16 16:30:54 | Read                 | src/services/db.ts |
+| 2026-03-16 16:31:03 | Bash                 | wc -l /Users/baltmac/Projects/ai-governance-tool/src/services/db.ts |
+| 2026-03-16 16:31:24 | Read                 | src/services/db.ts |
+| 2026-03-16 16:31:32 | Edit                 | src/services/db.ts |
+| 2026-03-16 16:31:59 | Edit                 | src/services/db.ts |
+| 2026-03-16 16:32:29 | Edit                 | src/services/db.ts |
+| 2026-03-16 16:35:15 | Write                | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-16 16:35:21 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:35:25 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:35:31 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:35:38 | Edit                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:35:50 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-16 16:36:02 | Bash                 | cd ~/Projects/ai-governance-tool && git status |
+| 2026-03-16 16:36:20 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/components/dashboard/RoiModelBuilder.tsx s... |
+| 2026-03-16 16:36:43 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-16 16:36:49 | TodoWrite            | in_progress: (none) |
+| 2026-03-16 16:43:54 | Bash                 | cat >> ~/Projects/ai-governance-tool/docs/CURRENT-SESSION.md << 'EOF'  ---  ## Session 48 ... |
+| 2026-03-16 16:44:46 | Bash                 | cat >> ~/Projects/ai-governance-tool/docs/decisions.md << 'EOF'  ---  ## Session 48 Decisi... |
+| 2026-03-16 16:45:29 | Write                | docs/SESSION-48-RECOVERY.md |
+| 2026-03-16 16:45:59 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 16:46:17 | Bash                 | grep -n "Current project status\|NEXT SESSION\|session 47\|Session 47" /Users/baltmac/.cla... |
+| 2026-03-16 16:46:20 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 16:46:31 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-16 16:46:47 | Bash                 | cd ~/Projects/ai-governance-tool && git add docs/CURRENT-SESSION.md docs/decisions.md && g... |
+| 2026-03-16 16:48:58 | Glob                 | **/SESSION-48-RECOVERY.md |
+| 2026-03-16 16:49:00 | Read                 | docs/SESSION-48-RECOVERY.md |
+| 2026-03-16 16:49:05 | Grep                 | pattern='generateProPDF' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:06 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-16 16:49:11 | Grep                 | pattern='generateProPDF|ProPDF|proPdf' in src |
+| 2026-03-16 16:49:16 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 16:49:17 | Read                 | src/utils/pdfExport.ts |
+| 2026-03-16 16:49:24 | Grep                 | pattern='aiNarrative|generatePDF|PDF|pdf' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:25 | Grep                 | pattern='aiNarrative' in src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 16:49:29 | Grep                 | pattern='generatePDF|PDF|pdf' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:32 | Grep                 | pattern='import|export.*PDF|ProPDF' in src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:36 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:42 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:53 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:49:58 | Read                 | src/components/dashboard/TrackProgress.tsx |
+| 2026-03-16 16:50:08 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 16:50:14 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 16:53:02 | Read                 | docs/decisions.md |
+| 2026-03-16 17:19:06 | Grep                 | pattern='getAiSummary|saveAiSummary|AiNarrativeData' in src |
+| 2026-03-16 17:19:09 | Read                 | src/services/db.ts |
+| 2026-03-16 17:19:26 | Read                 | src/utils/execSummary.ts |
+| 2026-03-16 17:19:29 | Read                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 17:19:36 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 17:19:45 | Edit                 | src/components/dashboard/ResultsDashboard.tsx |
+| 2026-03-16 17:19:55 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-16 17:20:03 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-03-16 17:20:07 | Read                 | docs/decisions.md |
+| 2026-03-16 17:21:12 | Edit                 | docs/decisions.md |
+| 2026-03-16 17:21:16 | Bash                 | git add src/components/dashboard/ResultsDashboard.tsx src/components/settings/panels/Licen... |
+| 2026-03-16 17:21:23 | Bash                 | git commit -m "$(cat <<'EOF' Pre-launch cleanup: wire aiNarrative into Pro PDF, remove DEV... |
+| 2026-03-16 17:21:27 | Bash                 | GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main |
+| 2026-03-16 17:23:24 | Read                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-16 17:23:33 | Edit                 | src/components/settings/panels/LicensePanel.tsx |
+| 2026-03-16 17:23:39 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-03-16 17:23:46 | Bash                 | git add src/components/settings/panels/LicensePanel.tsx && git commit -m "$(cat <<'EOF' Re... |
+| 2026-03-16 17:24:57 | Read                 | TESTER-GUIDE.md |
+| 2026-03-16 17:25:19 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-16 17:25:25 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-16 17:25:36 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add TESTER-GUIDE.md && git commit -m ... |
+| 2026-03-16 17:47:16 | Bash                 | grep -E "productName|version|identifier" /Users/baltmac/Projects/ai-governance-tool/src-ta... |
+| 2026-03-16 17:47:46 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/.github/workflows/*.yml 2>/dev/null | head ... |
+| 2026-03-16 17:48:33 | Read                 | src-tauri/tauri.conf.json |
+| 2026-03-16 17:48:33 | Bash                 | grep -n "^version" /Users/baltmac/Projects/ai-governance-tool/src-tauri/Cargo.toml |
+| 2026-03-16 17:48:37 | Edit                 | src-tauri/tauri.conf.json |
+| 2026-03-16 17:48:40 | Bash                 | sed -i '' 's/^version = "0.1.0"/version = "0.9.1"/' /Users/baltmac/Projects/ai-governance-... |
+| 2026-03-16 17:48:45 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/.github/workflows/*.yml | grep -A 20 "tauri... |
+| 2026-03-16 17:48:52 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/.github/workflows/*.yml | head -3 |
+| 2026-03-16 17:48:55 | Glob                 | .github/workflows/*.yml |
+| 2026-03-16 17:48:59 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool/.github -name "*.yml" |
+| 2026-03-16 17:49:01 | Read                 | .github/workflows/release.yml |
+| 2026-03-16 17:49:20 | Edit                 | .github/workflows/release.yml |
+| 2026-03-16 17:49:36 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add src-tauri/tauri.conf.json src-tau... |
+| 2026-03-16 17:49:46 | Bash                 | git tag v0.9.1-beta && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main... |
+| 2026-03-16 18:01:18 | Read                 | README.md |
+| 2026-03-16 18:01:35 | Edit                 | README.md |
+| 2026-03-16 18:01:47 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add README.md && git commit -m "$(cat... |
+| 2026-03-16 18:17:15 | Write                | CHANGELOG.md |
+| 2026-03-16 18:17:52 | Edit                 | README.md |
+| 2026-03-16 18:18:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add CHANGELOG.md README.md && git com... |
+| 2026-03-16 18:26:39 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git log --oneline -8 |
+| 2026-03-16 18:27:19 | Write                | docs/SESSION-49-RECOVERY.md |
+| 2026-03-16 18:27:29 | Bash                 | grep -n "SESSION" /Users/baltmac/Projects/ai-governance-tool/.gitignore |
+| 2026-03-17 08:19:12 | Read                 | docs/SESSION-49-RECOVERY.md |
+| 2026-03-17 08:24:12 | Bash                 | ~/bin/gh run list --repo baltaguilar-tech/ai-governance-tool --limit 5 2>&1 |
+| 2026-03-17 08:24:12 | Bash                 | grep -n "Session 49\|V2\|Regulatory Intelligence\|First Sprint\|sprint" ~/Projects/ai-gove... |
+| 2026-03-17 08:24:12 | Read                 | TESTER-GUIDE.md |
+| 2026-03-17 08:24:20 | Bash                 | ~/bin/gh run view 23171439817 --repo baltaguilar-tech/ai-governance-tool 2>&1 |
+| 2026-03-17 08:24:21 | Bash                 | ~/bin/gh release list --repo baltaguilar-tech/ai-governance-tool 2>&1 |
+| 2026-03-17 08:24:27 | Read                 | .github/workflows/release.yml |
+| 2026-03-17 08:25:03 | Edit                 | .github/workflows/release.yml |
+| 2026-03-17 08:25:12 | Bash                 | cd ~/Projects/ai-governance-tool && git add .github/workflows/release.yml && git commit -m... |
+| 2026-03-17 08:25:18 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-17 08:25:28 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-17 08:25:44 | Bash                 | sleep 8 && ~/bin/gh run list --repo baltaguilar-tech/ai-governance-tool --limit 3 2>&1 |
+| 2026-03-17 08:25:50 | Read                 | docs/decisions.md |
+| 2026-03-17 08:36:43 | Bash                 | ~/bin/gh run view 23199157304 --repo baltaguilar-tech/ai-governance-tool 2>&1 |
+| 2026-03-17 08:36:48 | Bash                 | ~/bin/gh release view v0.9.1-beta --repo baltaguilar-tech/ai-governance-tool 2>&1 |
+| 2026-03-17 08:44:51 | Bash                 | ~/bin/gh release download v0.9.1-beta --repo baltaguilar-tech/ai-governance-tool --pattern... |
+| 2026-03-17 08:45:02 | Bash                 | ls -lh /tmp/AlphaPi_0.9.1_aarch64.dmg && hdiutil attach /tmp/AlphaPi_0.9.1_aarch64.dmg -no... |
+| 2026-03-17 08:46:03 | Bash                 | cat ~/Projects/ai-governance-tool/src-tauri/tauri.conf.json | python3 -m json.tool 2>&1 | ... |
+| 2026-03-17 08:46:07 | Bash                 | grep -i "dmg\|macos\|bundle" ~/Projects/ai-governance-tool/src-tauri/tauri.conf.json | hea... |
+| 2026-03-17 08:46:12 | Bash                 | python3 -c "import json; d=json.load(open('/Users/baltmac/Projects/ai-governance-tool/src-... |
+| 2026-03-17 08:46:34 | Bash                 | # Remove existing install if present rm -rf /Applications/AlphaPi.app 2>/dev/null; echo "C... |
+| 2026-03-17 08:46:49 | Bash                 | hdiutil detach /Volumes/AlphaPi 2>&1 |
+| 2026-03-17 08:47:06 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-17 08:47:11 | Read                 | TESTER-GUIDE.md |
+| 2026-03-17 08:47:26 | Bash                 | cd ~/Projects/ai-governance-tool && git add TESTER-GUIDE.md && git commit -m "$(cat <<'EOF... |
+| 2026-03-17 08:49:12 | Bash                 | head -80 ~/Projects/ai-governance-tool/README.md |
+| 2026-03-17 08:58:38 | Read                 | .github/workflows/release.yml |
+| 2026-03-17 08:58:52 | Edit                 | .github/workflows/release.yml |
+| 2026-03-17 08:58:59 | Read                 | TESTER-GUIDE.md |
+| 2026-03-17 08:59:15 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-17 08:59:20 | Read                 | TESTER-GUIDE.md |
+| 2026-03-17 08:59:27 | Edit                 | TESTER-GUIDE.md |
+| 2026-03-17 08:59:43 | Bash                 | cd ~/Projects/ai-governance-tool && git add .github/workflows/release.yml TESTER-GUIDE.md ... |
+| 2026-03-17 09:00:01 | Bash                 | ~/bin/gh release edit v0.9.1-beta --repo baltaguilar-tech/ai-governance-tool --notes "$(ca... |
+| 2026-03-17 09:06:37 | Bash                 | cat >> ~/Projects/ai-governance-tool/docs/decisions.md << 'EOF'  ---  ### DMG Install Expe... |
+| 2026-03-17 09:11:52 | Bash                 | grep -n "scroll\|sticky\|top\|position\|bubble\|dot\|progress" ~/Projects/ai-governance-to... |
+| 2026-03-17 09:11:57 | Glob                 | **/DimensionStep* |
+| 2026-03-17 09:11:58 | Glob                 | **/Wizard* |
+| 2026-03-17 09:12:03 | Bash                 | grep -n "scroll\|sticky\|top-0\|position\|scrollTo\|scrollIntoView" ~/Projects/ai-governan... |
+| 2026-03-17 09:12:04 | Glob                 | **/App.tsx |
+| 2026-03-17 09:12:08 | Read                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-17 09:12:09 | Bash                 | grep -n "scroll\|overflow\|h-screen\|h-full\|flex-1\|main\|container" ~/Projects/ai-govern... |
+| 2026-03-17 09:12:13 | Read                 | src/App.tsx |
+| 2026-03-17 09:12:18 | Bash                 | grep -n "scroll\|overflow\|h-screen\|h-full\|flex-1" ~/Projects/ai-governance-tool/src/com... |
+| 2026-03-17 09:12:24 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-17 09:12:51 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-17 09:12:56 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-17 09:13:04 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-17 09:13:10 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-17 09:13:18 | Edit                 | src/components/wizard/DimensionStep.tsx |
+| 2026-03-17 09:13:36 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-17 09:15:06 | Bash                 | cd ~/Projects/ai-governance-tool && git add src/components/layout/AppLayout.tsx src/compon... |
+| 2026-03-17 09:40:15 | Glob                 | **/ROI* |
+| 2026-03-17 09:40:16 | Glob                 | **/*roi* |
+| 2026-03-17 09:40:21 | Bash                 | find ~/Projects/ai-governance-tool/src -name "*.tsx" | xargs grep -l "ROI\|roi\|RoiModel\|... |
+| 2026-03-17 09:40:27 | Read                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:40:28 | Bash                 | grep -n "Build ROI\|build roi\|buildRoi\|open.*roi\|roi.*open\|setShow\|isOpen\|show" ~/Pr... |
+| 2026-03-17 09:46:43 | Bash                 | grep -n "riskCategory\|RoiModelData\|RoiTask" ~/Projects/ai-governance-tool/src/types/asse... |
+| 2026-03-17 09:46:43 | Bash                 | grep -n "riskCategory\|roi_model\|saveRoiModel\|getRoiModel" ~/Projects/ai-governance-tool... |
+| 2026-03-17 09:46:49 | Read                 | src/types/assessment.ts |
+| 2026-03-17 09:46:49 | Read                 | src/services/db.ts |
+| 2026-03-17 09:47:23 | Edit                 | src/types/assessment.ts |
+| 2026-03-17 09:47:30 | Edit                 | src/services/db.ts |
+| 2026-03-17 09:47:36 | Edit                 | src/services/db.ts |
+| 2026-03-17 09:47:50 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:48:00 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:48:06 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:48:18 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:48:28 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:00 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:06 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:12 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:23 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:32 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:39 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:45 | Edit                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:51 | Read                 | src/components/dashboard/RoiModelBuilder.tsx |
+| 2026-03-17 09:49:59 | Bash                 | cd ~/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./... |
+| 2026-03-17 09:50:12 | Edit                 | TESTER-GUIDE.md |

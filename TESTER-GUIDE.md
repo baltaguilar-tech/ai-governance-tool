@@ -105,14 +105,13 @@ Now re-run the assessment (or use your existing results) and check:
 The ROI Model Builder is a 6-step wizard that calculates the financial return on your AI investment.
 
 1. Go to **Track Progress**, scroll to the **ROI Model Builder** section (near the bottom)
-2. Click **Build ROI Model**
-3. **Step 0 — Task Baseline:** Add 1–2 tasks (e.g., "Email drafting" — 30 min before, 8 min after, 60% of workforce). Click Next.
-4. **Step 1 — Efficiency:** Review the pre-filled headcount from your org profile. Adjust adoption % and blended hourly rate if desired. Click Next.
-5. **Step 2 — Revenue:** Enter your annual revenue and estimated AI uplift %. Click Next.
-6. **Step 3 — Risk Mitigation:** Select 1–2 risk categories, enter an exposure amount and probability. Click Next.
-7. **Step 4 — Hidden Costs:** Review the 5 TCO categories and adjust as needed. Click Next.
-8. **Step 5 — Results:** You should see a benefit breakdown, total cost, 3-scenario cards (Conservative / Expected / Optimistic), and a qualitative summary. Click **Save Model**.
-9. Close the wizard and verify the saved model appears when you reopen the ROI Model Builder.
+2. **Step 1 — Task Baseline:** Click **+ Add another task** and add 1–2 tasks (e.g., "Email drafting" — 30 min before, 8 min after, 60% of workforce). Click Next.
+3. **Step 2 — Efficiency:** Review the pre-filled headcount from your org profile. Adjust adoption % and blended hourly rate if desired. Click Next.
+4. **Step 3 — Revenue:** Enter your annual revenue and estimated AI uplift %. Click Next.
+5. **Step 4 — Risk Mitigation:** Select one or more risk categories (checkboxes), review the combined exposure amount and enter probability before/after. Click Next.
+6. **Step 5 — Hidden Costs:** Review the 5 TCO categories and adjust as needed. Click Next.
+7. **Step 6 — Results:** You should see a benefit breakdown, total cost, 3-scenario cards (Conservative / Realistic / Optimistic), and a qualitative summary. Click **Save Model**.
+8. Verify the saved model reloads correctly when you navigate away and return to Track Progress.
 
 ### Test 5 — Data reset
 

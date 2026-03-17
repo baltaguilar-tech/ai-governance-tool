@@ -820,7 +820,13 @@ export async function getRoiModel(): Promise<RoiModelData | null> {
       utilizationYear: (r.utilization_year as 1 | 2 | 3) ?? 1,
       annualRevenue: r.annual_revenue,
       revenueUpliftPct: r.revenue_uplift_pct,
-      riskCategory: r.risk_category,
+      riskCategories: (() => {
+        try {
+          const parsed = JSON.parse(r.risk_category || '[]');
+          // Legacy: if stored as plain string (not array), wrap it
+          return Array.isArray(parsed) ? parsed : (parsed ? [parsed] : []);
+        } catch { return r.risk_category ? [r.risk_category] : []; }
+      })(),
       riskExposure: r.risk_exposure,
       riskProbBefore: r.risk_prob_before,
       riskProbAfter: r.risk_prob_after,
@@ -844,7 +850,7 @@ export async function saveRoiModel(data: RoiModelData): Promise<void> {
        VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         data.headcount, data.adoptionRate, data.blendedHourlyRate, data.utilizationYear,
-        data.annualRevenue, data.revenueUpliftPct, data.riskCategory, data.riskExposure,
+        data.annualRevenue, data.revenueUpliftPct, JSON.stringify(data.riskCategories), data.riskExposure,
         data.riskProbBefore, data.riskProbAfter, JSON.stringify(data.hiddenCosts),
         new Date().toISOString(),
       ]
