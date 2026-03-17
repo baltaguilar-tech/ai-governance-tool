@@ -20,6 +20,9 @@ on:
 #   APPLE_PASSWORD                  — app-specific password
 #   APPLE_TEAM_ID                   — 10-char team ID
 
+permissions:
+  contents: write
+
 jobs:
   build-macos:
     strategy:
@@ -29,7 +32,7 @@ jobs:
           - target: aarch64-apple-darwin
             runner: macos-latest
           - target: x86_64-apple-darwin
-            runner: macos-13
+            runner: macos-latest
 
     runs-on: ${{ matrix.runner }}
 
