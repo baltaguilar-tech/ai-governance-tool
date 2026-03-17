@@ -578,3 +578,48 @@ Resume prompt (copy exactly):
 - Branch: main
 - Last commit: 6298e5f — "Add ROI Model Builder — Pro-gated 6-step wizard on Track Progress tab"
 - Status: clean
+
+---
+
+## Session 51 (2026-03-17)
+
+### Work Completed
+
+**Bug fix — sticky progress dots (e81f7a1):**
+- DimensionStep.tsx: moved progress dots div from inside header `<div className="mb-6">` to be a sibling of the header
+- Root cause: CSS sticky is constrained to parent container bounds; dots nested inside header would scroll away once header left viewport
+- Fix: dots now span full DimensionStep scroll range → stay pinned throughout all 10 questions
+
+**Version bump (243cd4b):**
+- src-tauri/tauri.conf.json: 0.9.1 → 0.9.2
+- src-tauri/Cargo.toml: 0.9.1 → 0.9.2
+
+**Release v0.9.2-beta:**
+- Both DMGs built and attached: AlphaPi_0.9.2_aarch64.dmg + AlphaPi_0.9.2_x64.dmg
+- Release notes updated with correct filenames and v0.9.2 changelog
+
+**V2 Sprint 1 planning (Regulatory Intelligence Agent):**
+- Architecture drafted but NOT yet locked to decisions.md — pending 5 clarifying answers
+- Cloudflare Worker: cron 7-day, sources (NIST, Federal Register, OpenStates CA), Haiku synthesis, KV state, R2 write-on-change
+- R2: separate bucket `ai-governance-regulatory`, manifest.json + us-federal.json + ca-state.json
+- In-app UX: fetch on launch, SQLite cache, badge on Results + Track Progress, RegulatoryWatch component, per-update dismiss
+- Sprint estimate: 21–28 hrs total across 4 phases (Worker, app data layer, UI components, wire-in)
+- 5 open questions: CA enacted-vs-proposed, Worker write-on-change-only, per-update vs batch dismiss, VC plans, sole-founder
+
+**Business registration advisory:**
+- Critical path documented: trademark → domain → LLC formation → EIN → D-U-N-S (expedited $230) → Apple Dev
+- Recommendation: Delaware LLC (not C-Corp) for self-funded solo founder
+- Key blocker: D-U-N-S 8 business days after EIN → blocks Apple Dev → blocks code signing
+- Parallel track: Keygen + payment processor can start week 1 after EIN (no D-U-N-S needed)
+
+### Session 51 Decisions
+1. **Sticky dots root cause identified and fixed** — nested sticky inside parent container is the anti-pattern; always make sticky elements siblings not children
+2. **v0.9.2-beta released** — both DMGs correct, release notes updated
+3. **V2 Sprint 1 decisions still pending** — waiting on 5 clarifying answers before writing to decisions.md
+
+### Git State
+- Branch: main
+- Last commit: 243cd4b — "Bump version to 0.9.2"
+- Tag: v0.9.2-beta (live, both DMGs attached)
+- Status: clean
+- [x] Session 51 complete. v0.9.2-beta released. Sticky dots fixed (e81f7a1). V2 Sprint 1 plan drafted (pending 5 answers). Help/website backlog captured + locked. SESSION-52-RECOVERY.md written.

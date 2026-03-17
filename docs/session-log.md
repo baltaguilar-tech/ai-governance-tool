@@ -327,3 +327,11 @@ All pushed: origin/main = 1adc590.
 - Question bank review: no blocking bugs. EU AI Act content accurate. 5-option vs 4-option pattern noted as deferred.
 - BT-8 confirmed done (session 38). BT-7 (unsigned .app) confirmed NOT done — session 41 priority.
 - Commit: 1a2cf18
+
+## Session 51 — 2026-03-17
+- Fixed sticky progress dots: moved dots div outside header container in DimensionStep.tsx so sticky top-0 spans full question scroll range (e81f7a1)
+- Bumped version to 0.9.2 (tauri.conf.json + Cargo.toml) (243cd4b)
+- Released v0.9.2-beta to GitHub with both Mac DMGs (aarch64 + x64), updated release notes
+- V2 Sprint 1 plan drafted: Regulatory Intelligence Agent architecture, Worker pipeline, R2 schema, in-app UX — pending 5 clarifying answers before locking to decisions.md
+- Business registration critical path documented: LLC vs C-Corp, Delaware, D-U-N-S timeline, Apple Dev unblocking sequence
+- Commits: e81f7a1, 243cd4b

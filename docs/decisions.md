@@ -450,3 +450,105 @@ All planned features are built and working:
 **Decision: Shared probability inputs across combined exposure for V1. Per-category probability inputs deferred to V2.**
 
 Single `riskProbBefore/After` pair applies to the summed exposure of all selected categories. When user selects multiple categories, default exposures are summed and pre-filled. User can override the combined total. V2 "Multiple risk pillars" backlog item (3 hrs) will add per-category probability configuration.
+
+---
+
+### Help, Website & Support — Feature Backlog (2026-03-17)
+
+Captured from session 51. Organized into three tracks: pre-launch blockers, in-app V2 features, and website/marketing.
+
+---
+
+#### TRACK A — Pre-Launch Blockers (must exist before public launch)
+
+**A-1: Landing page + Privacy Policy + ToS**
+- Required by: Paddle/LemonSqueezy merchant onboarding (product URL), Apple Developer review (support URL), GDPR/CCPA (Privacy Policy URL in app), D-U-N-S business verification
+- Minimum viable: single-page site with headline, product description, pricing, Privacy Policy, ToS, and contact email
+- Hosting options: Webflow (easiest, no-code), Framer (designer-friendly), Carrd ($19/yr, fastest)
+- Privacy Policy + ToS: generate via Termly or Iubenda (~$10-30/mo), needs a real hosted URL
+- **Trigger:** Do before payment processor onboarding. Do alongside company registration.
+
+**A-2: In-app support link**
+- App must surface a support email or URL — required for Apple review and user trust
+- Decision needed: `mailto:support@[domain]` alias (simplest) vs Crisp chat widget (free tier, real-time) vs help center URL
+- Recommendation for V1: `mailto:` link in Settings footer. No infrastructure required.
+- Location: Settings panel footer, and optionally the Help tab (see B-1)
+
+---
+
+#### TRACK B — In-App V2 Features
+
+**B-1: Help tab**
+- Dedicated tab in Settings or as a top-level nav item
+- Contents: dimension explainers, ROI prep guide, FAQ, glossary, version changelog, support link
+- Decision needed: standalone tab vs integrated into Settings vs contextual (? icons inline)
+- Recommendation: contextual tooltips on questions (highest ROI, lowest friction) + a Help tab for deep content
+
+**B-2: Dimension explainers ("How to" section)**
+- For each of the 6 dimensions: why it matters, what good looks like, what the score means, 2-3 real-world examples
+- Can surface as: (a) expanded description on DimensionStep before questions, (b) Help tab content, (c) website content (same copy, dual purpose)
+- Tone: "plain English for orgs that don't have an AI governance team"
+
+**B-3: ROI calculation prep guide**
+- Shown before or during ROI Tracking dimension + ROI Model Builder
+- Content: what data to gather in advance (AI tool spend, headcount, current task times, incident costs), where to find it, typical sources per org size
+- Format: checklist-style, collapsible, skippable
+- Can also be a downloadable PDF from the website — doubles as a lead magnet
+
+**B-4: In-app changelog / "What's new" modal**
+- On first launch after an app update: show a brief modal with top 3 changes in the new version
+- Pairs naturally with the existing auto-updater wiring
+- Lightweight: pull from a JSON file in R2 (same CDN pattern as regulatory content)
+
+**B-5: Contextual ? tooltips on questions**
+- Each question already has `helpText` — surface it more prominently
+- Add a small `?` icon that expands the help text inline or in a tooltip
+- Higher-value than a Help tab for users in the assessment flow
+
+---
+
+#### TRACK C — Website / Marketing (V2, post first revenue)
+
+**C-1: Full marketing website**
+- Pages: Home, How It Works, Pricing, Why AlphaPi (vs enterprise tools), Blog/Resources, Contact
+- SEO target keywords: "AI governance assessment," "AI risk management for SMB," "EU AI Act compliance checklist"
+- Help content (B-2, B-3) repurposed as blog/resource pages — same writing effort, organic search value
+- Include: product screenshots, assessment sample output, ROI calculation example
+
+**C-2: Demo / explainer video**
+- 2-3 minute walkthrough of a full assessment → results → PDF export
+- Embed on home page and pricing page
+- Can be screen recording (Loom) for V1
+
+**C-3: Lead magnet — ROI prep PDF**
+- "AI Governance ROI Prep Checklist" — free downloadable PDF
+- Email capture gate → feeds marketing list
+- Repurposes B-3 content
+
+**C-4: In-app → website links**
+- "Learn more about AI governance" → blog/resources on website
+- "Get support" → support email or help center
+- "View pricing" → pricing page (replaces disabled "View Plans" button in LicensePanel)
+- "Release notes" → website changelog or GitHub releases page
+
+---
+
+#### Open questions for these tracks
+1. **Support channel**: email alias vs Crisp widget vs Discord — decide before A-2
+2. **Website platform**: Webflow vs Framer vs Carrd vs custom — decide before A-1
+3. **Help tab vs inline**: ship B-5 (tooltips) first, then B-1 (full tab) in a later sprint?
+4. **Content ownership**: who writes the dimension explainers and ROI prep guide — user or Claude-assisted?
+
+
+---
+
+### Help & Support — Locked Decisions (2026-03-17, session 51)
+
+Answers locked from user review of Track A/B/C backlog:
+
+1. **Help UX pattern**: Both contextual tooltips AND a full Help tab. Tooltips = short single sentence (inline, low friction). Help tab = deeper content (dimension explainers, ROI prep guide, FAQ, glossary, changelog).
+2. **ROI prep guide**: Build it. Lives in-app before ROI Tracking dimension + ROI Model Builder. Also publish as downloadable PDF from website (lead magnet / email capture gate).
+3. **Support channel**: Email alias (`mailto:support@[domain]`) for V1. No chat widget until meaningful support volume justifies it.
+4. **Website**: Required pre-launch for landing page + PP/ToS. Full marketing site (Track C) is post-first-revenue. Needs dedicated planning session before build.
+5. **Landing page pre-launch**: Confirmed as launch blocker. Do alongside company registration and domain purchase. Minimum: headline, product description, pricing, PP/ToS, support email.
+6. **SEO via help content**: Confirmed. Dimension explainers + ROI prep guide written once, used in-app AND published as website resource pages. Same content, dual-purpose.
