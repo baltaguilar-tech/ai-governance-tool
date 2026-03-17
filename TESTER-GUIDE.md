@@ -19,28 +19,29 @@ AlphaPi is a desktop app that guides your organization through an AI governance 
 
 ### Step 1 — Download and open the disk image
 
-Download the `.dmg` from [GitHub Releases](https://github.com/baltaguilar-tech/ai-governance-tool/releases) (or use the file sent to you directly). Double-click the `.dmg` to mount it. A new window opens showing two items:
-- `AlphaPi.app`
-- `Install AlphaPi.command`
+Download the `.dmg` from [GitHub Releases](https://github.com/baltaguilar-tech/ai-governance-tool/releases) (or use the file sent to you directly). Double-click the `.dmg` to mount it. A window opens showing `AlphaPi.app` and a shortcut to your Applications folder.
 
-### Step 2 — Run the installer
+### Step 2 — Drag to Applications
 
-Double-click **`Install AlphaPi.command`**.
+Drag **`AlphaPi.app`** onto the **Applications** folder shortcut in the window. Then eject the disk image (drag it to Trash, or right-click the mounted volume on your Desktop and choose Eject).
 
-A Terminal window will open and run for a few seconds. If macOS asks *"Are you sure you want to open this?"* — click **Open**.
+### Step 3 — Remove the security restriction
 
-The installer will:
-- Remove the macOS security restriction from the app (required for unsigned beta builds)
-- Copy AlphaPi to your Applications folder
-- Launch the app automatically
+Because this is an unsigned beta build, macOS will block the app from opening until you remove the quarantine flag. Open **Terminal** (search for it in Spotlight) and paste this command:
 
-### Step 3 — First launch
+```
+xattr -cr /Applications/AlphaPi.app && open /Applications/AlphaPi.app
+```
 
-AlphaPi will open. You will be asked to accept the Terms of Service and Privacy Policy before starting.
+Press Enter. The app will launch automatically.
 
-> **Note:** Because this is an unsigned beta build, macOS may show a security warning. The installer handles this automatically via `xattr -cr`. If you ever launch the app directly from your Applications folder and see a warning:
+> **If you see a security warning when opening the app directly (without the Terminal command):**
 > - **macOS 12–13:** Right-click the app icon → **Open** → click **Open** in the dialog
 > - **macOS 14+ (Sonoma/Sequoia):** Go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**
+
+### Step 4 — First launch
+
+AlphaPi will open. You will be asked to accept the Terms of Service and Privacy Policy before starting.
 
 ---
 
