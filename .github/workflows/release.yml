@@ -78,7 +78,34 @@ jobs:
           releaseBody: |
             **This is a private beta build for invited testers.**
 
-            See [TESTER-GUIDE.md](https://github.com/baltaguilar-tech/ai-governance-tool/blob/main/TESTER-GUIDE.md) for full installation and testing instructions.
+            ---
+
+            ## Download
+
+            Click **Assets** below to expand the download list, then pick the right file for your Mac:
+
+            | Your Mac | File to download |
+            |----------|-----------------|
+            | M1, M2, M3, M4 (any MacBook/iMac/Mac Mini from late 2020 onward) | `AlphaPi_0.9.1_aarch64.dmg` |
+            | Intel (older Mac, pre-2020) | `AlphaPi_0.9.1_x64.dmg` |
+
+            Not sure which you have? Click **Apple menu → About This Mac**. If it says "Apple M..." you have an M-series Mac. If it says "Intel Core" you have an Intel Mac.
+
+            ---
+
+            ## Installation
+
+            1. Double-click the `.dmg` to open it
+            2. Drag **AlphaPi.app** into the **Applications** folder shortcut
+            3. Eject the disk image
+            4. Open **Terminal** and paste this command — it removes the macOS security restriction and launches the app:
+            ```
+            xattr -cr /Applications/AlphaPi.app && open /Applications/AlphaPi.app
+            ```
+
+            For full testing instructions, see [TESTER-GUIDE.md](https://github.com/baltaguilar-tech/ai-governance-tool/blob/main/TESTER-GUIDE.md).
+
+            ---
 
             **What's in this build**
             - Complete 6-dimension AI governance assessment (up to 63 questions per profile)
@@ -91,7 +118,7 @@ jobs:
             - Settings: License, Email, Notifications, Updates, My Data
 
             **Known limitations in this beta**
-            - App is unsigned (macOS will show a security warning — follow the install script instructions)
+            - App is unsigned (macOS Gatekeeper will warn on first open — the Terminal command above handles this automatically)
             - License purchase not yet available — use `BETA-TESTER-2026` to access Pro
             - DOCX export coming in a future release
           releaseDraft: false

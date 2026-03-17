@@ -17,15 +17,28 @@ AlphaPi is a desktop app that guides your organization through an AI governance 
 
 ## Installation
 
-### Step 1 — Download and open the disk image
+### Step 1 — Download the right file for your Mac
 
-Download the `.dmg` from [GitHub Releases](https://github.com/baltaguilar-tech/ai-governance-tool/releases) (or use the file sent to you directly). Double-click the `.dmg` to mount it. A window opens showing `AlphaPi.app` and a shortcut to your Applications folder.
+Go to the [AlphaPi GitHub Releases page](https://github.com/baltaguilar-tech/ai-governance-tool/releases). Click **Assets** to expand the download list.
 
-### Step 2 — Drag to Applications
+Pick the file that matches your Mac:
+
+| Your Mac | File to download |
+|----------|-----------------|
+| M1, M2, M3, M4 (MacBook/iMac/Mac Mini from late 2020 onward) | `AlphaPi_0.9.1_aarch64.dmg` |
+| Intel (older Mac, pre-2020) | `AlphaPi_0.9.1_x64.dmg` |
+
+> **Not sure which you have?** Click **Apple menu → About This Mac**. If Chip says "Apple M..." you have an M-series Mac. If it says "Intel Core" you have an Intel Mac.
+
+### Step 2 — Open the disk image
+
+Double-click the downloaded `.dmg` file to mount it. A window opens showing `AlphaPi.app` and a shortcut to your Applications folder.
+
+### Step 3 — Drag to Applications
 
 Drag **`AlphaPi.app`** onto the **Applications** folder shortcut in the window. Then eject the disk image (drag it to Trash, or right-click the mounted volume on your Desktop and choose Eject).
 
-### Step 3 — Remove the security restriction
+### Step 4 — Remove the security restriction
 
 Because this is an unsigned beta build, macOS will block the app from opening until you remove the quarantine flag. Open **Terminal** (search for it in Spotlight) and paste this command:
 
@@ -39,7 +52,7 @@ Press Enter. The app will launch automatically.
 > - **macOS 12–13:** Right-click the app icon → **Open** → click **Open** in the dialog
 > - **macOS 14+ (Sonoma/Sequoia):** Go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**
 
-### Step 4 — First launch
+### Step 5 — First launch
 
 AlphaPi will open. You will be asked to accept the Terms of Service and Privacy Policy before starting.
 
