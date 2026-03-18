@@ -628,3 +628,41 @@ Resume prompt (copy exactly):
 - [x] Help/website/support backlog locked and committed (606bf9c)
 - [x] Board clear — all session 51 items complete
 - Session 51 COMPLETE. Starting fresh session 52.
+
+---
+
+## Session 52 (2026-03-18)
+
+### Completed
+- [x] Installed gstack (bun installed first; gstack linked to ~/.claude/skills/)
+- [x] Added gstack section to CLAUDE.md (use /browse, never mcp__claude-in-chrome__)
+- [x] Ran /plan-ceo-review on Plan A (Regulatory Intelligence Agent) — SELECTIVE EXPANSION mode
+- [x] Ran /plan-ceo-review on Plan B (Pre-Launch Critical Path) — HOLD SCOPE mode
+- [x] All decisions locked and written to decisions.md
+- [x] Created TODOS.md with 5 items (P1: EU sources, Worker CI/CD; P2: Legislative Watch, per-reg action, tests; P3: full website)
+- [x] Created docs/designs/regulatory-intelligence-agent.md (CEO plan promoted)
+- [x] Session 52 closed
+
+### Key Decisions This Session
+- Plan A: cdnService.ts generalization, severity triage, dimension cross-ref, ES-3 live citation, same R2 bucket (regulatory/ subdir), Workers in same repo, FR keyword filter, fetch-all/display-Pro gate, stale data warning
+- Plan B: Paddle (payment processor), Carrd (landing page), Termly (PP/ToS), common law ™ at launch, legal name consistency flag, in-app PP/ToS URL missing item identified
+- CRITICAL: "AlphaPi" is in public tauri.conf.json — domain must be registered IMMEDIATELY after trademark search confirms clear
+
+### Git State
+- Branch: main
+- Last commit: 3d42cfa (Session 51 docs)
+- Uncommitted: CLAUDE.md (gstack section), docs/tool-diary.md (hook log), docs/decisions.md (new decisions), TODOS.md (new), Cargo.lock (minor)
+- Recommend committing all changes at start of Session 53
+
+### Session 52 — Domain Registration (continued)
+
+- [x] USPTO TESS search complete — "AlphaPi" CLEAR (no conflicts)
+- [x] Accidentally registered alphalpi.com (typo) — keeping as redirect domain
+- [x] alphapi.com taken by MarkUpgrade broker — contacted for price
+- [x] alphapi.io also taken (parked)
+- [x] getalphapi.com registered via Cloudflare — PRIMARY DOMAIN
+- [x] WHOIS privacy confirmed active (Cloudflare auto-redacts personal info from public WHOIS)
+- [ ] NEXT: Set up support@getalphapi.com email routing in Cloudflare
+- [ ] NEXT: Confirm auto-renew on both domains (getalphapi.com + alphalpi.com)
+- [x] CLAUDE.md updated: Session Start Protocol added (auto-briefing on session open)
+- [ ] Session 52 commit pending — do at start of Session 53

@@ -54,6 +54,18 @@ Auto-loaded project context for Claude Code. Keep this concise and current.
 - **Differentiator:** "AI governance for orgs that don't have an AI governance team"
 - **Urgency:** EU AI Act enforcement Aug 2, 2026; ISO 42001 becoming expected in 2026
 
+## gstack (Browser & QA Skills)
+- Use `/browse` for ALL web browsing — never use `mcp__claude-in-chrome__*` tools
+- Available skills: `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/review`, `/ship`, `/browse`, `/qa`, `/qa-only`, `/design-review`, `/setup-browser-cookies`, `/retro`, `/document-release`
+
+## Session Start Protocol (AUTOMATIC — no prompting needed)
+At the start of EVERY new session, before doing anything else:
+1. Run: `ls docs/SESSION-*-RECOVERY.md | sort | tail -1` — find the most recent recovery file
+2. Read that recovery file in full
+3. Read the last 50 lines of `docs/CURRENT-SESSION.md`
+4. Brief the user: "Here's where we left off: [2-3 sentence summary + immediate next actions]"
+Do this automatically. The user should never have to ask for a briefing.
+
 ## Claude Instructions
 - After every 3–5 meaningful changes, append a dated entry to `docs/session-log.md`
 - Before building anything non-trivial, check `docs/open-questions.md`
