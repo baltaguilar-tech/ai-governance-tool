@@ -725,3 +725,11 @@ Resume prompt (copy exactly):
 - Git: 4a8daec on origin/main (Session 53 docs committed)
 - Termly: Privacy Policy at 98%, one click from publish
 - Atlas: AlphaPi, LLC filed 2026-03-18, awaiting incorporation email (1-2 biz days)
+
+## Session 54 Progress (2026-03-18)
+- [x] Git commit — 36d1b46 pushed
+- [x] Termly Privacy Policy — published (Starter plan upgraded)
+- [x] Termly Terms of Service — published (built + published)
+- [ ] Carrd landing page — NOT STARTED
+- Policy embed strategy: Carrd pages at /privacy and /terms with Termly HTML embed
+- Both Termly HTML embed codes needed when building Carrd
