@@ -770,3 +770,23 @@ All regulation objects must include:
 - USPTO TESS search completed 2026-03-18: NO CONFLICTS found for "AlphaPi"
 - Common law ™ applies from first commercial use (sufficient for launch)
 - File USPTO ® application 90 days post-first-revenue (~$250/class, Class 42 + Class 35)
+
+---
+
+## 2026-03-18 — Session 53: Delaware LLC + Legal Name
+
+**Decision:** Legal name is **AlphaPi, LLC** (Delaware LLC, filed via Stripe Atlas 2026-03-18).
+
+**Rationale:** Clean, matches product name, available in Delaware entity search (confirmed via ICIS), USPTO TESS clear (no conflicts for "AlphaPi").
+
+**Atlas filing details:**
+- Structure: LLC (not C-Corp — single founder, no outside investment planned at launch)
+- State: Delaware
+- EIN: to be issued by IRS within 1–2 business days of incorporation
+- Banking: Mercury (pre-linked via Atlas)
+
+**Idaho foreign entity registration required** — founder is in Idaho (Boise), triggering foreign registration requirement (~$100, sos.idaho.gov).
+
+**83(b) election: N/A** — only relevant for equity grants at below-market value; not applicable to single-member LLC.
+
+**Name consistency rule (CRITICAL):** Use exact string "AlphaPi, LLC" everywhere — D-U-N-S, Apple Dev, Paddle, bank, legal docs. Do not vary capitalization or punctuation.

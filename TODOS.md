@@ -69,6 +69,154 @@ Updated: 2026-03-18 (Session 52 — /plan-ceo-review)
 
 ---
 
+## P0 — Time-Sensitive / Blocking (Business/Legal)
+
+### BLAW-01: Monitor Atlas Emails — Incorporation + EIN
+**What:** Watch for two emails from Stripe Atlas: (1) incorporation confirmed, (2) EIN from IRS.
+**Why:** EIN arrival starts the D-U-N-S clock (8 business days). Everything downstream (Apple Dev, Paddle) is blocked until EIN.
+**Actions when incorporation email arrives:** File Idaho foreign entity registration (BLAW-02).
+**Actions when EIN email arrives:** Start D-U-N-S same day (BLAW-04) + set up Mercury bank account (BLAW-03).
+**Filed:** 2026-03-18 via Stripe Atlas. Legal name: AlphaPi, LLC (Delaware).
+**Effort:** Passive — wait for emails
+**Priority:** P0
+
+---
+
+### BLAW-02: Idaho Foreign Entity Registration
+**What:** Register AlphaPi LLC as a foreign entity doing business in Idaho (where founder lives).
+**Why:** Delaware LLC must register in any state where it has a physical presence (founder's home state = Idaho).
+**How:** Idaho Secretary of State → sos.idaho.gov → Foreign LLC registration → ~$100 filing fee.
+**Depends on:** BLAW-01 (incorporation email confirmed first)
+**Effort:** XS (30 min, ~$100)
+**Priority:** P0
+
+---
+
+### BLAW-03: Business Banking — Mercury
+**What:** Open Mercury business checking account (pre-linked via Stripe Atlas).
+**Why:** Required to receive Paddle payouts. Keep business and personal finances separate from day one.
+**How:** Stripe Atlas dashboard → "Set up business banking" → Mercury account creation (Atlas pre-populates company info).
+**Depends on:** BLAW-01 (EIN confirmed)
+**Effort:** XS (15 min)
+**Priority:** P0
+
+---
+
+### BLAW-04: D-U-N-S Number
+**What:** Apply for D-U-N-S number via Dun & Bradstreet ($230 expedited, 8 business days).
+**Why:** Required for Apple Developer Organization enrollment. No D-U-N-S = no Apple Dev = no macOS code signing = no distribution.
+**How:** dnb.com → D-U-N-S request → select expedited ($230) → use exact legal name "AlphaPi, LLC" and EIN.
+**CRITICAL:** Start this SAME DAY EIN arrives. Every day of delay = day later on Apple Dev enrollment.
+**Depends on:** BLAW-01 (EIN confirmed)
+**Effort:** XS to apply (20 min), then 8 business day wait
+**Priority:** P0
+
+---
+
+### BLAW-05: Carrd Landing Page + Termly PP/ToS
+**What:** Build Carrd landing page at getalphapi.com + generate PP/ToS via Termly.
+**Why:** Required by Paddle (payment processor), Apple review, and GDPR/CCPA. Blocking launch.
+**How:** Carrd.co ($19/yr) → build 1-page site → point getalphapi.com DNS to it. Termly.io (free) → generate PP + ToS → get hosted URLs → add to landing page footer + in-app Settings.
+**Legal name to use:** AlphaPi, LLC
+**Can start now** — does not require EIN or D-U-N-S.
+**Effort:** S (3-4 hrs)
+**Priority:** P0
+
+---
+
+### BLAW-06: alphalpi.com Redirect
+**What:** Set up Cloudflare Redirect Rule on alphalpi.com → getalphapi.com.
+**Why:** Typo domain owned — redirect prevents losing visitors. Also protects brand.
+**How:** Cloudflare → alphalpi.com → Rules → Redirect Rules → forward all traffic to getalphapi.com (301).
+**Depends on:** BLAW-05 (Carrd landing page live at getalphapi.com first)
+**Effort:** XS (5 min)
+**Priority:** P0
+
+---
+
+### BLAW-07: Apple Developer Organization Enrollment
+**What:** Enroll in Apple Developer Program as Organization ($99/yr).
+**Why:** Required for macOS code signing + notarization. Without this, app shows "unidentified developer" warning and Gatekeeper blocks install.
+**How:** developer.apple.com → Enroll → Organization → requires D-U-N-S + legal name + phone verification from Apple.
+**Depends on:** BLAW-04 (D-U-N-S confirmed)
+**Effort:** XS (30 min to apply, Apple may call to verify)
+**Priority:** P0
+
+---
+
+### BLAW-08: Keygen Account + Keys (GL-2)
+**What:** Create Keygen.sh account, create product + policy, get KEYGEN_ACCOUNT_ID, KEYGEN_PRODUCT_ID, KEYGEN_PUBLIC_KEY.
+**Why:** Currently app has DEV tier toggle hardcoded (LicensePanel.tsx ~154–187). Can't ship without real license validation.
+**How:** keygen.sh → create account → create product "AlphaPi" → create license policy (binary: valid = Pro) → copy keys to .env.local.
+**Also:** Remove DEV tier toggle (BLAW-11) once keys are wired and tested.
+**Depends on:** BLAW-07 (Apple Dev for distribution context, but Keygen can be set up independently)
+**Effort:** S (2 hrs)
+**Priority:** P0
+
+---
+
+### BLAW-09: Paddle Payment Processor Setup (GL-5)
+**What:** Create Paddle account, set up product + pricing, wire checkout into app.
+**Why:** Revenue collection. Paddle is Merchant of Record — handles all VAT/GST globally.
+**How:** paddle.com → create account → verify business (needs LLC + EIN + bank account) → create product "AlphaPi Pro" → get API keys → wire into app checkout flow.
+**Depends on:** BLAW-01 (EIN), BLAW-03 (Mercury bank account)
+**Effort:** M (4-6 hrs including app integration)
+**Priority:** P0
+
+---
+
+### BLAW-10: In-App Support Link (mailto:)
+**What:** Add `mailto:support@getalphapi.com` link in Settings footer.
+**Why:** Required for Apple review. App must have a working support contact method.
+**Where:** Settings footer — 5-minute code fix.
+**Depends on:** Nothing (email routing already live)
+**Effort:** XS (5 min)
+**Priority:** P0
+
+---
+
+### BLAW-11: Remove DEV Tier Toggle (LicensePanel.tsx)
+**What:** Remove the DEV tier toggle at `src/components/LicensePanel.tsx` ~lines 154–187.
+**Why:** Pre-wired for testing. Must be removed before Apple submission — shipping with a bypass defeats the freemium model.
+**Depends on:** BLAW-08 (Keygen keys wired and tested first)
+**Effort:** XS (10 min)
+**Priority:** P0
+
+---
+
+### BLAW-12: Make Repo Private (DI-2)
+**What:** Set GitHub repo to private (currently public).
+**Why:** Repo contains product name, architecture, and will contain Cloudflare Worker code. Must be private before adding secrets to GitHub Actions.
+**How:** GitHub → repo Settings → Danger Zone → Change repository visibility → Private.
+**Depends on:** Company registration complete (BLAW-01)
+**Effort:** XS (2 min)
+**Priority:** P0
+
+---
+
+### BLAW-13: File ® Trademark Registration
+**What:** File USPTO trademark application for "AlphaPi" in Class 42 (Software as a Service).
+**Why:** Common law ™ is sufficient at launch but ® gives nationwide legal presumption of ownership and ability to sue for infringement.
+**How:** USPTO TEAS Plus application (~$250/class). Consider trademark attorney for filing (~$300-500).
+**Depends on:** First revenue (need proof of commercial use in commerce)
+**Timeline:** 90 days post-first-revenue
+**Effort:** S (2-3 hrs DIY or hire attorney)
+**Priority:** P0 (time-gated, not urgent now)
+
+---
+
+### BLAW-14: Tax Setup
+**What:** Set up federal + state tax reminders and quarterly estimated payments.
+**Why:** Single-member LLC = pass-through taxation. Quarterly estimated taxes due (IRS + Idaho). Missing payments = penalties.
+**Federal:** IRS Form 1040-ES — quarterly (Apr 15, Jun 15, Sep 15, Jan 15).
+**Idaho:** Idaho Form 41ES — quarterly estimated (same dates roughly).
+**How:** Set calendar reminders. Consider simple bookkeeping from day one (Wave free, or QuickBooks Simple Start $15/mo).
+**Depends on:** BLAW-01 (EIN + incorporation)
+**Effort:** XS setup, ongoing quarterly
+**Priority:** P0 (time-gated — first payment due based on when revenue starts)
+
+---
+
 ## P3 — Lower Priority
 
 ### TODOS-MKT-01: Full Marketing Website (Track C)

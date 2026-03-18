@@ -666,3 +666,36 @@ Resume prompt (copy exactly):
 - [ ] NEXT: Confirm auto-renew on both domains (getalphapi.com + alphalpi.com)
 - [x] CLAUDE.md updated: Session Start Protocol added (auto-briefing on session open)
 - [ ] Session 52 commit pending — do at start of Session 53
+
+## Session 53 — 2026-03-18
+
+### Completed this session
+- [x] Git commit ce3e066 — all Session 52 uncommitted files pushed to origin/main
+- [x] Confirmed email routing (support@getalphapi.com) already done in prior session
+- [x] USPTO TESS confirmed clear — "AlphaPi" no conflicts, common law ™ sufficient for launch
+- [x] Delaware name availability checked — "AlphaPi LLC" available (ICIS confirmed)
+- [x] **AlphaPi, LLC filed via Stripe Atlas** — 2026-03-18
+  - Structure: LLC, State: Delaware
+  - 100% founder ownership, Baltazar Aguilar, LLC manager
+  - Website: getalphapi.com, SSN on file
+  - EIN pending (IRS, 1-2 biz days after incorporation)
+- [x] TODOS.md updated — 14 new BLAW items (P0 business/legal follow-up checklist)
+- [x] decisions.md updated — Session 53 LLC decision logged
+- [x] CURRENT-SESSION.md updated
+
+### Git State
+- Last commit: ce3e066 (Session 52 docs)
+- Pending commit: TODOS.md (expanded), decisions.md (Session 53), CURRENT-SESSION.md (Session 53)
+
+### Pre-Launch Critical Path (updated)
+1. ✅ Trademark search (AlphaPi clear)
+2. ✅ Domain registered (getalphapi.com)
+3. ✅ Email routing (support@getalphapi.com)
+4. ✅ Delaware LLC filed (AlphaPi, LLC — Stripe Atlas, 2026-03-18) ← DONE TODAY
+5. 🔲 Await incorporation confirmation email (1–2 biz days) → then Idaho foreign entity
+6. 🔲 Await EIN email (1–2 biz days after incorporation) → start D-U-N-S SAME DAY
+7. 🔲 Carrd landing page + Termly PP/ToS (can start now)
+8. 🔲 D-U-N-S ($230 expedited, 8 biz days) — clock starts on EIN
+9. 🔲 Apple Developer Organization (after D-U-N-S)
+10. 🔲 Keygen account + keys
+11. 🔲 Paddle payment processor
