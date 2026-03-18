@@ -699,3 +699,29 @@ Resume prompt (copy exactly):
 9. 🔲 Apple Developer Organization (after D-U-N-S)
 10. 🔲 Keygen account + keys
 11. 🔲 Paddle payment processor
+
+### Session 53 — Termly Privacy Policy (continued)
+- [x] Termly account created at app.termly.io
+- [x] Website added: https://www.getalphapi.com
+- [x] Privacy Policy wizard completed (98% — at Name Your Policy step)
+  - Website only, American English
+  - Product description: AlphaPi desktop app for AI governance + ROI
+  - User locations: US + EU/UK + Canada
+  - No user accounts, no minors, no social login, no analytics, no tracking
+  - GDPR legal bases: contract performance + admin communications
+  - No third-party sharing, no ads, no affiliates, no business partners
+  - Retention: 2 years
+  - Security measures: Yes (72hr breach notification acknowledged)
+  - US state laws: all states covered
+  - DPO: Baltazar Aguilar, support@getalphapi.com
+  - Data subject requests: Termly's service
+  - Additional clause: Offline Data Processing (assessment data never leaves device)
+  - Policy name: "Privacy Policy"
+- [ ] NEXT: Click Save & Next → Publish Privacy Policy → copy hosted URL
+- [ ] NEXT: Create Terms & Conditions on Termly → publish → copy hosted URL
+- [ ] NEXT: Build Carrd landing page using both URLs in footer
+
+### Session 53 — Final Status
+- Git: 4a8daec on origin/main (Session 53 docs committed)
+- Termly: Privacy Policy at 98%, one click from publish
+- Atlas: AlphaPi, LLC filed 2026-03-18, awaiting incorporation email (1-2 biz days)
