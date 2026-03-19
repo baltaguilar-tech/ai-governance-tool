@@ -754,3 +754,21 @@ Resume prompt (copy exactly):
 - [ ] Colors: navy (#1E2761) hero background, section contrast
 - [ ] Custom domain: getalphapi.com — requires Carrd Pro Standard ($49/yr) upgrade from current Pro Lite ($19/yr)
 - [ ] Commit SESSION-56-RECOVERY.md
+
+## Session 56 Progress (2026-03-18)
+- [x] Git commit 2b78541 — Session 55 docs pushed
+- [x] Carrd upgraded to Pro Standard ($49/yr) — custom domain + Form element unlocked
+- [x] DNS records added to Cloudflare: A @ → 172.66.0.70, CNAME www → getalphapi.com (both DNS only)
+- [x] getalphapi.com custom domain connected and LIVE with HTTPS
+- [x] Carrd page fixes: empty container deleted, Problem section moved above Features, hero colors corrected
+- [x] Published: https://getalphapi.com is live
+- [ ] Waitlist section + Tally.so form
+- [ ] Pricing section
+
+- [x] Tally.so form created (https://tally.so/r/68xVyJ) — email notification to balt.aguilar@outlook.com
+- [x] 'Join the Waitlist' button on Carrd hero updated to Tally URL
+- [ ] BUG: Tally form skips email field — jumps straight to confirmation. Fix in Session 57 (add Input block for email in Tally editor)
+- [ ] Pricing section — deferred to Session 57
+
+## Session 56 — END (2026-03-18)
+Git pending commit: docs/CURRENT-SESSION.md
