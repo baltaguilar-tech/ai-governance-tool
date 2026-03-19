@@ -733,3 +733,24 @@ Resume prompt (copy exactly):
 - [ ] Carrd landing page — NOT STARTED
 - Policy embed strategy: Carrd pages at /privacy and /terms with Termly HTML embed
 - Both Termly HTML embed codes needed when building Carrd
+
+## Session 55 (2026-03-18) — Carrd Landing Page
+
+### Completed
+- [x] Git commit: Session 54 files already committed (02261de)
+- [x] Built Carrd landing page at alphapi.carrd.co
+  - Hero: headline, subhead, "Join the Waitlist" button (navy #1E2761, #waitlist anchor)
+  - Features section: "What AlphaPi Does" — 4 items with descriptions
+  - Problem section: "The AI Governance Gap Is Costing You" — 3 stats
+  - Footer: AlphaPi, © 2026 AlphaPi LLC, mailto:support@getalphapi.com, Privacy Policy + Terms of Service links
+- [x] Published to alphapi.carrd.co (live)
+- [x] SEO title: "AlphaPi" | Meta description set
+
+### Not Yet Done (Session 56)
+- [ ] Pricing section (missing from page)
+- [ ] Waitlist form/CTA with #waitlist anchor — use Tally.so (free) since Carrd Form is locked
+- [ ] Reorder sections: Problem should be BEFORE Features
+- [ ] Delete empty container at bottom of page
+- [ ] Colors: navy (#1E2761) hero background, section contrast
+- [ ] Custom domain: getalphapi.com — requires Carrd Pro Standard ($49/yr) upgrade from current Pro Lite ($19/yr)
+- [ ] Commit SESSION-56-RECOVERY.md
