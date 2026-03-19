@@ -793,3 +793,15 @@ Git pending commit: docs/CURRENT-SESSION.md
 1. Commit TODOS.md changes
 2. BLAW-15: Fix Tally form email input (5 min — tally.so/forms/68xVyJ/edit)
 3. BLAW-16: Add Pricing section to Carrd (30 min)
+
+## Session 58 — END (2026-03-19)
+- [x] BLAW-15: Tally form email input fixed and published
+- [x] BLAW-16: Pricing section added to getalphapi.com — Free + Pro tiers, live and QA'd via gstack
+- [x] README updated: $79 pricing, v0.9.2-beta, gates table, contact section
+- [x] Git: f0862b4 pushed to origin/main
+- [x] tool-diary.md committed separately
+
+### First Thing Session 59
+- Discuss 3 strategic topics: content freshness strategy, AI governance knowledge pipeline, workflow redesign framework (AI-first org diagrams)
+- Await Atlas incorporation email (filed 2026-03-18)
+- Next dependency: D-U-N-S → Apple Dev → Keygen → Paddle
