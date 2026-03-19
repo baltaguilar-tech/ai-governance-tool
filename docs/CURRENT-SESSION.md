@@ -772,3 +772,24 @@ Resume prompt (copy exactly):
 
 ## Session 56 — END (2026-03-18)
 Git pending commit: docs/CURRENT-SESSION.md
+- [x] Session 57: getalphapi.com QA'd via gstack — hero/problem/features/footer all load correctly. Added BLAW-15 (Tally email fix, P0) + BLAW-16 (Pricing section, P0) to TODOS.md. BLAW-05 marked complete.
+
+## Session 57 (2026-03-19) — Cookie Hook Investigation
+
+### Completed
+- [x] gstack upgraded to v0.7.0 (auto-upgrade enabled)
+- [x] getalphapi.com QA'd via gstack — all sections rendering correctly after network idle
+- [x] BLAW-15 + BLAW-16 added to TODOS.md (Tally email fix + Pricing section)
+- [x] Investigated auto-cookie-import SessionStart hook — built, tested, then removed
+  - Root cause: Chrome/Edge encrypt cookies via macOS Safe Storage (Keychain) — unavoidable
+  - Decision: use /setup-browser-cookies manually when authenticated browsing needed
+  - settings.json restored to only PostToolUse (tool-diary) hook
+
+### Git State
+- Last commit: 623f202 (unchanged — no code changes this session)
+- TODOS.md updated locally (not committed)
+
+### First Thing Next Session
+1. Commit TODOS.md changes
+2. BLAW-15: Fix Tally form email input (5 min — tally.so/forms/68xVyJ/edit)
+3. BLAW-16: Add Pricing section to Carrd (30 min)

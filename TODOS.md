@@ -1,7 +1,7 @@
 # TODOS.md — AI Governance Tool
 
 Deferred work items. Each item has priority, effort estimate, and dependencies.
-Updated: 2026-03-18 (Session 52 — /plan-ceo-review)
+Updated: 2026-03-18 (Session 57 — landing page QA)
 
 ---
 
@@ -113,13 +113,31 @@ Updated: 2026-03-18 (Session 52 — /plan-ceo-review)
 
 ---
 
-### BLAW-05: Carrd Landing Page + Termly PP/ToS
+### BLAW-05: Carrd Landing Page + Termly PP/ToS ✅ LARGELY COMPLETE
 **What:** Build Carrd landing page at getalphapi.com + generate PP/ToS via Termly.
 **Why:** Required by Paddle (payment processor), Apple review, and GDPR/CCPA. Blocking launch.
-**How:** Carrd.co ($19/yr) → build 1-page site → point getalphapi.com DNS to it. Termly.io (free) → generate PP + ToS → get hosted URLs → add to landing page footer + in-app Settings.
-**Legal name to use:** AlphaPi, LLC
-**Can start now** — does not require EIN or D-U-N-S.
-**Effort:** S (3-4 hrs)
+**Status (Session 57):** getalphapi.com live on Carrd Pro Standard. PP + ToS published on Termly. Hero, Problem, Features, Footer all rendering correctly. Two remaining sub-tasks → BLAW-15 + BLAW-16.
+**Effort:** S (3-4 hrs) — DONE
+**Priority:** P0
+
+---
+
+### BLAW-15: Fix Tally Waitlist Form — Email Input Missing
+**What:** The "Join the Waitlist" form at tally.so/r/68xVyJ skips the email input — only has a label, no actual input field. Users who click submit go straight to confirmation without entering email.
+**Why:** Waitlist signups are capturing zero email addresses right now. Defeats the purpose of the form.
+**How:** tally.so/forms/68xVyJ/edit → delete the "Email" label block → add Input → Email field (required) → Submit button label: "Join the Waitlist" → form auto-saves.
+**Depends on:** Nothing — 5 min fix
+**Effort:** XS (5 min)
+**Priority:** P0 — do first, collecting zero emails until this is fixed
+
+---
+
+### BLAW-16: Add Pricing Section to Carrd Landing Page
+**What:** Pricing section is missing from getalphapi.com. Page goes Hero → Problem → Features → Footer with no pricing info.
+**Why:** Visitors who want to know "how much does this cost?" have no answer. Required before Paddle integration — establishes price expectations for waitlist signups.
+**How:** Carrd editor → add section between Features and Footer → heading: "Simple, Transparent Pricing" → two tier cards: Free ($0, full assessment + basic results) and Professional ($79/mo billed annually or one-time TBD) → CTA buttons → "Join the Waitlist" → tally.so/r/68xVyJ.
+**Depends on:** BLAW-15 (Tally form fixed first so CTA works)
+**Effort:** XS (30-45 min)
 **Priority:** P0
 
 ---
