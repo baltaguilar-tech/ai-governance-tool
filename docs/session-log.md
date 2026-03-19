@@ -339,3 +339,21 @@ All pushed: origin/main = 1adc590.
 - V2 Sprint 1 fully locked: enacted-only surfaced, proposed tracked silently in R2; Worker always writes manifest for audit trail; per-update acknowledge with timestamp → Regulatory Acknowledgment Log in Pro PDF; Delaware single-member LLC confirmed (c3797d6)
 - Help/website/support backlog locked: contextual tooltips + Help tab; ROI prep guide in-app + lead magnet; email support for V1; landing page confirmed as pre-launch blocker; SEO via shared help content confirmed (606bf9c)
 - SESSION-52-RECOVERY.md written, all docs committed and pushed
+
+## Session 59 — 2026-03-19
+
+**Strategic discussion only — no code changes.**
+
+Locked all content freshness + HITM decisions for Regulatory Intelligence Agent (V2 Sprint 1):
+
+1. **HITM approval pipeline:** Nothing goes to prod without owner review. V2 = manual R2 review. Admin dashboard (approval UI, bell + email notifications, future CRM) is a future Tauri-embedded operator panel — deferred post-revenue.
+
+2. **Model cascade:** Haiku (pinned) primary → Sonnet/Opus/best-available fallback on validation failure. Not locked to Anthropic. Fallback still goes through HITM. Quarterly model review cadence established. Rules = system prompt + output schema, versioned in Worker repo config.
+
+3. **Free user staleness notice:** Fires after first published update. Non-dismissible banner until upgrade. A+B hybrid copy (count-aware + urgency). Appears at top of both free PDF and free DOCX.
+
+4. **Pro auto-launch modal:** Triggers if >30 days since last CDN fetch. Shows specific updates + dimension impact + new questions. Re-scores with before/after snapshot (display only). Mini wizard for new questions. All actions/non-actions tracked in SQLite. Pro-only.
+
+5. **Regulation lifecycle:** Superseded card struck through + labeled. New card generated + goes through HITM. Prior acknowledgment preserved in audit log (immutable). SOC-ready audit log design established; SOC 1 formal compliance deferred post-revenue.
+
+All decisions written to docs/decisions.md and SESSION-59-RECOVERY.md.
