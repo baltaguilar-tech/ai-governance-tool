@@ -50,7 +50,7 @@ A guided desktop assessment that helps mid-market organizations measure AI gover
 | **Implementation roadmap** | — | ✓ |
 | **Assessment history & trends** | — | ✓ |
 
-**Pro pricing:** $500–$3,000 (one-time, per organization).
+**Pro pricing:** $79 one-time per organization.
 
 ---
 
@@ -97,7 +97,7 @@ Built as a native desktop application — no cloud dependency, no data leaves yo
 
 ## Project Status
 
-*Last updated: 2026-03-16 (v0.9.1-beta). See [CHANGELOG.md](CHANGELOG.md) for full version history.*
+*Last updated: 2026-03-19 (v0.9.2-beta). See [CHANGELOG.md](CHANGELOG.md) for full version history.*
 
 ### V1 Feature Set ✅ COMPLETE
 
@@ -127,15 +127,18 @@ All planned V1 features are built and shipping in v0.9.1-beta.
 
 These are not code items — they are blocked on external business steps.
 
-| Item | Blocked on |
-|------|-----------|
-| GL-2: Keygen license activation | Keygen.sh account setup |
-| GL-3: macOS code signing | Apple Developer Organization + D-U-N-S number |
-| GL-4: macOS notarization | Apple Developer + D-U-N-S number |
-| GL-5: Payment processor | Company registration + Paddle/LemonSqueezy decision |
-| DI-1: CrabNebula CDN | GL-3 signing |
-| DI-2: Repo → private | Company registration |
-| DI-3/4: Windows build + signing | EV code signing cert |
+| Item | Status | Blocked on |
+|------|--------|-----------|
+| Landing page (getalphapi.com) | ✅ Live | — |
+| Privacy Policy + Terms of Service | ✅ Published | — |
+| Company registration (AlphaPi, LLC) | 🔄 Filed | Awaiting incorporation confirmation |
+| GL-2: Keygen license activation | ⏳ Pending | Keygen.sh account setup |
+| GL-3: macOS code signing | ⏳ Pending | Apple Developer Organization + D-U-N-S number |
+| GL-4: macOS notarization | ⏳ Pending | Apple Developer + D-U-N-S number |
+| GL-5: Payment processor (Paddle) | ⏳ Pending | Company registration |
+| DI-1: CrabNebula CDN | ⏳ Pending | GL-3 signing |
+| DI-2: Repo → private | ⏳ Pending | Company registration |
+| DI-3/4: Windows build + signing | ⏳ Pending | EV code signing cert |
 
 ### Known Limitations (Beta)
 - macOS builds are unsigned — Gatekeeper warning expected (use `Install AlphaPi.command`)
@@ -259,4 +262,8 @@ Proprietary software. Unauthorized copying, redistribution, or commercial use is
 
 ## Contact
 
-Questions, partnership inquiries, early access requests: open an issue on GitHub or reach out via [GitHub](https://github.com/baltaguilar-tech/ai-governance-tool).
+Questions, partnership inquiries, early access requests:
+
+- **Website:** [getalphapi.com](https://getalphapi.com)
+- **Email:** support@getalphapi.com
+- **GitHub:** [baltaguilar-tech/ai-governance-tool](https://github.com/baltaguilar-tech/ai-governance-tool)
