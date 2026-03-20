@@ -834,3 +834,73 @@ When a regulation is superseded:
 3. **Audit log:** Prior acknowledgment of the superseded regulation is preserved (immutable, timestamped). New card requires a fresh acknowledgment — tracked separately.
 
 **Audit log design principle (SOC-ready):** All regulatory_updates DB operations are immutable — no deletes, clean timestamps, append-only acknowledgment records. SOC 1 compliance is a future milestone (full product scope, post-revenue). Design now for SOC readiness; formal audit deferred.
+
+---
+
+## 2026-03-20 — Session 59 (continued): SaaS Pivot — Strategic Decisions
+
+### MASTER DECISION: Path B — Pivot to SaaS (LOCKED)
+
+**Desktop app (v0.9.2-beta) is Stage 0 — proof of concept. It is frozen. Do not add features.**
+
+The project pivots to a multi-tenant SaaS platform. Target: acquisition within 24 months by Armanino, RSM, Moss Adams, or a GRC platform (Hyperproof, LogicGate). Revenue not required before exit — 2–3 paying reference customers is the target.
+
+### Decision: Acquisition Target (LOCKED)
+Realistic acquirers (not Big 4/McKinsey — they build their own or acquire $10M+ ARR companies):
+- **Primary:** Armanino, RSM, Moss Adams — mid-size firms actively acquiring technology for AI/advisory practice differentiation
+- **Secondary:** GRC platforms (Hyperproof, LogicGate, Diligent) — adding an AI governance module to their suite
+- **Tertiary:** PE-backed compliance rollups
+
+User has existing Armanino contact — this is the highest-priority action. Call this week.
+
+### Decision: SaaS Business Model (PROVISIONAL — validate with Armanino call)
+- **Channel:** Consulting firms as primary buyer (they use it with their clients)
+- **Pricing model:** Hybrid (base platform fee + per-client above threshold) — exact price points TBD post-Armanino call
+- **Stage 1 pricing:** Flat pilot fee per engagement ($500–$2,500/assessment)
+- **Revenue requirement:** None for exit — but 2–3 paying reference customers validates demand
+- **White-label:** Skin-only (consulting firm logo + colors) for Stage 1–2. Deep custom deferred.
+- **AlphaPi brand:** Invisible to end clients (consulting firm brand only)
+
+### Decision: Bridge — Option C Web MVP (LOCKED)
+**Not Option B (enhanced desktop).** Reasons:
+1. Desktop app is Mac-only. Consulting firms run Windows. Fatal distribution gap.
+2. Desktop enhancements are throwaway code — none transfers to SaaS architecture.
+3. Web MVP is the first slice of the real SaaS. Nothing is wasted.
+
+**Stage 1 scope (90 days, full-time):**
+- Multi-tenant auth (Supabase Auth — consulting firm login + user roles)
+- Multi-tenant data isolation (Supabase RLS — design before writing any code)
+- Client profile management (create/select/archive client orgs)
+- 9-step assessment wizard (port from desktop — React + TypeScript transfers directly)
+- Scoring engine (port from desktop — pure TypeScript, no changes needed)
+- Results dashboard (scores, dimensions, blind spots)
+- PDF export with consulting firm branding (firm logo replaces AlphaPi)
+
+**Everything else deferred to Stage 2:** RegIntel, HITM pipeline, billing, admin dashboard, white-label skin, remediation roadmap builder, re-scoring, audit log.
+
+**Tech stack:** Next.js + Supabase (auth + PostgreSQL + RLS) + Vercel + Tailwind CSS. Cursor for implementation, Claude for architecture.
+
+### Decision: Consulting Firm Deliverable (LOCKED)
+Consulting firm delivers: AlphaPi assessment output + their own remediation roadmap layered on top, built inside the AlphaPi platform (not externally). Everything stays in the platform for audit purposes and GDPR/EU AI Act data deletion compliance.
+
+### Decision: Liability Structure (OPEN — attorney required)
+- AlphaPi is a technology platform, not an advisor
+- Consulting firm is responsible for how they use the output with their clients
+- AlphaPi ToS must clearly define platform vs. advisory boundaries
+- White-label agreement needs attorney review before first pilot
+- GDPR data processor agreement required (AlphaPi touches client data even if invisible)
+- **Action:** User to consult attorney before Stage 1 pilot goes live with any consulting firm
+
+### Decision: Maturity Model (LOCKED)
+Full 4-stage product evolution + 4-level customer maturity model. See `docs/saas-maturity-model.md`.
+
+### Decision: Always Challenge Assumptions (PERMANENT — all sessions)
+User explicitly requires Claude to challenge all assumptions, flag contradictions, surface unvalidated claims, and never be compliant or appease. This applies to every session going forward. Saved to memory: `feedback-challenge-assumptions.md`.
+
+### Competitive Landscape (verified 2026-03-20)
+- No affordable SaaS AI governance assessment platform exists for mid-market at any price point
+- No white-label platform exists for consulting firms — they build their own or use enterprise tools
+- Enterprise players (OneTrust, Credo AI, Holistic AI) all use custom enterprise pricing — no public pricing
+- VerifyWise is only open-source option — technical model governance, not org assessment
+- Market recommendation for SMBs in 2026: "use spreadsheets" — gap is confirmed and real
+- Consulting firm market (RSM, Crowe, Tevora) does AI governance assessments manually — no platform

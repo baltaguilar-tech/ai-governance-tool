@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **Strategic context (2026-03-20):** This repository is **Stage 0 — Desktop POC** in a 4-stage product maturity model. The project is pivoting to a SaaS platform. This codebase is preserved as the domain model, scoring engine, and design artifact — all core logic (252 questions, scoring, 6 dimensions, recommendations) will be ported to the SaaS. See [`docs/saas-maturity-model.md`](docs/saas-maturity-model.md) for the full strategy.
+
 > [!NOTE]
 > **Pre-launch beta** — Core functionality is complete. This build is unsigned (macOS Gatekeeper warning expected). See [TESTER-GUIDE.md](TESTER-GUIDE.md) for installation instructions.
 

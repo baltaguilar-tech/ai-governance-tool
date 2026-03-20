@@ -357,3 +357,18 @@ Locked all content freshness + HITM decisions for Regulatory Intelligence Agent 
 5. **Regulation lifecycle:** Superseded card struck through + labeled. New card generated + goes through HITM. Prior acknowledgment preserved in audit log (immutable). SOC-ready audit log design established; SOC 1 formal compliance deferred post-revenue.
 
 All decisions written to docs/decisions.md and SESSION-59-RECOVERY.md.
+
+## Session 59 (continued) — 2026-03-20: SaaS Pivot
+
+**Major strategic pivot — no code changes.**
+
+- Desktop app (v0.9.2-beta) declared Stage 0 — frozen proof of concept
+- Project pivots to SaaS platform targeting acquisition within 24 months
+- Acquirers: Armanino (user has contact), RSM, Moss Adams, GRC platforms
+- Bridge: Option C — web MVP in 90 days (Next.js + Supabase + Vercel)
+- Stage 1 scope locked: multi-tenant auth, client profiles, wizard port, branded PDF
+- Competitive gap confirmed via web research: no white-label AI governance platform exists
+- Maturity model created: 4 product stages × 4 customer levels
+- Permanent mandate: always challenge assumptions — saved to memory
+- CLAUDE.md rewritten, README updated, decisions.md updated, SESSION-59-RECOVERY.md rewritten
+- All changes committed and pushed: af4b16e → final session 59 commit
