@@ -13,6 +13,7 @@ import type { AiNarrativeData } from '@/utils/execSummary';
 import { requestNotificationPermission } from '@/utils/notifications';
 import { EmailCaptureModal } from '@/components/modals/EmailCaptureModal';
 import { TrackProgress } from '@/components/dashboard/TrackProgress';
+import { ResponsesReview } from '@/components/dashboard/ResponsesReview';
 
 // Persists across React remounts within the same app session.
 // Resets on app restart, which is intentional — show again next session if no email saved.
@@ -23,7 +24,7 @@ export function ResultsDashboard() {
     useAssessmentStore();
 
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<'results' | 'progress'>('results');
+  const [activeTab, setActiveTab] = useState<'results' | 'responses' | 'progress'>('results');
   const [currentAssessmentId, setCurrentAssessmentId] = useState<number>(-1);
   const [isExportingFree, setIsExportingFree] = useState(false);
   const [isExportingPro, setIsExportingPro] = useState(false);
@@ -85,6 +86,16 @@ export function ResultsDashboard() {
           Assessment Results
         </button>
         <button
+          onClick={() => setActiveTab('responses')}
+          className={`px-6 py-3 text-sm font-semibold border-b-2 transition-colors ${
+            activeTab === 'responses'
+              ? 'border-[#1E2761] text-[#1E2761]'
+              : 'border-transparent text-navy-500 hover:text-navy-700'
+          }`}
+        >
+          Review Responses
+        </button>
+        <button
           onClick={() => setActiveTab('progress')}
           className={`px-6 py-3 text-sm font-semibold border-b-2 transition-colors ${
             activeTab === 'progress'
@@ -95,6 +106,8 @@ export function ResultsDashboard() {
           Track Progress
         </button>
       </div>
+
+      {activeTab === 'responses' && <ResponsesReview />}
 
       {activeTab === 'progress' && (
         <TrackProgress

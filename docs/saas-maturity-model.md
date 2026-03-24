@@ -29,7 +29,7 @@ flowchart LR
         s0b["What we learned:\nDomain model · UX patterns\nBusiness formation · Regulatory\ncontent architecture"]
     end
 
-    subgraph S1["Stage 1 · Web MVP · 90 Days"]
+    subgraph S1["Stage 1 · Web MVP · 120 Days"]
         direction TB
         s1a["Browser-based assessment wizard\nMulti-tenant auth (consulting firm login)\nClient profile management"]
         s1b["Consulting firm branded PDF output\nScoring engine ported from desktop\nNext.js · Supabase · Vercel"]
@@ -107,7 +107,7 @@ flowchart TB
 - Desktop enhancements are throwaway code — none transfers to SaaS.
 - Web MVP = first slice of the real SaaS. Nothing is wasted.
 
-**Stage 1 minimum scope (90 days, full-time + Cursor + Claude):**
+**Stage 1 minimum scope (120 days, full-time + Cursor + Claude):**
 
 | Feature | Notes |
 |---|---|

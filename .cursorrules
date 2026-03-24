@@ -1,0 +1,263 @@
+# AlphaPi — Cursor Rules
+# Read this file completely before writing a single line of code.
+# These rules are non-negotiable and apply to every task in this project.
+
+---
+
+## Who You Are Working With
+
+Balt Aguilar, founder of AlphaPi. Non-technical on the frontend/SaaS side, deeply
+experienced in program management and product strategy. He knows what good looks like
+and will catch anything that feels off. Treat him as a senior stakeholder, not a
+passive observer. He reviews everything before it ships.
+
+---
+
+## How We Work — Non-Negotiable Rules
+
+1. **Always ask clarifying questions before building.** If the requirement is ambiguous,
+   stop and ask. Do not interpret and proceed. One wrong assumption wastes hours.
+
+2. **Never assume.** If you are not 100% certain about a file path, a data model field,
+   a behavior, or a user intent — ask first.
+
+3. **Iterate, don't dump.** Build one piece at a time. Deliver it. Wait for review.
+   Get approval. Then move to the next piece. Never deliver a 500-line change without
+   a checkpoint.
+
+4. **Always present 2-3 options with opposing perspectives.** When a decision is
+   required, present options with trade-offs and at least one opposing viewpoint.
+   Do not disguise a recommendation as a neutral choice.
+
+5. **Challenge assumptions directly.** If the user's approach has a flaw, a risk, or
+   an unvalidated assumption — say so before proceeding. Never be compliant or
+   appease. This is a permanent mandate.
+
+6. **No em dashes anywhere.** Not in code comments, not in copy, not in docs. Use
+   a comma, a colon, or a period instead.
+
+7. **The product should sell itself.** Do not frame features as sales pitches.
+   Surface the problem clearly and let the solution speak. This applies to all copy,
+   UI text, and output documents.
+
+8. **Security first.** Stop and flag any change that touches auth, RLS policies,
+   credentials, payment flows, or data access before writing code.
+
+9. **No over-engineering.** Build the minimum required. No extra abstractions,
+   no premature generalization, no helper functions for one-time operations.
+   Three similar lines of code is better than a premature abstraction.
+
+---
+
+## Project Identity
+
+- **Company:** AlphaPi, LLC (Delaware, Stripe Atlas incorporated 2026-03-18)
+- **Product:** AI governance assessment + ROI measurement platform
+- **Model:** B2B2B — AlphaPi sells to consulting firms; consulting firms use it with clients
+- **Tagline:** "AI governance for orgs that don't have an AI governance team"
+- **Acquisition target:** Armanino, RSM, Moss Adams, GRC platforms (24-month horizon)
+- **Domain:** getalphapi.com
+- **GitHub:** https://github.com/baltaguilar-tech/ai-governance-tool
+
+---
+
+## What Exists Today (Stage 0 — Desktop POC)
+
+The desktop app is a completed proof of concept. It is **frozen at v0.9.2-beta**.
+Do not add features to the desktop app unless explicitly instructed for Armanino demo prep.
+
+- **Stack:** Tauri v2 + React 19 + TypeScript + Vite + Tailwind CSS + Recharts
+- **State:** Zustand (`src/store/assessmentStore.ts`)
+- **Questions:** Split by profile in `src/data/experimenter/`, `builder/`, `innovator/`, `achiever/`
+- **Scoring:** `src/utils/scoring.ts` — pure TypeScript, port unchanged to SaaS
+- **Database:** SQLite via tauri-plugin-sql + tauri-plugin-store for settings
+- **PDF export:** `src/utils/pdfExport.ts` (jsPDF)
+- **Wizard flow:** Welcome → Org Profile → 6 Dimensions → Results → Export
+
+Port to SaaS: scoring engine, question banks, dimension weights, recommendation logic.
+Do NOT port Tauri-specific code (Rust backend, tauri-plugin-*, deep links).
+
+---
+
+## What We Are Building (Stage 1 — SaaS)
+
+A multi-tenant web platform for consulting firms to run AI governance assessments
+with their clients. The consulting firm brand appears on all output — AlphaPi is
+invisible to end clients.
+
+**Stack:** Next.js + Supabase (auth + PostgreSQL + RLS) + Vercel + Tailwind CSS
+
+**Auth model:**
+- Consulting firm = tenant (firm_id on all data tables)
+- Client org = sub-tenant under a firm
+- Assessment = belongs to a client org, scoped by firm_id via RLS
+
+**Multi-tenancy rule:** Design Supabase RLS before writing any data access code.
+RLS misconfiguration is a CRITICAL risk (CVE-2025-48757 pattern). A pen-test script
+in CI is non-negotiable before any pilot.
+
+**Core UX:** Dimension-selective. Users choose which dimensions to assess and can
+return to complete the rest. Partial completion is a designed workflow, not an edge case.
+
+**Questions:** Served from static TypeScript files (same as desktop). Filtered by
+dimension + maturity profile at the application layer. No database storage of questions,
+no admin UI, no migration scripts needed for question changes.
+
+**Scoring engine port strategy:** Copy the algorithm from `src/utils/scoring.ts`.
+Extend for three input states: (1) not answered yet, (2) not applicable at maturity
+level, (3) dimension not selected. Core math is unchanged.
+
+**Timeline:** 120 days, Stage 1 build. Full-time + Cursor + Claude.
+
+---
+
+## Key Product Facts
+
+**6 Assessment Dimensions:**
+| Dimension | Weight | Key Focus |
+|---|---|---|
+| Shadow AI | 25% | Unauthorized AI tool usage |
+| Vendor Risk | 25% | Third-party AI exposure |
+| Data Governance | 20% | AI data handling + flows |
+| Security & Compliance | 15% | Policy enforcement gaps |
+| AI-Specific Risks | 10% | Model-level failure risks |
+| ROI Tracking | 5% | Measuring AI investment return |
+
+**Maturity Profiles:** Experimenter, Builder, Innovator, Achiever
+**Questions:** 252 total (10 per dimension per profile, 13 for AI-Specific Risks)
+**Timing:** Under 5 minutes per dimension, under 30 minutes for all six
+
+**Scoring thresholds:**
+- 0-30: Critical risk
+- 31-60: High risk
+- 61-80: Moderate risk
+- 81-100: Low risk
+
+**Vendor score thresholds:** 0-30 Renew | 31-60 Renegotiate | 61-80 Remediate | 81-100 Replace
+
+---
+
+## Brand Tokens
+
+```
+dark-base:     #02093A
+dark-surface:  #0D1B4B
+accent-gold:   #FFCE20
+accent-blue:   #2B5CFF
+accent-cyan:   #0FFFA9
+accent-red:    #C50000
+accent-green:  #00C48C
+```
+
+Typography: system font stack (no custom fonts yet — define in architecture session).
+The consulting firm's logo replaces AlphaPi branding on all client-facing output.
+
+---
+
+## Data Model (Stage 1 — Shared Schema with RLS)
+
+Core tables (all include `firm_id` for RLS):
+- `firms` — tenant accounts (consulting firms)
+- `firm_users` — users belonging to a firm
+- `client_orgs` — client organizations under a firm
+- `assessments` — assessment sessions (links to client_org)
+- `assessment_results` — scored output per assessment
+- `responses` — individual question responses per assessment
+
+Stage 2 placeholders (design now, build later):
+- `discovery_scan_configs`
+- `discovery_scan_results`
+- `remediation_actions` (uses nullable FKs: assessment_result_id + scan_result_id, not polymorphic)
+- `regulatory_frameworks`
+
+**RLS rule:** Every query must be scoped by `firm_id`. Never trust client-provided
+`firm_id` — derive it from the authenticated session via Supabase auth.uid().
+
+---
+
+## Key Files to Read Before Touching Related Code
+
+| Task | Read First |
+|---|---|
+| Scoring logic | `src/utils/scoring.ts` |
+| Question structure | `src/data/questions/index.ts` + any one profile file |
+| State management | `src/store/assessmentStore.ts` |
+| PDF export | `src/utils/pdfExport.ts` |
+| DB schema | `src/services/db.ts` |
+| Recommendations | `src/utils/recommendations.ts` |
+| Product strategy | `docs/saas-product-plan.md` (15 sections, 0-14) — DO NOT share externally |
+| Architecture decisions | `docs/decisions.md` |
+| Regulatory content plan | `docs/remote-content-plan.md` |
+
+---
+
+## Architecture Decisions Already Made
+
+1. Shared-schema-with-RLS for multi-tenancy (not schema-per-tenant)
+2. Static TypeScript files for questions (not database-stored)
+3. Supabase RLS pen-test script required in CI before pilot
+4. Scoring engine: copy algorithm, extend for partial inputs — no refactor
+5. Nullable FK pattern for remediation actions (not polymorphic)
+6. Consulting firm brand on all output (AlphaPi invisible to clients)
+7. Dimension-selective UX: partial completion is a first-class workflow
+8. Attorney review is a hard gate before first pilot (not before build)
+
+8 decisions deferred to architecture spike session:
+- Supabase auth strategy (email/password vs magic link vs SSO)
+- Session token handling + rotation policy
+- File storage strategy for exported PDFs
+- Background job approach for score calculation at scale
+- API rate limiting strategy
+- Staging environment topology
+- Error monitoring and observability stack
+- Feature flag strategy
+
+---
+
+## What Is NOT Yet Built (Blocked Items)
+
+- Keygen license wiring (blocked on Keygen account keys)
+- macOS code signing (blocked on Apple Developer Organization + D-U-N-S)
+- Payment processor (blocked on Paddle vs LemonSqueezy decision)
+- Windows build (blocked on EV cert)
+- Landing page + Privacy Policy + ToS (required before payment processor + Apple review)
+- SaaS Stage 1 (starts after Armanino call validation)
+
+---
+
+## Carry-Over UX Requirements (Desktop → SaaS)
+
+These are non-optional UX behaviors from the desktop that must exist in the SaaS:
+
+1. **Responses tab** — results page tab where users review all answers by dimension,
+   change any answer, and see scores update immediately. (Not yet built on desktop.)
+
+2. **Back navigation** — users can navigate back to any previous dimension without
+   losing entered answers. Backward navigation does not trigger re-scoring.
+
+3. **Draft persistence** — in-progress assessments auto-save and restore on reload.
+   (Desktop uses SQLite; SaaS uses Supabase.)
+
+---
+
+## Mandatory Pause Triggers
+
+Stop and ask before proceeding if any change involves:
+- Supabase RLS policies or auth configuration
+- API keys, tokens, or secrets
+- Financial or payment flows
+- Permanent data deletion or migration
+- External service integrations
+- Publishing or deploying to production
+
+Format: "PAUSE: [what triggered this] | Risk: [concern] | Need: [clarification]"
+
+---
+
+## Environment
+
+- Node: `/Users/baltmac/.nvm/versions/node/v24.13.1/bin/node`
+- Git SSH: `GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main`
+- gh CLI: `~/bin/gh`
+- Dev server: `cd ~/Projects/ai-governance-tool && npm run tauri dev`
+- TypeScript check: `/Users/baltmac/.nvm/versions/node/v24.13.1/bin/node ./node_modules/.bin/tsc -b tsconfig.app.json --noEmit`

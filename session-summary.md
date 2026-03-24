@@ -237,3 +237,86 @@ See also: `~/.claude/session-index.md` for cross-project index.
 - The one-pager looks strong: dark navy (#02093A/#0D1B4B), gold accents (#FFCE20), logo, 56%/79% stats, 6 dimension pills, 4-step How It Works, consulting firm value block, confidentiality footer
 - Armanino call not yet scheduled as of this session close
 - Product plan is at `docs/saas-product-plan.md` (2,105 lines, 15 sections 0-14) — do NOT share externally
+
+---
+
+## Session: 2026-03-24 (Continuation — Armanino Outreach)
+
+**Focus:** Writing and finalizing the LinkedIn outreach message to Narpat Singh (Senior TPM, Armanino).
+
+### Decisions Made
+
+- **One-pager confirmed final.** Spacing work (tagline-to-stats gap + How It Works margins) is resolved. PDF at `docs/alphapi-onepager.pdf` is approved.
+- **`alphapi_onepager.py` still missing from disk.** Deferred to next task -- reconstruct from existing PDF before any PDF changes.
+- **Armanino contact identified:** Narpat Singh, Senior Technical Program Manager at Armanino. Former peer colleague.
+- **Outreach approach:** Brief framing + low-commitment ask. No sales angle. Let the product speak. Ask for honest reaction and offer a <30 min call to show what we have.
+- **Message sent via LinkedIn DM with one-pager attached.** Outreach is complete. Waiting for response.
+- **Product philosophy established (permanent):** "If we have to sell the product, the product has a problem." No selling -- the product fills a real gap and should speak for itself. Applies to all channels and all future content.
+- **No dashes (-- or em dash) in casual human messages.** They break conversational flow. Applies to LinkedIn DMs, emails, and any informal communication.
+
+### Final message sent to Narpat Singh
+
+"Hey Narpat, hope you're doing well! I've been building an AI governance assessment tool that helps companies identify blind spots across six governance dimensions. The part most tools miss is the ROI side, and ours actually measures the return on AI investments. Would love to send you a quick one-pager and get your honest take. If you're up for it, we could also jump on a call under 30 minutes so I can show you what we have. No agenda, just curious if you think it solves a real problem."
+
+### Tasks Agreed
+
+- [x] Confirm PDF spacing is final
+- [x] Draft outreach message to Narpat Singh
+- [x] Iterate on tone (remove dashes, make human)
+- [x] Send one-pager to Armanino contact
+
+### Outstanding / Deferred (carry forward)
+
+1. Reconstruct `alphapi_onepager.py` from existing PDF (needed before any PDF changes)
+2. Build confidentiality slide (full-screen, dark navy, for Armanino screen share)
+3. Build sample assessment PDF (second leave-behind for Armanino call)
+4. Full second-pass review of all 14 product plan sections
+5. `~/.claude/session-index.md` creation
+6. Fix support@getalphapi.com routing from Outlook
+
+### Notes
+
+- Narpat has no budgetary power but has strong pattern recognition for product viability and risk
+- Goal of the call: honest critical feedback, not a sales conversation
+- If he bites, demo approach: walk Shadow AI dimension live, skip to pre-completed results, export PDF (~20 min demo + 30 min interview)
+
+---
+
+## Session: 2026-03-24 (Continuation 2 — Cursor Rules, PowerPoint, Desktop Fixes)
+
+**Focus:** Building pre-demo deliverables and fixing desktop app issues for Armanino prep.
+
+### Decisions Made
+
+- **alphapi_onepager.py needs to be reconstructed.** Deferred earlier in session, then confirmed: needed for confidentiality slide. Will tackle at start of next session.
+- **`.cursorrules` built** in project root. Full context package for Cursor + Claude SaaS build. Covers working rules, project identity, desktop architecture, SaaS target, brand tokens, data model, key files, architecture decisions, and environment.
+- **`docs/armanino-prep-checklist.md` created.** Single tracker for all Armanino prep tasks: outreach, leave-behind docs, demo environment, demo script, interview questions, carry-over features.
+- **`docs/saas-product-plan.md` Section 15 added.** Desktop UX carry-over features: Responses tab, back navigation, seamless update/reinstall.
+- **`docs/powerpoint-copilot-prompt.md` created.** Reusable 6-step prompt guide for generating a 3-slide Beta deck in MS PowerPoint via Copilot. Includes generation prompt + 5 refinement prompts + manual adjustment notes.
+- **DMG auto-eject fix applied to `Install AlphaPi.command`.** Script now ejects any previously mounted AlphaPi volume at the start, and auto-ejects the current disk image after install completes. Eliminates the duplicate-volume problem on updates.
+- **Responses tab built.** New `ResponsesReview.tsx` component + wired into `ResultsDashboard.tsx` as a third tab ("Review Responses") between Assessment Results and Track Progress. Shows all questions grouped by dimension, allows changing any answer, triggers live re-scoring via `calculateResults()` on each change. TypeScript check passed clean.
+- **Back navigation confirmed already working.** `prevStep()` fully wired to Back button in DimensionStep.tsx. No code changes needed.
+- **Product philosophy (permanent):** "If we have to sell the product, the product has a problem." Logged in feedback memory.
+
+### Tasks Completed
+
+- [x] Create docs/armanino-prep-checklist.md
+- [x] Add carry-over features (Section 15) to docs/saas-product-plan.md
+- [x] Build .cursorrules file
+- [x] Write PowerPoint Copilot prompt (docs/powerpoint-copilot-prompt.md)
+- [x] Fix DMG auto-eject in Install AlphaPi.command
+- [x] Build Responses tab (ResponsesReview.tsx + ResultsDashboard wiring)
+
+### Outstanding / Deferred (carry to next session)
+
+1. Reconstruct `alphapi_onepager.py` from existing PDF (FIRST — blocks confidentiality slide)
+2. Build confidentiality slide (full-screen PDF, dark navy + gold, for Armanino screen share)
+3. Build sample assessment PDF (second leave-behind for Armanino call)
+4. Commit + push all session changes to GitHub
+
+### Notes
+
+- Session ended at ~54% context used. Remaining PDF tasks deferred to fresh session.
+- All code changes are uncommitted — commit at start of next session before new work
+- TypeScript compiles clean on all new code
+- DIMENSION_MAP order used in ResponsesReview: shadowAI, vendorRisk, dataGovernance, securityCompliance, aiSpecificRisks, roiTracking
