@@ -14,11 +14,11 @@ echo "AlphaPi Beta Installer"
 echo "──────────────────────"
 
 # 0. Close AlphaPi if it is currently running
-if pgrep -xq "AlphaPi"; then
+if pgrep -xq "ai-governance-tool"; then
   echo ""
   echo "AlphaPi is open. Please close it now. Waiting 10 seconds before forcing it closed..."
   sleep 10
-  pkill -x "AlphaPi" 2>/dev/null || true
+  pkill -x "ai-governance-tool" 2>/dev/null || true
 fi
 
 # 1a. Eject any previously mounted AlphaPi disk images (except the one we are running from)
