@@ -13,6 +13,14 @@ echo ""
 echo "AlphaPi Beta Installer"
 echo "──────────────────────"
 
+# 0. Close AlphaPi if it is currently running
+if pgrep -xq "AlphaPi"; then
+  echo ""
+  echo "AlphaPi is open. Please close it now. Waiting 10 seconds before forcing it closed..."
+  sleep 10
+  pkill -x "AlphaPi" 2>/dev/null || true
+fi
+
 # 1a. Eject any previously mounted AlphaPi disk images (except the one we are running from)
 # This prevents the duplicate-volume problem when updating from a previous beta.
 while IFS= read -r vol; do
@@ -43,7 +51,6 @@ xattr -cr "$SOURCE" 2>/dev/null
 # 3. Copy to /Applications (overwrite if previous beta exists)
 echo "Installing AlphaPi to /Applications..."
 if [ -d "$DEST" ]; then
-  echo "(Replacing existing installation)"
   rm -rf "$DEST"
 fi
 cp -R "$SOURCE" "$DEST"
