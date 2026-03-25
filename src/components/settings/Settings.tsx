@@ -165,7 +165,7 @@ export function Settings({ isOpen, onClose }: SettingsProps) {
 
         {/* Sidebar footer */}
         <div className="px-4 py-3 border-t border-white/10">
-          <p className="text-xs text-white/40">v0.1.0</p>
+          <p className="text-xs text-white/40">v0.9.2-beta</p>
         </div>
       </nav>
 

@@ -51,7 +51,7 @@ export function AppLayout({ children }: AppLayoutProps) {
             <img src="/assets/alphapi-icon.png" alt="AlphaPi" className="w-8 h-8 object-contain" />
             <div>
               <h1 className="text-lg font-semibold leading-tight">AlphaPi</h1>
-              <p className="text-xs text-white/50">AI Governance & ROI v0.1.0</p>
+              <p className="text-xs text-white/50">AI Governance & ROI v0.9.2-beta</p>
             </div>
           </div>
           <div className="text-xs text-white/40">

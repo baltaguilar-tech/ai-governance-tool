@@ -68,9 +68,9 @@ These items are tracked here for Armanino demo context and in `docs/saas-product
 
 | Feature | Desktop Status | SaaS Priority |
 |---|---|---|
-| Responses tab (review + edit answers, live re-scoring) | Not yet built | High — core UX pattern |
-| Back navigation across dimensions | Already works (Zustand prevStep) | Carry over as-is |
-| Seamless update/reinstall (no duplicate mounts) | Fix pending | Medium — ops quality |
+| Responses tab (review + edit answers, live re-scoring) | Built and tested in v0.9.2-beta — editable, live re-scoring, grouped by dimension | High — core UX pattern |
+| Back navigation across dimensions | Already works (Zustand prevStep) — confirmed functional in demo | Carry over as-is |
+| Seamless update/reinstall (no duplicate mounts) | Auto-eject fix applied — prevents duplicate volume mounts on update | Medium — ops quality |
 
 ---
 

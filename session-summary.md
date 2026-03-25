@@ -323,6 +323,52 @@ See also: `~/.claude/session-index.md` for cross-project index.
 
 ---
 
+## Session: 2026-03-24 (Session 62 — Review Responses Fix + Version String)
+
+**Focus:** Clarifying Review Responses issue, fixing hardcoded version strings, rebuilding desktop app, updating documentation.
+
+### Decisions Made
+
+- **Review Responses issue: Explanation A confirmed correct.** The installed app was a pre-session-60 build showing v0.1.0 in the UI. ResponsesReview.tsx was built and wired in session 60, but the installed binary predated those changes. A rebuild surfaced the feature.
+- **Version strings are hardcoded in UI, not dynamic.** Found two hardcoded v0.1.0 strings in the codebase: AppLayout.tsx line 54 and Settings.tsx line 168. Both updated to v0.9.2-beta to match the actual release version.
+- **Desktop rebuild successful.** DMG bundling failed initially (previously mounted volume not ejected). Ejected the stale mount, rebuilt successfully.
+- **Direct install method is reliable.** Installing directly from the build folder (`/Applications`) is more reliable than the DMG flow. The DMG has a distribution gap: the installer script (Install AlphaPi.command) is not bundled inside the DMG — users must run it manually or it fails silently.
+- **Review Responses feature confirmed working.** After rebuild and install, v0.9.2-beta displays correctly, and the Review Responses tab is visible, editable, and live re-scores on answer changes.
+- **Desktop is not frozen.** User explicitly approved the Review Responses addition. The desktop freeze (no further modifications) begins after this session's changes are committed.
+- **SaaS backlog update needed.** Review Responses feature (editable, live re-scoring, grouped by dimension) should be logged in SaaS product plan as a carry-over item from desktop.
+
+### Tasks Completed
+
+- [x] Read SESSION-62-RECOVERY.md and session-summary.md for context
+- [x] Confirmed Cursor is not installed (skipped readiness check)
+- [x] Clarified the Review Responses issue (pre-session-60 binary vs. new code)
+- [x] Fixed version string in AppLayout.tsx (line 54: v0.1.0 → v0.9.2-beta)
+- [x] Fixed version string in Settings.tsx (line 168: v0.1.0 → v0.9.2-beta)
+- [x] Rebuilt app: npm run tauri build (twice — first DMG bundling failed, second succeeded after ejecting stale mount)
+- [x] Installed from build folder and tested
+- [x] Verified Review Responses tab visible and working (editable, live re-scoring)
+- [x] Confirmed v0.9.2-beta in header and review tab operational
+
+### Outstanding / Carry to Session 63
+
+1. Confidentiality slide (dark navy, gold, for Armanino screen share)
+2. Sample assessment PDF (second leave-behind for Armanino call)
+3. Fix installer script distribution gap — script not bundled in Tauri DMG (ops issue, not user-facing in MVP)
+4. Add Review Responses to SaaS backlog (Section 15 carry-over)
+5. Second-pass review of all 15 SaaS product plan sections
+6. Commit two pending files: Settings.tsx and AppLayout.tsx (version string fixes)
+7. session-index.md creation (low priority, deferred)
+8. Fix support@getalphapi.com routing from Outlook
+
+### Notes
+
+- The Review Responses tab was fully implemented in session 60. Visibility issue was purely an installed binary freshness problem.
+- Version strings hardcoded in two locations (AppLayout, Settings) — consider centralizing in future refactor.
+- DMG flow has a known gap: Install AlphaPi.command script is not bundled inside the DMG. Works when run manually, but users won't know to run it. Reliable path: copy from build folder directly or improve DMG bundling.
+- Desktop freeze resumes after session 62 changes are committed. No further modifications to v0.9.2-beta.
+
+---
+
 ## Session: 2026-03-24 (Session 61 — Install Test + Memory Cleanup)
 
 **Focus:** Committing session 60 changes, reconstructing alphapi_onepager.py, installer fixes, memory cleanup.
