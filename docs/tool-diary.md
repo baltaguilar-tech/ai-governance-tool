@@ -4260,3 +4260,122 @@
 | 2026-03-24 17:25:30 | Bash                 | ls /Users/baltmac/Projects/ai-governance-tool/docs/SESSION-61-RECOVERY.md && git -C /Users... |
 | 2026-03-24 17:25:37 | Bash                 | git status --short docs/SESSION-61-RECOVERY.md && git show HEAD:docs/SESSION-61-RECOVERY.m... |
 | 2026-03-24 17:25:42 | Bash                 | git ls-files --others --exclude-standard docs/SESSION-61-RECOVERY.md && git status -s |
+| 2026-03-24 17:25:48 | Bash                 | git add .cursorrules docs/armanino-prep-checklist.md docs/powerpoint-copilot-prompt.md doc... |
+| 2026-03-24 17:25:57 | Bash                 | git commit -m "$(cat <<'EOF' feat: Session 60 close — Cursor rules, Armanino prep, Respons... |
+| 2026-03-24 17:26:02 | Bash                 | GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main |
+| 2026-03-24 17:26:06 | Read                 | docs/alphapi-onepager.pdf |
+| 2026-03-24 17:26:37 | Bash                 | find /Users/baltmac/Projects/ai-governance-tool -name "*.png" -o -name "*.svg" -o -name "*... |
+| 2026-03-24 17:26:38 | Bash                 | python3 -c "import reportlab; print(reportlab.Version)" 2>/dev/null || echo "reportlab not... |
+| 2026-03-24 17:26:58 | Bash                 | pip3 install reportlab --quiet && python3 -c "import reportlab; print('reportlab', reportl... |
+| 2026-03-24 17:28:16 | Write                | alphapi_onepager.py |
+| 2026-03-24 17:28:30 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:28:39 | Bash                 | python3 alphapi_onepager.py |
+| 2026-03-24 17:28:46 | Read                 | docs/alphapi-onepager.pdf |
+| 2026-03-24 17:30:00 | Read                 | alphapi_onepager.py |
+| 2026-03-24 17:30:39 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:30:50 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:31:01 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:31:10 | Read                 | alphapi_onepager.py |
+| 2026-03-24 17:31:18 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:31:29 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:31:48 | Read                 | alphapi_onepager.py |
+| 2026-03-24 17:31:59 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 17:32:10 | Bash                 | python3 /Users/baltmac/Projects/ai-governance-tool/alphapi_onepager.py |
+| 2026-03-24 17:32:19 | Read                 | docs/alphapi-onepager.pdf |
+| 2026-03-24 17:33:46 | Bash                 | python3 - <<'EOF' from reportlab.pdfgen import canvas from reportlab.lib.pagesizes import ... |
+| 2026-03-24 17:34:15 | Bash                 | python3 - <<'EOF' from reportlab.pdfgen import canvas from reportlab.lib.pagesizes import ... |
+| 2026-03-24 17:35:06 | Bash                 | python3 - <<'EOF' from reportlab.pdfgen import canvas from reportlab.lib.pagesizes import ... |
+| 2026-03-24 18:45:40 | Bash                 | grep -n '"Helvetica", 8\b' /Users/baltmac/Projects/ai-governance-tool/alphapi_onepager.py ... |
+| 2026-03-24 18:46:00 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 18:46:12 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 18:46:25 | Edit                 | alphapi_onepager.py |
+| 2026-03-24 18:46:38 | Bash                 | python3 /Users/baltmac/Projects/ai-governance-tool/alphapi_onepager.py |
+| 2026-03-24 18:46:48 | Read                 | docs/alphapi-onepager.pdf |
+| 2026-03-24 19:21:02 | Bash                 | which gs 2>/dev/null && gs --version || echo "ghostscript not found" |
+| 2026-03-24 19:21:18 | Bash                 | qlmanage -t -s 1200 -o /tmp /Users/baltmac/Projects/ai-governance-tool/docs/alphapi-onepag... |
+| 2026-03-24 19:21:33 | Read                 | /tmp/alphapi-onepager.pdf.png |
+| 2026-03-24 19:22:10 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add alphapi_onepager.py && git commit... |
+| 2026-03-24 19:22:22 | Bash                 | GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main |
+| 2026-03-24 19:30:41 | Bash                 | ls /Users/baltmac/.claude/projects/-Users-baltmac/memory/ |
+| 2026-03-24 19:30:52 | Read                 | ~/.claude/projects/-Users-baltmac/memory/business-setup.md |
+| 2026-03-24 19:30:52 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 19:30:52 | Read                 | ~/.claude/projects/-Users-baltmac/memory/domain-strategy.md |
+| 2026-03-24 19:32:50 | Read                 | ~/.claude/projects/-Users-baltmac/memory/content-architecture.md |
+| 2026-03-24 19:32:50 | Read                 | ~/.claude/projects/-Users-baltmac/memory/pending-workflow-protocol.md |
+| 2026-03-24 19:32:50 | Read                 | ~/.claude/projects/-Users-baltmac/memory/job-matcher-details.md |
+| 2026-03-24 19:34:24 | Write                | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 19:34:42 | Write                | ~/.claude/projects/-Users-baltmac/memory/feedback-pdf-rendering.md |
+| 2026-03-24 19:35:10 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/business-setup.md |
+| 2026-03-24 19:35:22 | Bash                 | wc -l /Users/baltmac/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 19:43:16 | Read                 | Install AlphaPi.command |
+| 2026-03-24 19:43:48 | Edit                 | Install AlphaPi.command |
+| 2026-03-24 19:44:01 | Edit                 | Install AlphaPi.command |
+| 2026-03-24 19:44:19 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add "Install AlphaPi.command" && git ... |
+| 2026-03-24 19:51:57 | Edit                 | Install AlphaPi.command |
+| 2026-03-24 19:56:22 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git add "Install AlphaPi.command" && git ... |
+| 2026-03-24 19:56:52 | Bash                 | cat >> /Users/baltmac/Projects/ai-governance-tool/session-summary.md << 'EOF'  ---  ## Ses... |
+| 2026-03-24 19:57:27 | Write                | docs/SESSION-62-RECOVERY.md |
+| 2026-03-24 19:57:42 | Bash                 | git add session-summary.md && git commit -m "$(cat <<'EOF' docs: session 61 close — summar... |
+| 2026-03-24 19:58:22 | Read                 | docs/SESSION-62-RECOVERY.md |
+| 2026-03-24 19:58:23 | Read                 | session-summary.md |
+| 2026-03-24 19:58:38 | Bash                 | ls /Applications/ | grep -i cursor; which cursor 2>/dev/null; ls ~/Applications/ 2>/dev/nu... |
+| 2026-03-24 20:08:03 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/src-tauri/tauri.conf.json | grep -i version... |
+| 2026-03-24 20:08:04 | Glob                 | /Users/baltmac/Projects/ai-governance-tool/src/**/*Responses* |
+| 2026-03-24 20:08:07 | Bash                 | grep -n "ResponsesReview\|Review Responses\|responses" /Users/baltmac/Projects/ai-governan... |
+| 2026-03-24 20:08:13 | Read                 | src/components/dashboard/ResponsesReview.tsx |
+| 2026-03-24 20:09:46 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && /Users/baltmac/.nvm/versions/node/v24.13.... |
+| 2026-03-24 20:12:17 | Bash                 | npm run tauri build 2>&1 |
+| 2026-03-24 20:18:29 | Bash                 | ls /Volumes/ | grep -i alphapi |
+| 2026-03-24 20:18:31 | Bash                 | ls "/Volumes/AlphaPi/" |
+| 2026-03-24 20:18:43 | Read                 | Install AlphaPi.command |
+| 2026-03-24 20:20:48 | Bash                 | defaults read /Applications/AlphaPi.app/Contents/Info.plist CFBundleShortVersionString 2>/... |
+| 2026-03-24 20:22:44 | Bash                 | grep -rn "v0.1.0\|v0\.1\.0" /Users/baltmac/Projects/ai-governance-tool/src/ 2>/dev/null |
+| 2026-03-24 20:23:22 | Read                 | src/components/settings/Settings.tsx |
+| 2026-03-24 20:23:23 | Read                 | src/components/layout/AppLayout.tsx |
+| 2026-03-24 20:23:59 | Edit                 | src/components/settings/Settings.tsx |
+| 2026-03-24 20:24:00 | Edit                 | src/components/layout/AppLayout.tsx |
+| 2026-03-24 20:26:21 | Bash                 | hdiutil detach /Volumes/AlphaPi -quiet 2>/dev/null; ls /Volumes/ | grep -i alphapi |
+| 2026-03-24 20:28:17 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && npm run tauri build 2>&1 |
+| 2026-03-24 20:32:51 | Read                 | session-summary.md |
+| 2026-03-24 20:32:51 | Read                 | docs/armanino-prep-checklist.md |
+| 2026-03-24 20:32:51 | Read                 | docs/SESSION-62-RECOVERY.md |
+| 2026-03-24 20:32:51 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 20:33:17 | Edit                 | session-summary.md |
+| 2026-03-24 20:33:36 | Write                | docs/SESSION-63-RECOVERY.md |
+| 2026-03-24 20:33:43 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 20:33:48 | Edit                 | docs/armanino-prep-checklist.md |
+| 2026-03-24 20:33:56 | Agent                | {'description': 'Update all session docs and memory files', 'prompt': 'You are u... |
+| 2026-03-24 20:35:56 | Bash                 | cd /Users/baltmac/Projects/ai-governance-tool && git status && git diff --stat |
+| 2026-03-24 20:35:59 | Bash                 | ls docs/SESSION-63-RECOVERY.md |
+| 2026-03-24 20:36:06 | Bash                 | cat /Users/baltmac/Projects/ai-governance-tool/.gitignore | grep -i session |
+| 2026-03-24 20:36:13 | Bash                 | git add src/components/layout/AppLayout.tsx src/components/settings/Settings.tsx docs/arma... |
+| 2026-03-24 20:36:20 | Bash                 | git commit -m "$(cat <<'EOF' Fix version strings and confirm Review Responses tab (v0.9.2-... |
+| 2026-03-24 20:36:26 | Bash                 | GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git push origin main |
+| 2026-03-24 20:45:31 | Read                 | docs/SESSION-63-RECOVERY.md |
+| 2026-03-24 20:45:32 | Bash                 | tail -30 /Users/baltmac/Projects/ai-governance-tool/session-summary.md |
+| 2026-03-24 20:45:41 | Bash                 | cd ~/Projects/ai-governance-tool && git status |
+| 2026-03-24 20:45:55 | Bash                 | cd ~/Projects/ai-governance-tool && git log --oneline -5 |
+| 2026-03-24 20:53:14 | Read                 | alphapi_onepager.py |
+| 2026-03-24 20:54:36 | Write                | alphapi_confidentiality_slide.py |
+| 2026-03-24 20:54:45 | Bash                 | cd ~/Projects/ai-governance-tool && python3 alphapi_confidentiality_slide.py |
+| 2026-03-24 20:55:20 | Bash                 | qlmanage -t -s 1200 -o /tmp /Users/baltmac/Projects/ai-governance-tool/docs/alphapi-confid... |
+| 2026-03-24 20:55:24 | Read                 | /tmp/alphapi-confidentiality-slide.pdf.png |
+| 2026-03-24 21:40:42 | Bash                 | cd ~/Projects/ai-governance-tool && git add alphapi_confidentiality_slide.py docs/alphapi-... |
+| 2026-03-24 21:40:55 | Bash                 | cd ~/Projects/ai-governance-tool && GIT_SSH_COMMAND="ssh -i ~/.ssh/github_alphapi" git pus... |
+| 2026-03-24 21:50:34 | Skill                | {'skill': 'browse', 'args': 'Navigate https://www.armanino.com/ and explore thei... |
+| 2026-03-24 21:50:43 | Bash                 | _UPD=$(~/.claude/skills/gstack/bin/gstack-update-check 2>/dev/null || .claude/skills/gstac... |
+| 2026-03-24 21:50:56 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/ |
+| 2026-03-24 21:51:04 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B useragent "Mozilla/5.0 (Macintosh; Intel M... |
+| 2026-03-24 21:51:08 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/industries/f... |
+| 2026-03-24 21:51:12 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/services/adv... |
+| 2026-03-24 21:51:15 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/services/reg... |
+| 2026-03-24 21:51:19 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/articles/ai-... |
+| 2026-03-24 21:51:24 | Bash                 | B=~/.claude/skills/gstack/browse/dist/browse $B goto https://www.armanino.com/services/reg... |
+| 2026-03-24 21:51:51 | WebSearch            | {'query': 'AI governance framework gap financial services 2024 2025 2026 statist... |
+| 2026-03-24 21:51:51 | WebSearch            | {'query': 'Deloitte McKinsey PwC financial services AI governance survey 2024 20... |
+| 2026-03-24 21:51:52 | WebSearch            | {'query': 'OCC Federal Reserve AI risk compliance financial institutions 2024 20... |
+| 2026-03-24 21:51:53 | WebSearch            | {'query': 'financial services AI regulatory enforcement gaps compliance statisti... |
+| 2026-03-24 21:52:03 | Agent                | {'description': 'Search for financial services AI governance stats', 'prompt': '... |
+| 2026-03-24 22:23:16 | Write                | docs/SESSION-64-RECOVERY.md |
+| 2026-03-24 22:23:21 | Read                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
+| 2026-03-24 22:23:34 | Edit                 | ~/.claude/projects/-Users-baltmac/memory/MEMORY.md |
