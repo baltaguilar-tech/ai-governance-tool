@@ -320,3 +320,31 @@ See also: `~/.claude/session-index.md` for cross-project index.
 - All code changes are uncommitted — commit at start of next session before new work
 - TypeScript compiles clean on all new code
 - DIMENSION_MAP order used in ResponsesReview: shadowAI, vendorRisk, dataGovernance, securityCompliance, aiSpecificRisks, roiTracking
+
+---
+
+## Session: 2026-03-24 (Session 61 — Install Test + Memory Cleanup)
+
+**Focus:** Committing session 60 changes, reconstructing alphapi_onepager.py, installer fixes, memory cleanup.
+
+### Completed
+- Committed + pushed all session 60 changes (2eb4135): .cursorrules, armanino-prep-checklist, saas-product-plan, powerpoint-copilot-prompt, ResponsesReview.tsx, ResultsDashboard wiring, DMG eject fix
+- Reconstructed alphapi_onepager.py from PDF (59c4fce) — reportlab script, unblocks confidentiality slide
+- PDF rendering rule: PDFs > ~4MB fail with "Request too large" — use `qlmanage -t -s 1200 -o /tmp <file.pdf>` to convert to PNG first
+- Memory cleanup: MEMORY.md pruned from 226 to 120 lines. Removed frozen desktop phase details. Updated current status. Created feedback-pdf-rendering.md.
+- Installer fix 1 (86b5cc9): detect running AlphaPi, warn user, wait 10s, force-quit before install
+- Installer fix 2 (ad37414): corrected process name — binary is `ai-governance-tool` not `AlphaPi`
+- Full install test passed: detection, 10s wait, force-quit, install, relaunch all working
+
+### Decisions
+- Install script: uses `pgrep -xq "ai-governance-tool"` + `pkill -x "ai-governance-tool"` for detection/kill
+- No over-engineering on installer — beta only, kept simple and silent
+- Cursor: readiness check deferred — user has no license yet, still learning, transitioning from VS Code
+- pending-workflow-protocol.md: still pending discussion, not implemented
+
+### Outstanding / Carry to Session 62
+1. Review assessment navigation — user sees no 'Review' option after completing assessment. ResponsesReview.tsx was built in session 60 but installed app is pre-session-60 build (desktop frozen). Clarify in session 62: is this a rebuild question or a UX gap?
+2. Confidentiality slide (dark navy, gold, for Armanino screen share)
+3. Sample assessment PDF (second leave-behind for Armanino call)
+4. Cursor readiness check — once Cursor is installed
+5. Second-pass review of all 15 SaaS product plan sections
